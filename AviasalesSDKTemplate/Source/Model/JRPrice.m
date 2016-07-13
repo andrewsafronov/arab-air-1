@@ -11,10 +11,15 @@
 @implementation JRPrice
 
 @synthesize gate;
-@synthesize priceInRubblesValue;
+@synthesize value;
+@synthesize currency;
 @synthesize orderID;
 @synthesize creditPayment;
 @synthesize creditPaymentsCount;
 @synthesize creditPaymentsCurrencyCode;
+@synthesize creditGracePeriod;
+@synthesize creditLastPaymentDate;
+@synthesize creditOverpaymentPercent;
+@synthesize magicFare;
 
 @end

@@ -10,6 +10,7 @@
 #import "JRNavigationController.h"
 #import "JRSlideTransitionAnimation.h"
 #import "JRScreenScene.h"
+#import "UINavigationController+Additions.h"
 
 @interface JRScreenSceneController () <UINavigationControllerDelegate>
 @property (strong, nonatomic) JRNavigationController *navigationController;
@@ -19,7 +20,7 @@
 @implementation JRScreenSceneController
 
 + (CGFloat)screenSceneControllerWideViewWidth {
-    return 535.0f;
+    return 560.0f;
 }
 
 + (CGFloat)screenSceneControllerWideViewPortraitWidth {
@@ -27,7 +28,7 @@
 }
 
 + (CGFloat)screenSceneControllerTallViewWidth {
-    return 320;
+    return 320.0f;
 }
 
 - (id)init
@@ -149,10 +150,12 @@
 	[self popToRootViewController:YES animated:animated];
 }
 
-- (void)pushScreenScene:(JRScreenScene *)screenScene animated:(BOOL)animated
-{
+- (void)pushScreenScene:(JRScreenScene *)screenScene animated:(BOOL)animated {
 	[_navigationController pushViewController:screenScene animated:animated];
-    
+}
+
+- (void)replaceTopScreenSceneWith:(JRScreenScene *)screenScene {
+    [_navigationController replaceTopViewControllerWith:screenScene];
 }
 
 - (void)popToRootViewController:(BOOL)toRoot animated:(BOOL)animated

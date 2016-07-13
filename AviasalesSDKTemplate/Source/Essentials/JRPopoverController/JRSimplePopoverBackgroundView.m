@@ -6,8 +6,9 @@
 //
 
 #import "JRSimplePopoverBackgroundView.h"
-#import "JRC.h"
 #import "UIImage+JRUIImage.h"
+#import "ColorScheme.h"
+
 #define JR_SIMPLE_POPOVER_CORNER_RADIUS 10.f
 #define JR_SIMPLE_POPOVER_CONTENT_INSET 6.f
 #define JR_SIMPLE_POPOVER_FROM_POINT_MARGIN 10.f
@@ -27,7 +28,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         _backgroundView = [UIView new];
-        [_backgroundView setBackgroundColor:[JRC COMMON_POPUP_BACKGROUND_COLOR]];
+        [_backgroundView setBackgroundColor:[ColorScheme mainBackgroundColor]];
         [_backgroundView setClipsToBounds:YES];
         [self addSubview:_backgroundView];
         _backgroundView.layer.cornerRadius = [[self class] cornerRadius];
@@ -41,7 +42,7 @@
 
 + (UIImage *)arrowImage
 {
-    return [[UIImage imageNamed:@"JRSimpleAnnotationArrow"] imageTintedWithColor:[JRC COMMON_POPUP_BACKGROUND_COLOR]];
+    return [[UIImage imageNamed:@"JRSimpleAnnotationArrow"] imageTintedWithColor:[ColorScheme mainBackgroundColor]];
 }
 
 + (CGFloat)cornerRadius

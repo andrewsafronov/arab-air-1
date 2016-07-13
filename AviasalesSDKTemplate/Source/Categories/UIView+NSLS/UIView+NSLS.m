@@ -9,6 +9,10 @@
 
 @implementation UIView (NSLS)
 
+- (NSString *)NSLSKey {
+    return nil;
+}
+
 - (void)setNSLSKey:(NSString *)NSLSKey
 {
     NSString *localizedString = NSLS(NSLSKey);
@@ -20,8 +24,6 @@
         UIButton *button = strongSelf;
         [button setTitle:localizedString forState:UIControlStateNormal];
     }
-    
-    [self setAccessibilityLabelWithNSLSKey:NSLSKey];
 }
 
 @end

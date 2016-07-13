@@ -7,7 +7,7 @@
 //
 
 #import "ASFilterCellWithTwoThumbsSlider.h"
-#import <NMRangeSlider/NMRangeSlider.h>
+#import "NMRangeSlider.h"
 
 @implementation ASFilterCellWithTwoThumbsSlider {
     BOOL _sliderSetup;

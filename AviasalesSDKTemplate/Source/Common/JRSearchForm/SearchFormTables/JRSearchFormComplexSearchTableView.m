@@ -13,7 +13,7 @@
 #import "JRSearchInfo.h"
 
 #define kJRSearchFormSimpleSearchTableViewBottomInset 8
-#define kJRSearchFormSimpleSearchTableViewHeightForHeader 30
+#define kJRSearchFormSimpleSearchTableViewHeightForHeader 28
 
 
 @interface JRSearchFormSimpleSearchTableView ()

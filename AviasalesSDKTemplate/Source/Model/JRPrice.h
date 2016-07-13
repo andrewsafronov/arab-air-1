@@ -8,9 +8,11 @@
 #import <Foundation/Foundation.h>
 #import "JRGate.h"
 
+@class JRTicket;
 
 @interface JRPrice : NSObject <JRSDKPrice>
 
 @property (nonatomic, retain) JRGate *gate;
+@property (nonatomic, weak) JRTicket *ticket;
 
 @end

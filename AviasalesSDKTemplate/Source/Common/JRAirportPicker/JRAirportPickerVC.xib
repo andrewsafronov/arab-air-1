@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="2048" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JRAirportPickerVC">
+            <connections>
+                <outlet property="searchDisplayController" destination="xnp-Ht-AFT" id="Aoq-FD-R0q"/>
+                <outlet property="tableView" destination="4" id="ufg-kw-9zX"/>
+                <outlet property="view" destination="21" id="22"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="21">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ouV-Cc-Mnf">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="vsO-Ju-Ene"/>
+                    </connections>
+                </searchBar>
+                <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" bouncesZoom="NO" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                    <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="jf8-MW-E8j"/>
+                        <outlet property="delegate" destination="-1" id="RbD-6d-pnO"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="4" firstAttribute="leading" secondItem="21" secondAttribute="leading" id="9Vj-Gi-Y0i"/>
+                <constraint firstItem="4" firstAttribute="top" secondItem="ouV-Cc-Mnf" secondAttribute="bottom" id="9vO-kg-Scq"/>
+                <constraint firstAttribute="bottom" secondItem="4" secondAttribute="bottom" id="YjA-Og-RR7"/>
+                <constraint firstItem="ouV-Cc-Mnf" firstAttribute="leading" secondItem="21" secondAttribute="leading" id="gPv-g8-u0O"/>
+                <constraint firstItem="ouV-Cc-Mnf" firstAttribute="top" secondItem="21" secondAttribute="top" id="rkO-QE-v2K"/>
+                <constraint firstAttribute="trailing" secondItem="ouV-Cc-Mnf" secondAttribute="trailing" id="s63-wa-89D"/>
+                <constraint firstAttribute="trailing" secondItem="4" secondAttribute="trailing" id="xKb-ds-qKu"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+        <searchDisplayController id="xnp-Ht-AFT">
+            <connections>
+                <outlet property="delegate" destination="-1" id="Ljf-WR-hMy"/>
+                <outlet property="searchBar" destination="ouV-Cc-Mnf" id="xQ8-00-5PM"/>
+                <outlet property="searchContentsController" destination="-1" id="gwA-Jz-bVT"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="5Qb-4J-Www"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="1lp-yz-8cs"/>
+            </connections>
+        </searchDisplayController>
+    </objects>
+</document>

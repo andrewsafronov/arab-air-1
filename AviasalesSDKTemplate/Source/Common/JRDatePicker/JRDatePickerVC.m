@@ -12,8 +12,8 @@
 #import "JRDatePickerMonthHeaderReusableView.h"
 #import "DateUtil.h"
 #import "UIView+JRFadeAnimation.h"
-#import "JRC.h"
 #import "JRViewController+JRScreenScene.h"
+#import "ColorScheme.h"
 
 #define kJRDatePickerCollectionHeaderHeight 65
 #define kJRDatePickerToolbarHeight 87
@@ -84,7 +84,7 @@ static NSString *MonthReusableHeaderViewIdentifier = @"JRDatePickerMonthHeaderRe
 	[self registerNibs];
 	[self setupTitle];
     
-	[_tableView setBackgroundColor:[JRC COMMON_BACKGROUND]];
+	[_tableView setBackgroundColor:[ColorScheme mainBackgroundColor]];
     [self setSearchButtonToolbarHidden:_shouldShowSearchToolbar ? NO : YES];
 }
 

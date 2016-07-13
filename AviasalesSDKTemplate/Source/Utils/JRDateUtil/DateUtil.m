@@ -780,4 +780,11 @@ static BOOL user24HourTimeCyclePreference = NO;
     return [formatter stringFromDate:date];
 }
 
++ (NSString *)formatDurationInMinutes:(NSUInteger)durationInMinutes toHourAndMinutesStringWithFormat:(NSString *)localizedFormat {
+    long hours = durationInMinutes / 60;
+    long minutes = durationInMinutes % 60;
+    
+    return durationInMinutes > 0 ? [NSString stringWithFormat:localizedFormat, hours, minutes] : @"";
+}
+
 @end

@@ -4,7 +4,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
-#import <NMRangeSlider/NMRangeSlider.h>
+#import "NMRangeSlider.h"
 
 #import "ASTFilters.h"
 #import "ASFilterCellWithView.h"
@@ -23,6 +23,7 @@
 
 #import "ASTSearchParams.h"
 #import "ASTCommonFunctions.h"
+#import "ColorScheme.h"
 
 #define CALL_DELAY 0.07
 #define PRICE_DEFAULT_WIDTH 9.0f
@@ -40,6 +41,7 @@
 @property (assign, nonatomic) BOOL showAirlines;
 @property (assign, nonatomic) BOOL showAirports;
 @property (assign, nonatomic) BOOL showGates;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 - (void)resetAction:(id)sender;
 
@@ -125,17 +127,19 @@
 #pragma mark - Setup View
 
 - (void)setButtons {
-
-//    [UIBackgroundTaskInvalid addTarget:self action:@selector(dismiss:) forControlEvents:UIControlEventTouchUpInside];
     
     _resetBtn = [[UIBarButtonItem alloc] initWithTitle:AVIASALES_(@"AVIASALES_RESET") style:UIBarButtonItemStylePlain target:self action:@selector(resetAction:)];
-    
-    if (AVIASALES_VC_GRANDPA_IS_TABBAR) {
-        [self.navigationItem setLeftBarButtonItem:_resetBtn];
-        UIBarButtonItem *okBtn = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss:)];
-        [self.navigationItem setRightBarButtonItem:okBtn];
+    if (iPhone()) {
+        if (AVIASALES_VC_GRANDPA_IS_TABBAR) {
+            [self.navigationItem setLeftBarButtonItem:_resetBtn];
+            UIBarButtonItem *okBtn = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStylePlain target:self action:@selector(didFinishFiltering)];
+            [self.navigationItem setRightBarButtonItem:okBtn];
+        } else {
+            [self.navigationItem setRightBarButtonItem:_resetBtn];
+        }
     } else {
-        [self.navigationItem setRightBarButtonItem:_resetBtn];
+        UIBarButtonItem *const space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        self.toolbar.items = @[space, _resetBtn];
     }
     
     _resetBtn.enabled = _filter.needFiltering;
@@ -474,7 +478,7 @@
             void (^addGateCells)(NSArray *) = ^(NSArray * gates){
                 for (AviasalesGate *gate in gates.copy) {
                     ASFilterCellInfo *gateCell = [[ASFilterCellInfo alloc] init];
-                    gateCell.title = gate.gateName;
+                    gateCell.title = gate.label;
                     gateCell.CellIdentifier = @"ASFilterCellWithView";
                     gateCell.type = ASFilterGateCell;
                     gateCell.content = gate;
@@ -483,7 +487,7 @@
             };
             
             NSArray *sortedGatesByName = [_filter.response.filtersBoundary.gates sortedArrayUsingComparator: ^ NSComparisonResult (AviasalesGate *first, AviasalesGate *second) {
-                return [[first gateName] caseInsensitiveCompare:[second gateName]];
+                return [first.label caseInsensitiveCompare:second.label];
             }];
             addGateCells(sortedGatesByName);
         }
@@ -517,9 +521,9 @@
     
     if (_tickets.count) {
         
-        NSString *priceString = [ASTCommonFunctions formatPrice:[[[_tickets objectAtIndex:0] getBestPrice] value]];
+        NSString *priceString = [ASTCommonFunctions formatPrice:[[[_tickets objectAtIndex:0] bestPrice] priceInUserCurrency]];
         
-        _price.text = [NSString stringWithFormat:@"%@ %@", priceString, [AviasalesSDK sharedInstance].currencySymbol];
+        _price.text = [NSString stringWithFormat:@"%@ %@", priceString, [JRSDKModelUtils symbolForCurrency:[AviasalesSDK sharedInstance].currencyCode]];
         
     } else {
         
@@ -772,6 +776,10 @@
     return 1;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = [ColorScheme itemsBackgroundColor];
+}
+
 #pragma mark - Header Action
 
 - (void)updateHeader:(ASFilterHeaderCell *)headerCell info:(ASFilterCellInfo *)info {
@@ -804,9 +812,6 @@
 }
 
 #pragma mark - One Thumb Slider Actions
-
-
-
 
 - (void)updateSingleSliderCell:(ASFilterCellWithOneThumbSlider *)cell info:(ASFilterCellInfo *)info {
     [cell.cellLabel setText:info.title];
@@ -964,11 +969,11 @@
         
         [cell.cellRatingView setHidden:NO];
         [cell.cellRatingView setRating:[(AviasalesAirline *)info.content averageRate]];
-        NSNumber *price = [[_filter.response.filtersBoundary.minimumPricesForAirlines objectForKey:(AviasalesAirline *)[info.content iata]] getBestPrice].value;
+        NSNumber *price = [[_filter.response.filtersBoundary.minimumPricesForAirlines objectForKey:(AviasalesAirline *)[info.content iata]] bestPrice].priceInUserCurrency;
         if ([_filter.response.filtersBoundary.minimumPricesForAirlines objectForKey:(AviasalesAirline *)[info.content iata]] && [price longValue] > 0) {
             if ([[_filter.response.filtersBoundary.minimumPricesForAirlines objectForKey:(AviasalesAirline *)[info.content iata]] isKindOfClass:[AviasalesTicket class]]) {
                 [cell.cellAttLabel setFrame:CGRectMake(RETINA ? 181 : 184, 17, 95, 21)];
-                NSString *firstPart = [_formatter stringFromNumber:[[_filter.response.filtersBoundary.minimumPricesForAirlines objectForKey:(AviasalesAirline *)[info.content iata]] getBestPrice].value];
+                NSString *firstPart = [_formatter stringFromNumber:[[_filter.response.filtersBoundary.minimumPricesForAirlines objectForKey:(AviasalesAirline *)[info.content iata]] bestPrice].priceInUserCurrency];
                 NSString *secondPart = [[AviasalesSDK sharedInstance].currencyCode uppercaseString];
                 [cell. cellAttLabel setFont:[UIFont systemFontOfSize:RETINA ? 9.0f : 11.0f]];
                 [cell.cellAttLabel setText:[NSString stringWithFormat:@"%@ %@", firstPart, secondPart]];
@@ -1049,7 +1054,7 @@
     if (info.content) {
         [cell.cellAttLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0f]];
         [cell.cellAttLabel setFrame:CGRectMake(181, 13, 95, 21)];
-        NSNumber *price = [info.content getBestPrice].value;
+        NSNumber *price = [info.content bestPrice].priceInUserCurrency;
         NSString *firstPart = [_formatter stringFromNumber:price];
         [cell applyPriceString:firstPart];
     }
@@ -1081,18 +1086,8 @@
     [_filter setNeedFiltering:YES];
 }
 
-- (void)dismiss:(id)sender {
-    
-    [self.navigationController popViewControllerAnimated:NO];
-    
-//    [UIView  transitionWithView:self.navigationController.view duration:0.4  options: (UIViewAnimationOptionTransitionFlipFromLeft | UIViewAnimationOptionCurveEaseInOut)
-//                     animations:^(void) {
-//                         BOOL oldState = [UIView areAnimationsEnabled];
-//                         [UIView setAnimationsEnabled:NO];
-//                         [self.navigationController popViewControllerAnimated:YES];
-//                         [UIView setAnimationsEnabled:oldState];
-//                     }
-//                     completion:nil];
+- (IBAction)didFinishFiltering {
+    [self.delegate filtersDidFinishFiltering:self];
 }
 
 - (void)resetAction:(id)sender {

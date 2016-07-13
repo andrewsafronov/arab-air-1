@@ -7,7 +7,6 @@
 
 #import "JRSearchFormTravelClassPickerVC.h"
 #import "UIView+JRFadeAnimation.h"
-#import "JRC.h"
 #import "UIImage+JRUIImage.h"
 #import "JRTableViewCell.h"
 #import "JRSearchInfoUtils.h"
@@ -73,14 +72,14 @@
         cell = LOAD_VIEW_FROM_NIB_NAMED(cellIdentifier);
         [cell setSearchInfo:_searchInfo];
     }
-    [cell.customBackgroundView setBackgroundColor:[JRC CLEAR_COLOR]];
-    [cell.customSelectedBackgroundView setBackgroundColor:[[JRC WHITE_COLOR] colorWithAlphaComponent:0.2]];
+    [cell.customBackgroundView setBackgroundColor:[UIColor clearColor]];
+    [cell.customSelectedBackgroundView setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.2]];
     [cell setTravelClass:travelClass];
     
     [cell setBottomLineVisible:YES];
     [cell setShowLastLine:NO];
     [cell setBottomLineInsets:UIEdgeInsetsMake(0, 22, 0, 0)];
-    [cell setBottomLineColor:[[JRC WHITE_COLOR] colorWithAlphaComponent:0.5]];
+    [cell setBottomLineColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5]];
     
     [cell updateBackgroundViewsForImagePath:indexPath inTableView:tableView];
     

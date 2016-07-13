@@ -61,6 +61,7 @@ typedef NS_ENUM (NSInteger, JRDateUtilDurationStyle) {
 + (NSDateComponents *)componentsFromDate:(NSDate *)date;
 
 + (NSInteger)monthNumber:(NSDate *)date;
++ (NSInteger)dayOfMonthNumber:(NSDate *)date;
 
 + (NSString *)datesIntervalStringWithSameMonth:(NSDate *)fromDate toDate:(NSDate *)toDate;
 + (NSString *)dateToTimeString:(NSDate *)date;
@@ -80,5 +81,7 @@ typedef NS_ENUM (NSInteger, JRDateUtilDurationStyle) {
 + (NSString *)monthName:(NSDate *)date;
 + (NSString *)shortDatesIntervalStringWithSameMonth:(NSDate *)fromDate toDate:(NSDate *)toDate;
 + (NSString *)stringForSpeakDayMonthYearDayOfWeek:(NSDate *)date;
+
++ (NSString *)formatDurationInMinutes:(NSUInteger)durationInMinutes toHourAndMinutesStringWithFormat:(NSString *)localizedFormat;
 
 @end

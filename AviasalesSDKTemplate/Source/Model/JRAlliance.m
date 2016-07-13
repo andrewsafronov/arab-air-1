@@ -10,6 +10,6 @@
 
 @implementation JRAlliance
 
-@synthesize allianceName;
+@synthesize name = _name;
 
 @end

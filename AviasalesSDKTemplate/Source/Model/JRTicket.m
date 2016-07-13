@@ -10,14 +10,15 @@
 
 @implementation JRTicket
 
-@synthesize unorderedFlightSegments;
-@synthesize unorderedPrices;
+@synthesize flightSegments;
+@synthesize prices = _prices;
 @synthesize mainAirline;
 @synthesize simpleRating;
 @synthesize totalDuration;
 @synthesize delayDuration;
-@synthesize overnightStopover;
+@synthesize hasOvernightStopover;
 @synthesize sign;
-@synthesize fromTrustedGate;
+@synthesize isFromTrustedGate;
+@synthesize priceBeforeMagic;
 
 @end

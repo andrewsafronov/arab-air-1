@@ -9,7 +9,7 @@
 
 @interface ASTStopoverCell : UITableViewCell
 
-- (void)applyFlight:(AviasalesFlight *)nextFlight;
+- (void)applyFlight:(id<JRSDKFlight>)nextFlight;
 
 @property (nonatomic, weak) IBOutlet UILabel *duration;
 @property (nonatomic, weak) IBOutlet UILabel *place;

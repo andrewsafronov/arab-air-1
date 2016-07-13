@@ -14,7 +14,7 @@
 @synthesize currencyCode;
 @synthesize gateID;
 @synthesize label;
-@synthesize mobileVersion;
+@synthesize isMobileVersion;
 @synthesize paymentMethods;
 @synthesize productivity;
 @synthesize isAirline;

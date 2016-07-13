@@ -8,7 +8,12 @@
 #import <Foundation/Foundation.h>
 
 
+@class JRSearchInfo;
+
+
 @interface JRTravelSegment : NSObject <JRSDKTravelSegment>
+
+@property (nonatomic, weak) JRSearchInfo *searchInfo;
 
 - (BOOL)isValidSegment;
 

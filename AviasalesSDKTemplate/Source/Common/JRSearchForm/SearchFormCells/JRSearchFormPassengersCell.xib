@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,99 +14,66 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRSearchFormPassengersIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dNb-ki-nPw">
-                        <rect key="frame" x="15" y="22" width="32" height="32"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dNb-ki-nPw">
+                        <rect key="frame" x="15" y="23" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="6my-Em-e8z"/>
-                            <constraint firstAttribute="width" constant="32" id="Gph-AU-kjL"/>
+                            <constraint firstAttribute="height" constant="30" id="6my-Em-e8z"/>
+                            <constraint firstAttribute="width" constant="30" id="Gph-AU-kjL"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 пассажиров" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="UgM-EY-03w">
-                        <rect key="frame" x="55" y="27" width="119" height="21"/>
+                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 пассажиров, 5 пассажиров, 5 пассажиров" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UgM-EY-03w">
+                        <rect key="frame" x="60" y="20" width="206" height="36"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="JRTextColorKey" value="darkTextColor"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
-                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="cLo-VO-gSr">
-                        <rect key="frame" x="296.5" y="29.5" width="8.5" height="17.5"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                        <color key="textColor" red="0.15686274510000001" green="0.50588235290000005" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRSearchFormInfantIcon" translatesAutoresizingMaskIntoConstraints="NO" id="FZk-MR-0PP">
-                        <rect key="frame" x="281.5" y="30" width="11" height="15"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </imageView>
-                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="mKP-dn-kSL">
-                        <rect key="frame" x="269" y="29.5" width="8.5" height="17.5"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                        <color key="textColor" red="0.15686274510000001" green="0.50588235290000005" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRSearchFormChildrenIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Jyf-zn-uJC">
-                        <rect key="frame" x="256" y="29" width="9" height="17"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </imageView>
-                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000007" translatesAutoresizingMaskIntoConstraints="NO" id="4hT-jp-bTq">
-                        <rect key="frame" x="243.5" y="29.5" width="8.5" height="17.5"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                        <color key="textColor" red="0.15686274510000001" green="0.50588235290000005" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRSearchFormAdultIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aLe-Gu-VZ7">
-                        <rect key="frame" x="228.5" y="28" width="11" height="19"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRBaseDoubleArrow" translatesAutoresizingMaskIntoConstraints="NO" id="1gZ-1l-Rf4">
+                        <rect key="frame" x="281" y="30" width="8" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="8" id="R1C-D8-QdG"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="4hT-jp-bTq" firstAttribute="centerY" secondItem="Jyf-zn-uJC" secondAttribute="centerY" id="5XV-gA-GEo"/>
-                    <constraint firstItem="FZk-MR-0PP" firstAttribute="leading" secondItem="mKP-dn-kSL" secondAttribute="trailing" constant="4" id="9GP-RB-ooJ"/>
-                    <constraint firstItem="4hT-jp-bTq" firstAttribute="leading" secondItem="aLe-Gu-VZ7" secondAttribute="trailing" constant="4" id="9Hq-Th-S5k"/>
-                    <constraint firstItem="UgM-EY-03w" firstAttribute="centerY" secondItem="aLe-Gu-VZ7" secondAttribute="centerY" id="Alr-xz-y2F"/>
-                    <constraint firstItem="4hT-jp-bTq" firstAttribute="centerY" secondItem="aLe-Gu-VZ7" secondAttribute="centerY" id="BgY-UE-BCN"/>
-                    <constraint firstItem="FZk-MR-0PP" firstAttribute="centerY" secondItem="cLo-VO-gSr" secondAttribute="centerY" id="HNE-ja-pLA"/>
-                    <constraint firstItem="mKP-dn-kSL" firstAttribute="leading" secondItem="Jyf-zn-uJC" secondAttribute="trailing" constant="4" id="JpX-5E-RPM"/>
-                    <constraint firstAttribute="trailing" secondItem="cLo-VO-gSr" secondAttribute="trailing" constant="15" id="KHD-kl-8tt"/>
+                    <constraint firstAttribute="trailing" secondItem="1gZ-1l-Rf4" secondAttribute="trailing" constant="31" id="29L-Ix-PJQ">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                <real key="value" value="86"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstItem="1gZ-1l-Rf4" firstAttribute="leading" secondItem="UgM-EY-03w" secondAttribute="trailing" constant="15" id="8kb-Kx-X8d"/>
                     <constraint firstItem="UgM-EY-03w" firstAttribute="centerY" secondItem="dNb-ki-nPw" secondAttribute="centerY" id="O31-Jp-qKY"/>
                     <constraint firstAttribute="centerY" secondItem="dNb-ki-nPw" secondAttribute="centerY" id="Rco-F2-FDq"/>
-                    <constraint firstItem="dNb-ki-nPw" firstAttribute="leading" secondItem="96E-t0-4DX" secondAttribute="leading" constant="15" id="Z4c-Ky-mQx"/>
-                    <constraint firstItem="mKP-dn-kSL" firstAttribute="centerY" secondItem="FZk-MR-0PP" secondAttribute="centerY" id="caF-oR-xNQ"/>
-                    <constraint firstItem="UgM-EY-03w" firstAttribute="leading" secondItem="dNb-ki-nPw" secondAttribute="trailing" constant="8" id="eGc-Mn-VoE"/>
-                    <constraint firstItem="Jyf-zn-uJC" firstAttribute="leading" secondItem="4hT-jp-bTq" secondAttribute="trailing" constant="4" id="lnt-qC-gRx"/>
-                    <constraint firstItem="cLo-VO-gSr" firstAttribute="leading" secondItem="FZk-MR-0PP" secondAttribute="trailing" constant="4" id="nTN-2J-zBz"/>
-                    <constraint firstItem="mKP-dn-kSL" firstAttribute="centerY" secondItem="Jyf-zn-uJC" secondAttribute="centerY" id="wAq-1C-VIQ"/>
+                    <constraint firstItem="dNb-ki-nPw" firstAttribute="leading" secondItem="96E-t0-4DX" secondAttribute="leading" constant="15" id="Z4c-Ky-mQx">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                <real key="value" value="70"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstItem="UgM-EY-03w" firstAttribute="leading" secondItem="dNb-ki-nPw" secondAttribute="trailing" constant="15" id="eGc-Mn-VoE"/>
+                    <constraint firstItem="1gZ-1l-Rf4" firstAttribute="centerY" secondItem="dNb-ki-nPw" secondAttribute="centerY" id="juY-3B-AHw"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="numberOfAdultsLabel" destination="4hT-jp-bTq" id="3ef-m4-YRe"/>
-                <outlet property="numberOfChildrenLabel" destination="mKP-dn-kSL" id="A3h-yc-IFr"/>
-                <outlet property="numberOfInfantsLabel" destination="cLo-VO-gSr" id="n2W-If-Gsd"/>
                 <outlet property="passengerIcon" destination="dNb-ki-nPw" id="UhZ-G6-tej"/>
                 <outlet property="passengersCountLabel" destination="UgM-EY-03w" id="6fL-zS-itu"/>
-                <outletCollection property="labelsCollection" destination="cLo-VO-gSr" id="A0d-Lm-o6h"/>
-                <outletCollection property="labelsCollection" destination="mKP-dn-kSL" id="PcT-OX-OM0"/>
-                <outletCollection property="labelsCollection" destination="4hT-jp-bTq" id="mRO-bA-sjv"/>
-                <outletCollection property="imageViewsCollection" destination="FZk-MR-0PP" id="wD0-Kd-RBJ"/>
-                <outletCollection property="imageViewsCollection" destination="Jyf-zn-uJC" id="lHS-ux-wtH"/>
-                <outletCollection property="imageViewsCollection" destination="aLe-Gu-VZ7" id="tbr-ir-7Po"/>
             </connections>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="JRSearchFormAdultIcon" width="11" height="19"/>
-        <image name="JRSearchFormChildrenIcon" width="9" height="17"/>
-        <image name="JRSearchFormInfantIcon" width="11" height="15"/>
-        <image name="JRSearchFormPassengersIcon" width="32" height="32"/>
+        <image name="JRBaseDoubleArrow" width="8" height="17"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../AviasalesSDK/AviasalesSDK.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:AviasalesSDKTemplate.xcodeproj">
    </FileRef>
    <FileRef

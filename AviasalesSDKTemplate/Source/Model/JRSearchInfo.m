@@ -8,17 +8,17 @@
 #import "JRSearchInfo.h"
 #import "DateUtil.h"
 
+#define DEFAULT_ADULTS_COUNT 1
 
 @implementation JRSearchInfo
 
-@synthesize travelClass = _travelClass;
-@synthesize adults = _adults;
-@synthesize children = _children;
-@synthesize infants = _infants;
-@synthesize travelSegments =_travelSegments;
-@synthesize searchTickets = _searchTickets;
-@synthesize strictSearchTickets = _strictSearchTickets;
-@synthesize adjustSearchInfo = _adjustSearchInfo;
+- (instancetype)init {
+    if (self = [super init]) {
+        _adults = DEFAULT_ADULTS_COUNT;
+    }
+    
+    return self;
+}
 
 - (NSDate *)returnDateForSimpleSearch
 {
@@ -35,6 +35,11 @@
     }
 }
 
+- (NSString *)marker {
+    //TODO
+    return nil;
+}
+
 #pragma mark - SearchInfo Identity
 
 - (BOOL)isDirectReturnFlight
@@ -42,8 +47,8 @@
     JRTravelSegment *firstTS = self.travelSegments.firstObject;
     JRTravelSegment *secondTS = self.travelSegments.lastObject;
     if (self.travelSegments.count == 2 &&
-        [[AviasalesAirportsStorage mainIATAByIATA:firstTS.originIata] isEqualToString:[AviasalesAirportsStorage mainIATAByIATA:secondTS.destinationIata]] &&
-        [[AviasalesAirportsStorage mainIATAByIATA:firstTS.destinationIata] isEqualToString:[AviasalesAirportsStorage mainIATAByIATA:secondTS.originIata]]) {
+        [[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:firstTS.originAirport.iata] isEqualToString:[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:secondTS.destinationAirport.iata]] &&
+        [[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:firstTS.destinationAirport.iata] isEqualToString:[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:secondTS.originAirport.iata]]) {
         if (firstTS.departureDate &&
             secondTS.departureDate) {
             return YES;
@@ -69,11 +74,11 @@
         JRTravelSegment *secondTravelSegment = searchInfo.travelSegments.lastObject;
         
         
-        if ([[AviasalesAirportsStorage mainIATAByIATA:firstTravelSegment.originIata] isEqualToString:[AviasalesAirportsStorage mainIATAByIATA:secondTravelSegment.destinationIata]] &&
-            [[AviasalesAirportsStorage mainIATAByIATA:firstTravelSegment.destinationIata] isEqualToString:[AviasalesAirportsStorage mainIATAByIATA:secondTravelSegment.originIata]]) {
+        if ([[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:firstTravelSegment.originAirport.iata] isEqualToString:[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:secondTravelSegment.destinationAirport.iata]] &&
+            [[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:firstTravelSegment.destinationAirport.iata] isEqualToString:[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:secondTravelSegment.originAirport.iata]]) {
             return NO;
-        } else if (secondTravelSegment.originIata == nil ||
-                   secondTravelSegment.destinationIata == nil ||
+        } else if (secondTravelSegment.originAirport == nil ||
+                   secondTravelSegment.destinationAirport == nil ||
                    secondTravelSegment.departureDate == nil) {
             return NO;
         }
@@ -91,8 +96,8 @@
         JRTravelSegment *prevTravelSegment;
         for (JRTravelSegment *currentTravelSegment in self.travelSegments.copy) {
             if (prevTravelSegment) {
-                if ([[AviasalesAirportsStorage mainIATAByIATA:prevTravelSegment.destinationIata]
-                     isEqualToString:[AviasalesAirportsStorage mainIATAByIATA:currentTravelSegment.originIata]] == NO) {
+                if ([[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:prevTravelSegment.destinationAirport.iata]
+                     isEqualToString:[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:currentTravelSegment.originAirport.iata]] == NO) {
                     isOpenJawSearch = NO;
                 }
             }
@@ -142,13 +147,6 @@
     NSDate *prevDate = nil;
     
     for (JRTravelSegment *travelSegment in self.travelSegments) {
-        if ([AviasalesAirportsStorage getAirportByIATA:travelSegment.originIata] == nil) {
-            [travelSegment setOriginIata:nil];
-        }
-        if ([AviasalesAirportsStorage getAirportByIATA:travelSegment.destinationIata] == nil) {
-            [travelSegment setDestinationIata:nil];
-        }
-        
         if (travelSegment.departureDate) {
             
             NSDate *departureDate = [DateUtil systemTimeZoneResetTimeForDate:travelSegment.departureDate];
@@ -184,8 +182,8 @@
     
     if (returnDate) {
         JRTravelSegment *returnTravelSegment = [JRTravelSegment new];
-        [returnTravelSegment setOriginIata:directTravelSegment.destinationIata];
-        [returnTravelSegment setDestinationIata:directTravelSegment.originIata];
+        [returnTravelSegment setOriginAirport:directTravelSegment.destinationAirport];
+        [returnTravelSegment setDestinationAirport:directTravelSegment.originAirport];
         [returnTravelSegment setDepartureDate:returnDate];
         [self addTravelSegment:returnTravelSegment];
     }
@@ -194,7 +192,7 @@
 - (void)clipSearchInfoForComplexSearchIfNeeds
 {
     for (JRTravelSegment *travelSegment in self.travelSegments) {
-        if (!travelSegment.originIata || !travelSegment.destinationIata || !travelSegment.departureDate) {
+        if (!travelSegment.originAirport || !travelSegment.destinationAirport || !travelSegment.departureDate) {
             [self removeTravelSegmentsStartingFromTravelSegment:travelSegment];
             break;
         }
@@ -203,21 +201,20 @@
 
 - (void)addTravelSegment:(JRTravelSegment *)travelSegment
 {
-    if ([travelSegment isKindOfClass:[JRTravelSegment class]]) {
-        JRTravelSegment *prevTravelSegment = self.travelSegments.lastObject;
-        NSMutableOrderedSet *travelSegments = [NSMutableOrderedSet new];
-        [travelSegments addObjectsFromArray:self.travelSegments.array];
-        [travelSegments addObject:travelSegment];
-        [self setTravelSegments:travelSegments];
-        if (self.adjustSearchInfo == YES) {
-            [self travelSegment:prevTravelSegment didSetDestinationIATA:prevTravelSegment.destinationIata];
-        }
+    JRTravelSegment *prevTravelSegment = self.travelSegments.lastObject;
+    NSMutableOrderedSet *travelSegments = [NSMutableOrderedSet new];
+    [travelSegments addObjectsFromArray:self.travelSegments.array];
+    [travelSegments addObject:travelSegment];
+    [self setTravelSegments:travelSegments];
+    if (self.adjustSearchInfo == YES) {
+        [self travelSegment:prevTravelSegment didSetDestinationAirport:prevTravelSegment.destinationAirport];
     }
+    
+    travelSegment.searchInfo = self;
 }
 
 - (void)removeTravelSegment:(JRTravelSegment *)travelSegment
 {
-    
     JRTravelSegment *prevTravelSegment = nil;
     if (self.adjustSearchInfo == YES) {
         prevTravelSegment = [self prevTravelSegmentForTravelSegment:travelSegment];
@@ -226,8 +223,9 @@
     [travelSegments addObjectsFromArray:self.travelSegments.array];
     [travelSegments removeObject:travelSegment];
     [self setTravelSegments:travelSegments];
-    [prevTravelSegment setDestinationIata:prevTravelSegment.destinationIata];
-    
+    [prevTravelSegment setDestinationAirport:prevTravelSegment.destinationAirport];
+ 
+    travelSegment.searchInfo = nil;
 }
 
 - (void)removeTravelSegmentsStartingFromTravelSegment:(JRTravelSegment *)travelSegment
@@ -250,33 +248,33 @@
 
 #pragma mark - Travel Segments Changes
 
--(void)travelSegment:(JRTravelSegment *)travelSegment didSetOriginIATA:(NSString *)originIATA
+-(void)travelSegment:(JRTravelSegment *)travelSegment didSetOriginAirport:(id<JRSDKAirport>)originAirport
 {
     if (self.adjustSearchInfo == NO) {
         return;
     }
-    if (travelSegment && originIATA) {
+    if (travelSegment && originAirport) {
         JRTravelSegment *prevTravelSegment = [self prevTravelSegmentForTravelSegment:travelSegment];
-        if (prevTravelSegment.destinationIata == nil && ![prevTravelSegment.destinationIata isEqualToString:originIATA]) {
-            [prevTravelSegment setDestinationIata:originIATA];
+        if (prevTravelSegment.destinationAirport == nil && ![JRSDKModelUtils airport:prevTravelSegment.destinationAirport isEqualToAirport:originAirport]) {
+            [prevTravelSegment setDestinationAirport:originAirport];
         }
     }
 }
 
--(void)travelSegment:(JRTravelSegment *)travelSegment didSetDestinationIATA:(NSString *)destinationIATA
+-(void)travelSegment:(JRTravelSegment *)travelSegment didSetDestinationAirport:(id<JRSDKAirport>)destinationAirport
 {
     if (self.adjustSearchInfo == NO) {
         return;
     }
-    if (travelSegment && destinationIATA) {
+    if (travelSegment && destinationAirport) {
         
         JRTravelSegment *prevTravelSegment = [self prevTravelSegmentForTravelSegment:travelSegment];
-        [prevTravelSegment setDestinationIata:prevTravelSegment.destinationIata];
+        [prevTravelSegment setDestinationAirport:prevTravelSegment.destinationAirport];
         
         JRTravelSegment *nextTravelSegment = [self nextTravelSegmentForTravelSegment:travelSegment];
-        if (nextTravelSegment.originIata == nil &&
-            ![nextTravelSegment.originIata isEqualToString:destinationIATA]) {
-            [nextTravelSegment setOriginIata:destinationIATA];
+        if (nextTravelSegment.originAirport == nil &&
+            ![JRSDKModelUtils airport:nextTravelSegment.originAirport isEqualToAirport:destinationAirport]) {
+            [nextTravelSegment setOriginAirport:destinationAirport];
         }
     }
 }

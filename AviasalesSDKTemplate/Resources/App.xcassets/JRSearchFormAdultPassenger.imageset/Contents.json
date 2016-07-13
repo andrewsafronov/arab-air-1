@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "JRSearchFormAdultPassenger.png"
+      "filename" : "JRSearchFormAdultPassenger.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "JRSearchFormAdultPassenger@2x.png"
+      "filename" : "JRSearchFormAdultPassenger@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

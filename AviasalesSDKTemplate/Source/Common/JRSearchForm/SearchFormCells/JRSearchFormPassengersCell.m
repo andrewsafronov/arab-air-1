@@ -8,18 +8,13 @@
 #import "JRSearchFormPassengersCell.h"
 #import "JRSearchInfoUtils.h"
 #import "JRSearchFormPassengerPickerView.h"
-#import "JRC.h"
 #import "UIImage+JRUIImage.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
+#import "ColorScheme.h"
 
 @interface JRSearchFormPassengersCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *passengersCountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numberOfAdultsLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numberOfChildrenLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numberOfInfantsLabel;
-@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *labelsCollection;
-@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *imageViewsCollection;
 @property (weak, nonatomic) IBOutlet UIImageView *passengerIcon;
 @end
 
@@ -29,50 +24,29 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [_passengerIcon setImage:[_passengerIcon.image imageTintedWithColor:[JRC SF_CELL_IMAGES_TINT]]];
-    [self setAccessibilityLabelWithNSLSKey:@"SF_PASSENGER_CELL"];
+    [_passengerIcon setImage:[UIImage imageWithColor:[ColorScheme buttonBackgroundColor]]];
 }
 
 - (void)updateCell
-{    
-	[_passengersCountLabel setText:[JRSearchInfoUtils passengersCountStringWithSearchInfo:self.searchInfo]];
-	[_numberOfAdultsLabel setText:[NSString stringWithFormat:@"%@", @(self.searchInfo.adults)]];
-	[_numberOfChildrenLabel setText:[NSString stringWithFormat:@"%@", @(self.searchInfo.children)]];
-	[_numberOfInfantsLabel setText:[NSString stringWithFormat:@"%@", @(self.searchInfo.infants)]];
-    
-    NSMutableArray *pictures = _imageViewsCollection.mutableCopy;
-    [pictures makeObjectsPerformSelector:@selector(setImage:) withObject:nil];
-    
-    NSMutableArray *labels = _labelsCollection.mutableCopy;
-    [labels makeObjectsPerformSelector:@selector(setText:) withObject:nil];
-    
-    
-    if (self.searchInfo.infants > 0) {
-        UIImageView *imageView = [pictures firstObject];
-        UILabel *label = [labels firstObject];
-        [pictures removeObject:imageView];
-        [labels removeObject:label];
-        [imageView setImage:[[UIImage imageNamed:@"JRSearchFormInfantIcon"] imageTintedWithColor:[JRC SF_CELL_IMAGES_TINT]]];
-        [label setText:[NSString stringWithFormat:@"%@", @(self.searchInfo.infants)]];
+{
+    NSMutableArray *passengersTextComponents = [NSMutableArray new];
+    if (self.searchInfo.adults > 0) {
+        [passengersTextComponents addObject:[NSString stringWithFormat:@"%ld\u00a0%@",
+                                                                       (long)self.searchInfo.adults,
+                                                                       NSLSP(@"JR_SEARCH_FORM_PASSENGERS_ADULTS", self.searchInfo.adults)]];
     }
-    
     if (self.searchInfo.children > 0) {
-        UIImageView *imageView = [pictures firstObject];
-        UILabel *label = [labels firstObject];
-        [pictures removeObject:imageView];
-        [labels removeObject:label];
-        [imageView setImage:[[UIImage imageNamed:@"JRSearchFormChildrenIcon"] imageTintedWithColor:[JRC SF_CELL_IMAGES_TINT]]];
-        [label setText:[NSString stringWithFormat:@"%@", @(self.searchInfo.children)]];
+        [passengersTextComponents addObject:[NSString stringWithFormat:@"%ld\u00a0%@",
+                                             (long)self.searchInfo.children,
+                                             NSLSP(@"JR_SEARCH_FORM_PASSENGERS_CHILDREN", self.searchInfo.children)]];
+    }
+    if (self.searchInfo.infants > 0) {
+        [passengersTextComponents addObject:[NSString stringWithFormat:@"%ld\u00a0%@",
+                                             (long)self.searchInfo.infants,
+                                             NSLSP(@"JR_SEARCH_FORM_PASSENGERS_INFANTS", self.searchInfo.infants)]];
     }
     
-    if (labels.count != 3 && self.searchInfo.adults > 0) {
-        UIImageView *imageView = [pictures firstObject];
-        UILabel *label = [labels firstObject];
-        [pictures removeObject:imageView];
-        [labels removeObject:label];
-        [imageView setImage:[[UIImage imageNamed:@"JRSearchFormAdultIcon"] imageTintedWithColor:[JRC SF_CELL_IMAGES_TINT]]];
-        [label setText:[NSString stringWithFormat:@"%@", @(self.searchInfo.adults)]];
-    }
+	[_passengersCountLabel setText:[passengersTextComponents componentsJoinedByString:@", "]];
 }
 
 - (void)action {

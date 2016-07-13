@@ -24,4 +24,6 @@
 + (NSString *)passengersCountStringWithSearchInfo:(JRSearchInfo *)searchInfo;
 + (NSString *)travelClassStringWithSearchInfo:(JRSearchInfo *)searchInfo;
 + (NSString *)travelClassStringWithTravelClass:(JRSDKTravelClass)travelClass;
+
++ (NSString *)formattedDatesForSearchInfo:(id<JRSDKSearchInfo>)searchInfo;
 @end

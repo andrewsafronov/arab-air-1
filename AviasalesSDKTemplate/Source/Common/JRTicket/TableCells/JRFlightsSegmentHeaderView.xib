@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="gbN-Sp-VON" customClass="JRFlightsSegmentHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mO4-FP-2iY" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRv-tR-xaj" userLabel="Seaparator View">
+                    <rect key="frame" x="20" y="54" width="280" height="1"/>
+                    <color key="backgroundColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="nKb-C9-L5k"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ps-Cm-BFG">
+                    <rect key="frame" x="261" y="25" width="39" height="18"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                    <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LED - CDG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEv-Sp-WAF">
+                    <rect key="frame" x="17" y="17" width="117" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="sRv-tR-xaj" firstAttribute="top" secondItem="4Ps-Cm-BFG" secondAttribute="bottom" constant="11" id="0Pf-IM-jf8"/>
+                <constraint firstAttribute="trailing" secondItem="sRv-tR-xaj" secondAttribute="trailing" constant="20" id="Cgi-dp-3yb"/>
+                <constraint firstItem="AEv-Sp-WAF" firstAttribute="leading" secondItem="gbN-Sp-VON" secondAttribute="leading" constant="17" id="DXB-sB-KKL"/>
+                <constraint firstItem="sRv-tR-xaj" firstAttribute="top" secondItem="AEv-Sp-WAF" secondAttribute="bottom" constant="8" id="KRF-og-lWJ"/>
+                <constraint firstAttribute="trailing" secondItem="mO4-FP-2iY" secondAttribute="trailing" id="S2w-qc-i9g"/>
+                <constraint firstItem="mO4-FP-2iY" firstAttribute="top" secondItem="gbN-Sp-VON" secondAttribute="top" id="Tay-G7-TDl"/>
+                <constraint firstAttribute="bottom" secondItem="sRv-tR-xaj" secondAttribute="bottom" id="hhV-zu-CjV"/>
+                <constraint firstItem="4Ps-Cm-BFG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AEv-Sp-WAF" secondAttribute="trailing" constant="15" id="mgy-lK-tH3"/>
+                <constraint firstItem="sRv-tR-xaj" firstAttribute="leading" secondItem="gbN-Sp-VON" secondAttribute="leading" constant="20" id="mnF-U6-gb8"/>
+                <constraint firstAttribute="bottom" secondItem="mO4-FP-2iY" secondAttribute="bottom" id="rbO-iN-Eyd"/>
+                <constraint firstAttribute="trailing" secondItem="4Ps-Cm-BFG" secondAttribute="trailing" constant="20" id="x2f-zL-InX"/>
+                <constraint firstItem="mO4-FP-2iY" firstAttribute="leading" secondItem="gbN-Sp-VON" secondAttribute="leading" id="z46-Eb-Taq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="directionLabel" destination="AEv-Sp-WAF" id="wv9-NV-m3K"/>
+                <outlet property="durationLabel" destination="4Ps-Cm-BFG" id="zbL-b9-KNc"/>
+                <outlet property="separatorLineHeightConstraint" destination="nKb-C9-L5k" id="pEg-KZ-Yb2"/>
+            </connections>
+            <point key="canvasLocation" x="586" y="23"/>
+        </view>
+    </objects>
+</document>

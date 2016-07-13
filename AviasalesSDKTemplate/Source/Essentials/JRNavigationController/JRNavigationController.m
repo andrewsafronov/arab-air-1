@@ -7,11 +7,9 @@
 
 #import "JRNavigationController.h"
 #import "UIImage+JRUIImage.h"
-#import "JRNavigationBar.h"
-#import "JRC.h"
-#import "JRAlertManager.h"
-
-#define kJRNavigationControllerBorderTag    12345678
+#import "UIFont+Factory.h"
+#import "ColorScheme.h"
+#import "JRViewController.h"
 
 @interface JRNavigationController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
 
@@ -25,35 +23,15 @@
 
 @implementation JRNavigationController
 
-- (id)init
-{
-	self = [super initWithNavigationBarClass:[JRNavigationBar class] toolbarClass:nil];
-	return self;
-}
-
-- (id)initWithRootViewController:(UIViewController *)rootViewController
-{
-	self = [super initWithNavigationBarClass:[JRNavigationBar class] toolbarClass:nil];
-	if (self && rootViewController) {
-		[self setViewControllers:@[rootViewController] animated:NO];
-	}
-	return self;
-}
-
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
 	[self setupNavigationBar];
 	if (iPhone()) {
         [self setDelegate:self];
-        __weak JRNavigationController *weakSelf = self;
-        [self.interactivePopGestureRecognizer setDelegate:weakSelf];
-		[self.view setBackgroundColor:[JRC NAVIGATION_BAR_BACKGROUND_COLOR]];
+        [self.interactivePopGestureRecognizer setDelegate:self];
+		[self.view setBackgroundColor:[ColorScheme darkTextColor]];
 	}
-
-#ifdef SCREENSHOTS
-    [self addScreenshotsFunctions];
-#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,44 +46,23 @@
 	[self.navigationController.navigationBar.layer removeAllAnimations];
 }
 
-- (void)setupNavigationBar
-{
-	UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:kJRNavigationControllerDefaultTextSize];
-	NSDictionary *titleTextAttributes = @{ NSFontAttributeName : boldSystemFont };
+- (void)setupNavigationBar {
+    NSDictionary *titleTextAttributes = @{
+        NSFontAttributeName : [UIFont mediumSystemFontOfSize: 15],
+        NSForegroundColorAttributeName :  [ColorScheme darkTextColor]
+    };
     
-	UINavigationBar *navigationBar = [self navigationBar];
-    
-	[navigationBar setBarStyle:UIBarStyleBlack];
-	[navigationBar setBarTintColor:[JRC NAVIGATION_BAR_BACKGROUND_COLOR]];
-	[navigationBar setTitleTextAttributes:titleTextAttributes];
-	[navigationBar setTranslucent:NO];
-    
-    [navigationBar setShadowImage:[[UIImage alloc] init]];
-    
-	CGFloat borderHeight = JRPixel();
-    
-	UIView *darkBorder = [UIView new];
-	[darkBorder setFrame:CGRectMake(0, navigationBar.bounds.size.height - borderHeight, navigationBar.bounds.size.width, borderHeight)];
-	[darkBorder setBackgroundColor:[JRC BAR_DARK_BOTTOM_BORDER]];
-	[darkBorder setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth];
-	[navigationBar addSubview:darkBorder];
-    
-	UIView *lightBorder = [UIView new];
-	[lightBorder setFrame:CGRectMake(0, navigationBar.bounds.size.height, navigationBar.bounds.size.width, borderHeight)];
-	[lightBorder setBackgroundColor:[JRC BAR_LIGHT_BOTTOM_BORDER]];
-	[lightBorder setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth];
-    
-	[navigationBar addSubview:lightBorder];
+	UINavigationBar *const navigationBar = self.navigationBar;
+    [navigationBar setTitleTextAttributes:titleTextAttributes];
 }
 
-- (void)removeAllBordersFromNavigationBar {
-    for (UIView *border in self.navigationBar.subviews.copy) {
-        if ([border tag] == kJRNavigationControllerBorderTag) {
-            [border removeFromSuperview];
-        }
+#pragma mark UINavigationControllerDelegate
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if ([viewController isKindOfClass:[JRViewController class]]) {
+        [self setNavigationBarHidden:![(JRViewController *)viewController shouldShowNavigationBar] animated:animated];
     }
 }
-#pragma mark UINavigationControllerDelegate
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
@@ -165,37 +122,6 @@
         return UIInterfaceOrientationMaskPortrait;
     }
 	return [super supportedInterfaceOrientations];
-}
-
-#pragma mark screenshots
-
-- (void)addScreenshotsFunctions
-{
-    _screenshotAlertsButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2, 20, 10, 10)];
-    [_screenshotAlertsButton setAccessibilityLabelWithNSLSKey:@"JR_SCREENSHOT_ALERTS_BTN"];
-    _screenshotAlertsButton.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_screenshotAlertsButton];
-    [_screenshotAlertsButton addTarget:self action:@selector(screenshotAlertsAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    _screenshotPopoversButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2 + 30, 20, 10, 10)];
-    [_screenshotPopoversButton setAccessibilityLabelWithNSLSKey:@"JR_SCREENSHOT_POPOVERS_BTN"];
-    _screenshotPopoversButton.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:_screenshotPopoversButton];
-    [_screenshotPopoversButton addTarget:self action:@selector(screenshotPopoversAction:) forControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)screenshotAlertsAction:(id)sender
-{
-    if (![[JRAlertManager sharedManager] screenshotsShowNextAlert]) {
-        [_screenshotAlertsButton removeFromSuperview];
-    }
-}
-
-- (void)screenshotPopoversAction:(id)sender
-{
-    if (![[JRAlertManager sharedManager] screenshotsShowNextPopoverUnderlyingView:self.view]) {
-        [_screenshotPopoversButton removeFromSuperview];
-    }
 }
 
 @end

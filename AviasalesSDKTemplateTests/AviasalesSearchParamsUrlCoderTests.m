@@ -6,11 +6,14 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <AviasalesSDK/AviasalesSearchParamsUrlCoder.h>
-#import <AviasalesSDK/AviasalesSearchParams.h>
+#import <AviasalesSDK/AviasalesSDK.h>
+#import "JRSDKSearchInfoUrlCoder.h"
+#import "JRSearchInfo.h"
+#import "JRTravelSegment.h"
+#import "ASTAirport.h"
 
 @interface AviasalesSearchParamsUrlCoderTests : XCTestCase
-@property (strong, nonatomic) id<AviasalesSearchParamsCoder> coder;
+@property (strong, nonatomic) id<JRSDKSearchInfoCoder> coder;
 @end
 
 @implementation AviasalesSearchParamsUrlCoderTests
@@ -18,7 +21,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.coder = [[AviasalesSearchParamsUrlCoder alloc] init];
+    self.coder = [[JRSDKSearchInfoUrlCoder alloc] init];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -32,12 +35,15 @@
 #pragma mark One way
 
 - (void)testOneWayFlightWithOnePassengerCorrectlyEncodedToUrl {
-    AviasalesSearchParams *const searchParams = [[AviasalesSearchParams alloc] init];
+    JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
-    searchParams.originIATA = @"LED";
-    searchParams.destinationIATA = @"MOW";
-    searchParams.departureDate = [self gmtDateFromString: @"12.05.2016"];
-    searchParams.adultsNumber = 1;
+    JRTravelSegment *const travelSegment = [[JRTravelSegment alloc] init];
+    travelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    travelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    travelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
+
+    searchParams.travelSegments = [NSOrderedSet orderedSetWithObject:travelSegment];
+    searchParams.adults = 1;
     searchParams.travelClass = 0;
 
     NSString *const resultString = [self.coder encodeSearchParams:searchParams];
@@ -46,12 +52,15 @@
 }
 
 - (void)testOneWayFlightWithSevenBusinessPassengerCorrectlyEncodedToUrl {
-    AviasalesSearchParams *const searchParams = [[AviasalesSearchParams alloc] init];
+    JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
-    searchParams.originIATA = @"LED";
-    searchParams.destinationIATA = @"MOW";
-    searchParams.departureDate = [self gmtDateFromString: @"12.05.2016"];
-    searchParams.adultsNumber = 7;
+    JRTravelSegment *const travelSegment = [[JRTravelSegment alloc] init];
+    travelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    travelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    travelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
+
+    searchParams.travelSegments = [NSOrderedSet orderedSetWithObject:travelSegment];
+    searchParams.adults = 7;
     searchParams.travelClass = 1;
 
     NSString *const resultString = [self.coder encodeSearchParams:searchParams];
@@ -60,14 +69,17 @@
 }
 
 - (void)testOneWayFlightWithDifferentPassengerCorrectlyEncodedToUrl {
-    AviasalesSearchParams *const searchParams = [[AviasalesSearchParams alloc] init];
+    JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
-    searchParams.originIATA = @"LED";
-    searchParams.destinationIATA = @"MOW";
-    searchParams.departureDate = [self gmtDateFromString: @"12.05.2016"];
-    searchParams.adultsNumber = 8;
-    searchParams.childrenNumber = 5;
-    searchParams.infantsNumber = 3;
+    JRTravelSegment *const travelSegment = [[JRTravelSegment alloc] init];
+    travelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    travelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    travelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
+
+    searchParams.travelSegments = [NSOrderedSet orderedSetWithObject:travelSegment];
+    searchParams.adults = 8;
+    searchParams.children = 5;
+    searchParams.infants = 3;
     searchParams.travelClass = 0;
 
     NSString *const resultString = [self.coder encodeSearchParams:searchParams];
@@ -78,14 +90,20 @@
 #pragma mark Two ways
 
 - (void)testTwoWaysFlightWithOnePassengerCorrectlyEncodedToUrl {
-    AviasalesSearchParams *const searchParams = [[AviasalesSearchParams alloc] init];
+    JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
-    searchParams.originIATA = @"LED";
-    searchParams.destinationIATA = @"MOW";
-    searchParams.departureDate = [self gmtDateFromString: @"12.05.2016"];
-    searchParams.returnDate = [self gmtDateFromString:@"15.06.2016"];
-    searchParams.returnFlight = YES;
-    searchParams.adultsNumber = 1;
+    JRTravelSegment *const firstTravelSegment = [[JRTravelSegment alloc] init];
+    firstTravelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    firstTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    firstTravelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
+
+    JRTravelSegment *const secondTravelSegment = [[JRTravelSegment alloc] init];
+    secondTravelSegment.originAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    secondTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    secondTravelSegment.departureDate = [self gmtDateFromString: @"15.06.2016"];
+
+    searchParams.travelSegments = [NSOrderedSet orderedSetWithObjects:firstTravelSegment, secondTravelSegment, nil];
+    searchParams.adults = 1;
     searchParams.travelClass = 0;
 
     NSString *const resultString = [self.coder encodeSearchParams:searchParams];
@@ -94,14 +112,20 @@
 }
 
 - (void)testTwoWaysFlightWithSevenBusinessPassengerCorrectlyEncodedToUrl {
-    AviasalesSearchParams *const searchParams = [[AviasalesSearchParams alloc] init];
+    JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
-    searchParams.originIATA = @"LED";
-    searchParams.destinationIATA = @"MOW";
-    searchParams.departureDate = [self gmtDateFromString: @"12.05.2016"];
-    searchParams.returnDate = [self gmtDateFromString:@"15.06.2016"];
-    searchParams.returnFlight = YES;
-    searchParams.adultsNumber = 7;
+    JRTravelSegment *const firstTravelSegment = [[JRTravelSegment alloc] init];
+    firstTravelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    firstTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    firstTravelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
+
+    JRTravelSegment *const secondTravelSegment = [[JRTravelSegment alloc] init];
+    secondTravelSegment.originAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    secondTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    secondTravelSegment.departureDate = [self gmtDateFromString: @"15.06.2016"];
+
+    searchParams.travelSegments = [NSOrderedSet orderedSetWithObjects:firstTravelSegment, secondTravelSegment, nil];
+    searchParams.adults = 7;
     searchParams.travelClass = 1;
 
     NSString *const resultString = [self.coder encodeSearchParams:searchParams];
@@ -110,16 +134,22 @@
 }
 
 - (void)testTwoWaysFlightWithDifferentPassengerCorrectlyEncodedToUrl {
-    AviasalesSearchParams *const searchParams = [[AviasalesSearchParams alloc] init];
+    JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
-    searchParams.originIATA = @"LED";
-    searchParams.destinationIATA = @"MOW";
-    searchParams.departureDate = [self gmtDateFromString: @"12.05.2016"];
-    searchParams.returnDate = [self gmtDateFromString:@"15.06.2016"];
-    searchParams.returnFlight = YES;
-    searchParams.adultsNumber = 8;
-    searchParams.childrenNumber = 5;
-    searchParams.infantsNumber = 3;
+    JRTravelSegment *const firstTravelSegment = [[JRTravelSegment alloc] init];
+    firstTravelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    firstTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    firstTravelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
+
+    JRTravelSegment *const secondTravelSegment = [[JRTravelSegment alloc] init];
+    secondTravelSegment.originAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    secondTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    secondTravelSegment.departureDate = [self gmtDateFromString: @"15.06.2016"];
+
+    searchParams.travelSegments = [NSOrderedSet orderedSetWithObjects:firstTravelSegment, secondTravelSegment, nil];
+    searchParams.adults = 8;
+    searchParams.children = 5;
+    searchParams.infants = 3;
     searchParams.travelClass = 0;
 
     NSString *const resultString = [self.coder encodeSearchParams:searchParams];
@@ -132,38 +162,44 @@
 
 - (void)testOneWayFlightWithOnePassengerCorrectlyDecodedFromUrl {
     NSString *const inputString = @"LED1205MOW1Y";
-    AviasalesSearchParams *const searchParams = [self.coder searchParamsWithString:inputString];
+    id<JRSDKSearchInfo> const searchParams = [self.coder searchParamsWithString:inputString];
 
-    XCTAssertEqualObjects(searchParams.originIATA, @"LED");
-    XCTAssertEqualObjects(searchParams.destinationIATA, @"MOW");
-    NSString *const returnDateAsString = [self stringFromGMTDate: searchParams.departureDate];
+    id<JRSDKTravelSegment> const firstTravelSegment = searchParams.travelSegments.firstObject;
+
+    XCTAssertEqualObjects(firstTravelSegment.originAirport.iata, @"LED");
+    XCTAssertEqualObjects(firstTravelSegment.destinationAirport.iata, @"MOW");
+    NSString *const returnDateAsString = [self stringFromGMTDate: firstTravelSegment.departureDate];
     XCTAssertTrue([returnDateAsString hasPrefix:@"12.05"]);
-    XCTAssertEqual(searchParams.adultsNumber, 1);
+    XCTAssertEqual(searchParams.adults, 1);
     XCTAssertEqual(searchParams.travelClass, 0);
 
 }
 
 - (void)testOneWayFlightWithSevenBusinessPassengerCorrectlyDecodedFromUrl {
     NSString *const inputString = @"LED1205MOW7C";
-    AviasalesSearchParams *const searchParams = [self.coder searchParamsWithString:inputString];
+    id<JRSDKSearchInfo> const searchParams = [self.coder searchParamsWithString:inputString];
 
-    XCTAssertEqualObjects(searchParams.originIATA, @"LED");
-    XCTAssertEqualObjects(searchParams.destinationIATA, @"MOW");
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.departureDate] hasPrefix:@"12.05"]);
-    XCTAssertEqual(searchParams.adultsNumber, 7);
+    id<JRSDKTravelSegment> const firstTravelSegment = searchParams.travelSegments.firstObject;
+
+    XCTAssertEqualObjects(firstTravelSegment.originAirport.iata, @"LED");
+    XCTAssertEqualObjects(firstTravelSegment.destinationAirport.iata, @"MOW");
+    XCTAssertTrue([[self stringFromGMTDate: firstTravelSegment.departureDate] hasPrefix:@"12.05"]);
+    XCTAssertEqual(searchParams.adults, 7);
     XCTAssertEqual(searchParams.travelClass, 1);
 }
 
 - (void)testOneWayFlightWithDifferentPassengerCorrectlyDecodedFromUrl {
     NSString *const inputString = @"LED1205MOW853Y";
-    AviasalesSearchParams *const searchParams = [self.coder searchParamsWithString:inputString];
+    id<JRSDKSearchInfo> const searchParams = [self.coder searchParamsWithString:inputString];
 
-    XCTAssertEqualObjects(searchParams.originIATA, @"LED");
-    XCTAssertEqualObjects(searchParams.destinationIATA, @"MOW");
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.departureDate] hasPrefix:@"12.05"]);
-    XCTAssertEqual(searchParams.adultsNumber, 8);
-    XCTAssertEqual(searchParams.childrenNumber, 5);
-    XCTAssertEqual(searchParams.infantsNumber, 3);
+    id<JRSDKTravelSegment> const firstTravelSegment = searchParams.travelSegments.firstObject;
+
+    XCTAssertEqualObjects(firstTravelSegment.originAirport.iata, @"LED");
+    XCTAssertEqualObjects(firstTravelSegment.destinationAirport.iata, @"MOW");
+    XCTAssertTrue([[self stringFromGMTDate: firstTravelSegment.departureDate] hasPrefix:@"12.05"]);
+    XCTAssertEqual(searchParams.adults, 8);
+    XCTAssertEqual(searchParams.children, 5);
+    XCTAssertEqual(searchParams.infants, 3);
     XCTAssertEqual(searchParams.travelClass, 0);
 }
 
@@ -171,46 +207,76 @@
 
 - (void)testTwoWaysFlightWithOnePassengerCorrectlyDecodedFromUrl {
     NSString *const inputString = @"LED1205MOW-MOW1506LED1Y";
-    AviasalesSearchParams *const searchParams = [self.coder searchParamsWithString:inputString];
+    id<JRSDKSearchInfo> const searchParams = [self.coder searchParamsWithString:inputString];
 
-    XCTAssertEqualObjects(searchParams.originIATA, @"LED");
-    XCTAssertEqualObjects(searchParams.destinationIATA, @"MOW");
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.departureDate] hasPrefix:@"12.05"]);
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.returnDate] hasPrefix:@"15.06"]);
-    XCTAssertEqual(searchParams.returnFlight, YES);
-    XCTAssertEqual(searchParams.adultsNumber, 1);
+    XCTAssertEqual(searchParams.travelSegments.count, 2);
+
+    id<JRSDKTravelSegment> const firstTravelSegment = searchParams.travelSegments.firstObject;
+
+    XCTAssertEqualObjects(firstTravelSegment.originAirport.iata, @"LED");
+    XCTAssertEqualObjects(firstTravelSegment.destinationAirport.iata, @"MOW");
+    XCTAssertTrue([[self stringFromGMTDate: firstTravelSegment.departureDate] hasPrefix:@"12.05"]);
+
+    id<JRSDKTravelSegment> const lastTravelSegment = searchParams.travelSegments.lastObject;
+
+    XCTAssertEqualObjects(lastTravelSegment.originAirport.iata, @"MOW");
+    XCTAssertEqualObjects(lastTravelSegment.destinationAirport.iata, @"LED");
+    XCTAssertTrue([[self stringFromGMTDate: lastTravelSegment.departureDate] hasPrefix:@"15.06"]);
+
+    XCTAssertEqual(searchParams.adults, 1);
     XCTAssertEqual(searchParams.travelClass, 0);
 
 }
 
 - (void)testTwoWaysFlightWithSevenBusinessPassengerCorrectlyDecodedFromUrl {
     NSString *const inputString = @"LED1205MOW-MOW1506LED7C";
-    AviasalesSearchParams *const searchParams = [self.coder searchParamsWithString:inputString];
+    id<JRSDKSearchInfo> const searchParams = [self.coder searchParamsWithString:inputString];
 
-    XCTAssertEqualObjects(searchParams.originIATA, @"LED");
-    XCTAssertEqualObjects(searchParams.destinationIATA, @"MOW");
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.departureDate] hasPrefix:@"12.05"]);
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.returnDate] hasPrefix:@"15.06"]);
-    XCTAssertEqual(searchParams.returnFlight, YES);
-    XCTAssertEqual(searchParams.adultsNumber, 7);
+    XCTAssertEqual(searchParams.travelSegments.count, 2);
+
+    id<JRSDKTravelSegment> const firstTravelSegment = searchParams.travelSegments.firstObject;
+
+    XCTAssertEqualObjects(firstTravelSegment.originAirport.iata, @"LED");
+    XCTAssertEqualObjects(firstTravelSegment.destinationAirport.iata, @"MOW");
+    XCTAssertTrue([[self stringFromGMTDate: firstTravelSegment.departureDate] hasPrefix:@"12.05"]);
+
+
+    id<JRSDKTravelSegment> const lastTravelSegment = searchParams.travelSegments.lastObject;
+
+    XCTAssertEqualObjects(lastTravelSegment.originAirport.iata, @"MOW");
+    XCTAssertEqualObjects(lastTravelSegment.destinationAirport.iata, @"LED");
+    XCTAssertTrue([[self stringFromGMTDate: lastTravelSegment.departureDate] hasPrefix:@"15.06"]);
+
+    XCTAssertEqual(searchParams.adults, 7);
     XCTAssertEqual(searchParams.travelClass, 1);
 
 }
 
 - (void)testTwoWaysFlightWithDifferentPassengerCorrectlyDecodedFromUrl {
     NSString *const inputString = @"LED1205MOW-MOW1506LED853Y";
-    AviasalesSearchParams *const searchParams = [self.coder searchParamsWithString:inputString];
+    id<JRSDKSearchInfo> const searchParams = [self.coder searchParamsWithString:inputString];
 
-    XCTAssertEqualObjects(searchParams.originIATA, @"LED");
-    XCTAssertEqualObjects(searchParams.destinationIATA, @"MOW");
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.departureDate] hasPrefix:@"12.05"]);
-    XCTAssertTrue([[self stringFromGMTDate: searchParams.returnDate] hasPrefix:@"15.06"]);
-    XCTAssertEqual(searchParams.returnFlight, YES);
-    XCTAssertEqual(searchParams.adultsNumber, 8);
-    XCTAssertEqual(searchParams.childrenNumber, 5);
-    XCTAssertEqual(searchParams.infantsNumber, 3);
+    XCTAssertEqual(searchParams.travelSegments.count, 2);
+
+    id<JRSDKTravelSegment> const firstTravelSegment = searchParams.travelSegments.firstObject;
+
+    XCTAssertEqualObjects(firstTravelSegment.originAirport.iata, @"LED");
+    XCTAssertEqualObjects(firstTravelSegment.destinationAirport.iata, @"MOW");
+    XCTAssertTrue([[self stringFromGMTDate: firstTravelSegment.departureDate] hasPrefix:@"12.05"]);
+
+
+    id<JRSDKTravelSegment> const lastTravelSegment = searchParams.travelSegments.lastObject;
+
+    XCTAssertEqualObjects(lastTravelSegment.originAirport.iata, @"MOW");
+    XCTAssertEqualObjects(lastTravelSegment.destinationAirport.iata, @"LED");
+    XCTAssertTrue([[self stringFromGMTDate: lastTravelSegment.departureDate] hasPrefix:@"15.06"]);
+
+    XCTAssertEqual(searchParams.adults, 8);
+    XCTAssertEqual(searchParams.children, 5);
+    XCTAssertEqual(searchParams.infants, 3);
     XCTAssertEqual(searchParams.travelClass, 0);
 }
+
 #pragma mark - Utils
 - (NSDate *)gmtDateFromString:(NSString *)string {
     return [self.gmtDateFormatter dateFromString:string];

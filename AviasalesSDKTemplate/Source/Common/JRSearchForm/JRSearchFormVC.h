@@ -14,5 +14,6 @@
 @interface JRSearchFormVC : JRViewController
 
 - (void)setSearchInfo:(JRSearchInfo *)searchInfo;
+- (void)startSearchWithSearchInfo:(JRSearchInfo *)searchInfo;
 
 @end

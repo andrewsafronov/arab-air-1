@@ -1,4 +1,0 @@
-/* Localized versions of Info.plist keys */
-
-NSLocationUsageDescription          = "Um Ihnen zu helfen, den nächstgelegenen Flughafen zu finden";
-NSLocationWhenInUseUsageDescription = "Um Ihnen zu helfen, den nächstgelegenen Flughafen zu finden";

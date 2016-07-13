@@ -6,12 +6,12 @@
 //
 //
 
-#import "JRC.h"
 #import "DateUtil.h"
 #import "JRSearchFormDateCell.h"
 #import "UIView+JRFadeAnimation.h"
+#import "UIImage+JRUIImage.h"
+#import "ColorScheme.h"
 
-#define JRSearchFormDateCellFontSize 18
 #define kJRSearchFormTravelClassCellAnimationDuration 0.1
 
 @interface JRSearchFormDateCell ()
@@ -32,7 +32,6 @@
 	[super awakeFromNib];
     
 	[_buttonTitle setText:NSLS(@"JR_SEARCH_FORM_DATE_CELL_RETURN_BUTTON_TITLE")];
-    [_button setAccessibilityLabelWithNSLSKey:@"JR_SEARCH_FORM_DATE_CELL_RETURN_BUTTON_TITLE"];
 }
 
 - (void)updateCell
@@ -48,10 +47,13 @@
 
 - (void)setupIconImage
 {
-	UIImage *image = [UIImage imageNamed:@"JRSearchFormDirectDateIcon"];
-    [_iconImageView setImage:[UIImage imageWithCGImage:image.CGImage
-                                                 scale:image.scale
-                                           orientation:[self isReturnItem] ? UIImageOrientationUpMirrored : UIImageOrientationUp]];
+    _iconImageView.image = [UIImage imageWithColor:[ColorScheme buttonBackgroundColor]];
+    
+    // TODO:
+//	UIImage *image = [UIImage imageNamed:@"JRSearchFormDirectDateIcon"];
+//    [_iconImageView setImage:[UIImage imageWithCGImage:image.CGImage
+//                                                 scale:image.scale
+//                                           orientation:[self isReturnItem] ? UIImageOrientationUpMirrored : UIImageOrientationUp]];
 }
 
 - (void)updateDateLabel
@@ -59,7 +61,7 @@
 	_button.hidden = _buttonTitle.hidden = self.item.type == JRSearchFormTableViewDirectDateItem;
     
 	NSDate *date = nil;
-	NSMutableAttributedString *dateAttributedString  = nil;
+	NSString *dateString  = nil;
     
 	if (self.item.type == JRSearchFormTableViewDirectDateItem) {
 		date = [[self.searchInfo.travelSegments firstObject] departureDate];
@@ -79,18 +81,13 @@
 		NSString *weekday = [dateFormatter stringFromDate:date];
 		weekday = [NSString stringWithFormat:@", %@", weekday];
 
-        NSString *dateString = iPhone() ? [DateUtil dayMonthYearWeekdayStringFromDate:date] : [DateUtil fullDayMonthYearWeekdayStringFromDate:date];
-
-		UIFont *boldFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:JRSearchFormDateCellFontSize];
-		dateAttributedString = [[NSMutableAttributedString alloc] initWithString:dateString attributes: @{ NSFontAttributeName : boldFont}];
-        [dateAttributedString addAttribute:NSForegroundColorAttributeName value:[JRC SF_DATES_TEXT_COLOR] range:NSMakeRange(0, dateAttributedString.length)];
-        
+        dateString = iPhone() ? [DateUtil dayMonthYearWeekdayStringFromDate:date] : [DateUtil fullDayMonthYearWeekdayStringFromDate:date];
         [_dateLabel setAccessibilityLabel:[DateUtil stringForSpeakDayMonthYearDayOfWeek:date]];
 	} else {
 		[_button setSelected:NO];
 	}
     
-	[_dateLabel setAttributedText:dateAttributedString];
+	[_dateLabel setText:dateString];
     
 	[self updatePlaceholderLabel];
 }

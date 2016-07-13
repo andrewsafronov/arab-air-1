@@ -116,7 +116,13 @@
 
 "AVIASALES_BUY" = "Купить";
 
+"AVIASALES_BUY_TICKET" = "Купить билет";
+
 "AVIASALES_FLIGHT" = "Рейс";
+
+"AVIASALES_ON" = "на";
+
+"AVIASALES_FLIGHT_DURATION" = "Перелет";
 
 "AVIASALES_STOPOVER" = "Пересадка";
 

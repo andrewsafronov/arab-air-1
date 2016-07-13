@@ -1,3 +1,5 @@
+"LANGUAGE"                                          = "EN";
+
 "AVIASALES_LANG" = "en";
 
 "AVIASALES_CLOSE_BUTTON" = "Close";
@@ -11,6 +13,8 @@
 "AVIASALES_ALERT_UNKNOWN_ERROR_TEXT" = "Unknown error";
 
 "AVIASALES_BACK" = "Back";
+
+"AVIASALES_RETRY" = "Retry";
 
 "AVIASALES_CANCEL" = "Cancel";
 
@@ -116,8 +120,144 @@
 
 "AVIASALES_BUY" = "Book Now";
 
+"AVIASALES_BUY_TICKET" = "Buy ticket";
+
+"AVIASALES_ON" = "on";
+
+"AVIASALES_FLIGHT_DURATION" = "Flight";
+
 "AVIASALES_FLIGHT" = "Flight";
 
 "AVIASALES_STOPOVER" = "Stopover";
 
 "AVIASALES_PLEASE_WAIT" = "Please, wait...";
+
+"SHORT_TIME_FORMAT"                                 = "%@h %@m";
+"LONG_TIME_FORMAT"                                  = "%@ h %@ min";
+
+"JR_DATE_PICKER_DEPARTURE_DATE_TITLE"               = "Departure date";
+"JR_DATE_PICKER_RETURN_DATE_TITLE"                  = "Return date";
+"JR_DATE_PICKER_TRAVEL_DATES_TITLE"                  = "Flight dates";
+"JR_DATE_PICKER_TODAY_DATE_TITLE"                   = "Today";
+"JR_DATE_PICKER_SEARCH_TICKETS_BUTTON"              = "Search tickets";
+"JR_SEARCHINFO_BUSINESS"                            = "Business";
+"JR_SEARCHINFO_ECONOMY"                             = "Economy";
+"JR_SEARCHINFO_PREMIUM_ECONOMY"                     = "Premium Economy";
+"JR_SEARCHINFO_FIRST"                               = "First Class";
+"JR_SEARCHINFO_PASSENGERS##{one}"                   = "%d passenger";
+"JR_SEARCHINFO_PASSENGERS##{few}"                   = "%d passengers";
+"JR_SEARCHINFO_PASSENGERS##{many}"                  = "%d passengers";
+"JR_SEARCHINFO_PASSENGERS##{other}"                 = "%d passengers";
+"JR_SEARCH_FORM_AIRPORT_CELL_EMPTY_DESTINATION"     = "Arrival city";
+"JR_SEARCH_FORM_AIRPORT_CELL_EMPTY_ORIGIN"          = "Departure city";
+"JR_SEARCH_FORM_COMPLEX_DATE"                       = "date";
+"JR_SEARCH_FORM_COMPLEX_DESTINATION"                = "to";
+"JR_SEARCH_FORM_COMPLEX_ORIGIN"                     = "from";
+"JR_SEARCH_FORM_COMPLEX_SEARCH_SEGMENT_TITLE"       = "multi-city";
+"JR_SEARCH_FORM_DATE_CELL_EMPTY_DIRECT"             = "Depart";
+"JR_SEARCH_FORM_DATE_CELL_EMPTY_RETURN"             = "Return";
+"JR_SEARCH_FORM_DATE_CELL_RETURN_BUTTON_TITLE"      = "return";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_SEGMENT_TITLE"        = "basic";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_ONE_WAY_SEGMENT_TITLE"= "One-way";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_ROUND_TRIP_SEGMENT_TITLE" = "Round-Trip";
+"JR_SEARCH_FORM_TITLE"                              = "Search tickets";
+"JR_SEARCH_FORM_SEARCH_BUTTON"                      = "SEARCH TICKETS";
+"JR_SEARCH_FORM_EXCEEDED_THE_ALLOWABLE_NUMBER_OF_INFANTS" = "The number of infants traveling without seat may not exceed the number of accompanying adults.";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_ORIGIN_ERROR"         = "Please enter departure airport";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_DESTINATION_ERROR"    = "Please enter arrival airport";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_SAME_CITY_ERROR"      = "Departure and arrival airports should be different.";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_DEPARTURE_DATE"       = "Please enter departure date";
+"JR_SEARCH_FORM_COMPLEX_PLACEHOLDER_AIRPORT_CELL_ACC" = "Select";
+
+"JR_SEARCH_FORM_ADD_TRAVEL_SEGMENT"                 = "ADD";
+"JR_SEARCH_FORM_DELETE_TRAVEL_SEGMENT"              = "DELETE";
+
+"JR_SEARCH_FORM_PASSENGERS_DECREASE_BTN_TITLE_ACC"  = "Reduce the number of passengers %@";
+"JR_SEARCH_FORM_PASSENGERS_INCREASE_BTN_TITLE_ACC"  = "Increase the number of passengers %@";
+"JR_SEARCH_FORM_PASSENGERS_COUNT_ACC"               = "%@ passengers %@";
+"JR_SEARCH_FORM_PASSENGERS_OLDER_THEN_12"           = "12+";
+"JR_SEARCH_FORM_PASSENGERS_FROM_2_TO_12_YEARS"      = "UNDER 12";
+"JR_SEARCH_FORM_PASSENGERS_UP_TO_2_YEARS"           = "UNDER 2";
+
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{one}" = "adult";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{few}" = "adults";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{many}" = "adults";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{other}" = "adults";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{one}" = "child";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{few}" = "children";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{many}" = "children";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{other}" = "children";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{one}" = "infant";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{few}" = "infants";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{other}" = "infants";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{many}" = "infants";
+
+"ALERT_DEFAULT_BUTTON" = "OK";
+
+"ACTIVITY_INDICATOR_DEFAULT_TITLE" = "Loading...";
+
+"JR_AIRPORT_PICKER_DESTINATION_MODE_TITLE"          = "Destination";
+"JR_AIRPORT_PICKER_NEAREST_AIRPORTS"                = "Nearest airports";
+"JR_AIRPORT_PICKER_NEAREST_AIRPORTS_READING_ERROR"  = "Geolocation service is temporarily unavailable ";
+
+"JR_AIRPORT_PICKER_ORIGIN_MODE_TITLE"               = "Origin";
+"JR_AIRPORT_PICKER_NO_NEAREST_AIRPORTS"             = "No airports near you";
+"JR_AIRPORT_PICKER_PLACEHOLDER_TEXT"                = "Enter city or airport";
+"JR_AIRPORT_PICKER_PLACEHOLDER_TEXT_SHORT"          = "Search";
+"JR_AIRPORT_PICKER_POPULAR_CATEGORY_MODE_TITLE"     = "Interests";
+"JR_AIRPORT_PICKER_POPULAR_DESTINATIONS"            = "Routes by interests";
+"JR_AIRPORT_PICKER_BACK_BUTTON"                     = "Back";
+"JR_AIRPORT_PICKER_SEARCHED_AIRPORTS"               = "Previous searches:";
+"JR_AIRPORT_PICKER_NOTHING_IS_FOUND"                = "No results found";
+"JR_AIRPORT_PICKER_SEARCHING_ON_SERVER_TEXT"        = "Searching...";
+"JR_AIRPORT_PICKER_UPDATING_NEAREST_AIRPORTS"       = "Searching for the nearest airports...";
+
+// Browser
+
+"JR_BROWSER_BACK_BTN_TITLE" = "Back";
+"JR_BROWSER_FORWARD_BTN_TITLE" = "Forward";
+"JR_BROWSER_CONNECTION_ERROR_TITLE" = "Browser connection error";
+"JR_BROWSER_ACTIVITY_OVERLAY_TITLE" = "Wait Wait Wait";
+"JR_BROWSER_ERROR_ALERT_TITLE" = "Error";
+"JR_BROWSER_ERROR_ALERT_CANCEL_BUTTON_TITLE" = "Close";
+
+"JR_SEARCH_RESULTS_NON_STRICT_MATCHED_ALERT_MESSAGE" = "Sorry, we couldn't find flights between selected airports for the route %@. However, we can show you other flights between these cities.";
+
+
+"JR_SEARCH_RESULTS_TICKET_IN_THE"                          = "on";
+
+
+"JR_TICKET_CREDIT_ALERT_BUY_BUTTON"                        = "Buy";
+"JR_TICKET_CREDIT_ALERT_CONDITIONS"                        = "Terms and Conditions";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{few}"                   = "payments";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{one}"                   = "payment";
+"JR_TICKET_CREDIT_ALERT_CANCEL_BUTTON"                     = "Cancel";
+"JR_TICKET_CREDIT_ALERT_DAYS##{one}"                       = "day";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{other}"                 = "payments";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{many}"                  = "payments";
+"JR_TICKET_CREDIT_ALERT_DAYS##{few}"                       = "days";
+"JR_TICKET_CREDIT_ALERT_MONTH"                             = "month";
+"JR_TICKET_CREDIT_ALERT_DAYS##{other}"                     = "days";
+"JR_TICKET_CREDIT_ALERT_TILL"                              = "until";
+"JR_TICKET_CREDIT_ALERT_DAYS##{many}"                      = "days";
+"JR_TICKET_CREDIT_ALERT_OVERPAYMENT"                       = "Overpayment";
+"JR_TICKET_CREDIT_ALERT_DURATION"                          = "Term of loan";
+"JR_TICKET_CREDIT_ALERT_OVERPAYMENT_SUFFIX"                = "of the price";
+"JR_TICKET_CREDIT_ALERT_GRACE_PERIOD"                      = "Grace period";
+"JR_TICKET_CREDIT_MONTH_2" = "february";
+"JR_TICKET_CREDIT_MONTH_1" = "january";
+"JR_TICKET_CREDIT_MONTH_3" = "march";
+"JR_TICKET_CREDIT_MONTH_6" = "june";
+"JR_TICKET_CREDIT_MONTH_4" = "april";
+"JR_TICKET_CREDIT_MONTH_7" = "july";
+"JR_TICKET_CREDIT_MONTH_5" = "may";
+"JR_TICKET_CREDIT_MONTH_8" = "august";
+"JR_TICKET_CREDIT_MONTH_9" = "september";
+"JR_TICKET_CREDIT_MONTH_10" = "october";
+"JR_TICKET_CREDIT_MONTH_11" = "november";
+"JR_TICKET_CREDIT_MONTH_12" = "december";
+
+"JR_WAITING_ERROR_NOT_FOUND_MESSAGE"                = "No results found. Try adjusting search parameters.";
+"JR_WAITING_ERROR_CONNECTION_ERROR"                 = "Connection error (%@)";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE"             = "Sorry, the Jetradar service is temporarily unavailable (%@)";
+

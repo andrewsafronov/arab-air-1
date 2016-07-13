@@ -7,11 +7,11 @@
 //
 
 #import "JRViewController.h"
-#import "JRC.h"
 #import "JRScreenScene.h"
 #import "JRViewController+JRScreenScene.h"
 #import "UIViewController+JRScreenSceneController.h"
-#import "NSObject+Accessibility.h"
+#import "UIImage+JRUIImage.h"
+#import "ColorScheme.h"
 
 @interface JRViewController ()
 @property (weak, nonatomic) UIButton *menuButton;
@@ -22,10 +22,9 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	[self.view setBackgroundColor:[JRC COMMON_BACKGROUND]];
     
 	[self setTitle:NSStringFromClass(self.class)];
-	[self setBackgroundColor];
+	[self updateBackgroundColor];
     
     if ([self.navigationController.viewControllers count] > 1 && self.scene.accessoryViewController != self) {
         [self addPopButtonToNavigationItem];
@@ -58,17 +57,20 @@
     }
 }
 
-- (void)setBackgroundColor
+- (void)updateBackgroundColor
 {
-	[self.view setBackgroundColor:[JRC COMMON_BACKGROUND]];
+	[self.view setBackgroundColor:[ColorScheme mainBackgroundColor]];
 }
 
 - (void)addPopButtonToNavigationItem
 {
-	UIBarButtonItem *popButton = [UINavigationItem barItemWithImageName:kJRBaseBackButtonImageName
+    UIBarButtonItem *popButton = [UINavigationItem barItemWithImageName:kJRBaseBackButtonImageName
                                                                  target:self
                                                                  action:@selector(popAction)];
-    [popButton setAccessibilityLabelWithNSLSKey:@"JR_BACK_BTN_TITLE_ACC"];
+    
+    UIButton *button = (UIButton *)popButton.customView;
+    [button setImage:[[button imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor]] forState:UIControlStateNormal];
+    
 	[self.navigationItem setLeftBarButtonItem:popButton];
 }
 
@@ -87,10 +89,10 @@
 
 - (void)popActionToRoot
 {
-	if (iPhone()) {
+	if ([self scene]) {
+        [self.sceneViewController popToRootViewControllerAnimated:YES];
+	} else {
 		[self.navigationController popToRootViewControllerAnimated:YES];
-	} else if (iPad()) {
-		[self.sceneViewController popToRootViewControllerAnimated:YES];
 	}
 }
 
@@ -98,6 +100,10 @@
     [super viewDidAppear:animated];
     
     _viewIsVisible = YES;
+}
+
+- (BOOL)shouldShowNavigationBar {
+    return YES;
 }
 
 @end

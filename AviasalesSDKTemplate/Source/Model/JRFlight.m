@@ -19,5 +19,6 @@
 @synthesize airline;
 @synthesize destinationAirport;
 @synthesize originAirport;
+@synthesize operatingAirline;
 
 @end

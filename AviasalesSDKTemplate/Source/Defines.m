@@ -116,9 +116,9 @@ BOOL Debug() {
 //------------------------
 
 NSString *NSLS(NSString *key) {
-    return [[NSBundle mainBundle] localizedStringForKey :key value : @"" table : nil];
+    return [AVIASALES_BUNDLE localizedStringForKey:key value:@"" table:@"AviasalesTemplateLocalizable"];
 }
 
 NSString *NSLSP(NSString *key, float pluralValue) {
-    return SLPluralizedString(key, pluralValue, nil);
+    return [AVIASALES_BUNDLE pluralizedStringWithKey:key defaultValue:@"" table:@"AviasalesTemplateLocalizable" pluralValue:SL_FLOATVALUE(pluralValue)];
 }

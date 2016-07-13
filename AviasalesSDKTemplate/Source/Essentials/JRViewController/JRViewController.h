@@ -22,4 +22,6 @@
 - (void)popAction;
 - (void)popActionToRoot;
 
+- (BOOL)shouldShowNavigationBar;
+
 @end

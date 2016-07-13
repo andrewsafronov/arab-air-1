@@ -44,7 +44,16 @@ typedef enum ASFilterCellType:NSUInteger {
 @end
 
 
+@class ASTFilters;
+
+@protocol ASTFiltersDelegate <NSObject>
+- (void)filtersDidFinishFiltering:(ASTFilters *)filters;
+@end
+
+
 @interface ASTFilters : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) id<ASTFiltersDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *offersLabel;
@@ -54,7 +63,5 @@ typedef enum ASFilterCellType:NSUInteger {
 @property (strong, nonatomic) AviasalesFilter *filter;
 
 - (void)buildTable;
-
-- (IBAction)dismiss:(id)sender;
 
 @end

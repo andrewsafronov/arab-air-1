@@ -7,9 +7,9 @@
 
 #import "JRTableViewCell.h"
 #import "UIImage+JRUIImage.h"
-#import "JRC.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
 #import "Defines.h"
+#import "ColorScheme.h"
 
 @interface JRTableViewCell ()
 @property (strong, nonatomic) UIImageView *bottomLine;
@@ -29,13 +29,13 @@
     
     _customBackgroundView = [UIView new];
     [_customBackgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[_customBackgroundView setBackgroundColor:[JRC WHITE_COLOR]];
+	[_customBackgroundView setBackgroundColor:[ColorScheme itemsBackgroundColor]];
     [self addSubview:_customBackgroundView];
     [self addConstraints:JRConstraintsMakeScaleToFill(_customBackgroundView, scaleToFillView)];
     
 	_customSelectedBackgroundView = [UIView new];
     [_customSelectedBackgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[_customSelectedBackgroundView setBackgroundColor:[JRC COMMON_CELL_SELECTED_BACKGROUND_COLOR]];
+	[_customSelectedBackgroundView setBackgroundColor:[ColorScheme itemsSelectedBackgroundColor]];
     [_customSelectedBackgroundView setContentHuggingPriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
     
 	_bottomLine = [UIImageView new];
@@ -57,7 +57,7 @@
 	[self setLeftOffset:_leftOffset];
     [self setBottomLineInsets:_bottomLineInsets];
     
-	[self setBottomLineColor:[JRC COMMON_TABLECELL_SEPARATOR]];
+	[self setBottomLineColor:[ColorScheme separatorLineColor]];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
