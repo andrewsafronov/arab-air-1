@@ -5,6 +5,7 @@ rvm: 2.2.2
 before_install:
     - gem install cocoapods -v '1.0.1' 
     - pod setup > /dev/null    #/dev/null to prevent long logs
+    - gem install xcpretty
 #    - brew update
 #    - brew outdated xctool || brew upgrade xctool
 #    - git clone https://github.com/facebook/xctool.git #use this if current xctool is outdated
