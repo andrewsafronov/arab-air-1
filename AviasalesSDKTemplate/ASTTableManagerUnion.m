@@ -11,9 +11,13 @@
 @interface ASTTableManagerUnion ()
 @property (strong, nonatomic) id<ASTTableManager> first;
 @property (strong, nonatomic) id<ASTTableManager> second;
+@property (strong, nonatomic) NSIndexSet *realSecondManagerPositions;
+@property (assign, nonatomic) NSInteger firstTableSizeCache;
 @end
 
 @implementation ASTTableManagerUnion
+@synthesize realSecondManagerPositions = _realSecondManagerPositions;
+
 - (instancetype)initWithFirstManager:(id<ASTTableManager>)firstManager
                        secondManager:(id<ASTTableManager>)secondManager
               secondManagerPositions:(NSIndexSet *)secondManagerPositions {
@@ -25,9 +29,48 @@
     return self;
 }
 
+#pragma mark - Setters
+- (void)setSecondManagerPositions:(NSIndexSet *)secondManagerPositions {
+    _secondManagerPositions = secondManagerPositions;
+    _realSecondManagerPositions = nil;
+}
+
+- (void)setFirstTableSizeCache:(NSInteger)firstTableSizeCache {
+    _firstTableSizeCache = firstTableSizeCache;
+    _realSecondManagerPositions = nil;
+}
+
+#pragma mark - Getters
+- (NSIndexSet *)realSecondManagerPositions {
+    if (_realSecondManagerPositions != nil) {
+        return _realSecondManagerPositions;
+    }
+    const NSInteger firstManagerTableSize = self.firstTableSizeCache;
+    const NSInteger secondManagerTableSize = self.secondManagerPositions.count;
+    const NSInteger tableSize = firstManagerTableSize + secondManagerTableSize;
+    const NSRange allTableItemsIndexesRange = NSMakeRange(0, tableSize);
+    __block NSInteger tableSizeForEnumeration = firstManagerTableSize;
+    NSIndexSet *const elementsFromSecondTableToUseWithoutSpaces = [self.secondManagerPositions indexesInRange:allTableItemsIndexesRange options:0 passingTest:^BOOL(NSUInteger idx, BOOL * _Nonnull stop) {
+        ++tableSizeForEnumeration;
+        const BOOL result = idx < tableSizeForEnumeration;
+        *stop = !result;
+        return result;
+    }];
+
+    const NSInteger countOfElementsFromSecondTableToUseWithoutSpaces = elementsFromSecondTableToUseWithoutSpaces.count;
+    if (countOfElementsFromSecondTableToUseWithoutSpaces == secondManagerTableSize) {
+        _realSecondManagerPositions = self.secondManagerPositions;
+    } else {
+        NSMutableIndexSet *const mergedSet = [[NSMutableIndexSet alloc] initWithIndexSet:elementsFromSecondTableToUseWithoutSpaces];
+        [mergedSet addIndexesInRange:NSMakeRange(firstManagerTableSize + countOfElementsFromSecondTableToUseWithoutSpaces, secondManagerTableSize - countOfElementsFromSecondTableToUseWithoutSpaces)];
+        _realSecondManagerPositions = [mergedSet copy];
+    }
+    return _realSecondManagerPositions;
+}
+
 #pragma mark - <UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.first numberOfSectionsInTableView:tableView] + self.secondManagerPositions.count;
+    return [self firstTableSizeWithTable:tableView] + self.realSecondManagerPositions.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -45,6 +88,44 @@
         result = [self.first tableView:tableView cellForRowAtIndexPath:pathInFirstTable];
     }
     return result;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    id<ASTTableManager> manager;
+    NSInteger managerSection;
+
+    if ([self isSecondTableIndex:section]) {
+        manager = self.second;
+        managerSection = [self sectionFromSecondTableWithSection:section];
+    } else {
+        manager = self.first;
+        managerSection = [self sectionFromFirstTableWithIndex:section];
+    }
+
+    if ([manager respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
+        return [manager tableView:tableView heightForHeaderInSection:managerSection];
+    } else {
+        return 0;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    id<ASTTableManager> manager;
+    NSInteger managerSection;
+
+    if ([self isSecondTableIndex:section]) {
+        manager = self.second;
+        managerSection = [self sectionFromSecondTableWithSection:section];
+    } else {
+        manager = self.first;
+        managerSection = [self sectionFromFirstTableWithIndex:section];
+    }
+
+    if ([manager respondsToSelector:@selector(tableView:heightForFooterInSection:)]) {
+        return [manager tableView:tableView heightForFooterInSection:managerSection];
+    } else {
+        return 0;
+    }
 }
 
 #pragma mark - <UITableViewDelegate>
@@ -81,17 +162,41 @@
 }
 
 #pragma mark - Private
+- (id<ASTTableManager>)tableManagerAtIndex:(NSInteger)index {
+    if ([self isSecondTableIndex:index]) {
+        return self.second;
+    } else {
+        return self.first;
+    }
+}
+
 - (BOOL)isSecondTableIndex:(NSInteger)index {
-    return [self.secondManagerPositions containsIndex:index];
+    return [self.realSecondManagerPositions containsIndex:index];
 }
 
 - (NSIndexPath *)indexPathFromSecondTableWithIndex:(NSInteger)index {
-    const NSInteger newIndex = [self.secondManagerPositions countOfIndexesInRange:NSMakeRange(0, index)];
+    const NSInteger newIndex = [self sectionFromSecondTableWithSection:index];
     return [NSIndexPath indexPathForRow:0 inSection:newIndex];
 }
 
+- (NSInteger)sectionFromSecondTableWithSection:(NSInteger)index {
+    return [self.realSecondManagerPositions countOfIndexesInRange:NSMakeRange(0, index)];
+}
+
 - (NSIndexPath *)indexPathFromFirstTableWithIndex:(NSInteger)index {
-    const NSInteger newIndex = index - [self.secondManagerPositions countOfIndexesInRange:NSMakeRange(0, index)];
+    const NSInteger newIndex = [self sectionFromFirstTableWithIndex:index];
     return [NSIndexPath indexPathForRow:0 inSection:newIndex];
+}
+
+- (NSInteger)sectionFromFirstTableWithIndex:(NSInteger)index {
+    return index - [self.realSecondManagerPositions countOfIndexesInRange:NSMakeRange(0, index)];
+}
+
+- (NSInteger)firstTableSizeWithTable:(UITableView *)tableView {
+    const NSInteger firstTableSize = [self.first numberOfSectionsInTableView:tableView];
+    if (self.firstTableSizeCache != firstTableSize) {
+        self.firstTableSizeCache = firstTableSize;
+    }
+    return firstTableSize;
 }
 @end

@@ -7,34 +7,23 @@
 
 #import "JRSearchFormAirportsCell.h"
 #import "JRSearchFormSimpleSearchTableView.h"
-#import "JRLineViewWithPattern.h"
-#import "JRC.h"
 #import "UIImage+JRUIImage.h"
 #import "UIView+JRFadeAnimation.h"
-#import "NSObject+Accessibility.h"
+#import "ColorScheme.h"
 
 #define JRSearchFormAirportsCellAnimationDuration 0.3
 
 @interface JRSearchFormAirportsCell ()
 @property (weak, nonatomic) IBOutlet JRSearchFormSimpleSearchTableView *tableView;
-@property (weak, nonatomic) IBOutlet JRLineViewWithPattern *verticalLine;
 @property (weak, nonatomic) IBOutlet UIButton *changeButton;
 @end
 
 @implementation JRSearchFormAirportsCell
 
-- (void)setupPatternedLine
-{
-	UIImage *verticalLinePattern = [[UIImage imageNamed:@"JRVerticalLineSemiTransparentPattern"] imageTintedWithColor:[JRC SF_CELL_IMAGES_TINT]];
-	verticalLinePattern = [verticalLinePattern imageTintedWithColor:[JRC THEME_COLOR]];
-	[_verticalLine setPatternImage:verticalLinePattern];
-}
-
 - (void)setupChangeButton
 {
-	UIImage *changeButtonImage = [[_changeButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRC THEME_COLOR] fraction:0.1];
+	UIImage *changeButtonImage = [[_changeButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme buttonBackgroundColor] fraction:0.1];
 	[_changeButton setImage:changeButtonImage forState:UIControlStateHighlighted];
-    [_changeButton setAccessibilityLabelWithNSLSKey:@"JR_SEARCH_FORM_CHANGE_BTN_TITLE_ACC"];
 	[UIView animateWithDuration:JRSearchFormAirportsCellAnimationDuration
                           delay:kNilOptions
                         options:UIViewAnimationOptionOverrideInheritedOptions
@@ -55,10 +44,7 @@
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
-	[self setupPatternedLine];
 	[self setupChangeButton];
-    [_changeButton setImage:[[_changeButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRC SF_CELL_IMAGES_TINT]]
-                   forState:UIControlStateNormal];
 }
 
 - (void)updateCell
@@ -76,9 +62,9 @@
 - (IBAction)chageAction:(UIButton *)sender
 {
 	JRTravelSegment *travelSegment = self.searchInfo.travelSegments.firstObject;
-	NSString *originIata = travelSegment.originIata;
-	travelSegment.originIata = travelSegment.destinationIata;
-	travelSegment.destinationIata = originIata;
+	id<JRSDKAirport> originAirport = travelSegment.originAirport;
+	travelSegment.originAirport = travelSegment.destinationAirport;
+	travelSegment.destinationAirport = originAirport;
 	[self updateCell];
 	[UIView addTransitionFadeToView:self duration:JRSearchFormAirportsCellAnimationDuration];
 }
@@ -86,8 +72,8 @@
 - (BOOL)changeButtonIsAvalible
 {
 	JRTravelSegment *travelSegment = self.searchInfo.travelSegments.firstObject;
-	if ((travelSegment.originIata || travelSegment.destinationIata) &&
-	    ![travelSegment.originIata isEqualToString:travelSegment.destinationIata]) {
+	if ((travelSegment.originAirport || travelSegment.destinationAirport) &&
+        ![JRSDKModelUtils airport:travelSegment.originAirport isEqualToAirport:travelSegment.destinationAirport]) {
 		return YES;
 	} else {
 		return NO;

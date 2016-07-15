@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="JRFilterCellWithTwoThumbsSlider" id="3" customClass="JRFilterCellWithTwoThumbsSlider">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3" id="bq3-Bf-kd7">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="750" text="Вылет" lineBreakMode="tailTruncation" numberOfLines="2" minimumScaleFactor="0.5" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                        <rect key="frame" x="20" y="14" width="44.5" height="17.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.81960791349411011" green="0.81960791349411011" blue="0.81960791349411011" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </label>
+                    <view clearsContextBeforeDrawing="NO" tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5" customClass="NMRangeSlider">
+                        <rect key="frame" x="20" y="0.0" width="285" height="116"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="116" id="AZ1-9w-mto"/>
+                        </constraints>
+                    </view>
+                    <label clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" tag="3" contentMode="left" text="с 9:00 10 окт до 14:30 11 окт" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" minimumScaleFactor="0.5" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="6">
+                        <rect key="frame" x="74" y="6" width="231.5" height="32.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32.5" id="mv4-5M-stc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.40000003576278687" green="0.40000003576278687" blue="0.40000003576278687" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                    </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USZ-c8-Dlr">
+                        <rect key="frame" x="130" y="47" width="59" height="31"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <state key="normal" title="day" backgroundImage="JRFilterTimeButton">
+                            <color key="titleColor" red="0.59999999999999998" green="0.8666666666666667" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="JRFilterTimeButtonCheckmark" backgroundImage="JRFilterTimeButtonSelected">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" backgroundImage="JRFilterTimeButtonHighlighted">
+                            <color key="titleColor" red="0.59999999999999998" green="0.86666666670000003" blue="0.97647058819999999" alpha="0.5" colorSpace="calibratedRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="JRHighlightedColor">
+                                <color key="value" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="JRSelectedColor">
+                                <color key="value" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="onDayTimeButtonsClicked:" destination="3" eventType="touchUpInside" id="WZi-gA-Ftl"/>
+                        </connections>
+                    </button>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ks1-0B-26L">
+                        <rect key="frame" x="20" y="47" width="59" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="31" id="i7P-mX-dBi"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <state key="normal" title="morning" backgroundImage="JRFilterTimeButton">
+                            <color key="titleColor" red="0.59999999999999998" green="0.86666666670000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="JRFilterTimeButtonCheckmark" backgroundImage="JRFilterTimeButtonSelected">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" backgroundImage="JRFilterTimeButtonHighlighted">
+                            <color key="titleColor" red="0.59999999999999998" green="0.86666666670000003" blue="0.97647058819999999" alpha="0.5" colorSpace="calibratedRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="JRShouldRasterize" value="YES"/>
+                            <userDefinedRuntimeAttribute type="size" keyPath="JRShadowOffset">
+                                <size key="value" width="0.0" height="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="JRShadowColor">
+                                <color key="value" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="JRHighlightedColor">
+                                <color key="value" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="JRSelectedColor">
+                                <color key="value" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="onDayTimeButtonsClicked:" destination="3" eventType="touchUpInside" id="RZD-hm-XY0"/>
+                        </connections>
+                    </button>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXC-6z-tVe">
+                        <rect key="frame" x="246" y="47" width="59" height="31"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                        <state key="normal" title="evening" backgroundImage="JRFilterTimeButton">
+                            <color key="titleColor" red="0.59999999999999998" green="0.86666666670000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="JRFilterTimeButtonCheckmark" backgroundImage="JRFilterTimeButtonSelected">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" backgroundImage="JRFilterTimeButtonHighlighted">
+                            <color key="titleColor" red="0.59999999999999998" green="0.86666666670000003" blue="0.97647058819999999" alpha="0.5" colorSpace="calibratedRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="JRHighlightedColor">
+                                <color key="value" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="JRSelectedColor">
+                                <color key="value" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="onDayTimeButtonsClicked:" destination="3" eventType="touchUpInside" id="L42-en-hZa"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="USZ-c8-Dlr" secondAttribute="bottom" constant="10" id="1Hq-sn-B0K"/>
+                    <constraint firstItem="5" firstAttribute="leading" secondItem="bq3-Bf-kd7" secondAttribute="leading" constant="20" id="3JF-bV-nTa"/>
+                    <constraint firstItem="5" firstAttribute="centerY" secondItem="6" secondAttribute="centerY" constant="35.25" id="4uR-7e-fx8"/>
+                    <constraint firstItem="6" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="10" id="64D-P5-KFG"/>
+                    <constraint firstItem="6" firstAttribute="trailing" secondItem="lXC-6z-tVe" secondAttribute="trailing" id="8EO-EF-DkE"/>
+                    <constraint firstAttribute="trailing" secondItem="6" secondAttribute="trailing" constant="14" id="Em3-ir-IAs"/>
+                    <constraint firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="15" id="HBm-GP-Ye9"/>
+                    <constraint firstItem="USZ-c8-Dlr" firstAttribute="height" secondItem="Ks1-0B-26L" secondAttribute="height" id="UBG-H7-aaF"/>
+                    <constraint firstItem="Ks1-0B-26L" firstAttribute="leading" secondItem="4" secondAttribute="leading" id="afC-EX-jv9"/>
+                    <constraint firstItem="4" firstAttribute="centerY" secondItem="6" secondAttribute="centerY" id="dDG-Q9-Jew"/>
+                    <constraint firstItem="USZ-c8-Dlr" firstAttribute="centerY" secondItem="lXC-6z-tVe" secondAttribute="centerY" id="j1t-o9-WNZ"/>
+                    <constraint firstItem="Ks1-0B-26L" firstAttribute="width" secondItem="USZ-c8-Dlr" secondAttribute="width" id="kmM-h2-P7i"/>
+                    <constraint firstItem="Ks1-0B-26L" firstAttribute="centerY" secondItem="USZ-c8-Dlr" secondAttribute="centerY" id="l2Z-Zz-5Z1"/>
+                    <constraint firstItem="5" firstAttribute="top" secondItem="bq3-Bf-kd7" secondAttribute="top" id="nMr-gC-X45"/>
+                    <constraint firstItem="4" firstAttribute="width" relation="lessThanOrEqual" secondItem="5" secondAttribute="width" multiplier="0.6" id="nPO-dD-ASw"/>
+                    <constraint firstItem="lXC-6z-tVe" firstAttribute="height" secondItem="Ks1-0B-26L" secondAttribute="height" id="oDf-M3-ysH"/>
+                    <constraint firstItem="4" firstAttribute="leading" secondItem="bq3-Bf-kd7" secondAttribute="leading" constant="20" id="r5F-CB-a7U"/>
+                    <constraint firstAttribute="centerX" secondItem="USZ-c8-Dlr" secondAttribute="centerX" id="r5p-um-Z5c"/>
+                    <constraint firstItem="USZ-c8-Dlr" firstAttribute="width" secondItem="lXC-6z-tVe" secondAttribute="width" id="wo0-PT-yE0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cellAttLabel" destination="6" id="dkf-GE-hRT"/>
+                <outlet property="cellLabel" destination="4" id="12"/>
+                <outlet property="cellSlider" destination="5" id="wrJ-jt-kJr"/>
+                <outletCollection property="dayTimeButtons" destination="Ks1-0B-26L" id="jDk-mv-Akz"/>
+                <outletCollection property="dayTimeButtons" destination="USZ-c8-Dlr" id="OAe-fb-Fqo"/>
+                <outletCollection property="dayTimeButtons" destination="lXC-6z-tVe" id="1D6-ha-ZdX"/>
+            </connections>
+            <point key="canvasLocation" x="-882" y="376"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="JRFilterTimeButton" width="30" height="31"/>
+        <image name="JRFilterTimeButtonCheckmark" width="15" height="10"/>
+        <image name="JRFilterTimeButtonHighlighted" width="30" height="31"/>
+        <image name="JRFilterTimeButtonSelected" width="39" height="31"/>
+    </resources>
+</document>

@@ -11,7 +11,7 @@
 @implementation JRAirline
 
 @synthesize averageRate;
-@synthesize lowcost;
+@synthesize isLowcost;
 @synthesize iata;
 @synthesize name;
 @synthesize alliance;

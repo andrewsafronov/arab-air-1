@@ -1,12 +1,12 @@
 language: objective-c
-osx_image: xcode7.2
+osx_image: xcode7.3.1
 
 rvm: 2.2.2
 before_install:
-    - gem install cocoapods -v '0.39.0'  
+    - gem install cocoapods -v '1.0.1'  
     - brew update
-#   - brew install xctool #fixme update after new release of xctool
-    - git clone https://github.com/facebook/xctool.git
+    - brew install xctool
+#    - git clone https://github.com/facebook/xctool.git #use this if current xctool is outdated
     
 podfile: Podfile
 xcode_workspace: AviasalesSDKTemplate.xcworkspace
@@ -15,4 +15,5 @@ xcode_sdk:
     - iphonesimulator
     
 script:
-    - xctool/xctool.sh  -workspace AviasalesSDKTemplate.xcworkspace -scheme AviasalesSDKTemplate -sdk iphonesimulator build test
+   - xctool  -workspace AviasalesSDKTemplate.xcworkspace -scheme AviasalesSDKTemplate -sdk iphonesimulator build test
+#    - xctool/xctool.sh  -workspace AviasalesSDKTemplate.xcworkspace -scheme AviasalesSDKTemplate -sdk iphonesimulator build test #use this if current xctool is outdated

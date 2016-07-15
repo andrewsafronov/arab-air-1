@@ -33,7 +33,6 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _showsAdOnAppStart = YES;
         _showsAdDuringSearch = YES;
         _showsAdOnSearchResults = YES;
         _adLoaders = [[NSMutableSet alloc] init];
@@ -41,15 +40,15 @@
     return self;
 }
 
-- (void)initializeAppodealWithAPIKey:(NSString *)appodealAPIKey {
+- (void)initializeAppodealWithAPIKey:(NSString *)appodealAPIKey testingEnabled:(BOOL)testingEnabled {
+#ifdef DEBUG
+    [Appodeal setTestingEnabled:testingEnabled];
+#endif
     [Appodeal initializeWithApiKey:appodealAPIKey
                              types:AppodealAdTypeInterstitial | AppodealAdTypeNativeAd | AppodealAdTypeNonSkippableVideo | AppodealAdTypeNativeAd | AppodealAdTypeSkippableVideo];
 }
 
 - (void)presentFullScreenAdFromViewControllerIfNeeded:(UIViewController *)viewController {
-    if (!self.showsAdOnAppStart) {
-        return;
-    }
     [Appodeal showAd:AppodealShowStyleVideoOrInterstitial rootViewController:viewController];
 }
 
@@ -67,6 +66,7 @@
     NSMutableSet *const loaders = _adLoaders;
     [loaders addObject:videoLoader];
 
+    __weak UIViewController *weakViewController = viewController;
     [videoLoader loadVideoAd:^(AppodealNativeMediaView *adView) {
         [loaders removeObject:videoLoader];
 
@@ -74,6 +74,11 @@
             adView.frame = view.bounds;
             [view addSubview:adView];
             [adView play];
+        } else {
+            UIViewController *const viewController = weakViewController;
+            if (viewController) {
+                [Appodeal showAd:AppodealShowStyleInterstitial rootViewController:viewController];
+            }
         }
 
         playerProxy.player = adView;
@@ -105,12 +110,12 @@
     }];
 }
 
-- (void)loadAviasalesAdWithSearchParams:(AviasalesSearchParams *)searchParams
-                   ifNeededWithCallback:(void(^)(UIView *))callback {
+- (void)loadAviasalesAdWithSearchInfo:(id<JRSDKSearchInfo>)searchInfo
+                 ifNeededWithCallback:(void(^)(UIView *))callback {
     if (callback == nil) {
         return;
     }
-    ASTAviasalesAdLoader *const loader = [[ASTAviasalesAdLoader alloc] initWithSearchParams:searchParams];
+    ASTAviasalesAdLoader *const loader = [[ASTAviasalesAdLoader alloc] initWithSearchInfo:searchInfo];
 
     NSMutableSet *const loaders = _adLoaders;
     [loaders addObject:loader];
@@ -119,13 +124,6 @@
         [loaders removeObject:loader];
         callback(adView);
     }];
-}
-
-- (void)setTestingEnabled:(BOOL)testingEnabled {
-#ifdef DEBUG
-    _testingEnabled = testingEnabled;
-    [Appodeal setTestingEnabled:testingEnabled];
-#endif
 }
 
 @end

@@ -7,11 +7,10 @@
 
 #import "JRDatePickerDayView.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "JRC.h"
 #import "UIView+JRFadeAnimation.h"
-#import "JRC.h" 
 #import "UIImage+JRUIImage.h"
 #import "DateUtil.h"
+#import "ColorScheme.h"
 
 @interface JRDatePickerDayView ()
 @property (strong, nonatomic) UIImageView *backgroundImageView;
@@ -25,7 +24,7 @@
 {
 	_dotHidden = dotHidden;
 	if (!_dotHidden && !_dot) {
-		_dot = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"JRDatePickerDot"] imageTintedWithColor:[JRC SECOND_THEME_COLOR]]];
+		_dot = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"JRDatePickerDot"] imageTintedWithColor:[ColorScheme mainBackgroundColor]]];
 		[_dot setTranslatesAutoresizingMaskIntoConstraints:NO];
         
 		UIView *dotSuperView = self.superview;
@@ -45,7 +44,7 @@
 		_todayLabel = [UILabel new];
 		[_todayLabel setText:[NSLS(@"JR_DATE_PICKER_TODAY_DATE_TITLE") lowercaseString]];
 		[_todayLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:9]];
-		[_todayLabel setTextColor:[JRC DATE_PICKER_TODAY_LABEL_COLOR]];
+		[_todayLabel setTextColor:[ColorScheme darkTextColor]];
 		[_todayLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
 		[_todayLabel setTextAlignment:NSTextAlignmentCenter];
 		[_todayLabel setAdjustsFontSizeToFitWidth:YES];
@@ -80,11 +79,10 @@
 
 - (void)setBackgroundImageViewHidden:(BOOL)hidden {
     if (hidden == NO && _backgroundImageView == nil) {
-        UIColor *backgroundImageColor = [JRC THEME_COLOR];
-        UIImage *image = [[UIImage imageNamed:@"JRDatePickerSelectedButton"] imageTintedWithColor:backgroundImageColor];
+        UIImage *image = [[UIImage imageNamed:@"JRDatePickerSelectedButton"] imageTintedWithColor:[ColorScheme mainBackgroundColor]];
         _backgroundImageView = [[UIImageView alloc] initWithImage:image];
         _backgroundImageView.layer.borderWidth = 1;
-        _backgroundImageView.layer.borderColor = [JRC WHITE_COLOR].CGColor;
+        _backgroundImageView.layer.borderColor = [UIColor whiteColor].CGColor;
         _backgroundImageView.layer.cornerRadius = image.size.height / 2;
         
         [_backgroundImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -109,10 +107,14 @@
 
 - (void)setDateLabelColor:(UIColor *)dateLabelColor
 {
-	if (_dateLabelColor != dateLabelColor) {
-		_dateLabelColor = dateLabelColor;
-		[self setTitleColor:_dateLabelColor forState:UIControlStateNormal];
-	}
+    if (_dateLabelColor != dateLabelColor) {
+        _dateLabelColor = dateLabelColor;
+        [self setTitleColor:_dateLabelColor forState:UIControlStateNormal];
+        
+        CGFloat alpha = 0;
+        [_dateLabelColor getWhite:NULL alpha:&alpha];
+        [self setTitleColor:[_dateLabelColor colorWithAlphaComponent:alpha * 0.5] forState:UIControlStateDisabled];
+    }
 }
 
 - (void)setDate:(NSDate *)date monthItem:(JRDatePickerMonthItem *)monthItem

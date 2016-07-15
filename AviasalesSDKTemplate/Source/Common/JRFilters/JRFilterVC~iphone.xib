@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JRFilterVC">
+            <connections>
+                <outlet property="tableView" destination="Zvw-sA-FBL" id="tEF-nL-wUa"/>
+                <outlet property="toolbarLabel" destination="obw-xC-lqC" id="bA4-UJ-x8z"/>
+                <outlet property="toolbarView" destination="kAt-di-xKo" id="zmR-ge-EXe"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kAt-di-xKo" userLabel="Toolbar">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="obw-xC-lqC">
+                            <rect key="frame" x="10" y="12.5" width="300" height="18"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Найдено 13 рейсов от 48 567">
+                                    <attributes>
+                                        <color key="NSColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="obw-xC-lqC" firstAttribute="centerY" secondItem="kAt-di-xKo" secondAttribute="centerY" id="5rW-Ho-ESI"/>
+                        <constraint firstAttribute="height" constant="44" id="7d1-Uz-g2R"/>
+                        <constraint firstAttribute="trailing" secondItem="obw-xC-lqC" secondAttribute="trailing" constant="10" id="GXT-WH-cTH"/>
+                        <constraint firstItem="obw-xC-lqC" firstAttribute="leading" secondItem="kAt-di-xKo" secondAttribute="leading" constant="10" id="ck3-mi-H5m"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zvw-sA-FBL">
+                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="euI-dQ-N24"/>
+                        <outlet property="delegate" destination="-1" id="7kE-y7-3hn"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kAt-di-xKo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1BV-ep-VMJ"/>
+                <constraint firstItem="kAt-di-xKo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="1gk-1J-c4X"/>
+                <constraint firstItem="Zvw-sA-FBL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BHz-f4-dRj"/>
+                <constraint firstAttribute="bottom" secondItem="Zvw-sA-FBL" secondAttribute="bottom" id="M3i-e8-eSN"/>
+                <constraint firstAttribute="trailing" secondItem="Zvw-sA-FBL" secondAttribute="trailing" id="nBi-FH-4Al"/>
+                <constraint firstAttribute="trailing" secondItem="kAt-di-xKo" secondAttribute="trailing" id="rvx-ZM-rWa"/>
+                <constraint firstItem="Zvw-sA-FBL" firstAttribute="top" secondItem="kAt-di-xKo" secondAttribute="bottom" id="x9I-pk-K1o"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-20.5" y="272.5"/>
+        </view>
+    </objects>
+</document>

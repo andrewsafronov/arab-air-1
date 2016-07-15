@@ -20,8 +20,11 @@
 + (NSString *)fullDirectionCityStringForSearchInfo:(JRSearchInfo *)searchInfo;
 
 + (NSString *)datesIntervalStringWithSearchInfo:(JRSearchInfo *)searchInfo;
-+ (NSString *)passengersCountAndTravelClassStringWithSearchInfo:(JRSearchInfo *)searchInfo;
 + (NSString *)passengersCountStringWithSearchInfo:(JRSearchInfo *)searchInfo;
 + (NSString *)travelClassStringWithSearchInfo:(JRSearchInfo *)searchInfo;
 + (NSString *)travelClassStringWithTravelClass:(JRSDKTravelClass)travelClass;
+
++ (NSString *)formattedDatesForSearchInfo:(id<JRSDKSearchInfo>)searchInfo;
++ (NSString *)passengersCountAndTravelClassStringWithSearchInfo:(id<JRSDKSearchInfo>)searchInfo;
+
 @end

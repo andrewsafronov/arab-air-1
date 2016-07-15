@@ -10,22 +10,18 @@
 
 @protocol ASTVideoAdPlayer;
 @class AppodealNativeAdView;
-@class AviasalesSearchParams;
 
 @interface ASTAdvertisementManager : NSObject
 + (instancetype)sharedInstance;
 
-@property (assign, nonatomic) BOOL showsAdOnAppStart;
 @property (assign, nonatomic) BOOL showsAdDuringSearch;
 @property (assign, nonatomic) BOOL showsAdOnSearchResults;
 
 /**
- * Установите YES, чтобы загружать тестовую рекламу
- * Работает только в DEBUG режиме
+ * @param testingEnabled Установите YES, чтобы загружать тестовую рекламу. Работает только в DEBUG режиме.
+ *
  */
-@property (assign, nonatomic) BOOL testingEnabled;
-
-- (void)initializeAppodealWithAPIKey:(NSString *)appodealAPIKey;
+- (void)initializeAppodealWithAPIKey:(NSString *)appodealAPIKey testingEnabled:(BOOL)testingEnabled;
 
 - (void)presentFullScreenAdFromViewControllerIfNeeded:(UIViewController *)viewController;
 
@@ -36,6 +32,6 @@
   loadNativeAdWithSize:(CGSize)size
               ifNeededWithCallback:(void (^)(AppodealNativeAdView *))callback;
 
-- (void)loadAviasalesAdWithSearchParams:(AviasalesSearchParams *)searchParams
-                               ifNeededWithCallback:(void(^)(UIView *))callback;
+- (void)loadAviasalesAdWithSearchInfo:(id<JRSDKSearchInfo>)searchInfo
+                 ifNeededWithCallback:(void(^)(UIView *))callback;
 @end

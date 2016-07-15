@@ -6,7 +6,6 @@
 //
 
 #import "JRFPPopoverController.h"
-#import "JRC.h"
 #import "FPPopoverView+DrawRect.h"
 #import "FPPopoverView+DrawRect.h"
 
@@ -116,7 +115,10 @@
     [_blurView setDynamic:YES];
     
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    [[[window subviews] lastObject] addSubview:self.view];
+    UIView *windowRootView = window.rootViewController.view ?: [[window subviews] lastObject];
+    CGRect newFrame = [self.view convertRect:self.view.bounds toView:windowRootView];
+    self.view.frame = newFrame;
+    [windowRootView addSubview:self.view];
 
     if (UIAccessibilityIsVoiceOverRunning()) {
         UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, self.view);

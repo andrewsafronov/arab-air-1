@@ -28,8 +28,7 @@
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"ASTResultsTicketCell";
 
     ASTResultsTicketCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -38,30 +37,28 @@
         cell = [[AVIASALES_BUNDLE loadNibNamed:self.ticketCellNibName owner:self options:nil] objectAtIndex:0];
     }
 
-    AviasalesTicket *const ticket = [[self.delegate tickets] objectAtIndex:indexPath.section];
-
-    [cell applyTicket: ticket];
+    cell.ticket = [self ticketAtIndexPath:indexPath];
 
     return cell;
 }
 
-
 #pragma mark - <UITableViewDelegate>
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 77;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 10;
+    id<JRSDKTicket> const ticket = [self ticketAtIndexPath:indexPath];
+    return [ASTResultsTicketCell heightWithTicket:ticket];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     const NSInteger index = indexPath.section;
     [self.delegate didSelectTicketAtIndex:index];
+}
+
+#pragma mark - Private
+
+- (AviasalesTicket *)ticketAtIndexPath:(NSIndexPath *)indexPath {
+    const NSInteger index = indexPath.section;
+    return [[self.delegate tickets] objectAtIndex:index];
 }
 
 @end

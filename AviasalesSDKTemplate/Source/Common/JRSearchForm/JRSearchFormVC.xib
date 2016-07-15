@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,13 +8,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JRSearchFormVC">
             <connections>
+                <outlet property="complexFormButton" destination="bOS-2k-967" id="zqM-bH-Wgf"/>
                 <outlet property="complexSearchTable" destination="ZSB-ZR-ggb" id="wKM-eu-QRM"/>
                 <outlet property="complexTableFooter" destination="sjk-3J-Nqs" id="NUC-On-YH4"/>
-                <outlet property="datesCellBackground" destination="tZT-EC-hJm" id="hi5-dM-VJn"/>
-                <outlet property="errorMessageFromView" destination="cca-Zn-tYv" id="4GQ-sr-bo1"/>
                 <outlet property="passengerPopoverFromView" destination="8WG-pX-5P5" id="VTv-dR-Xj8"/>
                 <outlet property="searchButton" destination="jM5-Wq-Vkf" id="Jhp-fZ-RQV"/>
-                <outlet property="segmentedControlContainer" destination="odF-AD-eOY" id="eOH-a5-0Dr"/>
+                <outlet property="simpleFormButton" destination="tG2-zj-bCm" id="bOO-WU-kdk"/>
                 <outlet property="simpleSearchTable" destination="WoT-Ko-BF0" id="w6j-1w-TQ3"/>
                 <outlet property="travelClassAndPassengersTable" destination="fwk-zE-Bly" id="V3C-ua-zIb"/>
                 <outlet property="view" destination="1" id="2"/>
@@ -33,10 +32,6 @@
                         <constraint firstAttribute="width" constant="10" id="dal-oI-jEu"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tZT-EC-hJm">
-                    <rect key="frame" x="-168" y="222" width="488" height="146"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </imageView>
                 <view hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39f-aJ-GIU" userLabel="Width View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -45,59 +40,187 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WoT-Ko-BF0" userLabel="Simple Search Table" customClass="JRSearchFormSimpleSearchTableView">
-                    <rect key="frame" x="0.0" y="44" width="320" height="462"/>
+                    <rect key="frame" x="0.0" y="138" width="320" height="343"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZSB-ZR-ggb" userLabel="Complex Search Table" customClass="JRSearchFormComplexSearchTableView">
-                    <rect key="frame" x="320" y="44" width="320" height="470"/>
+                    <rect key="frame" x="320" y="138" width="320" height="351"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fwk-zE-Bly" userLabel="Passengers and Trip Class Table" customClass="JRSearchFormSimpleSearchTableView">
-                    <rect key="frame" x="0.0" y="367" width="320" height="139"/>
+                    <rect key="frame" x="0.0" y="380" width="320" height="101"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjk-3J-Nqs">
-                    <rect key="frame" x="0.0" y="506" width="320" height="12"/>
+                    <rect key="frame" x="0.0" y="481" width="320" height="4"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odF-AD-eOY" userLabel="Segment Control Container">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxL-C7-BAz">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JNU-Ye-05v">
+                            <rect key="frame" x="139" y="27" width="43" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRTextColorKey" value="darkTextColor"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="NSLSKey" value="JR_SEARCH_FORM_TITLE"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="CHA-OA-73p"/>
+                        <constraint firstAttribute="height" constant="64" id="Mig-iR-JB7"/>
+                        <constraint firstItem="JNU-Ye-05v" firstAttribute="centerY" secondItem="QxL-C7-BAz" secondAttribute="centerY" constant="5" id="oDO-Jf-aLU"/>
+                        <constraint firstItem="JNU-Ye-05v" firstAttribute="centerX" secondItem="QxL-C7-BAz" secondAttribute="centerX" id="pTU-08-KMs"/>
                     </constraints>
-                </view>
-                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jM5-Wq-Vkf" customClass="JRButtonResponsive">
-                    <rect key="frame" x="10" y="514" width="300" height="44"/>
-                    <color key="backgroundColor" red="0.86158721299999996" green="0.68831262540000004" blue="0.35388158949999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="46f-iF-4CH"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                    <state key="normal" title="XXX">
-                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </state>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="NSLSKey" value="JR_SEARCH_FORM_SEARCH_BUTTON"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="JRBackgroundColorKey" value="mainBackgroundColor"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="startSearchAction:" destination="-1" eventType="touchUpInside" id="5fX-Hs-FVx"/>
-                    </connections>
-                </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cca-Zn-tYv" userLabel="Error Message View">
-                    <rect key="frame" x="160" y="506" width="0.0" height="0.0"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odF-AD-eOY" userLabel="Segment Control Container">
+                    <rect key="frame" x="0.0" y="64" width="320" height="74"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tG2-zj-bCm" userLabel="Simple">
+                            <rect key="frame" x="20" y="0.0" width="133" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="HTF-5U-IxF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <state key="normal" title="XXX"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRNormalColorKey" value="tabBarBackgroundColor"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRSelectedColorKey" value="tabBarSelectedBackgroundColor"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRTextNormalColorKey" value="darkTextColor"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="NSLSKey" value="JR_SEARCH_FORM_SIMPLE_SEARCH_SEGMENT_TITLE"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRHighlightedColorKey" value="tabBarHighlightedBackgroundColor"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="formTypeButtonDidTap:" destination="-1" eventType="touchUpInside" id="wY2-pc-fRz"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOS-2k-967" userLabel="Complex">
+                            <rect key="frame" x="168" y="0.0" width="132" height="44"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                            <state key="normal" title="XXX"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRNormalColorKey" value="tabBarBackgroundColor"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRSelectedColorKey" value="tabBarSelectedBackgroundColor"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRTextNormalColorKey" value="darkTextColor"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="NSLSKey" value="JR_SEARCH_FORM_COMPLEX_SEARCH_SEGMENT_TITLE"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRHighlightedColorKey" value="tabBarHighlightedBackgroundColor"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="formTypeButtonDidTap:" destination="-1" eventType="touchUpInside" id="URK-r2-rpY"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.89411764709999997" green="0.89411764709999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" id="obj-cJ-lGj"/>
-                        <constraint firstAttribute="width" id="zqo-Ee-AJE"/>
+                        <constraint firstAttribute="height" constant="74" id="CHA-OA-73p">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="iphone4Constant">
+                                    <real key="value" value="52"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="tG2-zj-bCm" firstAttribute="leading" secondItem="odF-AD-eOY" secondAttribute="leading" constant="20" id="H4H-XS-njH"/>
+                        <constraint firstItem="tG2-zj-bCm" firstAttribute="top" secondItem="odF-AD-eOY" secondAttribute="top" id="Ld6-3M-7f6"/>
+                        <constraint firstItem="bOS-2k-967" firstAttribute="leading" secondItem="tG2-zj-bCm" secondAttribute="trailing" constant="15" id="NUs-b8-I3i"/>
+                        <constraint firstItem="bOS-2k-967" firstAttribute="width" secondItem="tG2-zj-bCm" secondAttribute="width" id="OD4-3T-fRZ"/>
+                        <constraint firstAttribute="trailing" secondItem="bOS-2k-967" secondAttribute="trailing" constant="20" id="kCC-7I-GZ6"/>
+                        <constraint firstItem="bOS-2k-967" firstAttribute="centerY" secondItem="tG2-zj-bCm" secondAttribute="centerY" id="kq1-oF-raL"/>
+                        <constraint firstItem="bOS-2k-967" firstAttribute="height" secondItem="tG2-zj-bCm" secondAttribute="height" id="tUP-3d-McU"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="JRBackgroundColorKey" value="mainBackgroundColor"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4uZ-t7-iKQ" userLabel="Bottom Container">
+                    <rect key="frame" x="0.0" y="481" width="320" height="87"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBd-WO-V68" userLabel="Search Button Shadow Container">
+                            <rect key="frame" x="10" y="23" width="300" height="44"/>
+                            <subviews>
+                                <button clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jM5-Wq-Vkf">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="44"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                    <state key="normal" title="XXX">
+                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="NSLSKey" value="JR_SEARCH_FORM_SEARCH_BUTTON"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="JRNormalColorKey" value="buttonBackgroundColor"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="JRTextNormalColorKey" value="darkTextColor"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="JRSelectedColorKey" value="buttonSelectedBackgroundColor"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="JRHighlightedColorKey" value="buttonHighlightedBackgroundColor"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="startSearchAction:" destination="-1" eventType="touchUpInside" id="5fX-Hs-FVx"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="jM5-Wq-Vkf" secondAttribute="bottom" id="0pm-Eh-q4x"/>
+                                <constraint firstAttribute="trailing" secondItem="jM5-Wq-Vkf" secondAttribute="trailing" id="8zQ-HG-e47"/>
+                                <constraint firstAttribute="height" constant="44" id="D8u-ez-Mgp"/>
+                                <constraint firstItem="jM5-Wq-Vkf" firstAttribute="leading" secondItem="ZBd-WO-V68" secondAttribute="leading" id="dzp-dv-gkH"/>
+                                <constraint firstItem="jM5-Wq-Vkf" firstAttribute="top" secondItem="ZBd-WO-V68" secondAttribute="top" id="hab-LR-9qZ"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="JRShadowRadius">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="size" keyPath="JRShadowOffset">
+                                    <size key="value" width="0.0" height="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="JRShadowOpacity">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="JRShadowColorKey" value="buttonShadowColor"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.89411764705882346" green="0.89411764705882346" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="ZBd-WO-V68" firstAttribute="leading" secondItem="4uZ-t7-iKQ" secondAttribute="leading" constant="10" id="OFU-30-FFW"/>
+                        <constraint firstAttribute="height" constant="87" id="a6x-cc-E5t">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="iphone4Constant">
+                                    <real key="value" value="60"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstItem="ZBd-WO-V68" firstAttribute="centerY" secondItem="4uZ-t7-iKQ" secondAttribute="centerY" constant="1.5" id="jly-bc-X41">
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="iphone4Constant">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </constraint>
+                        <constraint firstAttribute="trailing" secondItem="ZBd-WO-V68" secondAttribute="trailing" constant="10" id="keZ-oJ-NiL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="JRBackgroundColorKey" value="mainBackgroundColor"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -109,33 +232,33 @@
                 <constraint firstItem="ZSB-ZR-ggb" firstAttribute="width" secondItem="WoT-Ko-BF0" secondAttribute="width" id="2Gx-eJ-OHy"/>
                 <constraint firstAttribute="trailing" secondItem="39f-aJ-GIU" secondAttribute="trailing" id="5C2-eb-7xO"/>
                 <constraint firstItem="WoT-Ko-BF0" firstAttribute="width" secondItem="39f-aJ-GIU" secondAttribute="width" id="9EQ-GL-vOQ"/>
+                <constraint firstItem="odF-AD-eOY" firstAttribute="top" secondItem="QxL-C7-BAz" secondAttribute="bottom" id="9VU-EQ-dMI"/>
                 <constraint firstItem="odF-AD-eOY" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Atg-pU-OXG"/>
                 <constraint firstItem="39f-aJ-GIU" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Cqs-fH-mEA"/>
-                <constraint firstItem="jM5-Wq-Vkf" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="10" id="DL0-4h-SJP"/>
-                <constraint firstItem="odF-AD-eOY" firstAttribute="top" secondItem="1" secondAttribute="top" id="GSu-GX-pcc"/>
                 <constraint firstAttribute="trailing" secondItem="sjk-3J-Nqs" secondAttribute="trailing" id="Gw8-Wp-1Ax"/>
                 <constraint firstAttribute="trailing" secondItem="odF-AD-eOY" secondAttribute="trailing" id="Ii5-hY-EGz"/>
                 <constraint firstItem="ZSB-ZR-ggb" firstAttribute="top" secondItem="WoT-Ko-BF0" secondAttribute="top" id="MSt-Pl-LCi"/>
                 <constraint firstItem="39f-aJ-GIU" firstAttribute="top" secondItem="1" secondAttribute="top" id="MZe-hW-M5X"/>
-                <constraint firstItem="jM5-Wq-Vkf" firstAttribute="top" secondItem="WoT-Ko-BF0" secondAttribute="bottom" constant="8" id="PvM-i2-MZk"/>
-                <constraint firstItem="tZT-EC-hJm" firstAttribute="width" secondItem="WoT-Ko-BF0" secondAttribute="width" constant="168" id="Qel-Me-fxv"/>
+                <constraint firstItem="QxL-C7-BAz" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="NWx-tW-8ST"/>
+                <constraint firstAttribute="trailing" secondItem="QxL-C7-BAz" secondAttribute="trailing" id="Oaz-tU-XHe"/>
                 <constraint firstItem="WoT-Ko-BF0" firstAttribute="leading" secondItem="1" secondAttribute="leading" priority="750" id="TMq-Qx-Nc7" userLabel="750"/>
-                <constraint firstItem="fwk-zE-Bly" firstAttribute="height" secondItem="WoT-Ko-BF0" secondAttribute="height" multiplier="0.3" id="Vib-wv-wAp"/>
+                <constraint firstItem="fwk-zE-Bly" firstAttribute="height" secondItem="WoT-Ko-BF0" secondAttribute="height" multiplier="0.295455" id="Vib-wv-wAp"/>
                 <constraint firstItem="WoT-Ko-BF0" firstAttribute="width" secondItem="fwk-zE-Bly" secondAttribute="width" id="WsN-DW-tdI"/>
-                <constraint firstAttribute="bottom" secondItem="jM5-Wq-Vkf" secondAttribute="bottom" constant="10" id="aMt-yi-5hB"/>
-                <constraint firstAttribute="centerX" secondItem="cca-Zn-tYv" secondAttribute="centerX" id="cVY-W4-0Da"/>
-                <constraint firstItem="jM5-Wq-Vkf" firstAttribute="top" secondItem="sjk-3J-Nqs" secondAttribute="bottom" constant="-4" id="dNA-Uo-7Ti"/>
+                <constraint firstAttribute="trailing" secondItem="4uZ-t7-iKQ" secondAttribute="trailing" id="avC-vU-QFr"/>
+                <constraint firstItem="4uZ-t7-iKQ" firstAttribute="top" secondItem="sjk-3J-Nqs" secondAttribute="bottom" constant="-4" id="cJM-gy-MaE"/>
+                <constraint firstItem="4uZ-t7-iKQ" firstAttribute="top" secondItem="fwk-zE-Bly" secondAttribute="bottom" id="cta-gP-eHB"/>
                 <constraint firstItem="WoT-Ko-BF0" firstAttribute="bottom" secondItem="fwk-zE-Bly" secondAttribute="bottom" id="dig-oD-r5f"/>
-                <constraint firstItem="tZT-EC-hJm" firstAttribute="centerX" secondItem="WoT-Ko-BF0" secondAttribute="centerX" constant="-84" id="gjZ-C0-zao"/>
-                <constraint firstAttribute="bottom" secondItem="cca-Zn-tYv" secondAttribute="bottom" constant="62" id="hlR-rh-kBv"/>
-                <constraint firstItem="tZT-EC-hJm" firstAttribute="centerY" secondItem="WoT-Ko-BF0" secondAttribute="centerY" multiplier="1.0725" id="i5Y-D4-LvN"/>
-                <constraint firstItem="tZT-EC-hJm" firstAttribute="height" secondItem="WoT-Ko-BF0" secondAttribute="height" multiplier="0.315" id="nD7-cC-YJS"/>
-                <constraint firstAttribute="trailing" secondItem="jM5-Wq-Vkf" secondAttribute="trailing" constant="10" id="tYc-CR-erM"/>
+                <constraint firstItem="QxL-C7-BAz" firstAttribute="top" secondItem="39f-aJ-GIU" secondAttribute="bottom" id="dpa-qO-BID"/>
+                <constraint firstAttribute="bottom" secondItem="4uZ-t7-iKQ" secondAttribute="bottom" id="p0v-EQ-HJv"/>
                 <constraint firstItem="ZSB-ZR-ggb" firstAttribute="height" secondItem="WoT-Ko-BF0" secondAttribute="height" constant="8" id="vO1-ai-t67"/>
                 <constraint firstItem="WoT-Ko-BF0" firstAttribute="trailing" secondItem="ZSB-ZR-ggb" secondAttribute="leading" id="vjg-m7-dcY"/>
                 <constraint firstItem="fwk-zE-Bly" firstAttribute="leading" secondItem="1" secondAttribute="leading" placeholder="YES" id="vl7-F6-bTA"/>
                 <constraint firstItem="sjk-3J-Nqs" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="x5c-1z-SXx"/>
+                <constraint firstItem="4uZ-t7-iKQ" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="zqY-SE-FkI"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="JRBackgroundColorKey" value="mainBackgroundColor"/>
+            </userDefinedRuntimeAttributes>
         </view>
     </objects>
 </document>

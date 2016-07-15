@@ -1,27 +1,19 @@
 //
 //  JRSearchFormVC.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 14/01/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRSearchInfo.h"
 #import "JRAirport.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "JRAlert.h"
-#import "JRAlertManager.h"
-#import "JRC.h"
 #import "JRDatePickerVC.h"
-#import "JRFPPopoverController.h"
-#import "JRHintViewController.h"
-#import "JRLineViewWithPattern.h"
 #import "JRSearchFormComplexSearchTableView.h"
 #import "JRSearchFormPassengerPickerVC.h"
 #import "JRSearchFormSimpleSearchTableView.h"
 #import "JRSearchFormTravelClassPickerVC.h"
 #import "JRSearchFormVC.h"
-#import "JRSearchInfo.h"
 #import "JRSegmentedControl.h"
 #import "JRSimplePopoverController.h"
 #import "UIImage+JRUIImage.h"
@@ -30,37 +22,44 @@
 #import "JRScreenScene.h"
 #import "JRScreenSceneController.h"
 #import "JRViewController+JRScreenScene.h"
+#import "JRAirportPickerVC.h"
+#import "ColorScheme.h"
+#import "JRWaitingViewController.h"
+#import "ASTResults.h"
+#import "UINavigationController+Additions.h"
+#import "Constants.h"
+#import "UIViewController+JRScreenSceneController.h"
+#import "JRFPPopoverController.h"
 
+#import "JRFilterVC_ipad.h"
+#import "JRFilter.h"
+
+#define kJRSearchFormLastUsedSearchInfoStorageKey                   @"kJRSearchFormLastUsedSearchInfoStorageKey"
 #define kJRSearchFormSegmentLabelFontiPhone                         [UIFont fontWithName:@"HelveticaNeue-Medium" size:18]
-#define kJRSearchFormAirportsFraction                               (iPhone() ? 0.39 : 0.35)
+
+#define kJRSearchFormAirportsFraction                               (160.0 / 440.0)
 #define kJRSearchFormAnimationAnimationInitialSpringVelocity        1
-#define kJRSearchFormAnimationStartAlpha                            0.3
 #define kJRSearchFormAnimationAnimationUsingSpringWithDamping       0.8
 #define kJRSearchFormAnimationDuration                              0.35
 #define kJRSearchFormReloadingAnimationDuration                     0.6
-#define kJRSearchFormCalendarButtonAnimationDuration                0.5
-#define kJRSearchFormCalendarButtonAnimationInitialSpringVelocity   1
-#define kJRSearchFormCalendarButtonAnimationUsingSpringWithDamping  0.6
-#define kJRSearchFormCalendarButtonWidth                            45
-#define kJRSearchFormTableViewAddCellHeight                           36
-#define kJRSearchFormTableViewComplexCellHeightIPHONE                 46
-#define kJRSearchFormTableViewComplexCellHeightIPAD                   64
-#define kJRSearchFormDatesFraction                                  (iPhone() ? 0.31 : 0.3)
-#define kJRSearchFormSearchButtonToCalendarButtonMargin             10
+#define kJRSearchFormTableViewAddCellHeight                           (iPhone() ? 73 : 74)
+#define kJRSearchFormTableViewComplexCellHeightIPHONE                 60
+#define kJRSearchFormTableViewComplexCellHeightIPAD                   62
+#define kJRSearchFormDatesFraction                                  (150.0 / 440.0)
 #define kJRSearchFormCellFromTableInCellFraction                    0.5
-#define kJRSearchFormPassengersPopoverSize                          CGSizeMake(280, 280)
+#define kJRSearchFormPassengersPopoverSize                          CGSizeMake(280, 236)
 
 typedef NS_ENUM (NSUInteger, JRSearchFormMode) {
+    JRSearchFormModeNotConfigured = 0,
 	JRSearchFormModeSimple,
-	JRSearchFormModeComplex
+    JRSearchFormModeComplex
 };
 
-@interface JRSearchFormVC () <JRSegmentedControlDelegate, JRSearchFormItemDelegate, FPPopoverControllerDelegate, JRSearchFormPassengerPickerViewDelegate, JRSearchFormTravelClassPickerDelegate>
+@interface JRSearchFormVC () <JRSearchFormItemDelegate, FPPopoverControllerDelegate, JRSearchFormPassengerPickerViewDelegate, JRSearchFormTravelClassPickerDelegate, JRWaitingViewControllerDelegate>
 
 @property (assign, nonatomic) JRSearchFormMode searchFormMode;
 @property (strong, nonatomic) JRFPPopoverController *popover;
 @property (strong, nonatomic) JRSearchInfo *searchInfo;
-@property (strong, nonatomic) JRSegmentedControl *segmentedControl;
 @property (strong, nonatomic) JRTravelSegment *savedTravelSegment;
 @property (strong, nonatomic) NSLayoutConstraint *simpleSearchTableLeadingConstaint;
 @property (strong, nonatomic) NSLayoutConstraint *travelClassAndPassengersLeadingTableViewConstraint;
@@ -69,11 +68,11 @@ typedef NS_ENUM (NSUInteger, JRSearchFormMode) {
 @property (weak, nonatomic) IBOutlet JRSearchFormSimpleSearchTableView *simpleSearchTable;
 @property (weak, nonatomic) IBOutlet JRSearchFormSimpleSearchTableView *travelClassAndPassengersTable;
 @property (weak, nonatomic) IBOutlet UIButton *searchButton;
-@property (weak, nonatomic) IBOutlet UIImageView *datesCellBackground;
 @property (weak, nonatomic) IBOutlet UIView *complexTableFooter;
 @property (weak, nonatomic) IBOutlet UIView *passengerPopoverFromView;
-@property (weak, nonatomic) IBOutlet UIView *segmentedControlContainer;
-@property (weak, nonatomic) IBOutlet UIView *errorMessageFromView;
+@property (weak, nonatomic) IBOutlet UIButton *simpleFormButton;
+@property (weak, nonatomic) IBOutlet UIButton *complexFormButton;
+@property (strong, nonatomic) JRWaitingViewController *waitingScreen;
 
 @end
 
@@ -85,55 +84,44 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 
 - (IBAction)startSearchAction:(id)sender
 {
-    JRFPPopoverController *errorPopover = [self getErrorPopover];
-    if (errorPopover) {
-        [self showErrorPopover:errorPopover];
+    UIAlertView *errorAlert = [self getErrorAlert];
+    if (errorAlert) {
+        [errorAlert show];
         return;
     }
     
 	[self clipSearchInfoIfNeeds];
-    
-    // TODO: start new search with _searchInfo
-//	[[JRMenuManager sharedInstance] startNewSearchWithSearchInfo:_searchInfo];
+    [self performSearchWithInfo:_searchInfo];
 }
 
-- (JRFPPopoverController *)getErrorPopover {
-    JRFPPopoverController *emptyOriginErrorPopover = [[JRAlertManager sharedManager] messagePopoverWithType:JRMessagePopoverTypeSearchFormEmptyOriginError withStringParams:nil andUnderlyingView:self.view];
+- (void)startSearchWithSearchInfo:(JRSearchInfo *)searchInfo {
+    self.searchInfo = searchInfo;
+    [self startSearchAction:nil];
+}
+
+- (UIAlertView *)getErrorAlert {
+    UIAlertView *emptyOriginErrorAlert = [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"JR_SEARCH_FORM_AIRPORT_EMPTY_ORIGIN_ERROR") delegate:nil cancelButtonTitle:NSLS(@"ALERT_DEFAULT_BUTTON") otherButtonTitles:nil, nil];
     
     if (_searchInfo.travelSegments.count == 0) {
-        return emptyOriginErrorPopover;
+        return emptyOriginErrorAlert;
     }
     
     for (JRTravelSegment *travelSegment in _searchInfo.travelSegments) {
         if (_searchFormMode == JRSearchFormModeSimple && [_searchInfo.travelSegments indexOfObject:travelSegment] == 1) {
             return nil;
         }
-        if (travelSegment.originIata == nil) {
-            return emptyOriginErrorPopover;
-        } else if (travelSegment.destinationIata == nil) {
-            return [[JRAlertManager sharedManager] messagePopoverWithType:JRMessagePopoverTypeSearchFormEmptyDestinationAirportError withStringParams:nil andUnderlyingView:self.view];
-        } else if ([[AviasalesAirportsStorage mainIATAByIATA:travelSegment.originIata]
-                    isEqualToString:[AviasalesAirportsStorage mainIATAByIATA:travelSegment.destinationIata]]) {
-            return [[JRAlertManager sharedManager] messagePopoverWithType:JRMessagePopoverTypeSearchFormSameCityError withStringParams:nil andUnderlyingView:self.view];
+        if (travelSegment.originAirport == nil) {
+            return emptyOriginErrorAlert;
+        } else if (travelSegment.destinationAirport == nil) {
+            return [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"JR_SEARCH_FORM_AIRPORT_EMPTY_DESTINATION_ERROR") delegate:nil cancelButtonTitle:NSLS(@"ALERT_DEFAULT_BUTTON") otherButtonTitles:nil, nil];
+        } else if ([[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:travelSegment.originAirport.iata]
+                    isEqualToString:[[[AviasalesSDK sharedInstance] airportsStorage] mainIATAByIATA:travelSegment.destinationAirport.iata]]) {
+            return [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"JR_SEARCH_FORM_AIRPORT_EMPTY_SAME_CITY_ERROR") delegate:nil cancelButtonTitle:NSLS(@"ALERT_DEFAULT_BUTTON") otherButtonTitles:nil, nil];
         } else if (travelSegment.departureDate == nil) {
-            return [[JRAlertManager sharedManager] messagePopoverWithType:JRMessagePopoverTypeSearchFormEmptyDepartureAirportError withStringParams:nil andUnderlyingView:self.view];
+            return [[UIAlertView alloc] initWithTitle:nil message:NSLS(@"JR_SEARCH_FORM_AIRPORT_EMPTY_DEPARTURE_DATE") delegate:nil cancelButtonTitle:NSLS(@"ALERT_DEFAULT_BUTTON") otherButtonTitles:nil, nil];
         }
     }
     return nil;
-}
-
-- (void)showErrorPopover:(JRFPPopoverController *)popover
-{
-    if (!popover) {
-        return;
-    }
-    
-    [popover presentPopoverFromView:_errorMessageFromView];
-    
-    __weak JRFPPopoverController *weakError = popover;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakError dismissPopoverAnimated:YES];
-    });
 }
 
 - (void)clipSearchInfoIfNeeds
@@ -173,55 +161,6 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 	[_complexTableFooter addSubview:footer];
 	[_complexTableFooter addConstraints:JRConstraintsMakeScaleToFill(footer, _complexTableFooter)];
 	[_complexTableFooter setTransform:CGAffineTransformMakeScale(1,-1)];
-    
-	UIEdgeInsets edgeInsets = UIEdgeInsetsMake(3, 0, 3, 0);
-    UIImage *datesBackground = [UIImage imageNamed:@"JRSearchFormDatesBackground"];
-    UIImage *backgroundImage = [[datesBackground imageTintedWithColor:[JRC SF_DATES_BACKGROUND_TINT]]
-	                                      resizableImageWithCapInsets:edgeInsets
-                                                         resizingMode:UIImageResizingModeStretch];
-	_datesCellBackground.image = backgroundImage;
-}
-
-- (void)setupButtons
-{
-	_searchButton.backgroundColor = nil;
-	UIImage *searchBackgroundImage = [UIImage imageNamed:@"JRBaseOrangeButton"];
-	[_searchButton setBackgroundImage:searchBackgroundImage forState:UIControlStateNormal];
-}
-
-
-- (void)setupSegmentedControl
-{
-	NSString *simpleTitleString = NSLS(@"JR_SEARCH_FORM_SIMPLE_SEARCH_SEGMENT_TITLE");
-	NSString *complexTitleString = NSLS(@"JR_SEARCH_FORM_COMPLEX_SEARCH_SEGMENT_TITLE");
-    
-    if (iPhone()) {
-        simpleTitleString   = simpleTitleString.lowercaseString;
-        complexTitleString  = complexTitleString.lowercaseString;
-    } else {
-        simpleTitleString   = simpleTitleString.uppercaseString;
-        complexTitleString  = complexTitleString.uppercaseString;
-    }
-    
-	NSMutableArray *items = [[NSMutableArray alloc] initWithArray:@[simpleTitleString, complexTitleString]];
-    
-	_segmentedControl = [[JRSegmentedControl alloc] initWithItems:items];
-	[_segmentedControl setDelegate:self];
-	[_segmentedControl setRibbonTintColor:[JRC SF_SEGMENTED_CONTROL_SEGMENT_RIBBON]];
-	if (iPhone()) {
-		[_segmentedControl setSegmentLabelFont:kJRSearchFormSegmentLabelFontiPhone];
-		[_segmentedControl setBackgroundColor:[JRC SF_SEGMENTED_CONTROL_BACKGROUND_COLOR]];
-		[_segmentedControl setSegmentTitleTintColor:[JRC SF_SEGMENTED_CONTROL_SEGMENT_TITLE_IPHONE]];
-		[_segmentedControl setRibbonTintColor:[JRC SF_SEGMENTED_CONTROL_SEGMENT_RIBBON]];
-        
-	} else {
-		[_segmentedControl setSegmentTitleTintColor:[JRC SF_SEGMENTED_CONTROL_SEGMENT_TITLE_IPAD]];
-		[_segmentedControl setSegmentedControlStyle:JRSegmentedControlStyleDarkContent];
-	}
-    
-	[_segmentedControlContainer addSubview:_segmentedControl];
-	[_segmentedControlContainer setBackgroundColor:nil];
-    
 }
 
 - (void)setSearchInfo:(JRSearchInfo *)searchInfoToCopy
@@ -238,7 +177,6 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
     }
 	[self reloadSearchFormAnimated:NO];
     [self adjustSearchFormMode];
-    [self findOriginIfNeeds];
 }
 
 - (void)updateDeparureDatesIfNeeds {
@@ -253,89 +191,34 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
     }
 }
 
-- (void)findOriginIfNeeds
-{
-    if ([[_searchInfo.travelSegments.firstObject originIata] isKindOfClass:[NSString class]] == NO) {
-// TODO: search prefill
-//        [[SearchPrefiller sharedInstance] setDelegate:self];
-//        [[SearchPrefiller sharedInstance] tryToPrefill];
-    } else {
-//        [[SearchPrefiller sharedInstance] setDelegate:nil];
-    }
-}
-
-// TODO: search prefill
-//- (void)searchPrefillerCanPrefill:(SearchPrefill *)prefill {
-//    
-//    JRTravelSegment *directTravelSegment = _searchInfo.travelSegments.firstObject;
-//    JRTravelSegment *returnTravelSegment = nil;
-//    if (_searchInfo.travelSegments.count > 1) {
-//        returnTravelSegment = [_searchInfo.travelSegments objectAtIndex:1];
-//    }
-//    
-//    JRAirportPickerAirportObject *prefillOriginAirport = [ASInitialAirportsManager getAirportObjectByIATA:prefill.originIATA];
-//    JRAirportPickerAirportObject *prefillDestinationAirport = [ASInitialAirportsManager getAirportObjectByIATA:prefill.destinationIATA];
-//    
-//    if (directTravelSegment.originIata == nil) {
-//        if (directTravelSegment == nil) {
-//            directTravelSegment = [JRTravelSegment MR_createInContext:_searchInfo.managedObjectContext];
-//            [_searchInfo addTravelSegment:directTravelSegment];
-//        }
-//        
-//        if (directTravelSegment.originIata == nil) {
-//            directTravelSegment.originIata = prefill.originIATA;
-//            if (directTravelSegment.departureDate == nil) {
-//                directTravelSegment.departureDate = prefill.departureDate;
-//                if (directTravelSegment.destinationIata == nil &&
-//                    returnTravelSegment.departureDate == nil) {
-//                    
-//                    [directTravelSegment setDestinationIata:prefill.destinationIATA];
-//                    
-//                    if (returnTravelSegment == nil) {
-//                        returnTravelSegment = [JRTravelSegment MR_createInContext:_searchInfo.managedObjectContext];
-//                        [_searchInfo addTravelSegment:returnTravelSegment];
-//                    }
-//                    
-//                    [returnTravelSegment setOriginIata:prefill.destinationIATA];
-//                    [returnTravelSegment setDepartureDate:prefill.returnDate];
-//                    
-//                }
-//            }
-//        }
-//        
-//        [self reloadSearchFormAnimated:YES];
-//        
-//        [JRSearchedAirportsManager markSearchedAirport:prefillOriginAirport.dbAirport
-//                                   searchedAirportType:JRSearchedAirportDefaultType];
-//        
-//        [JRSearchedAirportsManager markSearchedAirport:prefillDestinationAirport.dbAirport
-//                                   searchedAirportType:JRSearchedAirportDefaultType];
-//    }
-//}
-
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+    
+    if (iPad()) {
+        NSAssert(self.navigationController != nil || [self scene] != nil, @"You need to embed root view controller to UINavigationController or use wide layout");
+    } else {
+        NSAssert(self.navigationController != nil, @"You need to embed root view controller to UINavigationController");
+    }
 
-    [self.view setBackgroundColor:[JRC SF_BACKGROUND_COLOR]];
+    if (iPhone()) {
+        [self.view setBackgroundColor:[ColorScheme mainBackgroundColor]];
+    } else {
+        [self.view setBackgroundColor:[ColorScheme darkBackgroundColor]];
+    }
     
 	NSString *titleString = NSLS(@"JR_SEARCH_FORM_TITLE");
 	[self setTitle:titleString];
     
 	[self setupTableViews];
-	[self setupButtons];
-	[self setupSegmentedControl];
     
 	if (_searchInfo) {
         [self adjustSearchFormMode];
 	} else {
-        // TODO: implement storage
-        JRSearchInfo *searchInfoFromUserSettings = nil; //[JRSearchInfo lastUsedSearchInfo];
+        JRSearchInfo *searchInfoFromUserSettings = [self lastUsedSearchInfo];
 		JRSearchInfo *searchInfo = searchInfoFromUserSettings ? searchInfoFromUserSettings : [JRSearchInfo new];
 		[self setSearchInfo:searchInfo];
     }
-    
-	[self findOriginIfNeeds];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChange:) name:UIApplicationSignificantTimeChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newAirportsParsed:) name:kAviasalesAirportsStorageNewAirportsParsedNotificationName object:nil];
@@ -352,11 +235,15 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 	[self reloadSearchFormAnimated:YES];
 }
 
+- (BOOL)shouldShowNavigationBar {
+    return !iPhone();
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
 
-	if (iPad()) {
+	if ([self scene]) {
 		[self detachAccessoryViewControllerAnimated:NO];
 	}
 }
@@ -398,17 +285,6 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 		[UIView addTransitionFadeToView:_complexSearchTable
                                duration:duration];
 	}
-    
-
-    UIButton *simpleModeButton = _segmentedControl.controlViews.firstObject;
-    NSString *simpleModeButtonTitle = NSLS(@"JR_SEARCH_FORM_SIMPLE_SEARCH_ONE_WAY_SEGMENT_TITLE").lowercaseString;
-    if ([_searchInfo.returnDateForSimpleSearch isKindOfClass:[NSDate class]]) {
-        simpleModeButtonTitle = NSLS(@"JR_SEARCH_FORM_SIMPLE_SEARCH_ROUND_TRIP_SEGMENT_TITLE").lowercaseString;
-    }
-    if (iPad()) {
-        simpleModeButtonTitle = simpleModeButtonTitle.uppercaseString;
-    }
-    [simpleModeButton setTitle:simpleModeButtonTitle forState:UIControlStateNormal];
 }
 
 #pragma mark - Search Form Mode Selecting
@@ -420,13 +296,18 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 
 - (void)setSearchFormMode:(JRSearchFormMode)searchFormMode animated:(BOOL)animated
 {
+    if (searchFormMode == _searchFormMode) {
+        return;
+    }
+    
 	_searchFormMode = searchFormMode;
     
+    self.simpleFormButton.selected = _searchFormMode == JRSearchFormModeSimple;
+    self.complexFormButton.selected = _searchFormMode == JRSearchFormModeComplex;
+    
 	if (_searchFormMode == JRSearchFormModeSimple) {
-		[_segmentedControl selectSegmentAtIndex:0 animated:animated];
 		[self selectSimpleSearchModeAnimated:animated];
 	} else if (_searchFormMode == JRSearchFormModeComplex) {
-		[_segmentedControl selectSegmentAtIndex:1 animated:animated];
 		[self selectComplexSearchModeAnimated:animated];
 	}
 }
@@ -437,20 +318,6 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 	[_travelClassAndPassengersTable reloadData];
 	[self addLeadingConstraintToSimpleSearchTable:NO animated:animated];
     
-    
-	[_datesCellBackground setAlpha:kJRSearchFormAnimationStartAlpha];
-	[_simpleSearchTable setAlpha:kJRSearchFormAnimationStartAlpha];
-	[UIView animateWithDuration:kJRSearchFormAnimationDuration
-                     animations:^{
-                         [_datesCellBackground setAlpha:1];
-                         [_simpleSearchTable setAlpha:1];
-                         [_complexSearchTable setAlpha:kJRSearchFormAnimationStartAlpha];
-                     } completion:^(BOOL finished) {
-                         [_datesCellBackground setAlpha:1];
-                         [_simpleSearchTable setAlpha:1];
-                         [_complexSearchTable setAlpha:1];
-                     }];
-    
     _simpleSearchTable.accessibilityElementsHidden = NO;
     _complexSearchTable.accessibilityElementsHidden = YES;
 }
@@ -459,18 +326,6 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 {
 	[_complexSearchTable reloadData];
 	[self addLeadingConstraintToSimpleSearchTable:YES animated:animated];
-    
-	[_complexSearchTable setAlpha:kJRSearchFormAnimationStartAlpha];
-	[UIView animateWithDuration:kJRSearchFormAnimationDuration
-                     animations:^{
-                         [_datesCellBackground setAlpha:kJRSearchFormAnimationStartAlpha];
-                         [_simpleSearchTable setAlpha:kJRSearchFormAnimationStartAlpha];
-                         [_complexSearchTable setAlpha:1];
-                     } completion:^(BOOL finished) {
-                         [_datesCellBackground setAlpha:1];
-                         [_simpleSearchTable setAlpha:1];
-                         [_complexSearchTable setAlpha:1];
-                     }];
     
     _complexSearchTable.accessibilityElementsHidden = NO;
     _simpleSearchTable.accessibilityElementsHidden = YES;
@@ -490,7 +345,9 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 		} else if (!addConstraint && containtConstraint) {
 			[self.view removeConstraint:_simpleSearchTableLeadingConstaint];
 		}
-		[self.view layoutIfNeeded];
+        if (animated) {
+            [self.view layoutIfNeeded];
+        }
 	};
 	if (animated) {
 		[UIView animateWithDuration:kJRSearchFormAnimationDuration delay:kNilOptions
@@ -506,11 +363,11 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 
 #pragma mark - Actions
 
-- (void)segmentedControl:(JRSegmentedControl *)segmentedControl clickedButtonAtIndex:(NSUInteger)buttonIndex
+- (IBAction)formTypeButtonDidTap:(UIButton *)sender
 {
-	if (buttonIndex == 0) {
+	if (sender == self.simpleFormButton) {
 		[self setSearchFormMode:JRSearchFormModeSimple animated:YES];
-	} else if (buttonIndex == 1) {
+	} else if (sender == self.complexFormButton) {
 		[self setSearchFormMode:JRSearchFormModeComplex animated:YES];
 	} else {
         [self setSearchFormMode:self.searchFormMode animated:NO];
@@ -524,13 +381,12 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
         [_searchInfo addTravelSegment:travelSegment];
     }
     
-    // TODO: open airport picker
-//	JRAirportPickerVC *airportPicker = [[JRAirportPickerVC alloc] initWithMode:JRAirportPickerOriginMode travelSegment:travelSegment];
-//	if (iPhone()) {
-//		[self.navigationController pushViewController:airportPicker animated:YES];
-//	} else if (iPad()) {
-//		[self attachAccessoryViewController:airportPicker width:[JRScreenSceneController screenSceneControllerTallViewWidth] exclusiveFocus:YES animated:YES];
-//	}
+	JRAirportPickerVC *airportPicker = [[JRAirportPickerVC alloc] initWithMode:JRAirportPickerOriginMode travelSegment:travelSegment];
+	if ([self scene]) {
+        [self attachAccessoryViewController:airportPicker width:[JRScreenSceneController screenSceneControllerTallViewWidth] exclusiveFocus:YES animated:YES];
+	} else {
+		[self.navigationController pushViewController:airportPicker animated:YES];
+	}
 }
 
 - (void)selectDestinationIATAForTravelSegment:(JRTravelSegment *)travelSegment itemType:(JRSearchFormItemType)type
@@ -540,13 +396,12 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
         [_searchInfo addTravelSegment:travelSegment];
     }
     
-    // TODO: open airport picker
-//	JRAirportPickerVC *airportPicker = [[JRAirportPickerVC alloc] initWithMode:JRAirportPickerDestinationMode travelSegment:travelSegment];
-//	if (iPhone()) {
-//		[self.navigationController pushViewController:airportPicker animated:YES];
-//	} else if (iPad()) {
-//		[self attachAccessoryViewController:airportPicker width:[JRScreenSceneController screenSceneControllerTallViewWidth] exclusiveFocus:YES animated:YES];
-//	}
+	JRAirportPickerVC *airportPicker = [[JRAirportPickerVC alloc] initWithMode:JRAirportPickerDestinationMode travelSegment:travelSegment];
+	if ([self scene]) {
+		[self attachAccessoryViewController:airportPicker width:[JRScreenSceneController screenSceneControllerTallViewWidth] exclusiveFocus:YES animated:YES];
+	} else {
+        [self.navigationController pushViewController:airportPicker animated:YES];
+	}
 }
 
 - (void)travelClassDidSelect
@@ -568,6 +423,7 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 	_popover = [[JRFPPopoverController alloc] initWithViewController:passengerPickerVC
                                                                       delegate:self
                                                                 underlyingView:nil];
+    [_popover setArrowDirection:FPPopoverArrowDirectionUp];
 	[_popover setContentSize:kJRSearchFormPassengersPopoverSize];
 	[_popover presentPopoverFromView:_passengerPopoverFromView];
 }
@@ -588,7 +444,7 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
                                                                       delegate:self
                                                                 underlyingView:self.navigationController.view];
     [_popover setArrowDirection:FPPopoverArrowDirectionDown];
-    [_popover setBlurTintColor:[JRC COMMON_BLACK_POPOVER_TINT]];
+    [_popover setBlurTintColor:[ColorScheme popoverTintColor]];
     [_popover setContentSize:travelClassPickerVC.contentSize];
     [_popover presentPopoverFromView:view];
 }
@@ -598,8 +454,7 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 }
 
 - (void)passengerViewExceededTheAllowableNumberOfInfants {
-    JRFPPopoverController *popover = [[JRAlertManager sharedManager] messagePopoverWithType:JRMessagePopoverTypeSearchFormExceededTheAllowableNumberOfInfants withStringParams:nil andUnderlyingView:self.view];
-    [self showErrorPopover:popover];
+    [[[UIAlertView alloc] initWithTitle:nil message:NSLS(@"JR_SEARCH_FORM_EXCEEDED_THE_ALLOWABLE_NUMBER_OF_INFANTS") delegate:nil cancelButtonTitle:NSLS(@"ALERT_DEFAULT_BUTTON") otherButtonTitles:nil, nil] show];
 }
 
 - (void)passengerViewDismiss {
@@ -648,14 +503,14 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 				newTravelSegment = [JRTravelSegment new];
 			}
 			[newTravelSegment setDepartureDate:_savedTravelSegment.departureDate];
-			BOOL shouldRestoreOrigin = [firstTravelSegment.destinationIata isEqualToString:_savedTravelSegment.originIata];
-			BOOL shouldRestoreDestination = [firstTravelSegment.originIata isEqualToString:_savedTravelSegment.destinationIata];
+			BOOL shouldRestoreOrigin = [JRSDKModelUtils airport:firstTravelSegment.destinationAirport isEqualToAirport:_savedTravelSegment.destinationAirport];
+			BOOL shouldRestoreDestination = [JRSDKModelUtils airport:firstTravelSegment.originAirport isEqualToAirport:_savedTravelSegment.destinationAirport];
             
 			if (shouldRestoreOrigin) {
-				[newTravelSegment setOriginIata:_savedTravelSegment.originIata];
+				[newTravelSegment setOriginAirport:_savedTravelSegment.originAirport];
 			}
 			if (shouldRestoreDestination) {
-				[newTravelSegment setDestinationIata:_savedTravelSegment.destinationIata];
+				[newTravelSegment setDestinationAirport:_savedTravelSegment.destinationAirport];
 			}
 			[_searchInfo addTravelSegment:newTravelSegment];
 			[self reloadSearchFormAnimated:NO];
@@ -687,10 +542,10 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 	JRDatePickerVC *datePicker = [[JRDatePickerVC alloc] initWithSearchInfo:_searchInfo
                                                               travelSegment:travelSegment
                                                                        mode:mode];
-	if (iPhone()) {
+	if ([self scene]) {
+        [self attachAccessoryViewController:datePicker width:[JRScreenSceneController screenSceneControllerTallViewWidth] exclusiveFocus:YES animated:YES];
+	} else {
 		[self.navigationController pushViewController:datePicker animated:YES];
-	} else if (iPad()) {
-		[self attachAccessoryViewController:datePicker width:[JRScreenSceneController screenSceneControllerTallViewWidth] exclusiveFocus:YES animated:YES];
 	}
 }
 
@@ -726,4 +581,98 @@ void * JRComplexTableSizeChangeContext = &JRComplexTableSizeChangeContext;
 	return 44;
 }
 
+#pragma mark Perform search
+
+- (void)performSearchWithInfo:(JRSearchInfo *)searchInfo {
+	if (self.navigationController.viewControllers.lastObject != self && self.navigationController.viewControllers.lastObject != self.scene) {
+		return;
+	}
+
+    JRWaitingViewController *const waitingVC = [[JRWaitingViewController alloc] initWithSearchInfo:searchInfo];
+	waitingVC.delegate = self;
+    if ([self scene]) {
+        JRScreenScene *scene = [JRScreenSceneController screenSceneWithMainViewController:waitingVC
+                                                                                    width:[JRScreenSceneController screenSceneControllerWideViewWidth]
+                                                                  accessoryViewController:nil
+                                                                                    width:kNilOptions
+                                                                           exclusiveFocus:NO];
+        [self.sceneViewController pushScreenScene:scene animated:YES];
+    } else {
+        [self.navigationController pushViewController:waitingVC animated:YES];
+    }
+    
+    [waitingVC performSearch];
+	self.waitingScreen = waitingVC;
+    [self saveLastUsedSearchInfo:_searchInfo];
+}
+
+- (void)showSearchResults:(id<JRSDKSearchResult>)result withSearchInfo:(JRSearchInfo *)searchInfo {
+    ASTResults *const resultsVC = [[ASTResults alloc] initWithSearchInfo:searchInfo
+                                                                response:result];
+    
+    if ([self scene]) {
+        [resultsVC addPopButtonToNavigationItem];
+        
+        JRScreenScene *const scene = [[JRScreenScene alloc] initWithViewController:resultsVC
+                                                                     portraitWidth:kViewControllerWidthIPadPortraitHalfScreen
+                                                                    landscapeWidth:kViewControllerWidthIPadLandscapeHalfScreen];
+        
+        JRFilterMode mode = [JRSDKModelUtils isSimpleSearch:self.searchInfo] ? JRFilterSimpleSearchMode : JRFilterComplexMode;
+        JRFilterVC_ipad *filterVC = [[JRFilterVC_ipad alloc] initWithFilter:resultsVC.filter forFilterMode:mode selectedTravelSegment:nil];
+        JRNavigationController *filtersNavigationVC = [[JRNavigationController alloc] initWithRootViewController:filterVC];
+        [scene attachAccessoryViewController:filtersNavigationVC
+                               portraitWidth:kViewControllerWidthIPadPortraitHalfScreen
+                              landscapeWidth:kViewControllerWidthIPadLandscapeHalfScreen
+                              exclusiveFocus:NO
+                                    animated:NO];
+        
+        [self.sceneViewController replaceTopScreenSceneWith:scene];
+    } else {
+        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:AVIASALES_(@"AVIASALES_BACK") style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.backBarButtonItem = backButton;
+        self.navigationController.view.backgroundColor = [UIColor whiteColor];
+        [self.navigationController replaceTopViewControllerWith:resultsVC];
+    }
+}
+
+- (void)cancelSearchWithError:(NSError *)error {
+    [self.navigationController popViewControllerAnimated:YES];
+    NSString *errorDescription;
+    if (error.code == JRSDKServerAPIErrorSearchNoTickets) {
+        errorDescription = NSLS(@"JR_WAITING_ERROR_NOT_FOUND_MESSAGE");
+    } else if (error.code == JRSDKServerAPIErrorConnectionFailed) {
+        errorDescription = NSLS(@"JR_WAITING_ERROR_CONNECTION_ERROR");
+    } else {
+        errorDescription = NSLS(@"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE");
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:AVIASALES_(@"AVIASALES_ALERT_ERROR_TITLE") message:errorDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma mark - <JRWaitingViewControllerDelegate>
+- (void)waitingViewController:(JRWaitingViewController *)viewController
+      didFinishSearchWithInfo:(id<JRSDKSearchInfo>)searchInfo
+                       result:(id<JRSDKSearchResult>)searchResult {
+    [self showSearchResults:searchResult withSearchInfo:self.searchInfo];
+}
+
+- (void)waitingViewController:(JRWaitingViewController *)viewController didFinishSearchWithError:(NSError *)error {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self cancelSearchWithError:error];
+    });
+}
+
+- (void)saveLastUsedSearchInfo:(JRSearchInfo *)searchInfo {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:searchInfo] forKey:kJRSearchFormLastUsedSearchInfoStorageKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (JRSearchInfo *)lastUsedSearchInfo {
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:kJRSearchFormLastUsedSearchInfoStorageKey];
+    id object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if ([object isKindOfClass:[JRSearchInfo class]]) {
+        return (JRSearchInfo *)object;
+    }
+    return nil;
+}
 @end

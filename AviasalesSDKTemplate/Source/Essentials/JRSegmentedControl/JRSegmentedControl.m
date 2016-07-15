@@ -6,10 +6,10 @@
 //
 
 #import "JRSegmentedControl.h"
-#import "JRC.h"
 #import "UIView+JRFadeAnimation.h"
 #import "UIImage+JRUIImage.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
+#import "ColorScheme.h"
 
 #define kJRSegmentedControlDefaultTopBorderHeight 0.5
 #define kJRSegmentedControlDefaultTopBorderColor [[JRC WHITE_COLOR] colorWithAlphaComponent:0.2]
@@ -63,8 +63,8 @@
 		_segmentedControlStyle  = kJRSegmentedControlDefaultSegmentedControlStyle;
 		_segmentLabelFont       = kJRSegmentedControlDefaultSegmentLabelFont;
         
-		_ribbonTintColor        = [JRC BLACK_COLOR];
-		_segmentTitleTintColor  = [JRC BLACK_COLOR];
+		_ribbonTintColor        = [UIColor clearColor];
+		_segmentTitleTintColor  = [UIColor clearColor];
         
 		_selectedIndex          = NSNotFound;
         
@@ -271,7 +271,7 @@
 	_bottomLine = [UIView new];
 	[self addSubview:_bottomLine];
 	[_bottomLine setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[_bottomLine setBackgroundColor:[JRC BAR_LIGHT_BOTTOM_BORDER]];
+	[_bottomLine setBackgroundColor:[ColorScheme separatorLineColor]];
     
 	_bottomBorder = [UIView new];
 	[self addSubview:_bottomBorder];
@@ -299,7 +299,7 @@
 {
 	for (NSString *title in _items) {
 		UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-		[button setTintColor:[JRC CLEAR_COLOR]];
+		[button setTintColor:[UIColor clearColor]];
         
 		[button setTitle:title forState:UIControlStateNormal];
 		[button.titleLabel setAdjustsFontSizeToFitWidth:YES];

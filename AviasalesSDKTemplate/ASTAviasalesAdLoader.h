@@ -8,10 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class AviasalesSearchParams;
-
 @interface ASTAviasalesAdLoader : NSObject
-- (instancetype)initWithSearchParams:(AviasalesSearchParams *)searchParams;
+- (instancetype)initWithSearchInfo:(id<JRSDKSearchInfo>)searchInfo;
 
 /**
  * callback - returns nil if error occured

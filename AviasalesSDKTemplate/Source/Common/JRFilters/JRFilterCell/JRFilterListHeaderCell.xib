@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JRFilterListHeaderCell" id="KGk-i7-Jjw" customClass="JRFilterListHeaderCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Авиакомпании (6)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92X-BX-lsy">
+                        <rect key="frame" x="99" y="13" width="124" height="18"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="deviceRGB"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <size key="shadowOffset" width="0.0" height="0.0"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRFilterListHeaderOpenIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="iD9-MI-lEZ">
+                        <rect key="frame" x="227" y="19" width="10" height="6"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zZh-Zl-99g">
+                        <rect key="frame" x="99" y="13" width="138" height="18"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="iD9-MI-lEZ" firstAttribute="leading" secondItem="92X-BX-lsy" secondAttribute="trailing" constant="4" id="DTN-TJ-Dlu"/>
+                    <constraint firstItem="zZh-Zl-99g" firstAttribute="bottom" secondItem="92X-BX-lsy" secondAttribute="bottom" id="VhE-yu-Szu"/>
+                    <constraint firstItem="zZh-Zl-99g" firstAttribute="trailing" secondItem="iD9-MI-lEZ" secondAttribute="trailing" id="aiz-cT-93X"/>
+                    <constraint firstAttribute="centerY" secondItem="92X-BX-lsy" secondAttribute="centerY" id="b6N-qQ-REn"/>
+                    <constraint firstItem="zZh-Zl-99g" firstAttribute="leading" secondItem="92X-BX-lsy" secondAttribute="leading" id="h6N-0Q-IGd"/>
+                    <constraint firstItem="iD9-MI-lEZ" firstAttribute="centerY" secondItem="92X-BX-lsy" secondAttribute="centerY" id="qJc-9l-Dzc"/>
+                    <constraint firstItem="zZh-Zl-99g" firstAttribute="top" secondItem="92X-BX-lsy" secondAttribute="top" id="tiw-OA-9pd"/>
+                    <constraint firstAttribute="centerX" secondItem="92X-BX-lsy" secondAttribute="centerX" constant="-0.5" id="vN2-xO-3D3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="alphaView" destination="zZh-Zl-99g" id="QBU-S0-sPX"/>
+                <outlet property="headerTitle" destination="92X-BX-lsy" id="6hP-dB-G4M"/>
+                <outlet property="openIndicator" destination="iD9-MI-lEZ" id="CMz-8D-MFA"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="JRFilterListHeaderOpenIndicator" width="10" height="6"/>
+    </resources>
+</document>

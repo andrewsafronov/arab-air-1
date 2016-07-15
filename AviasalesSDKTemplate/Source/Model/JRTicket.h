@@ -10,10 +10,13 @@
 #import "JRPrice.h"
 #import "JRAirline.h"
 
+@class JRSearchInfo;
+
 @interface JRTicket : NSObject <JRSDKTicket>
 
-@property (nonatomic, retain) NSSet <JRFlightSegment *> *unorderedFlightSegments;
-@property (nonatomic, retain) NSSet <JRPrice *> *unorderedPrices;
-@property (nonatomic, retain) JRAirline *mainAirline;
+@property (nonatomic, strong) NSOrderedSet <JRFlightSegment *> *flightSegments;
+@property (nonatomic, strong) NSSet <JRPrice *> *unorderedPrices;
+@property (nonatomic, strong) JRAirline *mainAirline;
+@property (nonatomic, weak) JRSearchInfo *searchInfo;
 
 @end

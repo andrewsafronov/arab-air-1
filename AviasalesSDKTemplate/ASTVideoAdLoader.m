@@ -36,6 +36,11 @@
             return;
         }
 
+        if (ad == nil) {
+            callback(nil);
+            return;
+        }
+
         AppodealNativeMediaView *result;
 
         if (sSelf.rootViewController != nil) {

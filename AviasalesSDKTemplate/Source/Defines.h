@@ -8,6 +8,11 @@
 #ifndef AviasalesSDKTemplate_Defines_h
 #define AviasalesSDKTemplate_Defines_h
 
+#if defined APPSTORE
+#define MLOG(fmt, ...)
+#else
+#define MLOG(fmt, ...) NSLog((@"%s %d: " fmt), __PRETTY_FUNCTION__, __LINE__, ## __VA_ARGS__)
+#endif
 
 #define AVIASALES_BUNDLE ([[NSBundle mainBundle] URLForResource:@"AviasalesSDKTemplateBundle" withExtension:@"bundle"] ? [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"AviasalesSDKTemplateBundle" withExtension:@"bundle"]] : [NSBundle mainBundle])
 
@@ -38,6 +43,7 @@ dispatch_sync(dispatch_get_main_queue(), block); \
 }
 
 #define IS_NON_EMPTY_STRING(object) (object && [object isKindOfClass:[NSString class]] && [object length] > 0)
+
 
 //------------------------
 // DEFINES

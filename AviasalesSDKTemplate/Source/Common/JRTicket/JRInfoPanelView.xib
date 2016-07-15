@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siT-Cf-Nzc" userLabel="Info Panel" customClass="JRInfoPanelView">
+            <rect key="frame" x="0.0" y="0.0" width="356" height="120"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="77 442 руб" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xi-ve-Jbc">
+                    <rect key="frame" x="20" y="18" width="93" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtv-gi-Drx">
+                    <rect key="frame" x="276" y="15" width="60" height="30"/>
+                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="8LM-lS-qg4"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="N8d-11-vN3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                    <state key="normal" title="Other">
+                        <color key="titleColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="showOtherAgencies:" destination="siT-Cf-Nzc" eventType="touchUpInside" id="xee-mK-rRK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5mi-nG-0Yb">
+                    <rect key="frame" x="202" y="15" width="60" height="30"/>
+                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="9kK-Sf-591"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="Vh8-kV-FsO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                    <state key="normal" title="Credit">
+                        <color key="titleColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="buyInCredit:" destination="siT-Cf-Nzc" eventType="touchUpInside" id="go4-HO-m3H"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCM-jL-9Kp">
+                    <rect key="frame" x="0.0" y="0.0" width="356" height="1"/>
+                    <color key="backgroundColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="bGP-tV-Syo"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E59-Ga-JOY">
+                    <rect key="frame" x="0.0" y="119" width="356" height="1"/>
+                    <color key="backgroundColor" red="0.67450980390000004" green="0.67450980390000004" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="tU3-1q-2ns"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="на Biletix" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eog-HV-JQy">
+                    <rect key="frame" x="117" y="24" width="52" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wT0-eD-j9g">
+                    <rect key="frame" x="20" y="59" width="316" height="44"/>
+                    <color key="backgroundColor" red="0.88235294119999996" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="lVE-Ms-Ibj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="BUY">
+                        <color key="titleColor" red="0.38431372549999998" green="0.38431372549999998" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="size" keyPath="JRShadowOffset">
+                            <size key="value" width="0.0" height="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="JRShadowOpacity">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="JRShadowRadius">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="JRShadowColor">
+                            <color key="value" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="buyBest:" destination="siT-Cf-Nzc" eventType="touchUpInside" id="IEC-dG-g3D"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="wT0-eD-j9g" firstAttribute="leading" secondItem="siT-Cf-Nzc" secondAttribute="leading" constant="20" id="2uq-Dl-7c6"/>
+                <constraint firstItem="qtv-gi-Drx" firstAttribute="centerY" secondItem="5mi-nG-0Yb" secondAttribute="centerY" id="4rN-6T-YaK"/>
+                <constraint firstItem="qtv-gi-Drx" firstAttribute="top" secondItem="siT-Cf-Nzc" secondAttribute="top" priority="750" constant="15" id="55r-UU-wfv"/>
+                <constraint firstItem="dCM-jL-9Kp" firstAttribute="top" secondItem="siT-Cf-Nzc" secondAttribute="top" id="6Mj-NA-QMg"/>
+                <constraint firstItem="5mi-nG-0Yb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eog-HV-JQy" secondAttribute="trailing" priority="750" constant="10" id="8DG-DF-VFY"/>
+                <constraint firstItem="dCM-jL-9Kp" firstAttribute="leading" secondItem="siT-Cf-Nzc" secondAttribute="leading" id="9Jn-uU-1Sp"/>
+                <constraint firstItem="qtv-gi-Drx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eog-HV-JQy" secondAttribute="trailing" priority="250" constant="10" id="B0V-X0-xHl"/>
+                <constraint firstItem="eog-HV-JQy" firstAttribute="baseline" secondItem="2Xi-ve-Jbc" secondAttribute="baseline" id="Gcr-zk-clN"/>
+                <constraint firstAttribute="trailing" secondItem="5mi-nG-0Yb" secondAttribute="trailing" priority="250" constant="20" id="MGL-4o-jTx"/>
+                <constraint firstItem="2Xi-ve-Jbc" firstAttribute="top" secondItem="siT-Cf-Nzc" secondAttribute="top" constant="18" id="TFU-bi-yDv"/>
+                <constraint firstItem="E59-Ga-JOY" firstAttribute="leading" secondItem="siT-Cf-Nzc" secondAttribute="leading" id="Tjv-DS-l0I"/>
+                <constraint firstItem="wT0-eD-j9g" firstAttribute="top" secondItem="qtv-gi-Drx" secondAttribute="bottom" constant="14" id="V8f-BC-ND5"/>
+                <constraint firstItem="eog-HV-JQy" firstAttribute="leading" secondItem="2Xi-ve-Jbc" secondAttribute="trailing" priority="750" constant="4" id="bb1-Qb-LqV"/>
+                <constraint firstItem="eog-HV-JQy" firstAttribute="leading" secondItem="siT-Cf-Nzc" secondAttribute="leading" priority="250" constant="20" id="cvP-Mc-U9n"/>
+                <constraint firstItem="2Xi-ve-Jbc" firstAttribute="leading" secondItem="siT-Cf-Nzc" secondAttribute="leading" constant="20" id="gl0-g4-jLv"/>
+                <constraint firstAttribute="trailing" secondItem="dCM-jL-9Kp" secondAttribute="trailing" id="hxM-pp-CSq"/>
+                <constraint firstItem="qtv-gi-Drx" firstAttribute="leading" secondItem="5mi-nG-0Yb" secondAttribute="trailing" priority="750" constant="14" id="kaK-vO-Tgd"/>
+                <constraint firstItem="wT0-eD-j9g" firstAttribute="top" secondItem="siT-Cf-Nzc" secondAttribute="top" priority="750" constant="59.5" id="pWs-1X-Jem"/>
+                <constraint firstAttribute="trailing" secondItem="wT0-eD-j9g" secondAttribute="trailing" constant="20" id="rKb-AE-xzP"/>
+                <constraint firstAttribute="trailing" secondItem="qtv-gi-Drx" secondAttribute="trailing" constant="20" id="rM5-g2-QzZ"/>
+                <constraint firstAttribute="bottom" secondItem="E59-Ga-JOY" secondAttribute="bottom" id="tlx-IF-VLW"/>
+                <constraint firstItem="E59-Ga-JOY" firstAttribute="top" secondItem="wT0-eD-j9g" secondAttribute="bottom" constant="16" id="vXW-6h-WqZ"/>
+                <constraint firstAttribute="trailing" secondItem="E59-Ga-JOY" secondAttribute="trailing" id="wXc-TG-qjO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="agencyInfoLabel" destination="eog-HV-JQy" id="fcZ-Xw-SGz"/>
+                <outlet property="agencyInfoLabelCenterConstraint" destination="Gcr-zk-clN" id="9mD-yc-fmj"/>
+                <outlet property="agencyInfoLabelLeftConstraint" destination="bb1-Qb-LqV" id="QCC-Kr-0ac"/>
+                <outlet property="agencyInfoLabelLeftContainerConstraint" destination="cvP-Mc-U9n" id="289-B3-vnh"/>
+                <outlet property="bottomLineHeightConstraint" destination="tU3-1q-2ns" id="IJ1-2D-llf"/>
+                <outlet property="buyButton" destination="wT0-eD-j9g" id="0Rh-mw-XAt"/>
+                <outlet property="buyButtonInCredit" destination="5mi-nG-0Yb" id="0bJ-k5-Owu"/>
+                <outlet property="buyButtonInCreditLeftConstraint" destination="8DG-DF-VFY" id="mc5-oy-UcW"/>
+                <outlet property="buyButtonInCreditRightToContainerConstraint" destination="MGL-4o-jTx" id="1cH-Bq-AXo"/>
+                <outlet property="buyButtonInCreditRightToOtherConstraint" destination="kaK-vO-Tgd" id="swb-pO-dve"/>
+                <outlet property="buyButtonLeftConstraint" destination="2uq-Dl-7c6" id="YUp-hv-ifK"/>
+                <outlet property="buyButtonTopConstraint" destination="pWs-1X-Jem" id="kAp-u2-bHG"/>
+                <outlet property="priceLabel" destination="2Xi-ve-Jbc" id="IAL-CA-Bd2"/>
+                <outlet property="showOtherAgenciesButton" destination="qtv-gi-Drx" id="4hP-QG-U1z"/>
+                <outlet property="showOtherAgenciesButtonLeftConstraint" destination="B0V-X0-xHl" id="UDl-e7-goV"/>
+                <outlet property="showOtherAgenciesButtonTopConstraint" destination="55r-UU-wfv" id="EKT-r3-Nqg"/>
+                <outlet property="topLineHeightConstraint" destination="bGP-tV-Syo" id="S6a-pc-Odn"/>
+            </connections>
+        </view>
+    </objects>
+</document>

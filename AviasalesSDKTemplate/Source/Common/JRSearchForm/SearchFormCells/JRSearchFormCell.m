@@ -8,7 +8,7 @@
 #import "JRSearchFormCell.h"
 #import "JRSearchFormComplexSegmentCell.h"
 #import "JRSearchInfo.h"
-#import "JRC.h"
+#import "ColorScheme.h"
 
 @interface JRSearchFormCell ()
 
@@ -29,8 +29,8 @@
 
 - (void)setupBackgroundViews
 {
-	self.customBackgroundView.backgroundColor = [JRC CLEAR_COLOR];
-	self.customSelectedBackgroundView.backgroundColor = [JRC SF_CELL_HIGHLIGHTED_COLOR];
+	self.customBackgroundView.backgroundColor = [UIColor clearColor];
+	self.customSelectedBackgroundView.backgroundColor = [ColorScheme itemsSelectedBackgroundColor];
 }
 
 - (void)setItem:(JRSearchFormItem *)item

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JRFilterListAirportCell" id="KGk-i7-Jjw" customClass="JRFilterListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1 пересадка" lineBreakMode="tailTruncation" numberOfLines="2" minimumScaleFactor="1" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="Wl6-h5-8k0">
+                        <rect key="frame" x="54" y="13.5" width="192" height="17.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 000 RUB" textAlignment="right" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sst-7D-Sns">
+                        <rect key="frame" x="254" y="10" width="54" height="10.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="9"/>
+                        <color key="textColor" red="0.53333333329999999" green="0.83137254900000002" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZ7-Gw-ZGO">
+                        <rect key="frame" x="12" y="6.5" width="30" height="31"/>
+                        <state key="normal" image="JRSubscriptionsFlexSearchCheckboxUnchecked">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="JRSubscriptionsFlexSearchCheckboxChecked"/>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZY7-KP-UmI">
+                        <rect key="frame" x="254" y="22" width="59" height="12"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.80000000000000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="59" id="f5n-H4-wqa"/>
+                            <constraint firstAttribute="height" constant="12" id="gZQ-54-om2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="sst-7D-Sns" secondAttribute="trailing" constant="12" id="06Z-6g-x4E"/>
+                    <constraint firstItem="ZY7-KP-UmI" firstAttribute="leading" secondItem="sst-7D-Sns" secondAttribute="leading" id="4mv-Ph-rsw"/>
+                    <constraint firstAttribute="trailing" secondItem="ZY7-KP-UmI" secondAttribute="trailing" constant="7" id="5Uv-2J-fkV"/>
+                    <constraint firstAttribute="centerY" secondItem="iZ7-Gw-ZGO" secondAttribute="centerY" constant="-0.5" id="Gql-V0-Odt"/>
+                    <constraint firstItem="iZ7-Gw-ZGO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="ILF-U7-xeY"/>
+                    <constraint firstItem="Wl6-h5-8k0" firstAttribute="leading" secondItem="iZ7-Gw-ZGO" secondAttribute="trailing" constant="12" id="Nkk-gg-Sg9"/>
+                    <constraint firstItem="sst-7D-Sns" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ODP-tD-0xx"/>
+                    <constraint firstAttribute="centerY" secondItem="Wl6-h5-8k0" secondAttribute="centerY" id="aNQ-YZ-stu"/>
+                    <constraint firstAttribute="bottom" secondItem="ZY7-KP-UmI" secondAttribute="bottom" constant="9" id="dOV-Rk-Fo1"/>
+                    <constraint firstItem="ZY7-KP-UmI" firstAttribute="leading" secondItem="Wl6-h5-8k0" secondAttribute="trailing" constant="8" id="wJ9-oK-Ywd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="averageRateViewContainer" destination="ZY7-KP-UmI" id="QUN-xc-S4r"/>
+                <outlet property="listItemDetailLabel" destination="sst-7D-Sns" id="Bw5-3e-j5Y"/>
+                <outlet property="listItemLabel" destination="Wl6-h5-8k0" id="ccX-Ow-XVd"/>
+                <outlet property="selectedIndicator" destination="iZ7-Gw-ZGO" id="Ob2-6P-eMv"/>
+            </connections>
+            <point key="canvasLocation" x="295" y="183"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="JRSubscriptionsFlexSearchCheckboxChecked" width="20" height="20"/>
+        <image name="JRSubscriptionsFlexSearchCheckboxUnchecked" width="20" height="20"/>
+    </resources>
+</document>

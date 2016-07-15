@@ -7,9 +7,17 @@
 
 #import <AviasalesSDK/AviasalesSDK.h>
 
-#import <SDWebImage/UIImageView+WebCache.h>
+#import "ASTResultsTicketPriceCell.h"
+#import "ASTResultsFlightSegmentCell.h"
+#import "ColorScheme.h"
 
-#import "ASTCommonFunctions.h"
+static NSString *const kPriceCellReusableId = @"price";
+static NSString *const kFlightSegmentCellReusableID = @"flightSegment";
+static CGFloat const kBottomPadding = 12;
+
+@interface ASTResultsTicketCell() <UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@end
 
 @implementation ASTResultsTicketCell
 
@@ -18,105 +26,104 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [self registerTableReusableCells];
     }
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    [self registerTableReusableCells];
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    [self updateBackground];
 }
 
-- (void)applyTicket:(AviasalesTicket *)ticket {
-    
-    [_price setText:ticket.formattedPrice];
-    
-    [_airline setText:ticket.mainAirline.iata];
-    
-    [self downloadImageForImageView:_logo withURL:ticket.mainAirlineLogoURL];
-    
-    static NSDateFormatter *dateFormatter = nil;
-    static NSDateFormatter *timeFormatter = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        NSTimeZone *GMT = [NSTimeZone timeZoneForSecondsFromGMT:0];
-        
-        dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"d MMM"];
-        [dateFormatter setTimeZone:GMT];
-        [dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:AVIASALES__(@"AVIASALES_LANG", [NSLocale currentLocale].localeIdentifier)]];
-        
-        timeFormatter = [[NSDateFormatter alloc] init];
-        [timeFormatter setDateFormat:@"HH:mm"];
-        [timeFormatter setTimeZone:GMT];
-        [timeFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
-    });
-    
-    AviasalesFlight *firstOutboundFlight = [ticket.outboundFlights firstObject];
-    _outboundDepartureIATA.text = firstOutboundFlight.origin.iata;
-    _outboundDepartureDate.text = [dateFormatter stringFromDate:firstOutboundFlight.departure];
-    _outboundDepartureTime.text = [timeFormatter stringFromDate:firstOutboundFlight.departure];
-    
-    AviasalesFlight *lastOutboundFlight = [ticket.outboundFlights lastObject];
-    _outboundArrivalIATA.text = lastOutboundFlight.destination.iata;
-    _outboundArrivalTime.text = [timeFormatter stringFromDate:lastOutboundFlight.arrival];
-    
-    AviasalesFlight *firstReturnFlight = [ticket.returnFlights firstObject];
-    _returnDepartureIATA.text = firstReturnFlight.origin.iata;
-    _returnDepartureDate.text = [dateFormatter stringFromDate:firstReturnFlight.departure];
-    _returnDepartureTime.text = [timeFormatter stringFromDate:firstReturnFlight.departure];
-    
-    AviasalesFlight *lastReturnFlight = [ticket.returnFlights lastObject];
-    _returnArrivalIATA.text = lastReturnFlight.destination.iata;
-    _returnArrivalTime.text = [timeFormatter stringFromDate:lastReturnFlight.arrival];
-    
-    NSUInteger outboundFlightsCount = [ticket.outboundFlights count];
-    if (outboundFlightsCount > 1) {
-        _outboundFlightStopoversView.hidden = NO;
-        _outboundFlightStopoversNumber.text = [NSString localizedStringWithFormat:@"%u", (unsigned int)(outboundFlightsCount-1)];
-    } else {
-        _outboundFlightStopoversView.hidden = YES;
-    }
-    
-    NSUInteger returnFlightsCount = [ticket.returnFlights count];
-    if (returnFlightsCount > 1) {
-        _returnFlightStopoversView.hidden = NO;
-        _returnFlightStopoversNumber.text = [NSString localizedStringWithFormat:@"%u", (unsigned int)(returnFlightsCount-1)];
-    } else {
-        _returnFlightStopoversView.hidden = YES;
-    }
-    
-    _outboundFlightDuration.text = ticket.formattedOutboundDuration;
-    _returnFlightDuration.text = ticket.formattedReturnDuration;
-    
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    [self updateBackground];
 }
 
-static NSMutableDictionary *downloadLogoErrors;
+#pragma mark - Setters
+- (void)setTicket:(id<JRSDKTicket>)ticket {
+    _ticket = ticket;
+    [self.tableView reloadData];
+}
 
-- (void)downloadImageForImageView:(__weak UIImageView *)logo withURL:(NSURL *)URL {
-    
-    [logo setImage:nil];
-    [logo setHighlightedImage:nil];
-    [logo setHidden:YES];
-    
-    
-    
-    [logo sd_setImageWithURL:URL placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        if (error) {
-            NSString *urlWithError = [NSString stringWithFormat:@"%@", URL.relativePath];
-            if (error.code == 404 && ![downloadLogoErrors objectForKey:urlWithError]) {
-                if (!downloadLogoErrors) {
-                    downloadLogoErrors = [[NSMutableDictionary alloc] init];
-                }
-                [downloadLogoErrors setObject:urlWithError forKey:urlWithError];
-            }
-        } else {
-            [logo setHidden:NO];
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+    [super setBackgroundColor:backgroundColor];
+    self.tableView.backgroundColor = backgroundColor;
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        cell.backgroundColor = backgroundColor;
+    }
+}
+
+#pragma mark - Static methods
++ (NSString *)nibFileName {
+    return @"ASTResultsTicketCell";
+}
+
++ (CGFloat)heightWithTicket:(id<JRSDKTicket>)ticket {
+    return [ASTResultsTicketPriceCell height] +
+          [ASTResultsFlightSegmentCell height] * ticket.flightSegments.count +
+          kBottomPadding;
+}
+
+#pragma mark - <UITableViewDataSource>
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.ticket.flightSegments.count + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0: {
+            ASTResultsTicketPriceCell *const cell = [tableView dequeueReusableCellWithIdentifier:kPriceCellReusableId];
+            cell.airline = self.ticket.mainAirline;
+            cell.price = [JRSDKModelUtils ticketMinPrice:self.ticket];
+            return cell;
         }
-    }];
+
+        default: {
+            ASTResultsFlightSegmentCell *const cell = [tableView dequeueReusableCellWithIdentifier:kFlightSegmentCellReusableID];
+            cell.flightSegment = self.ticket.flightSegments[indexPath.row - 1];
+            return cell;
+        }
+    }
 }
 
+#pragma mark - <UITableViewDelegate>
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0:
+            return [ASTResultsTicketPriceCell height];
+        default:
+            return [ASTResultsFlightSegmentCell height];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = self.backgroundColor;
+}
+
+#pragma mark - Private
+- (void)registerTableReusableCells {
+    [self.tableView registerNib:[UINib nibWithNibName:[ASTResultsTicketPriceCell nibFileName] bundle:nil] forCellReuseIdentifier:kPriceCellReusableId];
+    [self.tableView registerNib:[UINib nibWithNibName:[ASTResultsFlightSegmentCell nibFileName] bundle:nil] forCellReuseIdentifier:kFlightSegmentCellReusableID];
+}
+
+- (void)updateBackground {
+    if (self.selected || self.highlighted) {
+        self.backgroundColor = [ColorScheme itemsSelectedBackgroundColor];
+    } else {
+        self.backgroundColor = [ColorScheme itemsBackgroundColor];
+    }
+}
 @end

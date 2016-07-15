@@ -9,8 +9,8 @@
 #import "JRDatePickerMonthItem.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
 #import "JRDatePickerDayView.h"
-#import "JRC.h"
 #import "JRViewController.h"
+#import "ColorScheme.h"
 
 #define DATE_VIEW_TAG_OFFSET 1000
 #define NUMBER_OF_DAYS_IN_WEEK 7
@@ -18,8 +18,8 @@
 @property (strong, nonatomic) NSArray *dates;
 @property (strong, nonatomic) JRDatePickerMonthItem *datePickerItem;
 @property (strong, nonatomic) UIView *layoutAttributeView;
-@property (strong, nonatomic) UIColor *nornalGrayColor;
-@property (strong, nonatomic) UIColor *nornalSelectedColor;
+@property (strong, nonatomic) UIColor *normalGrayColor;
+@property (strong, nonatomic) UIColor *normalSelectedColor;
 @end
 
 
@@ -32,8 +32,8 @@
     
 	[self disableClipForViewSubviews:self];
     
-	_nornalGrayColor = [JRC DATE_PICKER_NORMAL_DATE_COLOR];
-	_nornalSelectedColor = [JRC DATE_PICKER_NORMAL_SELECTED_DATE_COLOR];
+	_normalGrayColor = [ColorScheme lightTextColor];
+	_normalSelectedColor = [ColorScheme darkTextColor];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -126,7 +126,7 @@
 	[dateView setSelected:isSelectedDate];
     
 	UIColor *normalTextColor = [_datePickerItem.stateObject.selectedDates containsObject:date] ?
-    _nornalSelectedColor : _nornalGrayColor;
+    _normalSelectedColor : _normalGrayColor;
 	[dateView setTodayLabelHidden:date != _datePickerItem.stateObject.today];
 	[dateView setDateLabelColor:normalTextColor];
     

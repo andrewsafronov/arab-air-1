@@ -11,11 +11,11 @@
 @implementation JRFlightSegment
 
 @synthesize segmentAirline;
-@synthesize unorderedFlights;
-@synthesize totalDuration;
-@synthesize delayDuration;
-@synthesize overnightStopover;
-@synthesize transferToAnotherAirport;
+@synthesize flights = _flights;
+@synthesize totalDurationInMinutes;
+@synthesize delayDurationInMinutes;
+@synthesize hasOvernightStopover;
+@synthesize hasTransferToAnotherAirport;
 @synthesize departureDateTimestamp;
 @synthesize arrivalDateTimestamp;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,43 +14,66 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="JRSearchFormTravelClassIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8id-DP-IIY">
-                        <rect key="frame" x="15" y="21" width="33" height="33"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8id-DP-IIY" userLabel="Travel Class Image">
+                        <rect key="frame" x="15" y="23" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="H6V-7N-8Ik"/>
+                            <constraint firstAttribute="width" constant="30" id="xi2-9n-h0E"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Эконом" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vSg-e2-YF7">
-                        <rect key="frame" x="56" y="27" width="66" height="21"/>
+                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Эконом" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vSg-e2-YF7">
+                        <rect key="frame" x="60" y="29" width="57" height="18"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="JRTextColorKey" value="darkTextColor"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JRBaseDoubleArrow" translatesAutoresizingMaskIntoConstraints="NO" id="EgB-WU-9hl">
-                        <rect key="frame" x="297" y="29" width="8" height="17"/>
+                        <rect key="frame" x="281" y="29" width="8" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="8" id="zw1-5F-v71"/>
+                        </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="8id-DP-IIY" secondAttribute="centerY" id="1cP-JL-M8Y"/>
-                    <constraint firstItem="vSg-e2-YF7" firstAttribute="leading" secondItem="8id-DP-IIY" secondAttribute="trailing" constant="8" id="8fz-ar-01M"/>
+                    <constraint firstItem="vSg-e2-YF7" firstAttribute="leading" secondItem="8id-DP-IIY" secondAttribute="trailing" constant="15" id="8fz-ar-01M"/>
                     <constraint firstItem="8id-DP-IIY" firstAttribute="centerY" secondItem="vSg-e2-YF7" secondAttribute="centerY" id="B3h-Ou-27o"/>
                     <constraint firstItem="EgB-WU-9hl" firstAttribute="centerY" secondItem="8id-DP-IIY" secondAttribute="centerY" id="VHZ-LK-Ebj"/>
-                    <constraint firstItem="8id-DP-IIY" firstAttribute="leading" secondItem="Szk-9k-PtH" secondAttribute="leading" constant="15" id="rCq-7y-oAS"/>
-                    <constraint firstAttribute="trailing" secondItem="EgB-WU-9hl" secondAttribute="trailing" constant="15" id="wXL-Bo-cN1"/>
+                    <constraint firstItem="8id-DP-IIY" firstAttribute="leading" secondItem="Szk-9k-PtH" secondAttribute="leading" constant="15" id="rCq-7y-oAS">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                <real key="value" value="70"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstAttribute="trailing" secondItem="EgB-WU-9hl" secondAttribute="trailing" constant="31" id="wXL-Bo-cN1">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                <real key="value" value="86"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="arrowsRightMarginConstraint" destination="wXL-Bo-cN1" id="gMA-FC-fRn"/>
-                <outlet property="imageViewLeftMarginConstraint" destination="rCq-7y-oAS" id="WRl-hP-uKZ"/>
-                <outlet property="travelClassIcon" destination="8id-DP-IIY" id="pIg-1b-5Qi"/>
-                <outlet property="travelClassImageContainer" destination="8id-DP-IIY" id="Lq9-Kw-Ujf"/>
+                <outlet property="travelClassIcon" destination="8id-DP-IIY" id="NDC-e3-gz0"/>
                 <outlet property="travelClassLabel" destination="vSg-e2-YF7" id="Iau-YP-eU7"/>
-                <outlet property="travelClassLabelLeftMarginConstraint" destination="8fz-ar-01M" id="cxP-Qg-Yzv"/>
             </connections>
             <point key="canvasLocation" x="110" y="200"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="JRBaseDoubleArrow" width="8" height="17"/>
-        <image name="JRSearchFormTravelClassIcon" width="33" height="33"/>
     </resources>
 </document>

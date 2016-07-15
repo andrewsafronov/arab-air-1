@@ -10,117 +10,81 @@
 
 #import "ASTResultsTicketCell.h"
 
-#import "ASTTicketScreen.h"
+#import "JRFilter.h"
+#import "JRNavigationController.h"
 
 #import "ASTSearchParams.h"
 
-#import "ASTFilters.h"
-#import <AviasalesSDK/AviasalesFilter.h>
+#import "JRTicketVC.h"
 
 #import "ASTSearchResultsList.h"
 #import "ASTAdvertisementManager.h"
-#import "ASTVideoAdPlayer.h"
 #import "ASTTableManagerUnion.h"
 #import "ASTAdvertisementTableManager.h"
 #import <Appodeal/AppodealNativeAdView.h>
-
-#define AST_SEARCH_TIME 40.0f
-#define AST_PROGRESS_UPDATE_INTERVAL 0.1f
-
-#define AST_RS_HEADER_HEIGHT 4.0f
+#import "JRViewController+JRScreenScene.h"
+#import "JRScreenScene.h"
+#import "UIViewController+JRScreenSceneController.h"
+#import "Constants.h"
+#import "JRSearchInfoUtils.h"
 
 static const NSInteger kAppodealAdIndex = 3;
 static const NSInteger kAviasalesAdIndex = 0;
+static const CGFloat kBottomTableInset = 44;
+static NSString *fullDirectionIATAStringForSearchInfo(id<JRSDKSearchInfo> searchInfo);
 
-@interface ASTResults () <ASTSearchResultsListDelegate>
+@interface ASTResults () <ASTSearchResultsListDelegate, JRFilterDelegate>
 
 @property (strong, nonatomic) ASTSearchResultsList *resultsList;
 @property (strong, nonatomic) ASTAdvertisementTableManager *ads;
 @property (strong, nonatomic) ASTTableManagerUnion *tableManager;
-@property (strong, nonatomic) id<ASTVideoAdPlayer> waitingAdPlayer;
+@property (strong, nonatomic) id<JRSDKSearchInfo> searchInfo;
+@property (strong, nonatomic) id<JRSDKSearchResult> response;
+
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+
 @property (assign, nonatomic) BOOL appodealAdLoaded;
-@property (strong, nonatomic) AviasalesSearchParams *searchParams;
 
 - (void)updateCurrencyButton;
-- (NSArray *)filteredTickets;
-- (NSArray *)tickets;
 
 @end
 
-@implementation ASTResults{
-    NSTimer *_progressTimer;
+@implementation ASTResults {
     NSArray *_currencies;
-    ASTFilters *_filtersVC;
-    AviasalesFilter *_filter;
-    NSArray *_tickets;
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    return [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil searchParams:nil];
-}
+- (instancetype)initWithSearchInfo:(id<JRSDKSearchInfo>)searchInfo response:(id<JRSDKSearchResult>)response {
+    if (self = [super init]) {
+        _searchInfo = searchInfo;
+        _response = response;
+        
+        _filter = [[JRFilter alloc] initWithSearchResults:response withSearchInfo:searchInfo];
+        _filter.delegate = self;
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil
-                         bundle:(NSBundle *)nibBundleOrNil
-                   searchParams:(AviasalesSearchParams *)searchParams {
+        _currencies = [[AviasalesSDK sharedInstance].availableCurrencyCodes sortedArrayUsingSelector:@selector(compare:)];
 
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        _searchParams = searchParams;
-        NSString *pathToCurrenciesFile = [AVIASALES_BUNDLE pathForResource:@"currencies" ofType:@"json"];
-        if (pathToCurrenciesFile) {
-            NSData *currenciesData = [NSData dataWithContentsOfFile:pathToCurrenciesFile options:kNilOptions error:nil];
-            NSMutableArray *currencies = [[NSMutableArray alloc] initWithArray:[NSJSONSerialization JSONObjectWithData:currenciesData options:kNilOptions error:NULL]];
-            BOOL __block shouldAddDefaultCurrency = YES;
-            NSString *upperCaseCurrencyCode = [[[AviasalesSDK sharedInstance] currencyCode] uppercaseString];
-            [currencies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                if ([obj[@"code"] isEqual:upperCaseCurrencyCode]) {
-                    shouldAddDefaultCurrency = NO;
-                    *stop = YES;
-                }
-            }];
-            if (shouldAddDefaultCurrency) {
-                [currencies addObject:@{
-                                        @"code":
-                                            [[AviasalesSDK sharedInstance] currencyCode],
-                                        @"name":
-                                            upperCaseCurrencyCode}];
-                [[NSJSONSerialization dataWithJSONObject:currencies options:NSJSONWritingPrettyPrinted error:nil] writeToFile:pathToCurrenciesFile atomically:YES];
-            }
-            _currencies = currencies;
-        }
-
-        NSString *const nibName = [ASTSearchParams sharedInstance].returnDate ? @"ASTResultsTicketCell" : @"ASTResultsTicketCellOneWay";
-        _resultsList = [[ASTSearchResultsList alloc] initWithCellNibName:nibName];
+        _resultsList = [[ASTSearchResultsList alloc] initWithCellNibName:[ASTResultsTicketCell nibFileName]];
         _resultsList.delegate = self;
 
         _ads = [[ASTAdvertisementTableManager alloc] init];
 
         _tableManager = [[ASTTableManagerUnion alloc] initWithFirstManager:_resultsList secondManager:_ads secondManagerPositions:[NSIndexSet indexSet]];
     }
+    
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.waitingAdPlayer = [[ASTAdvertisementManager sharedInstance] presentVideoAdInViewIfNeeded:self.waitingView rootViewController:self];
 
     self.tableView.dataSource = self.tableManager;
     self.tableView.delegate = self.tableManager;
+    [self updateResultTableViewAppearance];
 
-    [_progressLabel setText:AVIASALES_(@"AVIASALES_SEARCHING_PROGRESS")];
     [_filters setTitle:AVIASALES_(@"AVIASALES_FILTERS")];
     [_emptyLabel setText:AVIASALES_(@"AVIASALES_FILTERS_EMPTY")];
     
-    [self.view bringSubviewToFront:_waitingView];
-    [_progressView setProgress:0];
-    
-    _progressTimer = [NSTimer timerWithTimeInterval:AST_PROGRESS_UPDATE_INTERVAL target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:_progressTimer forMode:NSRunLoopCommonModes];
-    
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ — %@", [ASTSearchParams sharedInstance].originIATA, [ASTSearchParams sharedInstance].destinationIATA];
-    
+    [self updateTitle];
     [self updateCurrencyButton];
 }
 
@@ -135,169 +99,130 @@ static const NSInteger kAviasalesAdIndex = 0;
             [bself didLoadAd:adView];
         }];
 
-        [[ASTAdvertisementManager sharedInstance] loadAviasalesAdWithSearchParams:self.searchParams ifNeededWithCallback:^(UIView *adView) {
+        [[ASTAdvertisementManager sharedInstance] loadAviasalesAdWithSearchInfo:self.searchInfo ifNeededWithCallback:^(UIView *adView) {
             [bself didLoadAviasalesAd:adView];
         }];
     }
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)updateProgress {
-    _progressView.progress += AST_PROGRESS_UPDATE_INTERVAL / AST_SEARCH_TIME;
-    if (_progressView.progress >= 1) {
-        [_progressTimer invalidate];
+    NSIndexPath *const selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    if (selectedIndexPath) {
+        [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
+    }
+    
+    if (self.response.strictSearchTickets.count == 0 && self.response.searchTickets.count > 0) {
+        [self alertUserAboutFullResultsDisplay];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    if (_filter.needFiltering && [self.filteredTickets count] == 0) {
-        [_emptyView setHidden:NO];
-    } else {
-        [_emptyView setHidden:YES];
-    }
-}
-
-- (void)dealloc {
-    [_progressTimer invalidate];
-}
-
-- (void)setResponse:(AviasalesSearchResponse *)response {
-    _response = response;
-    [self.tableView reloadData];
-    
-    [_progressView setProgress:1 animated:YES];
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        [_waitingView setAlpha:0];
-    } completion:^(BOOL finished) {
-        [self.waitingAdPlayer stop];
-        [_waitingView removeFromSuperview];
-    }];
-    
-    _filter = [[AviasalesFilter alloc] init];
-    [_filter setResponse:_response];
-    [_filter setDelegate:self];
-    
-    NSString *xibName = @"ASTFilters";
-    if (AVIASALES_VC_GRANDPA_IS_TABBAR) {
-        xibName = @"ASTFiltersTabBar";
-    }
-    
-    _filtersVC = [[ASTFilters alloc] initWithNibName:xibName bundle:AVIASALES_BUNDLE];
-    [_filtersVC setFilter:_filter];
-    [_filtersVC setTickets:[self filteredTickets]];
+    self.emptyView.hidden = !(self.filter.filteredTickets.count == 0);
 }
 
 #pragma mark - <ASTSearchResultsListDelegate>
 
+- (NSArray<id<JRSDKTicket>> *)tickets {
+    return self.filter.filteredTickets.array;
+}
 
 - (void)didSelectTicketAtIndex:(NSInteger)index {
-    
-    ASTTicketScreen *ticketVC = [[ASTTicketScreen alloc] initWithNibName:@"ASTTicketScreen" bundle:AVIASALES_BUNDLE];
-    
+    JRTicketVC *const ticketVC = [[JRTicketVC alloc] initWithNibName:@"JRTicketVC" bundle:AVIASALES_BUNDLE];
     ticketVC.ticket = [[self tickets] objectAtIndex:index];
-    
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:AVIASALES_(@"AVIASALES_BACK") style:UIBarButtonItemStylePlain target:nil action:nil];
-    
+    ticketVC.searchId = self.response.searchID;
+    ticketVC.searchInfo = self.searchInfo;
+
+    UIBarButtonItem *const backButton = [[UIBarButtonItem alloc] initWithTitle:AVIASALES_(@"AVIASALES_BACK") style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.backBarButtonItem = backButton;
-    
-    ticketVC.title = AVIASALES_(@"AVIASALES_TICKET");
-    
-    [self.navigationController pushViewController:ticketVC animated:YES];
+
+    if (iPhone()) {
+        [self.navigationController pushViewController:ticketVC animated:YES];
+    } else {
+        JRScreenScene *const scene = [JRScreenSceneController screenSceneWithMainViewController:ticketVC
+                                                                                          width:[JRScreenSceneController screenSceneControllerWideViewWidth]
+                                                                        accessoryViewController:nil
+                                                                                          width:kNilOptions
+                                                                                 exclusiveFocus:NO];
+        [self.sceneViewController pushScreenScene:scene animated:YES];
+    }
 }
 
 #pragma mark - Actions
 
 - (void)showCurrenciesList:(id)sender {
-    
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:AVIASALES_(@"AVIASALES_CURRENCY") delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     
-    for (NSDictionary *currency in _currencies) {
-        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@", [currency objectForKey:@"name"]]];
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    for (JRSDKCurrency currency in _currencies) {
+        [sheet addButtonWithTitle:[NSString stringWithFormat:@"%@ - %@", [currency uppercaseString], [currentLocale displayNameForKey:NSLocaleCurrencyCode value:currency]]];
     }
     
     [sheet addButtonWithTitle:AVIASALES_(@"AVIASALES_CANCEL")];
-    
     sheet.cancelButtonIndex = [_currencies count];
-    
     [sheet showInView:self.view];
-    
 }
 
 - (void)showFilters:(id)sender {
-    
-    [self.navigationController pushViewController:_filtersVC animated:NO];
-    
+    if (iPhone()) {
+        JRFilterMode mode = [JRSDKModelUtils isSimpleSearch:self.searchInfo] ? JRFilterSimpleSearchMode : JRFilterComplexMode;
+        JRFilterVC *filterVC = [[JRFilterVC alloc] initWithFilter:self.filter forFilterMode:mode selectedTravelSegment:nil];
+        JRNavigationController *filtersNavigationVC = [[JRNavigationController alloc] initWithRootViewController:filterVC];
+        [self presentViewController:filtersNavigationVC animated:YES completion:nil];
+    }
 }
 
 #pragma mark - UIActionSheet delegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if ([_currencies count] <= buttonIndex) {
+    if (actionSheet.cancelButtonIndex == buttonIndex) {
         return;
     }
     
-    NSString *code = [[_currencies objectAtIndex:buttonIndex] objectForKey:@"code"];
-    
+    NSString *code = [_currencies objectAtIndex:buttonIndex];
     [[AviasalesSDK sharedInstance] updateCurrencyCode:code];
     
     [self.tableView reloadData];
-    
     [self updateCurrencyButton];
-    
 }
 
 #pragma mark - Private methods
 
-- (void)updateCurrencyButton {
-    
-    [_currencyButton setTitle:[NSString stringWithFormat:@"%@: %@", AVIASALES_(@"AVIASALES_CURRENCY"), [[[AviasalesSDK sharedInstance] currencyCode] uppercaseString]]];
-    
-}
-
-- (NSArray *)filteredTickets {
-    NSArray *tickets = _filter.needFiltering && !_filter.filteringInProgress ? _filter.filteredTickets :_response.tickets ;
-//    if (tickets.count) {
-//        [_placeholderView setHidden:YES];
-//    } else {
-//        [_placeholderView setHidden:showBest];
-//    }
-//    _tableView.scrollEnabled = _placeholderView.hidden;
-    
-    return tickets;
-}
-
-- (NSArray*) tickets {
-    if (_tickets) {
-        return _tickets;
+- (void)updateToolbar {
+    if ([self scene]) {
+        UIBarButtonItem *const space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        self.toolbar.items = @[space, _currencyButton];
     }
-    
-    return _tickets = [self filteredTickets];
 }
 
-#pragma mark - AviasalesFilter delegate
-
-- (void)filteringProccessFinished {
-    _tickets = nil;
-    [_tableView reloadData];
-    [_filtersVC setTickets:[self filteredTickets]];
+- (void)updateCurrencyButton {
+    [_currencyButton setTitle:[NSString stringWithFormat:@"%@: %@", AVIASALES_(@"AVIASALES_CURRENCY"), [[[AviasalesSDK sharedInstance] currencyCode] uppercaseString]]];
 }
 
-- (void)needReloadFilter {
-    [_filtersVC buildTable];
-    [_filtersVC.tableView reloadData];
+- (void)updateTitle {
+    id<JRSDKTravelSegment> const firstTravelSegment = _searchInfo.travelSegments.firstObject;
+    JRSDKIATA const firstIATA = firstTravelSegment.originAirport.iata;
+    JRSDKIATA const lastIATA = _searchInfo.travelSegments.count == 1 ? firstTravelSegment.destinationAirport.iata : _searchInfo.travelSegments.lastObject.originAirport.iata;
+    NSString *const formattedDates = [JRSearchInfoUtils formattedDatesForSearchInfo:_searchInfo];
+    self.title = [NSString stringWithFormat:@"%@ – %@, %@", firstIATA, lastIATA, formattedDates];
 }
 
+- (void)updateResultTableViewAppearance {
+    self.tableView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, kBottomTableInset, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, kBottomTableInset, 0);
+    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:(CGRect){0, 0, 0, 10}];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:(CGRect){0, 0, 0, 9}];
+    self.tableView.sectionHeaderHeight = 9;
+    self.tableView.sectionFooterHeight = 1;
+}
+
+#pragma mark - JRFilterDelegate
+
+- (void)filterDidUpdateFilteredObjects {
+    [self.tableView reloadData];
+}
 
 #pragma mark - Advertisement
+
 - (void)didLoadAd:(UIView *)adView {
     if (adView == nil) {
         return;
@@ -330,17 +255,33 @@ static const NSInteger kAviasalesAdIndex = 0;
 }
 
 - (void)updateAdsTableWithAds:(NSArray<UIView *> *)ads atIndexes:(NSIndexSet *)indexes {
-//    NSIndexSet *const oldIndexes = self.tableManager.secondManagerPositions;
-
-//    if (oldIndexes.count > 0) {//TODO: check if table has necessary indexes
-//        [self.tableView deleteSections:oldIndexes withRowAnimation:UITableViewRowAnimationFade];
-//    }
-
-//    [self.tableView insertSections:indexes withRowAnimation:UITableViewRowAnimationFade];
-
     self.ads.ads = ads;
     self.tableManager.secondManagerPositions = indexes;
 
     [self.tableView reloadData];
 }
+
+- (void)alertUserAboutFullResultsDisplay {
+    NSString *const iatas = fullDirectionIATAStringForSearchInfo(self.searchInfo);
+    NSString *const alertMessage = [NSString stringWithFormat:NSLS(@"JR_SEARCH_RESULTS_NON_STRICT_MATCHED_ALERT_MESSAGE"), iatas];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLS(@"JR_BROWSER_ERROR_ALERT_TITLE")
+                                                    message:alertMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:NSLS(@"ALERT_DEFAULT_BUTTON")
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 @end
+    
+
+static NSString *fullDirectionIATAStringForSearchInfo(id<JRSDKSearchInfo> searchInfo) {
+    NSMutableString *directionString = [NSMutableString string];
+    for (JRTravelSegment *travelSegment in searchInfo.travelSegments) {
+        if (travelSegment != searchInfo.travelSegments.firstObject) {
+            [directionString appendString:@"  "];
+        }
+        [directionString appendFormat:@"%@—%@", travelSegment.originAirport.iata, travelSegment.destinationAirport.iata];
+    }
+    return directionString;
+}

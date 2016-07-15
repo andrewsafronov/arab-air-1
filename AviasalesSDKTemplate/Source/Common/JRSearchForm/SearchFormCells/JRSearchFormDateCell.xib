@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,42 +11,48 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QCc-X6-Qwb" id="gOv-k1-ngZ">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="77"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="77.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c9G-oJ-Wsi">
-                        <rect key="frame" x="15" y="23" width="32" height="32"/>
+                        <rect key="frame" x="15" y="24" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="32" id="O1M-V2-ZqF"/>
-                            <constraint firstAttribute="height" constant="32" id="UaK-bl-cEs"/>
+                            <constraint firstAttribute="width" constant="30" id="O1M-V2-ZqF"/>
+                            <constraint firstAttribute="height" constant="30" id="UaK-bl-cEs"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="JRCornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLACEHOLDER TEXT" lineBreakMode="tailTruncation" minimumScaleFactor="0.19999999999999968" translatesAutoresizingMaskIntoConstraints="NO" id="TLt-97-ZZz">
-                        <rect key="frame" x="55" y="0.0" width="171" height="77"/>
+                        <rect key="frame" x="60" y="0.0" width="180" height="77"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="13"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </label>
-                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" minimumScaleFactor="0.19999999999999968" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-nb-4jv">
-                        <rect key="frame" x="55" y="0.0" width="171" height="77"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <attributedString key="attributedText">
-                            <fragment content="DATE LABEL DATE LABEL">
-                                <attributes>
-                                    <color key="NSColor" red="0.15686274509803921" green="0.50588235294117645" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="18" name="HelveticaNeue-Medium"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                        <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="JRTextColorKey" value="lightTextColor"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
-                    <button contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tW-Oz-keA">
-                        <rect key="frame" x="234" y="0.0" width="86" height="77"/>
+                    <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE LABEL DATE LABEL" lineBreakMode="tailTruncation" minimumScaleFactor="0.19999999999999968" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-nb-4jv">
+                        <rect key="frame" x="60" y="0.0" width="166" height="77"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="JRTextColorKey" value="darkTextColor"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1tW-Oz-keA">
+                        <rect key="frame" x="250" y="0.0" width="70" height="77"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="XnD-sp-8ct"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                         <state key="normal" image="JRCommonCheckBox">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -56,31 +63,60 @@
                         </connections>
                     </button>
                     <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxxxxxx" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.19999999999999968" translatesAutoresizingMaskIntoConstraints="NO" id="hL1-Go-yJq">
-                        <rect key="frame" x="234" y="31" width="46" height="15"/>
+                        <rect key="frame" x="269" y="53" width="32" height="10"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="8"/>
+                        <color key="textColor" red="0.65098039220000004" green="0.65098039220000004" blue="0.65098039220000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="JRTextColorKey" value="buttonBackgroundColor"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstItem="1tW-Oz-keA" firstAttribute="trailing" secondItem="hL1-Go-yJq" secondAttribute="trailing" constant="40" id="4du-5r-VIK"/>
                     <constraint firstAttribute="bottom" secondItem="nF4-nb-4jv" secondAttribute="bottom" id="7SU-If-1Tg"/>
-                    <constraint firstItem="TLt-97-ZZz" firstAttribute="leading" secondItem="c9G-oJ-Wsi" secondAttribute="trailing" constant="8" id="7r7-Nu-neC"/>
-                    <constraint firstItem="nF4-nb-4jv" firstAttribute="leading" secondItem="c9G-oJ-Wsi" secondAttribute="trailing" constant="8" id="Hsa-7H-2cy"/>
-                    <constraint firstAttribute="trailing" secondItem="1tW-Oz-keA" secondAttribute="trailing" id="Nxp-lI-as4"/>
+                    <constraint firstItem="TLt-97-ZZz" firstAttribute="leading" secondItem="c9G-oJ-Wsi" secondAttribute="trailing" constant="15" id="7r7-Nu-neC"/>
+                    <constraint firstItem="hL1-Go-yJq" firstAttribute="centerX" secondItem="1tW-Oz-keA" secondAttribute="centerX" id="81u-ID-rGo"/>
+                    <constraint firstItem="nF4-nb-4jv" firstAttribute="leading" secondItem="c9G-oJ-Wsi" secondAttribute="trailing" constant="15" id="Hsa-7H-2cy"/>
+                    <constraint firstAttribute="trailing" secondItem="1tW-Oz-keA" secondAttribute="trailing" id="Nxp-lI-as4">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                <real key="value" value="55"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                     <constraint firstAttribute="bottom" secondItem="TLt-97-ZZz" secondAttribute="bottom" id="OcF-ab-oFj"/>
                     <constraint firstItem="nF4-nb-4jv" firstAttribute="top" secondItem="gOv-k1-ngZ" secondAttribute="top" id="PTE-zu-d4d"/>
                     <constraint firstItem="TLt-97-ZZz" firstAttribute="top" secondItem="gOv-k1-ngZ" secondAttribute="top" id="SEE-fk-Izc"/>
-                    <constraint firstItem="1tW-Oz-keA" firstAttribute="centerY" secondItem="hL1-Go-yJq" secondAttribute="centerY" id="WAK-aX-ekr"/>
                     <constraint firstAttribute="trailing" secondItem="nF4-nb-4jv" secondAttribute="trailing" constant="94" id="XRH-Oe-Ab5"/>
-                    <constraint firstItem="hL1-Go-yJq" firstAttribute="leading" secondItem="TLt-97-ZZz" secondAttribute="trailing" constant="8" id="Xa5-en-mOZ"/>
+                    <constraint firstItem="hL1-Go-yJq" firstAttribute="centerY" secondItem="1tW-Oz-keA" secondAttribute="centerY" constant="19" id="ind-dp-chx">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="iphone4Constant">
+                                <real key="value" value="19"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                <real key="value" value="22"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="iphone6Constant">
+                                <real key="value" value="22"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="iphone6PlusConstant">
+                                <real key="value" value="22"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
+                    <constraint firstItem="1tW-Oz-keA" firstAttribute="leading" secondItem="TLt-97-ZZz" secondAttribute="trailing" constant="10" id="kbc-hH-ZsF"/>
                     <constraint firstItem="1tW-Oz-keA" firstAttribute="top" secondItem="gOv-k1-ngZ" secondAttribute="top" id="lDj-Pr-LFe"/>
                     <constraint firstAttribute="centerY" secondItem="c9G-oJ-Wsi" secondAttribute="centerY" constant="-0.5" id="qKJ-ZV-6dM"/>
-                    <constraint firstItem="c9G-oJ-Wsi" firstAttribute="leading" secondItem="gOv-k1-ngZ" secondAttribute="leading" constant="15" id="uy7-zu-Sb2"/>
+                    <constraint firstItem="c9G-oJ-Wsi" firstAttribute="leading" secondItem="gOv-k1-ngZ" secondAttribute="leading" constant="15" id="uy7-zu-Sb2">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                <real key="value" value="70"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </constraint>
                     <constraint firstAttribute="bottom" secondItem="1tW-Oz-keA" secondAttribute="bottom" id="vCF-a8-DIg"/>
-                    <constraint firstItem="1tW-Oz-keA" firstAttribute="leading" secondItem="hL1-Go-yJq" secondAttribute="leading" id="yGL-km-jdX"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -95,12 +131,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="JRCommonCheckBox" width="25" height="25"/>
-        <image name="JRCommonSelectedCheckBox" width="25" height="25"/>
+        <image name="JRCommonCheckBox" width="30" height="30"/>
+        <image name="JRCommonSelectedCheckBox" width="30" height="30"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

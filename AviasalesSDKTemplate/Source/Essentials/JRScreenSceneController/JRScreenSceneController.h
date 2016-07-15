@@ -47,6 +47,8 @@
                                landscapeWidth:(CGFloat)secondLandscapeWidth
                                exclusiveFocus:(BOOL)exclusiveFocus
                                      animated:(BOOL)animated;
+- (void)pushScreenScene:(JRScreenScene *)screenScene animated:(BOOL)animated;
+- (void)replaceTopScreenSceneWith:(JRScreenScene *)screenScene;
 
 - (JRScreenScene *)findScreenSceneByViewController:(UIViewController *)viewController;
 

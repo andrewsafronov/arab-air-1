@@ -11,7 +11,7 @@
 @class AviasalesTicket;
 
 @protocol ASTSearchResultsListDelegate <NSObject>
-- (NSArray<AviasalesTicket *> *)tickets;
+- (NSArray<id<JRSDKTicket>> *)tickets;
 - (void)didSelectTicketAtIndex:(NSInteger)index;
 @end
 

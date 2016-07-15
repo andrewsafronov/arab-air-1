@@ -7,17 +7,21 @@
 
 #import <Foundation/Foundation.h>
 #import "JRTravelSegment.h"
-#import "JRTicket.h"
+#import "JRSearchResult.h"
 
 @interface JRSearchInfo : NSObject <JRSDKSearchInfo>
 
 @property (nonatomic, retain) NSOrderedSet <JRTravelSegment *> *travelSegments;
-@property (nonatomic, retain) NSSet <JRTicket *> *searchTickets;
-@property (nonatomic, retain) NSSet <JRTicket *> *strictSearchTickets;
+@property (nonatomic, strong) JRSearchResult *searchResult;
 
 @property (nonatomic, assign) BOOL adjustSearchInfo;
 
 @property (nonatomic, strong) NSDate *returnDateForSimpleSearch;
+
+@property (nonatomic, assign) JRSDKTravelClass travelClass;
+@property (nonatomic, assign) NSInteger adults;
+@property (nonatomic, assign) NSInteger children;
+@property (nonatomic, assign) NSInteger infants;
 
 - (BOOL)isComplexOpenJawSearch;
 - (BOOL)isComplexSearch;
@@ -36,5 +40,11 @@
 #pragma mark - Copying
 
 - (JRSearchInfo *)copyWithTravelSegments;
+
+#pragma mark Events
+
+- (void)travelSegment:(JRTravelSegment *)travelSegment didSetOriginAirport:(id<JRSDKAirport>)originAirport;
+- (void)travelSegment:(JRTravelSegment *)travelSegment didSetDestinationAirport:(id<JRSDKAirport>)destinationAirport;
+- (void)travelSegment:(JRTravelSegment *)travelSegment didSetDepartureDate:(NSDate *)departureDate;
 
 @end

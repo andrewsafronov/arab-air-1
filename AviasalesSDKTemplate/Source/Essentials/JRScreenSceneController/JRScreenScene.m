@@ -8,29 +8,28 @@
 #import "JRScreenScene.h"
 #import "JRViewController.h"
 #import "UIViewController+JRAddChildViewController.h"
-#import "JRC.h"
 #import "JROverlayView.h"
 #import "UIImage+JRUIImage.h"
-#import "JRC.h"
-#import "JRScreneSceneScrollView.h"
 #import "JRViewController+JRScreenScene.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
+#import "ColorScheme.h"
 
 #define kJRScreenSceneAnimationDamping          0.8
 #define kJRScreenSceneAnimationDuration         0.4
-#define kJRScreenSceneBottomMargin              15
-#define kJRScreenSceneDefaultRadius             2
+#define kJRScreenSceneBottomMargin              50
+#define kJRScreenSceneDefaultRadius             6
+#define kJRScreenSceneDefaultShadowRadius       2
 #define kJRScreenSceneDetachCap                 0.1
 
 #define kJRScreenSceneLeftORRightMarginDefault              30
 #define kJRScreenSceneLeftORRightMarginPortraitCompatible   25
 
-#define kJRScreenSceneTitleFont                 [UIFont boldSystemFontOfSize:20]
+#define kJRScreenSceneTitleFontSize                 17
 #define kJRScreenSceneTopMargin                 0
-#define kJRScreenSceneScrollViewContentTopMargin    80
+#define kJRScreenSceneScrollViewContentTopMargin    110
 #define JRScreenSceneShadowLineHeight 4
 
-@interface JRScreenScene ()<UIGestureRecognizerDelegate, UIScrollViewDelegate>
+@interface JRScreenScene ()<UIGestureRecognizerDelegate>
 
 @property (assign, nonatomic) CGFloat accessoryViewWidth;
 @property (assign, nonatomic) CGFloat accessoryPortraitViewWidth;
@@ -44,8 +43,8 @@
 @property (strong, nonatomic) NSMutableArray *mainViewConstraints;
 @property (strong, nonatomic) UIPanGestureRecognizer *scenePanGestureRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *sceneTapGestureRecognizer;
-@property (strong, nonatomic) JRScreneSceneScrollView *mainViewScrollView;
-@property (strong, nonatomic) JRScreneSceneScrollView *accessoryViewScrollView;
+@property (strong, nonatomic) UIView *mainView;
+@property (strong, nonatomic) UIView *accessoryView;
 @property (strong, nonatomic) UINavigationBar *mainViewBar;
 @property (strong, nonatomic) UINavigationBar *accessoryViewBar;
 @end
@@ -76,6 +75,8 @@
 {
 	[super viewDidLoad];
     
+    self.view.backgroundColor = [ColorScheme mainBackgroundColor];
+    
 	[self attachMainViewController];
 	if (_accessoryViewController) {
         [self attachAccessoryViewController:_accessoryViewController
@@ -87,8 +88,6 @@
 	[_sceneTapGestureRecognizer setDelegate:self];
     
 	[self.view addGestureRecognizer:_sceneTapGestureRecognizer];
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -110,8 +109,8 @@
 {
 	NSMutableArray *subviews = [[NSMutableArray alloc] init];
 	for (UIView *view in self.view.subviews) {
-		if (view == _mainViewScrollView ||
-		    view == _accessoryViewScrollView) {
+		if (view == _mainView ||
+		    view == _accessoryView) {
 			[subviews addObject:view];
 		}
 	}
@@ -133,7 +132,7 @@
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
 	UIView *view = [self viewByGestureRecognizer:gestureRecognizer];
-	if (view == _mainViewScrollView) {
+	if (view == _mainView) {
 		if (_accessoryViewController && _accessoryExclusiveFocus) {
             if (!([_accessoryViewController respondsToSelector:@selector(shouldDetachFromMainViewController)] && ![(JRViewController *)_accessoryViewController shouldDetachFromMainViewController])) {
                 [self setFocusToMainViewAnimated:YES];
@@ -142,42 +141,10 @@
 		} else {
             [self setFocusToMainViewAnimated:YES];
         }
-	} else if (view == _accessoryViewScrollView) {
+	} else if (view == _accessoryView) {
 		[self setFocusToAccessoryViewAnimated:YES];
 	}
 	return NO;
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-	if (scrollView == _mainViewScrollView) {
-		[self setFocusToMainViewAnimated:YES];
-	} else if (scrollView == _accessoryViewScrollView) {
-		[self setFocusToAccessoryViewAnimated:YES];
-	}
-}
-
-
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
-{
-    
-	CGFloat originX = 0;
-	if (_accessoryViewScrollView.bounds.origin.x < 0) {
-		originX = fabs(_accessoryViewScrollView.bounds.origin.x);
-	}
-    CGFloat width = [self accessoryViewWidthForInterfaceOrientation:self.interfaceOrientation];
-	CGFloat cap = width * kJRScreenSceneDetachCap;
-    
-	BOOL isAccessoryViewIsFocused = [self isAccessoryViewIsFocused];
-	if (_accessoryViewController &&
-	    _accessoryExclusiveFocus &&
-	    (![self isAccessoryViewIsFocused] ||
-	     originX > cap)) {
-            if ((!([_accessoryViewController respondsToSelector:@selector(shouldDetachFromMainViewController)] && ![(JRViewController *)_accessoryViewController shouldDetachFromMainViewController]))) {
-                [self setFocusToMainViewAnimated:isAccessoryViewIsFocused];
-                [self detachAccessoryViewControllerAnimated:YES updateFocus:NO];
-            }
-        }
 }
 
 static void * JRMainViewFrameChangeContext = &JRMainViewFrameChangeContext;
@@ -187,8 +154,8 @@ static BOOL observeingAccessoryFrame = NO;
 
 - (void)dealloc
 {
-	[_mainViewScrollView removeObserver:self forKeyPath:@"bounds" context:JRMainViewFrameChangeContext];
-	[_accessoryViewScrollView removeObserver:self forKeyPath:@"bounds" context:JRAccessoryViewFrameChangeContext];
+	[_mainView removeObserver:self forKeyPath:@"bounds" context:JRMainViewFrameChangeContext];
+	[_accessoryView removeObserver:self forKeyPath:@"bounds" context:JRAccessoryViewFrameChangeContext];
 }
 
 - (void)removeMainViewController
@@ -196,9 +163,9 @@ static BOOL observeingAccessoryFrame = NO;
 	[_mainViewBar removeFromSuperview];
 	_mainViewBar = nil;
     
-	[_mainViewScrollView removeObserver:self forKeyPath:@"bounds" context:JRMainViewFrameChangeContext];
-	[_mainViewScrollView removeFromSuperview];
-	_mainViewScrollView = nil;
+	[_mainView removeObserver:self forKeyPath:@"bounds" context:JRMainViewFrameChangeContext];
+	[_mainView removeFromSuperview];
+	_mainView = nil;
     
 	[self deleteChildViewController:_mainViewController];
 }
@@ -212,28 +179,23 @@ static BOOL observeingAccessoryFrame = NO;
 - (void)attachMainViewController
 {
     
-	_mainViewScrollView = [JRScreneSceneScrollView new];
-	[_mainViewScrollView setDelegate:self];
-	[_mainViewScrollView setAlwaysBounceHorizontal:YES];
-	[_mainViewScrollView setAlwaysBounceVertical:NO];
-	[_mainViewScrollView setClipsToBounds:NO];
-	[_mainViewScrollView setShowsHorizontalScrollIndicator:NO];
-	[_mainViewScrollView setShowsVerticalScrollIndicator:NO];
-	[_mainViewScrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+	_mainView = [UIView new];
+	[_mainView setClipsToBounds:NO];
+	[_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-	[self.view addSubview:_mainViewScrollView];
+	[self.view addSubview:_mainView];
     
-	[_mainViewScrollView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:JRMainViewFrameChangeContext];
-	[self addChildViewController:_mainViewController toView:_mainViewScrollView];
+	[_mainView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:JRMainViewFrameChangeContext];
+	[self addChildViewController:_mainViewController toView:_mainView];
     
 	[self setMainChildConstraintsToCenterWithInterfaceOrientation:self.interfaceOrientation];
 	[self createNavigationBarForViewController:_mainViewController];
 	[self.view layoutIfNeeded];
     
-	[self addMotionEffectsToView:_mainViewScrollView];
+	[self addMotionEffectsToView:_mainView];
     
     
-	[self shadowPathMakeForScrollView:_mainViewScrollView boundsView:_mainViewController.view];
+	[self shadowPathMakeForScrollView:_mainView boundsView:_mainViewController.view];
 	[self addLayerEffectsToView:_mainViewController.view];
 }
 
@@ -247,11 +209,10 @@ static BOOL observeingAccessoryFrame = NO;
 	if (context == JRMainViewFrameChangeContext && !observeingMainFrame) {
 		observeingMainFrame = YES;
         
-		CGRect newMainContainerFrame = CGRectMake(0, kJRScreenSceneScrollViewContentTopMargin, _mainViewScrollView.bounds.size.width, _mainViewScrollView.bounds.size.height - kJRScreenSceneScrollViewContentTopMargin);
+		CGRect newMainContainerFrame = CGRectMake(0, kJRScreenSceneScrollViewContentTopMargin, _mainView.bounds.size.width, _mainView.bounds.size.height - kJRScreenSceneScrollViewContentTopMargin);
         
-		[_mainViewScrollView setContentSize:newMainContainerFrame.size];
 		[_mainViewController.view setFrame:newMainContainerFrame];
-		[self shadowPathMakeForScrollView:_mainViewScrollView boundsView:_mainViewController.view];
+		[self shadowPathMakeForScrollView:_mainView boundsView:_mainViewController.view];
         
 		observeingMainFrame = NO;
         
@@ -260,11 +221,10 @@ static BOOL observeingAccessoryFrame = NO;
         
         
         
-		CGRect newAccessotyContainerFrame = CGRectMake(0, kJRScreenSceneScrollViewContentTopMargin, _accessoryViewScrollView.bounds.size.width, _accessoryViewScrollView.bounds.size.height - kJRScreenSceneScrollViewContentTopMargin);
+		CGRect newAccessotyContainerFrame = CGRectMake(0, kJRScreenSceneScrollViewContentTopMargin, _accessoryView.bounds.size.width, _accessoryView.bounds.size.height - kJRScreenSceneScrollViewContentTopMargin);
         
-		[_accessoryViewScrollView setContentSize:newAccessotyContainerFrame.size];
 		[_accessoryViewController.view setFrame:newAccessotyContainerFrame];
-		[self shadowPathMakeForScrollView:_accessoryViewScrollView boundsView:_accessoryViewController.view];
+		[self shadowPathMakeForScrollView:_accessoryView boundsView:_accessoryViewController.view];
         
 		observeingAccessoryFrame = NO;
         
@@ -289,16 +249,11 @@ static BOOL observeingAccessoryFrame = NO;
     }
 	[self removeAccessoryViewController];
     
-	_accessoryViewScrollView = [JRScreneSceneScrollView new];
-	[_accessoryViewScrollView setDelegate:self];
-	[_accessoryViewScrollView setAlwaysBounceHorizontal:YES];
-	[_accessoryViewScrollView setAlwaysBounceVertical:NO];
-	[_accessoryViewScrollView setClipsToBounds:NO];
-	[_accessoryViewScrollView setShowsHorizontalScrollIndicator:NO];
-	[_accessoryViewScrollView setShowsVerticalScrollIndicator:NO];
+	_accessoryView = [UIView new];
+	[_accessoryView setClipsToBounds:NO];
     
-	[self.view addSubview:_accessoryViewScrollView];
-	[_accessoryViewScrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+	[self.view addSubview:_accessoryView];
+	[_accessoryView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 	_accessoryViewController = viewController;
     
@@ -307,8 +262,8 @@ static BOOL observeingAccessoryFrame = NO;
     
 	_accessoryExclusiveFocus = exclusiveFocus;
     
-	[_accessoryViewScrollView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:JRAccessoryViewFrameChangeContext];
-	[self addChildViewController:_accessoryViewController toView:_accessoryViewScrollView];
+	[_accessoryView addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:JRAccessoryViewFrameChangeContext];
+	[self addChildViewController:_accessoryViewController toView:_accessoryView];
     
 	[self setSecondChildConstraintsToNowhereWithInterfaceOrientation:self.interfaceOrientation];
 	[self createNavigationBarForViewController:_accessoryViewController];
@@ -325,18 +280,18 @@ static BOOL observeingAccessoryFrame = NO;
                             [self.view layoutIfNeeded];
                         } completion:^(BOOL finished) {
                             if (UIAccessibilityIsVoiceOverRunning()) {
-                                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, _accessoryViewScrollView);
+                                UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, _accessoryView);
                             }
                         }];
     
-	[self addMotionEffectsToView:_accessoryViewScrollView];
+	[self addMotionEffectsToView:_accessoryView];
 	if (_accessoryExclusiveFocus) {
 		[self setFocusToAccessoryViewAnimated:animated];
 	}
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:animated];
     
     
-	[self shadowPathMakeForScrollView:_accessoryViewScrollView boundsView:_accessoryViewController.view];
+	[self shadowPathMakeForScrollView:_accessoryView boundsView:_accessoryViewController.view];
     
 	[self addLayerEffectsToView:_accessoryViewController.view];
 }
@@ -345,33 +300,44 @@ static BOOL observeingAccessoryFrame = NO;
 {
     
 	UINavigationBar *navigationBar = [[UINavigationBar alloc] init];
-	[navigationBar setBackgroundImage:[UIImage imageWithColor:[JRC CLEAR_COLOR]] forBarMetrics:UIBarMetricsDefault];
+    [navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+    [navigationBar setShadowImage:[UIImage new]];
 	[navigationBar setBarStyle:UIBarStyleBlack];
 	[self addMotionEffectsToView:navigationBar];
     
-	UIScrollView *barScrollView;
+	UIView *barView;
 	if (viewController == _mainViewController) {
 		_mainViewBar = navigationBar;
-		barScrollView = _mainViewScrollView;
+		barView = _mainView;
 	} else if (viewController == _accessoryViewController) {
 		_accessoryViewBar = navigationBar;
-		barScrollView = _accessoryViewScrollView;
+		barView = _accessoryView;
 	}
-	UIView *scrollViewSubview = [barScrollView.subviews firstObject];
+	UIView *scrollViewSubview = [barView.subviews firstObject];
     
-	if (scrollViewSubview && barScrollView && barScrollView) {
+	if (scrollViewSubview && barView && barView) {
 		[navigationBar setItems:@[viewController.navigationItem]];
         
-		NSDictionary *titleTextAttributes = @{ NSFontAttributeName : kJRScreenSceneTitleFont };
+        UIFont *font = nil;
+        if ([UIFont.class respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+            font = [UIFont systemFontOfSize:kJRScreenSceneTitleFontSize weight:UIFontWeightMedium];
+        } else {
+            font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:kJRScreenSceneTitleFontSize];
+        }
+        
+        NSDictionary *titleTextAttributes = @{
+                                              NSFontAttributeName : font,
+                                              NSForegroundColorAttributeName : [ColorScheme darkTextColor]
+                                              };
 		[navigationBar setTitleTextAttributes:titleTextAttributes];
         
-		[barScrollView addSubview:navigationBar];
+		[barView addSubview:navigationBar];
 		[navigationBar setTranslatesAutoresizingMaskIntoConstraints:NO];
         
 		CGFloat height = 65;
-		[barScrollView addConstraint:JRConstraintMake(navigationBar, NSLayoutAttributeCenterX, NSLayoutRelationEqual, scrollViewSubview, NSLayoutAttributeCenterX, 1, 0)];
-		[barScrollView addConstraint:JRConstraintMake(navigationBar, NSLayoutAttributeTop, NSLayoutRelationEqual, barScrollView, NSLayoutAttributeTop, 1, 0)];
-		[barScrollView addConstraint:JRConstraintMake(navigationBar, NSLayoutAttributeWidth, NSLayoutRelationEqual, barScrollView, NSLayoutAttributeWidth, 1, 0)];
+		[barView addConstraint:JRConstraintMake(navigationBar, NSLayoutAttributeCenterX, NSLayoutRelationEqual, scrollViewSubview, NSLayoutAttributeCenterX, 1, 0)];
+		[barView addConstraint:JRConstraintMake(navigationBar, NSLayoutAttributeTop, NSLayoutRelationEqual, barView, NSLayoutAttributeTop, 1, 0)];
+		[barView addConstraint:JRConstraintMake(navigationBar, NSLayoutAttributeWidth, NSLayoutRelationEqual, barView, NSLayoutAttributeWidth, 1, 0)];
 		[navigationBar addConstraint:JRConstraintMake(navigationBar, NSLayoutAttributeHeight, NSLayoutRelationEqual, nil, NSLayoutAttributeNotAnAttribute, 1, height)];
 	}
 }
@@ -398,13 +364,13 @@ static BOOL observeingAccessoryFrame = NO;
 
 - (void)setFocusToMainViewAnimated:(BOOL)animated
 {
-	[self.view bringSubviewToFront:_mainViewScrollView];
+	[self.view bringSubviewToFront:_mainView];
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:animated];
 }
 
 - (void)setFocusToAccessoryViewAnimated:(BOOL)animated
 {
-	[self.view bringSubviewToFront:_accessoryViewScrollView];
+	[self.view bringSubviewToFront:_accessoryView];
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:animated];
 }
 
@@ -422,7 +388,7 @@ static BOOL observeingAccessoryFrame = NO;
 
 - (BOOL)isAccessoryViewIsFocused
 {
-	return [self subviews].lastObject == _accessoryViewScrollView;
+	return [self subviews].lastObject == _accessoryView;
 }
 
 - (void)detachAccessoryViewControllerAnimated:(BOOL)animated
@@ -443,7 +409,7 @@ static BOOL observeingAccessoryFrame = NO;
         
         BOOL isAccessoryViewWasFocused = [self isAccessoryViewIsFocused];
         if (isAccessoryViewWasFocused) {
-            [self.view insertSubview:_mainViewScrollView belowSubview:_accessoryViewScrollView];
+            [self.view insertSubview:_mainView belowSubview:_accessoryView];
         }
         [self setMainChildConstraintsToLeftWithInterfaceOrientation:self.interfaceOrientation];
         if (updateFocus) {
@@ -472,9 +438,9 @@ static BOOL observeingAccessoryFrame = NO;
 	[_accessoryViewBar removeFromSuperview];
 	_accessoryViewBar = nil;
     
-	[_accessoryViewScrollView removeObserver:self forKeyPath:@"bounds" context:JRAccessoryViewFrameChangeContext];
-	[_accessoryViewScrollView removeFromSuperview];
-	_accessoryViewScrollView = nil;
+	[_accessoryView removeObserver:self forKeyPath:@"bounds" context:JRAccessoryViewFrameChangeContext];
+	[_accessoryView removeFromSuperview];
+	_accessoryView = nil;
     
 	[self deleteChildViewController:_accessoryViewController];
 	_accessoryViewController = nil;
@@ -486,7 +452,7 @@ static BOOL observeingAccessoryFrame = NO;
 - (void)setMainChildConstraintsToLeftWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     
-	if (_mainViewScrollView.superview != self.view) {
+	if (_mainView.superview != self.view) {
 		return;
 	} else if ([_mainViewConstraints isKindOfClass:[NSArray class]]) {
 		[self.view removeConstraints:_mainViewConstraints];
@@ -495,7 +461,7 @@ static BOOL observeingAccessoryFrame = NO;
     
 	_mainViewConstraints = [[NSMutableArray alloc] init];
     
-	UIView *childView = _mainViewScrollView;
+	UIView *childView = _mainView;
     
     _mainWidthConstraint = JRConstraintMake(childView, NSLayoutAttributeWidth, NSLayoutRelationEqual, nil, NSLayoutAttributeNotAnAttribute, 1, [self mainViewWidthForInterfaceOrientation:interfaceOrientation]);
 	[_mainViewConstraints addObject:_mainWidthConstraint];
@@ -521,7 +487,7 @@ static BOOL observeingAccessoryFrame = NO;
 - (void)setMainChildConstraintsToCenterWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     
-	if (_mainViewScrollView.superview != self.view) {
+	if (_mainView.superview != self.view) {
 		return;
 	} else if ([_mainViewConstraints isKindOfClass:[NSArray class]]) {
 		[self.view removeConstraints:_mainViewConstraints];
@@ -530,7 +496,7 @@ static BOOL observeingAccessoryFrame = NO;
     
 	_mainViewConstraints = [[NSMutableArray alloc] init];
     
-	UIView *childView = _mainViewScrollView;
+	UIView *childView = _mainView;
     
 	_mainWidthConstraint = JRConstraintMake(childView, NSLayoutAttributeWidth, NSLayoutRelationEqual, nil, NSLayoutAttributeNotAnAttribute, 1, [self mainViewWidthForInterfaceOrientation:interfaceOrientation]);
 	[_mainViewConstraints addObject:_mainWidthConstraint];
@@ -545,7 +511,7 @@ static BOOL observeingAccessoryFrame = NO;
 - (void)setSecondChildConstraintsToRightWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     
-	if (_accessoryViewScrollView.superview != self.view) {
+	if (_accessoryView.superview != self.view) {
 		return;
 	} else if ([_accessoryViewConstraints isKindOfClass:[NSArray class]]) {
 		[self.view removeConstraints:_accessoryViewConstraints];
@@ -553,7 +519,7 @@ static BOOL observeingAccessoryFrame = NO;
     
 	_accessoryViewConstraints = [[NSMutableArray alloc] init];
     
-	UIView *childView = _accessoryViewScrollView;
+	UIView *childView = _accessoryView;
     
 	[_accessoryViewConstraints addObject:JRConstraintMake(childView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1, kJRScreenSceneTopMargin)];
     
@@ -574,7 +540,7 @@ static BOOL observeingAccessoryFrame = NO;
 
 - (void)setSecondChildConstraintsToNowhereWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	if (_accessoryViewScrollView.superview != self.view) {
+	if (_accessoryView.superview != self.view) {
 		return;
 	} else if ([_accessoryViewConstraints isKindOfClass:[NSArray class]]) {
 		[self.view removeConstraints:_accessoryViewConstraints];
@@ -582,7 +548,7 @@ static BOOL observeingAccessoryFrame = NO;
     
 	_accessoryViewConstraints = [[NSMutableArray alloc] init];
     
-	UIView *childView = _accessoryViewScrollView;
+	UIView *childView = _accessoryView;
     
 	[_accessoryViewConstraints addObject:JRConstraintMake(childView, NSLayoutAttributeTop, NSLayoutRelationEqual, self.view, NSLayoutAttributeTop, 1, kJRScreenSceneTopMargin)];
 	_accessoryViewKeyConstraint = JRConstraintMake(childView, NSLayoutAttributeRight, NSLayoutRelationEqual, self.view, NSLayoutAttributeRight, 1, 500);
@@ -624,17 +590,17 @@ static BOOL observeingAccessoryFrame = NO;
 		NSArray *subviews = [self subviews];
 		UIView *view = [subviews firstObject];
 		JROverlayView *overlay;
-		if (view == subviews.firstObject && view == _mainViewScrollView) {
+		if (view == subviews.firstObject && view == _mainView) {
 			overlay = [JROverlayView showInView:_mainViewController.view withTag:@"mainViewOverlay"];
 		} else {
             [JROverlayView hideInView:_mainViewController.view withTag:@"mainViewOverlay"];
 		}
-		if (view == subviews.firstObject && view == _accessoryViewScrollView) {
+		if (view == subviews.firstObject && view == _accessoryView) {
             overlay = [JROverlayView showInView:_accessoryViewController.view withTag:@"accessoryViewOverlay"];
 		} else {
             [JROverlayView hideInView:_accessoryViewController.view withTag:@"accessoryViewOverlay"];
 		}
-		[overlay setBackgroundColor:[[JRC BLACK_COLOR] colorWithAlphaComponent:0.15]];
+		[overlay setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.15]];
 		[overlay.layer setCornerRadius:kJRScreenSceneDefaultRadius];
         
 		return YES;
@@ -647,13 +613,13 @@ static BOOL observeingAccessoryFrame = NO;
 	}
 }
 
-- (void)shadowPathMakeForScrollView:(UIScrollView *)view boundsView:(UIView *)boundsView
+- (void)shadowPathMakeForScrollView:(UIView *)view boundsView:(UIView *)boundsView
 {
     
-	[view.layer setShadowRadius:kJRScreenSceneDefaultRadius];
-	[view.layer setShadowOffset:CGSizeMake(0, 1)];
+	[view.layer setShadowRadius:kJRScreenSceneDefaultShadowRadius];
+	[view.layer setShadowOffset:CGSizeMake(0, 2)];
 	[view.layer setShadowOpacity:1];
-	[view.layer setShadowColor:[[JRC SCENE_SHADOW_COLOR] CGColor]];
+	[view.layer setShadowColor:[[ColorScheme iPadSceneShadowColor] CGColor]];
     
 	UIBezierPath *path = [UIBezierPath new];
     

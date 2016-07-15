@@ -7,7 +7,6 @@
 
 #import "JRSearchFormTravelClassPickerCell.h"
 
-#import "JRC.h"
 #import "UIImage+JRUIImage.h"
 #import "JRSearchInfoUtils.h"
 

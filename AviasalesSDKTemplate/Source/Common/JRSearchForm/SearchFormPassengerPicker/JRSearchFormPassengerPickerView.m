@@ -8,7 +8,7 @@
 #import "JRSearchFormPassengerPickerView.h"
 #import "JRSearchFormPassengersView.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "JRC.h"
+#import "ColorScheme.h"
 
 @interface JRSearchFormPassengerPickerView ()
 
@@ -24,23 +24,21 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [_okButton setBackgroundColor:[JRC SF_CELL_IMAGES_TINT]];
+    [self setBackgroundColor:[ColorScheme itemsBackgroundColor]];
     
-    [self setBackgroundColor:[JRC COMMON_BACKGROUND]];
-    
-    [_adultsContainer setBackgroundColor:[JRC CLEAR_COLOR]];
+    [_adultsContainer setBackgroundColor:[UIColor clearColor]];
     JRSearchFormPassengersView *adulstView = LOAD_VIEW_FROM_NIB_NAMED(@"JRSearchFormPassengersView");
     [_adultsContainer addSubview:adulstView];
     [_adultsContainer addConstraints:JRConstraintsMakeScaleToFill(adulstView, _adultsContainer)];
     [adulstView setType:JRSearchFormPassengersViewAdultsType];
     
-    [_childrenContainer setBackgroundColor:[JRC CLEAR_COLOR]];
+    [_childrenContainer setBackgroundColor:[UIColor clearColor]];
     JRSearchFormPassengersView *childrenView = LOAD_VIEW_FROM_NIB_NAMED(@"JRSearchFormPassengersView");
     [_childrenContainer addSubview:childrenView];
     [_childrenContainer addConstraints:JRConstraintsMakeScaleToFill(childrenView, _childrenContainer)];
     [childrenView setType:JRSearchFormPassengersViewChildrenType];
     
-    [_infantsContainer setBackgroundColor:[JRC CLEAR_COLOR]];
+    [_infantsContainer setBackgroundColor:[UIColor clearColor]];
     JRSearchFormPassengersView *infantsView = LOAD_VIEW_FROM_NIB_NAMED(@"JRSearchFormPassengersView");
     [_infantsContainer addSubview:infantsView];
     [_infantsContainer addConstraints:JRConstraintsMakeScaleToFill(infantsView, _infantsContainer)];

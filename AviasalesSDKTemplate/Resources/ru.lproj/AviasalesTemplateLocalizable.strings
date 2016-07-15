@@ -116,7 +116,15 @@
 
 "AVIASALES_BUY" = "Купить";
 
+"AVIASALES_BUY_TICKET" = "Купить билет";
+"AVIASALES_BUY_TICKET_IN_CREDIT" = "Купить в кредит";
+"AVIASALES_BUY_TICKET_IN_CREDIT_SHORT" = "В кредит";
+
 "AVIASALES_FLIGHT" = "Рейс";
+
+"AVIASALES_ON" = "на";
+
+"AVIASALES_FLIGHT_DURATION" = "Перелет";
 
 "AVIASALES_STOPOVER" = "Пересадка";
 

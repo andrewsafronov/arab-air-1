@@ -18,11 +18,7 @@
 {
 	JRSearchFormItem *passengersItem = [[JRSearchFormItem alloc] initWithType:JRSearchFormTableViewPassengersItem itemDelegate:self.item.itemDelegate];
 	JRSearchFormItem *travelClassItem = [[JRSearchFormItem alloc] initWithType:JRSearchFormTableViewTravelClassItem itemDelegate:self.item.itemDelegate];
-	if (iPhone()) {
-        [_tableView setItems:@[passengersItem, travelClassItem]];
-    } else {
-        [_tableView setItems:@[travelClassItem, passengersItem]];
-    }
+    [_tableView setItems:@[passengersItem, travelClassItem]];
 	[_tableView reloadData];
 }
 
@@ -36,6 +32,5 @@
 {
 	[_tableView reloadData];
 }
-
 
 @end

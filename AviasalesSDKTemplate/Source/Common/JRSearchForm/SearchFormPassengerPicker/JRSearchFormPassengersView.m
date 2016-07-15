@@ -6,10 +6,11 @@
 //
 
 #import "JRSearchFormPassengersView.h"
-#import "JRC.h"
 #import "JRSearchFormPassengerPickerView.h"
 #import "UIImage+JRUIImage.h"
-#import "JRAlertManager.h"
+#import "ColorScheme.h"
+
+static const NSInteger kMaximumSeats = 9;
 
 @interface JRSearchFormPassengersView ()
 @property (nonatomic, strong) NSString *ageText;
@@ -21,16 +22,16 @@
     [super awakeFromNib];
     
     
-    [_ellipseImageView setImage:[_ellipseImageView.image imageTintedWithColor:[JRC SF_PASSENGERS_BG]]];
+    [_ellipseImageView setImage:[_ellipseImageView.image imageTintedWithColor:[ColorScheme darkTextColor]]];
     [_ellipseImageView.layer setBorderWidth:JRPixel()];
-    [_ellipseImageView.layer setBorderColor:[JRC WHITE_COLOR].CGColor];
+    [_ellipseImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [_ellipseImageView.layer setCornerRadius:_ellipseImageView.image.size.height/2];
     
-    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRC SF_PASSENGERS_BG]] forState:UIControlStateNormal];
-    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRC SF_PASSENGERS_BG]] forState:UIControlStateNormal];
+    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor]] forState:UIControlStateNormal];
+    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor]] forState:UIControlStateNormal];
     
-    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRC SF_PASSENGERS_BG] fraction:0.75] forState:UIControlStateHighlighted];
-    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRC SF_PASSENGERS_BG] fraction:0.75] forState:UIControlStateHighlighted];
+    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor] fraction:0.75] forState:UIControlStateHighlighted];
+    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor] fraction:0.75] forState:UIControlStateHighlighted];
 }
 
 - (void)setSearchInfo:(JRSearchInfo *)searchInfo {
@@ -102,6 +103,9 @@
 }
 
 - (IBAction)plusAction:(id)sender {
+    if (![self isItPossibleToAddSomeone]) {
+        return;
+    }
     
     switch (_type) {
         case JRSearchFormPassengersViewAdultsType: {
@@ -116,9 +120,6 @@
                 [_searchInfo setInfants:infants];
             } else {
                 [_pickerView.delegate passengerViewExceededTheAllowableNumberOfInfants];
-                if (iPad()) {
-                    [self showExceededTheAllowableNumberOfInfantsPopover];
-                }
             }
         } break;
         default:
@@ -129,50 +130,41 @@
     [_pickerView.delegate passengerViewDidChangePassengers];
 }
 
+- (BOOL)isItPossibleToAddSomeone {
+    NSInteger adultsNumber = _searchInfo.adults;
+    NSInteger childrenNumber = _searchInfo.children;
+    NSInteger babiesNumber = _searchInfo.infants;
+    
+    return (adultsNumber + childrenNumber + babiesNumber) < kMaximumSeats;
+}
+
 - (void)checkPassangersLimit {
     NSInteger adultsNumber = _searchInfo.adults;
     NSInteger childrenNumber = _searchInfo.children;
     NSInteger babiesNumber = _searchInfo.infants;
     
-    NSInteger maximumSeats = 9;
-    NSInteger maximumAdults = maximumSeats - childrenNumber;
-    
+    const BOOL isItPossibleToAddSomeone = [self isItPossibleToAddSomeone];
     
     if (_type == JRSearchFormPassengersViewAdultsType) {
-        adultsNumber == maximumAdults ? [_plusButton setEnabled:NO] : [_plusButton setEnabled:YES];
+        [_plusButton setEnabled: isItPossibleToAddSomeone];
         adultsNumber == 1 ? [_minusButton setEnabled:NO] : [_minusButton setEnabled:YES];
     }
     
     if (_type == JRSearchFormPassengersViewChildrenType) {
-        NSInteger maximumChild = maximumSeats - adultsNumber;
-        
-        childrenNumber == maximumChild ? [_plusButton setEnabled:NO] : [_plusButton setEnabled:YES];
+        [_plusButton setEnabled: isItPossibleToAddSomeone];
         childrenNumber == 0 ? [_minusButton setEnabled:NO] : [_minusButton setEnabled:YES];
     }
     
     if (_type == JRSearchFormPassengersViewInfantsType) {
         
+        BOOL isItPossibleToAddInfant = isItPossibleToAddSomeone && (babiesNumber < adultsNumber);
         if (babiesNumber > adultsNumber) {
             _searchInfo.infants = adultsNumber;
         }
         
-        [_plusButton setAlpha: babiesNumber >= adultsNumber ? 0.5 : 1];
-        
+        [_plusButton setAlpha:isItPossibleToAddInfant ? 1 : 0.5];
         babiesNumber == 0 ? [_minusButton setEnabled:NO] : [_minusButton setEnabled:YES];
-        
     }
-}
-
-- (void)showExceededTheAllowableNumberOfInfantsPopover
-{
-    JRFPPopoverController *popover = [[JRAlertManager sharedManager] messagePopoverWithType:JRMessagePopoverTypeSearchFormExceededTheAllowableNumberOfInfants withStringParams:nil andUnderlyingView:self.superview];
-    [popover setArrowDirection:FPPopoverNoArrow];
-    [popover presentPopoverFromView:[[_pickerView passengerViews] objectAtIndex:1]];
-    
-    __weak JRFPPopoverController *weakError = popover;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [weakError dismissPopoverAnimated:YES];
-    });
 }
 
 @end

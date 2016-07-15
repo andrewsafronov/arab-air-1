@@ -13,6 +13,6 @@
 @interface JRFlightSegment : NSObject <JRSDKFlightSegment>
 
 @property (nonatomic, retain) JRAirline *segmentAirline;
-@property (nonatomic, retain) NSSet <JRFlight *> *unorderedFlights;
+@property (nonatomic, retain) NSOrderedSet <JRFlight *> *flights;
 
 @end

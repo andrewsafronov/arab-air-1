@@ -7,7 +7,6 @@
 
 #import "JRViewController.h"
 #import "JRSearchInfo.h"
-#import "JRFPPopoverController.h"
 #import "JRSearchFormPassengerPickerView.h"
 
 @interface JRSearchFormPassengerPickerVC : JRViewController
