@@ -5,8 +5,8 @@ rvm: 2.2.2
 before_install:
     - gem install cocoapods -v '1.0.1' 
     - pod setup > /dev/null    #/dev/null to prevent long logs
-    - brew update
-    - brew outdated xctool || brew upgrade xctool
+#    - brew update
+#    - brew outdated xctool || brew upgrade xctool
 #    - git clone https://github.com/facebook/xctool.git #use this if current xctool is outdated
     
 podfile: Podfile
@@ -16,5 +16,5 @@ xcode_sdk:
     - iphonesimulator
     
 script:
-   - xctool  -workspace AviasalesSDKTemplate.xcworkspace -scheme AviasalesSDKTemplate -sdk iphonesimulator build test
+   - xcodebuild -workspace AviasalesSDKTemplate.xcworkspace -scheme AviasalesSDKTemplate -sdk iphonesimulator build test | xcpretty
 #    - xctool/xctool.sh  -workspace AviasalesSDKTemplate.xcworkspace -scheme AviasalesSDKTemplate -sdk iphonesimulator build test #use this if current xctool is outdated
