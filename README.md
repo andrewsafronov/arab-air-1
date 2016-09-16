@@ -10,7 +10,7 @@ The easiest way is to use [CocoaPods](http://cocoapods.org). It takes care of al
 ```ruby
 pod 'AviasalesSDK', '~> 1.3.3-beta2'
 ```
-
+Read more about integration here: ([English version](TemplateIntegration.md) | [Russian version](TemplateIntegration_RU.md)).
 
 ##Description
 
