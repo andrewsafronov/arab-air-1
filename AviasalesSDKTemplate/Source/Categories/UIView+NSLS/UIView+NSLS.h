@@ -8,5 +8,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (NSLS)
+
 @property (nonatomic, strong) IBInspectable NSString *NSLSKey;
+
 @end

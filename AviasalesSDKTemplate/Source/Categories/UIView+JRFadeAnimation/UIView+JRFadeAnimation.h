@@ -10,6 +10,7 @@
 #define kJRFadeAnimationFastTransitionDuration 0.2
 #define kJRFadeAnimationMediumTransitionDuration 0.4
 #define kJRFadeAnimationLondTransitionDuration 0.6
+
 @interface UIView (JRFadeAnimation)
 
 + (void)addTransitionFadeToView:(UIView *)view

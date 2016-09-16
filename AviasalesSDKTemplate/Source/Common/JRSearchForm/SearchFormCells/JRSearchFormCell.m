@@ -8,33 +8,27 @@
 #import "JRSearchFormCell.h"
 #import "JRSearchFormComplexSegmentCell.h"
 #import "JRSearchInfo.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
-@interface JRSearchFormCell ()
-
-@end
 
 @implementation JRSearchFormCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 	[super awakeFromNib];
+    
 	[self updateCell];
 }
 
-- (JRSearchInfo *)searchInfo
-{
+- (JRSearchInfo *)searchInfo {
 	return [_item.itemDelegate searchInfo];
 }
 
-- (void)setupBackgroundViews
-{
+- (void)setupBackgroundViews {
 	self.customBackgroundView.backgroundColor = [UIColor clearColor];
-	self.customSelectedBackgroundView.backgroundColor = [ColorScheme itemsSelectedBackgroundColor];
+	self.customSelectedBackgroundView.backgroundColor = [JRColorScheme itemsSelectedBackgroundColor];
 }
 
-- (void)setItem:(JRSearchFormItem *)item
-{
+- (void)setItem:(JRSearchFormItem *)item {
 	_item = item;
     
 	[self setupBackgroundViews];
@@ -42,14 +36,10 @@
 	[self updateCell];
 }
 
-- (void)updateCell
-{
-    
+- (void)updateCell {
 }
 
-- (void)action
-{
-    
+- (void)action {
 }
 
 @end

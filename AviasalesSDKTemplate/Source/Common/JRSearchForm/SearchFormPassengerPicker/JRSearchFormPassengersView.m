@@ -8,34 +8,37 @@
 #import "JRSearchFormPassengersView.h"
 #import "JRSearchFormPassengerPickerView.h"
 #import "UIImage+JRUIImage.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 static const NSInteger kMaximumSeats = 9;
 
 @interface JRSearchFormPassengersView ()
+
 @property (nonatomic, strong) NSString *ageText;
+
 @end
+
 
 @implementation JRSearchFormPassengersView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    
-    [_ellipseImageView setImage:[_ellipseImageView.image imageTintedWithColor:[ColorScheme darkTextColor]]];
+    [_ellipseImageView setImage:[_ellipseImageView.image imageTintedWithColor:[JRColorScheme darkTextColor]]];
     [_ellipseImageView.layer setBorderWidth:JRPixel()];
     [_ellipseImageView.layer setBorderColor:[UIColor whiteColor].CGColor];
     [_ellipseImageView.layer setCornerRadius:_ellipseImageView.image.size.height/2];
     
-    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor]] forState:UIControlStateNormal];
-    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor]] forState:UIControlStateNormal];
+    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRColorScheme darkTextColor]] forState:UIControlStateNormal];
+    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRColorScheme darkTextColor]] forState:UIControlStateNormal];
     
-    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor] fraction:0.75] forState:UIControlStateHighlighted];
-    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor] fraction:0.75] forState:UIControlStateHighlighted];
+    [_minusButton setImage:[[_minusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRColorScheme darkTextColor] fraction:0.75] forState:UIControlStateHighlighted];
+    [_plusButton setImage:[[_plusButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRColorScheme darkTextColor] fraction:0.75] forState:UIControlStateHighlighted];
 }
 
 - (void)setSearchInfo:(JRSearchInfo *)searchInfo {
     _searchInfo = searchInfo;
+    
     [self updateView];
 }
 
@@ -83,7 +86,6 @@ static const NSInteger kMaximumSeats = 9;
 }
 
 - (IBAction)minusAction:(id)sender {
-    
     switch (_type) {
         case JRSearchFormPassengersViewAdultsType: {
             [_searchInfo setAdults:_searchInfo.adults - 1];

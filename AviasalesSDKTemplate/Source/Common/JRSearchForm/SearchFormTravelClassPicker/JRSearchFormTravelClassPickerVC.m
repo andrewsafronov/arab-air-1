@@ -12,19 +12,21 @@
 #import "JRSearchInfoUtils.h"
 #import "JRSearchFormTravelClassPickerCell.h"
 
-#define kJRSearchFormTravelClassPickerWeight 200
-#define kJRSearchFormTravelClassPickerCellHeight 44
+static const NSInteger kJRSearchFormTravelClassPickerWeight = 200;
+static const NSInteger kJRSearchFormTravelClassPickerCellHeight = 44;
 
-#define kJRSearchFormTravelClassPickerReloadAnimationDutation 0.2
+static const CGFloat kJRSearchFormTravelClassPickerReloadAnimationDutation = 0.2;
+
 
 @interface JRSearchFormTravelClassPickerVC ()<UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) JRSearchInfo *searchInfo;
 @property (weak, nonatomic) id<JRSearchFormTravelClassPickerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *items;
 
-@property (weak, nonatomic) JRSearchInfo *searchInfo;
-
 @end
+
 
 @implementation JRSearchFormTravelClassPickerVC
 

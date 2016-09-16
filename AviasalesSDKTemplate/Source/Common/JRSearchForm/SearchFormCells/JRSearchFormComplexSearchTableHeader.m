@@ -8,16 +8,17 @@
 #import "JRSearchFormComplexSearchTableHeader.h"
 
 @interface JRSearchFormComplexSearchTableHeader ()
+
 @property (weak, nonatomic) IBOutlet UILabel *originLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end
 
+
 @implementation JRSearchFormComplexSearchTableHeader
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 	[super awakeFromNib];
 	[_originLabel setText:NSLS(@"JR_SEARCH_FORM_COMPLEX_ORIGIN")];
 	[_destinationLabel setText:NSLS(@"JR_SEARCH_FORM_COMPLEX_DESTINATION")];

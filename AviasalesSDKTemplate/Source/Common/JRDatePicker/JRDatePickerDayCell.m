@@ -10,37 +10,39 @@
 #import "NSLayoutConstraint+JRConstraintMake.h"
 #import "JRDatePickerDayView.h"
 #import "JRViewController.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
-#define DATE_VIEW_TAG_OFFSET 1000
-#define NUMBER_OF_DAYS_IN_WEEK 7
+
+static const NSInteger kDateViewTagOffset = 1000;
+static const NSInteger kNumberOfDaysInWeek = 7;
+
+
 @interface JRDatePickerDayCell ()
+
 @property (strong, nonatomic) NSArray *dates;
 @property (strong, nonatomic) JRDatePickerMonthItem *datePickerItem;
 @property (strong, nonatomic) UIView *layoutAttributeView;
 @property (strong, nonatomic) UIColor *normalGrayColor;
 @property (strong, nonatomic) UIColor *normalSelectedColor;
+
 @end
 
 
 @implementation JRDatePickerDayCell
 
-- (void)initialSetup
-{
+- (void)initialSetup {
 	[self setSelectionStyle:UITableViewCellSelectionStyleNone];
 	[self setBackgroundColor:[UIColor clearColor]];
     
 	[self disableClipForViewSubviews:self];
     
-	_normalGrayColor = [ColorScheme lightTextColor];
-	_normalSelectedColor = [ColorScheme darkTextColor];
+	_normalGrayColor = [JRColorScheme lightTextColor];
+	_normalSelectedColor = [JRColorScheme darkTextColor];
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 	if (self) {
-        
 		[self initialSetup];
 	}
 	return self;
@@ -48,8 +50,7 @@
 
 - (JRDatePickerDayView *)createDateViewWithTag:(NSInteger)dateViewTag
                              dateViewSuperview:(UIView *)dateViewSuperview
-                                   indexOfDate:(NSUInteger)indexOfDate
-{
+                                   indexOfDate:(NSUInteger)indexOfDate {
 	JRDatePickerDayView *dateView = LOAD_VIEW_FROM_NIB_NAMED(@"JRDatePickerDayView");
     
 	[dateView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -57,7 +58,7 @@
     
 	[dateViewSuperview addSubview:dateView];
     
-    CGFloat fraction = 1.0f / NUMBER_OF_DAYS_IN_WEEK;
+    CGFloat fraction = 1.0f / kNumberOfDaysInWeek;
     CGFloat leftToRightMultiplier = fraction * indexOfDate;
     
     NSLayoutAttribute secondLeftToRightAttribute = NSLayoutAttributeRight;
@@ -76,13 +77,12 @@
 	return dateView;
 }
 
-- (JRDatePickerDayView *)dateViewForDate:(NSDate *)date
-{
+- (JRDatePickerDayView *)dateViewForDate:(NSDate *)date {
 	BOOL shouldHideCell = [_datePickerItem.prevDates containsObject:date] ||
     [_datePickerItem.futureDates containsObject:date];
     
 	NSUInteger indexOfDate = [_dates indexOfObject:date];
-	NSInteger dateViewTag = indexOfDate + DATE_VIEW_TAG_OFFSET;
+	NSInteger dateViewTag = indexOfDate + kDateViewTagOffset;
     
 	UIView *dateViewSuperview = self.contentView;
     
@@ -107,15 +107,11 @@
 	} else {
 		return dateView;
 	}
-    
 }
 
-- (void)setupDateView:(JRDatePickerDayView *)dateView date:(NSDate *)date
-{
+- (void)setupDateView:(JRDatePickerDayView *)dateView date:(NSDate *)date {
     [dateView setBackgroundImageViewHidden:YES];
-    
-	[dateView setDate:date monthItem:_datePickerItem];
-
+    [dateView setDate:date monthItem:_datePickerItem];
 	[dateView addTarget:self action:@selector(dateViewAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [dateView setEnabled:[_datePickerItem.stateObject.disabledDates containsObject:date] &&
@@ -144,8 +140,7 @@
     
 }
 
-- (void)updateCell
-{
+- (void)updateCell {
     for (UIButton *button in self.contentView.subviews) {
         if ([button isKindOfClass:[UIButton class]]) {
             [button setHighlighted:NO];
@@ -153,23 +148,18 @@
         }
     }
 	for (NSDate *date in _dates) {
-        
 		JRDatePickerDayView *dateView = [self dateViewForDate:date];
-        
 		if (dateView) {
-            
 			[self setupDateView:dateView date:date ];
 		}
 	}
 }
 
-- (void)dateViewAction:(JRDatePickerDayView *)dateViewAction
-{
+- (void)dateViewAction:(JRDatePickerDayView *)dateViewAction {
 	[_datePickerItem.stateObject.delegate dateWasSelected:dateViewAction.date];
 }
 
-- (void)setDatePickerItem:(JRDatePickerMonthItem *)datePickerItem dates:(NSArray *)dates
-{
+- (void)setDatePickerItem:(JRDatePickerMonthItem *)datePickerItem dates:(NSArray *)dates {
 	_dates = dates;
 	_datePickerItem = datePickerItem;
     
@@ -178,9 +168,7 @@
 	[self disableClipForViewSubviews:self];
 }
 
-- (void)disableClipForViewSubviews:(UIView *)superview
-{
-    
+- (void)disableClipForViewSubviews:(UIView *)superview {
 	[superview setClipsToBounds:NO];
 	[superview setOpaque:YES];
 	[superview setBackgroundColor:[UIColor clearColor]];

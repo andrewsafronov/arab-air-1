@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JRWaitingViewController">
             <connections>
-                <outlet property="adContainerView" destination="JJt-xf-VCY" id="9NK-hi-EpQ"/>
+                <outlet property="appodealAdContainerView" destination="Ctl-Gp-cC5" id="kuN-Jq-gsA"/>
+                <outlet property="aviasalesAdContainerView" destination="JJt-xf-VCY" id="VAK-yC-Fh7"/>
+                <outlet property="aviasalesAdsBottom" destination="NDk-RK-Izu" id="Zgv-mg-Jg5"/>
                 <outlet property="progressLabel" destination="T7M-iu-1JW" id="UHP-vh-Ulw"/>
                 <outlet property="progressView" destination="Euk-76-IaC" id="tec-3c-DpT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -22,24 +24,46 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iOP-Wg-Wec">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-76-IaC">
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-76-IaC">
                             <rect key="frame" x="20" y="283" width="280" height="2"/>
                             <color key="progressTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </progressView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Поиск самых лучших билетов..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7M-iu-1JW">
                             <rect key="frame" x="20" y="252" width="280" height="23"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="JRTextColorKey" value="darkTextColor"/>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJt-xf-VCY" userLabel="Ad View Container">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JJt-xf-VCY" userLabel="Aviasales Ad View Container">
                             <rect key="frame" x="0.0" y="478" width="320" height="90"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="90" id="foc-xV-sEO"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ctl-Gp-cC5" userLabel="Appodeal Ad View Container">
+                            <rect key="frame" x="0.0" y="328" width="320" height="150"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="glB-6O-MGO">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="iphone4Constant">
+                                            <real key="value" value="150"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="iphone6PlusConstant">
+                                            <real key="value" value="180"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="iphone6Constant">
+                                            <real key="value" value="160"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="ipadConstant">
+                                            <real key="value" value="180"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
                             </constraints>
                         </view>
                     </subviews>
@@ -47,13 +71,18 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="JJt-xf-VCY" secondAttribute="trailing" id="2iI-eq-och"/>
                         <constraint firstItem="JJt-xf-VCY" firstAttribute="leading" secondItem="iOP-Wg-Wec" secondAttribute="leading" id="71F-BU-fbW"/>
-                        <constraint firstAttribute="centerY" secondItem="Euk-76-IaC" secondAttribute="centerY" id="GAX-Fs-gSj"/>
+                        <constraint firstItem="Ctl-Gp-cC5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Euk-76-IaC" secondAttribute="bottom" constant="40" id="DUz-GE-W82"/>
+                        <constraint firstAttribute="centerY" secondItem="Euk-76-IaC" secondAttribute="centerY" priority="999" id="GAX-Fs-gSj"/>
                         <constraint firstAttribute="bottom" secondItem="JJt-xf-VCY" secondAttribute="bottom" id="NDk-RK-Izu"/>
                         <constraint firstItem="Euk-76-IaC" firstAttribute="trailing" secondItem="T7M-iu-1JW" secondAttribute="trailing" id="NGm-Q1-9VK"/>
                         <constraint firstAttribute="trailing" secondItem="Euk-76-IaC" secondAttribute="trailing" constant="20" symbolic="YES" id="PLt-cI-KKu"/>
+                        <constraint firstAttribute="bottom" secondItem="Ctl-Gp-cC5" secondAttribute="bottom" priority="900" id="UWn-8E-ORG"/>
+                        <constraint firstAttribute="trailing" secondItem="Ctl-Gp-cC5" secondAttribute="trailing" id="XVr-OT-BHR"/>
                         <constraint firstItem="Euk-76-IaC" firstAttribute="leading" secondItem="iOP-Wg-Wec" secondAttribute="leading" constant="20" symbolic="YES" id="aTx-Kd-ZBj"/>
+                        <constraint firstItem="JJt-xf-VCY" firstAttribute="top" secondItem="Ctl-Gp-cC5" secondAttribute="bottom" id="eox-e7-d2s"/>
                         <constraint firstItem="Euk-76-IaC" firstAttribute="top" secondItem="T7M-iu-1JW" secondAttribute="bottom" constant="8" id="mgK-Cq-Dgt"/>
                         <constraint firstItem="Euk-76-IaC" firstAttribute="leading" secondItem="T7M-iu-1JW" secondAttribute="leading" id="wro-GO-S9s"/>
+                        <constraint firstItem="Ctl-Gp-cC5" firstAttribute="leading" secondItem="iOP-Wg-Wec" secondAttribute="leading" id="zc9-Av-lkb"/>
                     </constraints>
                 </view>
             </subviews>

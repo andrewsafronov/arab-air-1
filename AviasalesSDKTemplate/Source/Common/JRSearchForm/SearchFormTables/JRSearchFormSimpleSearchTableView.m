@@ -8,9 +8,12 @@
 #import "JRSearchFormSimpleSearchTableView.h"
 
 @interface JRSearchFormSimpleSearchTableView ()<UITableViewDelegate, UITableViewDataSource>
+
 @property (assign, nonatomic) CGSize lastObservedSize;
 @property (strong, nonatomic) NSArray *tableViewItems;
+
 @end
+
 
 @implementation JRSearchFormSimpleSearchTableView
 

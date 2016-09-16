@@ -1,9 +1,8 @@
 //
 //  JRFilterTwoThumbSliderItem.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 07/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterTwoThumbSliderItem.h"
@@ -47,13 +46,15 @@
 #pragma - mark JRFilterItemProtocol
 
 - (NSString *)tilte {
-    return NSLS(@"JR_FILTER_TRANSFER_DURATION_CELL_TITLE");
+    return NSLS(@"JR_FILTER_DELAY_DURATION");
 }
 
 - (NSAttributedString *)attributedStringValue {
     NSString *minTimeString = [DateUtil duration:self.currentMinValue durationStyle:JRDateUtilDurationLongStyle];
     NSString *maxTimeString = [DateUtil duration:self.currentMaxValue durationStyle:JRDateUtilDurationLongStyle];
-    NSString *text = [NSString stringWithFormat:@"%@ %@ \n %@ %@", NSLS(@"JR_FILTER_CELL_FROM_TEXT"), minTimeString, NSLS(@"JR_FILTER_CELL_TO_TEXT"), maxTimeString];
+    NSString *text = [NSString stringWithFormat:@"%@ %@ \n %@ %@",
+                      NSLS(@"JR_FILTER_TOTAL_DURATION_FROM"), minTimeString,
+                      NSLS(@"JR_FILTER_TOTAL_DURATION_PRIOR_UP_TO"), maxTimeString];
     
     return [[NSAttributedString alloc] initWithString:text];
 }
@@ -66,7 +67,7 @@
 #pragma - mark JRFilterItemProtocol
 
 - (NSString *)tilte {
-    return NSLS(@"JR_FILTER_ARRIVAL_CELL_TITLE");
+    return NSLS(@"JR_FILTER_ARRIVAL_TIME");
 }
 
 - (NSAttributedString *)attributedStringValue {
@@ -75,8 +76,8 @@
     NSString *minDate = [DateUtil dayMonthStringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentMinValue]];
     NSString *maxDate = [DateUtil dayMonthStringFromDate:[NSDate dateWithTimeIntervalSince1970:self.currentMaxValue]];
     NSString *text = [NSString stringWithFormat:@"%@ %@ %@ \n %@ %@ %@",
-                      NSLS(@"JR_FILTER_CELL_FROM_TEXT"), minTime, minDate,
-                      NSLS(@"JR_FILTER_CELL_TO_TEXT"), maxTime, maxDate];
+                      NSLS(@"JR_FILTER_TOTAL_TIME_FROM"), minTime, minDate,
+                      NSLS(@"JR_FILTER_TOTAL_DURATION_PRIOR_TO"), maxTime, maxDate];
     
     return [[NSAttributedString alloc] initWithString:text];
 }
@@ -93,15 +94,15 @@
 #pragma - mark JRFilterItemProtocol
 
 - (NSString *)tilte {
-    return NSLS(@"JR_FILTER_DEPARTURE_CELL_TITLE");
+    return NSLS(@"JR_FILTER_DEPARTURE_TIME");
 }
 
 - (NSAttributedString *)attributedStringValue {
     NSString *minDate = [DateUtil dateToTimeString:[NSDate dateWithTimeIntervalSince1970:self.currentMinValue]];
     NSString *maxDate = [DateUtil dateToTimeString:[NSDate dateWithTimeIntervalSince1970:self.currentMaxValue]];
     NSString *text = [NSString stringWithFormat:@"%@ %@ \n %@ %@",
-                      NSLS(@"JR_FILTER_CELL_FROM_TEXT"), minDate,
-                      NSLS(@"JR_FILTER_CELL_TO_TEXT"), maxDate];
+                      NSLS(@"JR_FILTER_TOTAL_TIME_FROM"), minDate,
+                      NSLS(@"JR_FILTER_TOTAL_DURATION_PRIOR_TO"), maxDate];
     
     return [[NSAttributedString alloc] initWithString:text];
 }

@@ -1,9 +1,8 @@
 //
 //  JRViewController.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 14/01/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRViewController.h"
@@ -11,11 +10,15 @@
 #import "JRViewController+JRScreenScene.h"
 #import "UIViewController+JRScreenSceneController.h"
 #import "UIImage+JRUIImage.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
+
 
 @interface JRViewController ()
+
 @property (weak, nonatomic) UIButton *menuButton;
+
 @end
+
 
 @implementation JRViewController
 
@@ -59,7 +62,7 @@
 
 - (void)updateBackgroundColor
 {
-	[self.view setBackgroundColor:[ColorScheme mainBackgroundColor]];
+	[self.view setBackgroundColor:[JRColorScheme mainBackgroundColor]];
 }
 
 - (void)addPopButtonToNavigationItem
@@ -69,7 +72,7 @@
                                                                  action:@selector(popAction)];
     
     UIButton *button = (UIButton *)popButton.customView;
-    [button setImage:[[button imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme darkTextColor]] forState:UIControlStateNormal];
+    [button setImage:[[button imageForState:UIControlStateNormal] imageTintedWithColor:[JRColorScheme darkTextColor]] forState:UIControlStateNormal];
     
 	[self.navigationItem setLeftBarButtonItem:popButton];
 }

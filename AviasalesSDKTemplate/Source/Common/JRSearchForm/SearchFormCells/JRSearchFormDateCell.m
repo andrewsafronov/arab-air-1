@@ -10,11 +10,10 @@
 #import "JRSearchFormDateCell.h"
 #import "UIView+JRFadeAnimation.h"
 #import "UIImage+JRUIImage.h"
-#import "ColorScheme.h"
-
-#define kJRSearchFormTravelClassCellAnimationDuration 0.1
+#import "JRColorScheme.h"
 
 @interface JRSearchFormDateCell ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
@@ -27,27 +26,23 @@
 @implementation JRSearchFormDateCell
 
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 	[super awakeFromNib];
     
 	[_buttonTitle setText:NSLS(@"JR_SEARCH_FORM_DATE_CELL_RETURN_BUTTON_TITLE")];
 }
 
-- (void)updateCell
-{
+- (void)updateCell {
 	[self setupIconImage];
 	[self updateDateLabel];
 }
 
-- (BOOL)isReturnItem
-{
+- (BOOL)isReturnItem {
     return self.item.type == JRSearchFormTableViewReturnDateItem;
 }
 
-- (void)setupIconImage
-{
-    _iconImageView.image = [UIImage imageWithColor:[ColorScheme buttonBackgroundColor]];
+- (void)setupIconImage {
+    _iconImageView.image = [UIImage imageWithColor:[JRColorScheme buttonBackgroundColor]];
     
     // TODO:
 //	UIImage *image = [UIImage imageNamed:@"JRSearchFormDirectDateIcon"];
@@ -56,8 +51,7 @@
 //                                           orientation:[self isReturnItem] ? UIImageOrientationUpMirrored : UIImageOrientationUp]];
 }
 
-- (void)updateDateLabel
-{
+- (void)updateDateLabel {
 	_button.hidden = _buttonTitle.hidden = self.item.type == JRSearchFormTableViewDirectDateItem;
     
 	NSDate *date = nil;
@@ -92,8 +86,7 @@
 	[self updatePlaceholderLabel];
 }
 
-- (void)updatePlaceholderLabel
-{
+- (void)updatePlaceholderLabel {
 	NSString *placeholderString = nil;
     
 	if (_dateLabel.text.length == 0) {
@@ -106,8 +99,7 @@
 	[_placeholderLabel setText:[placeholderString uppercaseString]];
 }
 
-- (IBAction)returnDateButtonAction:(UIButton *)sender
-{
+- (IBAction)returnDateButtonAction:(UIButton *)sender {
 	NSUInteger objectAtIndex = 1;
     
 	JRTravelSegment *travelSegment = self.searchInfo.travelSegments.count > objectAtIndex ?
@@ -120,8 +112,7 @@
 	}
 }
 
-- (void)action
-{
+- (void)action {
 	JRTravelSegment *travelSegment = nil;
 	if (self.item.type == JRSearchFormTableViewDirectDateItem) {
 		travelSegment = [self.searchInfo.travelSegments firstObject];
@@ -133,23 +124,20 @@
 	[self.item.itemDelegate selectDepartureDateForTravelSegment:travelSegment itemType:self.item.type];
 }
 
-#pragma mark accessibility container
+#pragma mark - accessibility container
 
-- (BOOL)isAccessibilityElement
-{
+- (BOOL)isAccessibilityElement {
     return NO;
 }
 
-- (NSInteger)accessibilityElementCount
-{
+- (NSInteger)accessibilityElementCount {
     if ([self isReturnItem]) {
         return 2;
     }
     return 1;
 }
 
-- (id)accessibilityElementAtIndex:(NSInteger)index
-{
+- (id)accessibilityElementAtIndex:(NSInteger)index {
     if (index == 0) {
         if (_placeholderLabel.text) {
             return _placeholderLabel;

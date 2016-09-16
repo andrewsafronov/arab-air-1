@@ -9,7 +9,7 @@
 #import "UIView+JRFadeAnimation.h"
 #import "UIImage+JRUIImage.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 #define kJRSegmentedControlDefaultTopBorderHeight 0.5
 #define kJRSegmentedControlDefaultTopBorderColor [[JRC WHITE_COLOR] colorWithAlphaComponent:0.2]
@@ -20,7 +20,7 @@
 #define kJRSegmentedControlDefaultSegmentedControlAnimationUsingSpringWithDamping 0.75
 #define kJRSegmentedControlDefaultSegmentedControlAnimationInitialSpringVelocity 1
 #define kJRSegmentedControlDefaultSegmentedControlStyle JRSegmentedControlStyleLightContent
-#define kJRSegmentedControlDefaultSegmentLabelFont [UIFont fontWithName:@"HelveticaNeue-Medium" size:18]
+#define kJRSegmentedControlDefaultSegmentLabelFontSize 18
 #define kJRSegmentedControlLightContentTitleBottomEdgeInset 2
 
 @interface JRSegmentedControl ()
@@ -61,7 +61,11 @@
 		_deselectedSegmentTextAlpha = kJRSegmentedControlDefaultNormalSegmentTextAlpha;
 		_ribbonHeight           = kJRSegmentedControlDefaultRibbonHeight;
 		_segmentedControlStyle  = kJRSegmentedControlDefaultSegmentedControlStyle;
-		_segmentLabelFont       = kJRSegmentedControlDefaultSegmentLabelFont;
+        if ([UIFont respondsToSelector:@selector(systemFontOfSize:weight:)]) {
+            _segmentLabelFont   = [UIFont systemFontOfSize:kJRSegmentedControlDefaultSegmentLabelFontSize weight:UIFontWeightMedium];
+        } else {
+            _segmentLabelFont   = [UIFont fontWithName:@"HelveticaNeue-Medium" size:kJRSegmentedControlDefaultSegmentLabelFontSize];
+        }
         
 		_ribbonTintColor        = [UIColor clearColor];
 		_segmentTitleTintColor  = [UIColor clearColor];
@@ -271,7 +275,7 @@
 	_bottomLine = [UIView new];
 	[self addSubview:_bottomLine];
 	[_bottomLine setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[_bottomLine setBackgroundColor:[ColorScheme separatorLineColor]];
+	[_bottomLine setBackgroundColor:[JRColorScheme separatorLineColor]];
     
 	_bottomBorder = [UIView new];
 	[self addSubview:_bottomBorder];

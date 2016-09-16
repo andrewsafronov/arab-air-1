@@ -14,10 +14,14 @@ typedef enum {
 	JRDatePickerModeDefault
 } JRDatePickerMode;
 
+
 @protocol JRDatePickerStateObjectActionDelegate<NSObject>
+
 @required
 -(void)dateWasSelected:(NSDate *)date;
+
 @end
+
 
 @interface JRDatePickerStateObject : NSObject
 
@@ -40,4 +44,5 @@ typedef enum {
 
 - (id)initWithDelegate:(id<JRDatePickerStateObjectActionDelegate>)delegate;
 - (void)updateSelectedDatesRange;
+
 @end

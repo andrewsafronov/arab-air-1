@@ -12,6 +12,8 @@
 
 @implementation JRSearchInfo
 
+@synthesize searchResult;
+
 - (instancetype)init {
     if (self = [super init]) {
         _adults = DEFAULT_ADULTS_COUNT;
@@ -20,16 +22,14 @@
     return self;
 }
 
-- (NSDate *)returnDateForSimpleSearch
-{
+- (NSDate *)returnDateForSimpleSearch {
     if ([self.travelSegments count] > 1) {
         return ((JRTravelSegment *)(self.travelSegments)[1]).departureDate;
     }
     return nil;
 }
 
-- (void)setReturnDateForSimpleSearch:(NSDate *)returnDateForSimpleSearch
-{
+- (void)setReturnDateForSimpleSearch:(NSDate *)returnDateForSimpleSearch {
     if ([self.travelSegments count] > 1) {
         ((JRTravelSegment *)(self.travelSegments)[1]).departureDate = returnDateForSimpleSearch;
     }
@@ -42,8 +42,7 @@
 
 #pragma mark - SearchInfo Identity
 
-- (BOOL)isDirectReturnFlight
-{
+- (BOOL)isDirectReturnFlight {
     JRTravelSegment *firstTS = self.travelSegments.firstObject;
     JRTravelSegment *secondTS = self.travelSegments.lastObject;
     if (self.travelSegments.count == 2 &&
@@ -63,8 +62,7 @@
     }
 }
 
-- (BOOL)isComplexSearch
-{
+- (BOOL)isComplexSearch {
     JRSearchInfo *searchInfo = self;
     if (searchInfo.travelSegments.count <= 1) {
         return NO;
@@ -109,8 +107,7 @@
     }
 }
 
-- (BOOL)isValidSearchInfo
-{
+- (BOOL)isValidSearchInfo {
     if (self.adults < 1 || self.adults > 9 || self.children > 9 || self.infants > 9) {
         return NO;
     }
@@ -143,7 +140,6 @@
 #pragma mark - Travel segments operations
 
 - (void)cleanUp {
-    
     NSDate *prevDate = nil;
     
     for (JRTravelSegment *travelSegment in self.travelSegments) {
@@ -171,8 +167,7 @@
     }
 }
 
-- (void)clipSearchInfoForSimpleSearchIfNeeds
-{
+- (void)clipSearchInfoForSimpleSearchIfNeeds {
     NSDate *returnDate = [self returnDateForSimpleSearch];
     JRTravelSegment *directTravelSegment = self.travelSegments.firstObject;
     
@@ -189,8 +184,7 @@
     }
 }
 
-- (void)clipSearchInfoForComplexSearchIfNeeds
-{
+- (void)clipSearchInfoForComplexSearchIfNeeds {
     for (JRTravelSegment *travelSegment in self.travelSegments) {
         if (!travelSegment.originAirport || !travelSegment.destinationAirport || !travelSegment.departureDate) {
             [self removeTravelSegmentsStartingFromTravelSegment:travelSegment];
@@ -199,8 +193,7 @@
     }
 }
 
-- (void)addTravelSegment:(JRTravelSegment *)travelSegment
-{
+- (void)addTravelSegment:(JRTravelSegment *)travelSegment {
     JRTravelSegment *prevTravelSegment = self.travelSegments.lastObject;
     NSMutableOrderedSet *travelSegments = [NSMutableOrderedSet new];
     [travelSegments addObjectsFromArray:self.travelSegments.array];
@@ -213,8 +206,7 @@
     travelSegment.searchInfo = self;
 }
 
-- (void)removeTravelSegment:(JRTravelSegment *)travelSegment
-{
+- (void)removeTravelSegment:(JRTravelSegment *)travelSegment {
     JRTravelSegment *prevTravelSegment = nil;
     if (self.adjustSearchInfo == YES) {
         prevTravelSegment = [self prevTravelSegmentForTravelSegment:travelSegment];
@@ -228,8 +220,7 @@
     travelSegment.searchInfo = nil;
 }
 
-- (void)removeTravelSegmentsStartingFromTravelSegment:(JRTravelSegment *)travelSegment
-{
+- (void)removeTravelSegmentsStartingFromTravelSegment:(JRTravelSegment *)travelSegment {
     if ([travelSegment isKindOfClass:[JRTravelSegment class]]) {
         
         NSOrderedSet *travelSegments = self.travelSegments;
@@ -248,8 +239,7 @@
 
 #pragma mark - Travel Segments Changes
 
--(void)travelSegment:(JRTravelSegment *)travelSegment didSetOriginAirport:(id<JRSDKAirport>)originAirport
-{
+- (void)travelSegment:(JRTravelSegment *)travelSegment didSetOriginAirport:(id<JRSDKAirport>)originAirport {
     if (self.adjustSearchInfo == NO) {
         return;
     }
@@ -261,8 +251,7 @@
     }
 }
 
--(void)travelSegment:(JRTravelSegment *)travelSegment didSetDestinationAirport:(id<JRSDKAirport>)destinationAirport
-{
+- (void)travelSegment:(JRTravelSegment *)travelSegment didSetDestinationAirport:(id<JRSDKAirport>)destinationAirport {
     if (self.adjustSearchInfo == NO) {
         return;
     }
@@ -279,8 +268,7 @@
     }
 }
 
--(void)travelSegment:(JRTravelSegment *)travelSegment didSetDepartureDate:(NSDate *)departureDate
-{
+- (void)travelSegment:(JRTravelSegment *)travelSegment didSetDepartureDate:(NSDate *)departureDate {
     if (self.adjustSearchInfo == NO) {
         return;
     }
@@ -298,8 +286,7 @@
     }
 }
 
-- (JRTravelSegment *)prevTravelSegmentForTravelSegment:(JRTravelSegment *)travelSegment
-{
+- (JRTravelSegment *)prevTravelSegmentForTravelSegment:(JRTravelSegment *)travelSegment {
     NSUInteger prevTravelSegmentIndex = [self.travelSegments indexOfObject:travelSegment] - 1;
     if (self.travelSegments.count > prevTravelSegmentIndex) {
         return (self.travelSegments)[prevTravelSegmentIndex];
@@ -308,8 +295,7 @@
     }
 }
 
-- (JRTravelSegment *)nextTravelSegmentForTravelSegment:(JRTravelSegment *)travelSegment
-{
+- (JRTravelSegment *)nextTravelSegmentForTravelSegment:(JRTravelSegment *)travelSegment {
     NSUInteger nextTravelSegmentIndex = [self.travelSegments indexOfObject:travelSegment] + 1;
     if (self.travelSegments.count > nextTravelSegmentIndex) {
         return (self.travelSegments)[nextTravelSegmentIndex];

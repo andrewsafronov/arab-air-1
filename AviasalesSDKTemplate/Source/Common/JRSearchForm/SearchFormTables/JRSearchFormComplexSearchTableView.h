@@ -12,4 +12,5 @@
 @property (weak, nonatomic) JRSearchFormSimpleSearchTableView *travelClassAndPassengers;
 @property (weak, nonatomic) NSLayoutConstraint *travelClassAndPassengersConstraint;
 @property (weak, nonatomic) id<JRSearchFormItemDelegate> itemDelegate;
+
 @end

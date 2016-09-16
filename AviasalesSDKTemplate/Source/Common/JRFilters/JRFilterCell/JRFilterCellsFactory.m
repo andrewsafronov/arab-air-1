@@ -1,9 +1,8 @@
 //
 //  JRFilterCellsFactory.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 23/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterCellsFactory.h"
@@ -13,6 +12,7 @@
 #import "JRFilterTwoThumbSliderItem.h"
 #import "JRFilterListHeaderItem.h"
 #import "JRFilterCheckBoxItem.h"
+#import "JRFilterListSeparatorItem.h"
 
 #import "JRTableViewCell.h"
 #import "JRFilterTravelSegmentCell.h"
@@ -20,6 +20,7 @@
 #import "JRFilterCellWithTwoThumbsSlider.h"
 #import "JRFilterCheckboxCell.h"
 #import "JRFilterListHeaderCell.h"
+#import "JRFilterListSeparatorCell.h"
 
 #import "DateUtil.h"
 
@@ -27,6 +28,7 @@ static const CGFloat kDefaultCellHeight = 50.0f;
 static const CGFloat kTravelSegmentCellHeight = 65.0f;
 static const CGFloat kSlidersCellSmallHeight = 90.0f;
 static const CGFloat kSlidersCellBigHeight = 120.0f;
+static const CGFloat kListSeparatorCellHeight = 20.0f;
 
 static const CGFloat kHeaderHeight = 20.0;
 
@@ -81,6 +83,11 @@ static const CGFloat kHeaderHeight = 20.0;
         headerItem.item = (JRFilterListHeaderItem *)item;
         
         cell = headerItem;
+    } else if ([item isKindOfClass:[JRFilterListSeparatorItem class]]) {
+        JRFilterListSeparatorCell *separatorCell = (JRFilterListSeparatorCell *)[self.tableView dequeueReusableCellWithIdentifier:@"JRFilterListSeparatorCell"];
+        separatorCell.item = (JRFilterListSeparatorItem *)item;
+        
+        cell = separatorCell;
     }
     
     return cell;
@@ -99,12 +106,14 @@ static const CGFloat kHeaderHeight = 20.0;
         height = kSlidersCellSmallHeight;
     } else if ([item isKindOfClass:[JRFilterDepartureTimeItem class]]) {
         height = kSlidersCellBigHeight;
+    } else if ([item isKindOfClass:[JRFilterListSeparatorItem class]]) {
+        height = kListSeparatorCellHeight;
     }
     
     return height;
 }
 
-- (CGFloat)heightForHeder {
+- (CGFloat)heightForHeader {
     return kHeaderHeight;
 }
 
@@ -125,6 +134,9 @@ static const CGFloat kHeaderHeight = 20.0;
     
     UINib *travelSegmentNib = [UINib nibWithNibName:@"JRFilterTravelSegmentCell" bundle:AVIASALES_BUNDLE];
     [self.tableView registerNib:travelSegmentNib forCellReuseIdentifier:@"JRFilterTravelSegmentCell"];
+    
+    UINib *listSeparatorNib = [UINib nibWithNibName:@"JRFilterListSeparatorCell" bundle:AVIASALES_BUNDLE];
+    [self.tableView registerNib:listSeparatorNib forCellReuseIdentifier:@"JRFilterListSeparatorCell"];
 }
 
 @end

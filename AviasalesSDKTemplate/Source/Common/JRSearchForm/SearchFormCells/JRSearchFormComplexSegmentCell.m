@@ -9,12 +9,11 @@
 #import "UIView+JRFadeAnimation.h"
 #import "UIImage+JRUIImage.h"
 #import "DateUtil.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
-#define kJRSearchFormComplexSegmentCellBoldFontSize 22
-#define kJRSearchFormComplexSegmentCellRegularFontSize 15
 
 @interface JRSearchFormComplexSegmentCell ()
+
 @property (weak, nonatomic) IBOutlet UIButton *originButton;
 @property (weak, nonatomic) IBOutlet UIButton *destinationButton;
 @property (weak, nonatomic) IBOutlet UIButton *departureButton;
@@ -30,28 +29,24 @@
 
 @implementation JRSearchFormComplexSegmentCell
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 	[super awakeFromNib];
 	[self updateCell];
 }
 
-- (void)setTravelSegment:(JRTravelSegment *)travelSegment
-{
+- (void)setTravelSegment:(JRTravelSegment *)travelSegment {
 	_travelSegment = travelSegment;
 	[self updateCell];
 }
 
-- (void)updateCell
-{
+- (void)updateCell {
 	[super updateCell];
     
 	[self setupLabels];
 	[self updateButtons];
 }
 
-- (void)setupLabels
-{
+- (void)setupLabels {
     JRTravelSegment *travelSegment = self.travelSegment;
 	[self setupIataLabel:_originIATALabel iata:travelSegment.originAirport.iata];
 	[self setupIataLabel:_destinationIATALabel iata:self.travelSegment.destinationAirport.iata];
@@ -60,13 +55,11 @@
 	[self setupDateLabelWithDate:self.travelSegment.departureDate];
 }
 
-- (void)setupIataLabel:(UILabel *)iataLabel iata:(NSString *)iata
-{
+- (void)setupIataLabel:(UILabel *)iataLabel iata:(NSString *)iata {
 	[iataLabel setText:[iata uppercaseString]];
 }
 
-- (void)setupAirportLabel:(UILabel *)cityLabel iata:(NSString *)iata
-{
+- (void)setupAirportLabel:(UILabel *)cityLabel iata:(NSString *)iata {
     id <JRSDKAirport> airport = [[[AviasalesSDK sharedInstance] airportsStorage] findAnythingByIATA:iata];
 	if (airport.city) {
         [cityLabel setText:[airport.city uppercaseString]];
@@ -77,8 +70,7 @@
     }
 }
 
-- (void)setupDateLabelWithDate:(NSDate *)date
-{
+- (void)setupDateLabelWithDate:(NSDate *)date {
 	NSString *yearString  = nil;
 	NSString *dateString  = nil;
     
@@ -100,9 +92,8 @@
 	[_yearLabel setText:yearString];
 }
 
-- (void)updateButtons
-{
-	UIImage *originImage = [[UIImage imageNamed:@"JRSearchFormAirportPin"] imageTintedWithColor:[ColorScheme buttonBackgroundColor]];
+- (void)updateButtons {
+	UIImage *originImage = [[UIImage imageNamed:@"JRSearchFormAirportPin"] imageTintedWithColor:[JRColorScheme buttonBackgroundColor]];
 	if (_originIATALabel.text.length > 0) {
 		[_originButton setImage:nil forState:UIControlStateNormal];
         [_originButton setImage:nil forState:UIControlStateHighlighted];
@@ -113,7 +104,7 @@
         _originButton.accessibilityLabel = [NSString stringWithFormat:@"%@: %@", NSLS(@"JR_SEARCH_FORM_COMPLEX_ORIGIN"), NSLS(@"JR_SEARCH_FORM_COMPLEX_PLACEHOLDER_AIRPORT_CELL_ACC")];
 	}
     
-	UIImage *destinationImage = [[UIImage imageNamed:@"JRSearchFormAirportPin"] imageTintedWithColor:[ColorScheme buttonBackgroundColor]];
+	UIImage *destinationImage = [[UIImage imageNamed:@"JRSearchFormAirportPin"] imageTintedWithColor:[JRColorScheme buttonBackgroundColor]];
 	if (_destinationIATALabel.text.length > 0) {
 		[_destinationButton setImage:nil forState:UIControlStateNormal];
         [_destinationButton setImage:nil forState:UIControlStateHighlighted];
@@ -124,7 +115,7 @@
         _destinationButton.accessibilityLabel = [NSString stringWithFormat:@"%@: %@", NSLS(@"JR_SEARCH_FORM_COMPLEX_DESTINATION"), NSLS(@"JR_SEARCH_FORM_COMPLEX_PLACEHOLDER_AIRPORT_CELL_ACC")];
 	}
     
-	UIImage *dapartureDateImage = [[UIImage imageNamed:@"JRSearchFormCalendarIcon"] imageTintedWithColor:[ColorScheme buttonBackgroundColor]];
+	UIImage *dapartureDateImage = [[UIImage imageNamed:@"JRSearchFormCalendarIcon"] imageTintedWithColor:[JRColorScheme buttonBackgroundColor]];
 	if (_dateLabel.text.length > 0) {
 		[_departureButton setImage:nil forState:UIControlStateNormal];
         [_departureButton setImage:nil forState:UIControlStateHighlighted];
@@ -136,23 +127,19 @@
 	}
 }
 
-- (IBAction)selectOriginAirport:(id)sender
-{
+- (IBAction)selectOriginAirport:(id)sender {
 	[self.item.itemDelegate selectOriginIATAForTravelSegment:self.travelSegment itemType:self.item.type];
 }
 
-- (IBAction)selectDestinationAirport:(id)sender
-{
+- (IBAction)selectDestinationAirport:(id)sender {
 	[self.item.itemDelegate selectDestinationIATAForTravelSegment:self.travelSegment itemType:self.item.type];
 }
 
-- (IBAction)selectDepartureDate:(id)sender
-{
+- (IBAction)selectDepartureDate:(id)sender {
 	[self.item.itemDelegate selectDepartureDateForTravelSegment:self.travelSegment itemType:self.item.type];
 }
 
-- (BOOL)shouldGroupAccessibilityChildren
-{
+- (BOOL)shouldGroupAccessibilityChildren {
     return NO;
 }
 

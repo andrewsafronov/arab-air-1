@@ -12,7 +12,7 @@
 #import "UIImage+JRUIImage.h"
 #import "JRViewController+JRScreenScene.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 #define kJRScreenSceneAnimationDamping          0.8
 #define kJRScreenSceneAnimationDuration         0.4
@@ -27,7 +27,7 @@
 #define kJRScreenSceneTitleFontSize                 17
 #define kJRScreenSceneTopMargin                 0
 #define kJRScreenSceneScrollViewContentTopMargin    110
-#define JRScreenSceneShadowLineHeight 4
+#define JRScreenSceneShadowLineSize 2
 
 @interface JRScreenScene ()<UIGestureRecognizerDelegate>
 
@@ -47,14 +47,14 @@
 @property (strong, nonatomic) UIView *accessoryView;
 @property (strong, nonatomic) UINavigationBar *mainViewBar;
 @property (strong, nonatomic) UINavigationBar *accessoryViewBar;
+@property (assign, nonatomic) NSTimeInterval currentAnimationDuration;
 @end
 
 @implementation JRScreenScene
 
 - (id)initWithViewController:(UIViewController *)viewController
                portraitWidth:(CGFloat)firstPortraitWidth
-              landscapeWidth:(CGFloat)firstLandscapeWidth
-{
+              landscapeWidth:(CGFloat)firstLandscapeWidth {
 	self = [super init];
 	if (self) {
         
@@ -71,18 +71,18 @@
 }
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
 	[super viewDidLoad];
     
-    self.view.backgroundColor = [ColorScheme mainBackgroundColor];
+    self.view.backgroundColor = [JRColorScheme mainBackgroundColor];
     
 	[self attachMainViewController];
 	if (_accessoryViewController) {
         [self attachAccessoryViewController:_accessoryViewController
                               portraitWidth:_accessoryPortraitViewWidth
                              landscapeWidth:_accessoryViewWidth
-                             exclusiveFocus:_accessoryExclusiveFocus animated:NO];	}
+                             exclusiveFocus:_accessoryExclusiveFocus animated:NO];
+    }
     
 	_sceneTapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
 	[_sceneTapGestureRecognizer setDelegate:self];
@@ -90,8 +90,7 @@
 	[self.view addGestureRecognizer:_sceneTapGestureRecognizer];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[self updateConstraintsForInterfaceOrientation:self.interfaceOrientation animated:NO];
 }
@@ -105,8 +104,7 @@
 	}
 }
 
-- (NSArray *)subviews
-{
+- (NSArray *)subviews {
 	NSMutableArray *subviews = [[NSMutableArray alloc] init];
 	for (UIView *view in self.view.subviews) {
 		if (view == _mainView ||
@@ -117,8 +115,7 @@
 	return subviews;
 }
 
-- (UIView *)viewByGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-{
+- (UIView *)viewByGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer {
 	NSArray *subviews = [[[self subviews] reverseObjectEnumerator] allObjects];
 	for (UIView *view in subviews) {
 		CGPoint location = [gestureRecognizer locationInView:view];
@@ -129,8 +126,7 @@
 	return nil;
 }
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 	UIView *view = [self viewByGestureRecognizer:gestureRecognizer];
 	if (view == _mainView) {
 		if (_accessoryViewController && _accessoryExclusiveFocus) {
@@ -152,14 +148,12 @@ static void * JRAccessoryViewFrameChangeContext = &JRAccessoryViewFrameChangeCon
 static BOOL observeingMainFrame = NO;
 static BOOL observeingAccessoryFrame = NO;
 
-- (void)dealloc
-{
+- (void)dealloc {
 	[_mainView removeObserver:self forKeyPath:@"bounds" context:JRMainViewFrameChangeContext];
 	[_accessoryView removeObserver:self forKeyPath:@"bounds" context:JRAccessoryViewFrameChangeContext];
 }
 
-- (void)removeMainViewController
-{
+- (void)removeMainViewController {
 	[_mainViewBar removeFromSuperview];
 	_mainViewBar = nil;
     
@@ -170,15 +164,12 @@ static BOOL observeingAccessoryFrame = NO;
 	[self deleteChildViewController:_mainViewController];
 }
 
-- (void)reattachMainViewController
-{
+- (void)reattachMainViewController {
 	[self removeMainViewController];
 	[self attachMainViewController];
 }
 
-- (void)attachMainViewController
-{
-    
+- (void)attachMainViewController {
 	_mainView = [UIView new];
 	[_mainView setClipsToBounds:NO];
 	[_mainView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -195,7 +186,7 @@ static BOOL observeingAccessoryFrame = NO;
 	[self addMotionEffectsToView:_mainView];
     
     
-	[self shadowPathMakeForScrollView:_mainView boundsView:_mainViewController.view];
+	[self shadowPathMakeForScrollView:_mainView boundsView:_mainViewController.view duration:0];
 	[self addLayerEffectsToView:_mainViewController.view];
 }
 
@@ -203,16 +194,14 @@ static BOOL observeingAccessoryFrame = NO;
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
-                       context:(void *)context
-{
-    
+                       context:(void *)context {
 	if (context == JRMainViewFrameChangeContext && !observeingMainFrame) {
 		observeingMainFrame = YES;
         
 		CGRect newMainContainerFrame = CGRectMake(0, kJRScreenSceneScrollViewContentTopMargin, _mainView.bounds.size.width, _mainView.bounds.size.height - kJRScreenSceneScrollViewContentTopMargin);
         
 		[_mainViewController.view setFrame:newMainContainerFrame];
-		[self shadowPathMakeForScrollView:_mainView boundsView:_mainViewController.view];
+		[self shadowPathMakeForScrollView:_mainView boundsView:_mainViewController.view duration:self.currentAnimationDuration];
         
 		observeingMainFrame = NO;
         
@@ -224,7 +213,7 @@ static BOOL observeingAccessoryFrame = NO;
 		CGRect newAccessotyContainerFrame = CGRectMake(0, kJRScreenSceneScrollViewContentTopMargin, _accessoryView.bounds.size.width, _accessoryView.bounds.size.height - kJRScreenSceneScrollViewContentTopMargin);
         
 		[_accessoryViewController.view setFrame:newAccessotyContainerFrame];
-		[self shadowPathMakeForScrollView:_accessoryView boundsView:_accessoryViewController.view];
+		[self shadowPathMakeForScrollView:_accessoryView boundsView:_accessoryViewController.view duration:self.currentAnimationDuration];
         
 		observeingAccessoryFrame = NO;
         
@@ -242,8 +231,7 @@ static BOOL observeingAccessoryFrame = NO;
                         portraitWidth:(CGFloat)secondPortraitWidth
                        landscapeWidth:(CGFloat)secondLandscapeWidth
                        exclusiveFocus:(BOOL)exclusiveFocus
-                             animated:(BOOL)animated
-{
+                             animated:(BOOL)animated {
     if (_accessoryViewController == viewController) {
         return;
     }
@@ -291,14 +279,12 @@ static BOOL observeingAccessoryFrame = NO;
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:animated];
     
     
-	[self shadowPathMakeForScrollView:_accessoryView boundsView:_accessoryViewController.view];
+	[self shadowPathMakeForScrollView:_accessoryView boundsView:_accessoryViewController.view duration:0];
     
 	[self addLayerEffectsToView:_accessoryViewController.view];
 }
 
-- (void)createNavigationBarForViewController:(UIViewController *)viewController
-{
-    
+- (void)createNavigationBarForViewController:(UIViewController *)viewController {
 	UINavigationBar *navigationBar = [[UINavigationBar alloc] init];
     [navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
@@ -327,7 +313,7 @@ static BOOL observeingAccessoryFrame = NO;
         
         NSDictionary *titleTextAttributes = @{
                                               NSFontAttributeName : font,
-                                              NSForegroundColorAttributeName : [ColorScheme darkTextColor]
+                                              NSForegroundColorAttributeName : [JRColorScheme darkTextColor]
                                               };
 		[navigationBar setTitleTextAttributes:titleTextAttributes];
         
@@ -342,8 +328,7 @@ static BOOL observeingAccessoryFrame = NO;
 	}
 }
 
-- (void)addMotionEffectsToView:(UIView *)view
-{
+- (void)addMotionEffectsToView:(UIView *)view {
 	for (UIMotionEffect *effect in view.motionEffects.copy) {
 		[view removeMotionEffect:effect];
 	}
@@ -354,50 +339,40 @@ static BOOL observeingAccessoryFrame = NO;
     
 }
 
-- (void)addLayerEffectsToView:(UIView *)view
-{
+- (void)addLayerEffectsToView:(UIView *)view {
 	[view.layer setMasksToBounds:YES];
 	[view.layer setCornerRadius:kJRScreenSceneDefaultRadius];
-    
 }
 
-
-- (void)setFocusToMainViewAnimated:(BOOL)animated
-{
+- (void)setFocusToMainViewAnimated:(BOOL)animated {
 	[self.view bringSubviewToFront:_mainView];
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:animated];
 }
 
-- (void)setFocusToAccessoryViewAnimated:(BOOL)animated
-{
+- (void)setFocusToAccessoryViewAnimated:(BOOL)animated {
 	[self.view bringSubviewToFront:_accessoryView];
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:animated];
 }
 
-- (void)setAccessoryExclusiveFocus:(BOOL)accessoryExclusiveFocus
-{
+- (void)setAccessoryExclusiveFocus:(BOOL)accessoryExclusiveFocus {
 	_accessoryExclusiveFocus = accessoryExclusiveFocus;
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:YES];
 }
 
-- (void)setDimWhenUnfocused:(BOOL)dimWhenUnfocused
-{
+- (void)setDimWhenUnfocused:(BOOL)dimWhenUnfocused {
 	_dimWhenUnfocused = dimWhenUnfocused;
 	[self showOverlayIfNeedsForInterfaceOrientation:self.interfaceOrientation animated:YES];
 }
 
-- (BOOL)isAccessoryViewIsFocused
-{
+- (BOOL)isAccessoryViewIsFocused {
 	return [self subviews].lastObject == _accessoryView;
 }
 
-- (void)detachAccessoryViewControllerAnimated:(BOOL)animated
-{
+- (void)detachAccessoryViewControllerAnimated:(BOOL)animated {
 	[self detachAccessoryViewControllerAnimated:animated updateFocus:YES];
 }
 
-- (void)detachAccessoryViewControllerAnimated:(BOOL)animated updateFocus:(BOOL)updateFocus
-{
+- (void)detachAccessoryViewControllerAnimated:(BOOL)animated updateFocus:(BOOL)updateFocus {
 	if (_accessoryViewController) {
         
         if ([_mainViewController respondsToSelector:@selector(accessoryWillDetach)]) {
@@ -433,8 +408,7 @@ static BOOL observeingAccessoryFrame = NO;
 	}
 }
 
-- (void)removeAccessoryViewController
-{
+- (void)removeAccessoryViewController {
 	[_accessoryViewBar removeFromSuperview];
 	_accessoryViewBar = nil;
     
@@ -449,9 +423,7 @@ static BOOL observeingAccessoryFrame = NO;
 	[self setMainChildConstraintsToCenterWithInterfaceOrientation:self.interfaceOrientation];
 }
 
-- (void)setMainChildConstraintsToLeftWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    
+- (void)setMainChildConstraintsToLeftWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	if (_mainView.superview != self.view) {
 		return;
 	} else if ([_mainViewConstraints isKindOfClass:[NSArray class]]) {
@@ -484,9 +456,7 @@ static BOOL observeingAccessoryFrame = NO;
 	[self.view addConstraints:_mainViewConstraints];
 }
 
-- (void)setMainChildConstraintsToCenterWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    
+- (void)setMainChildConstraintsToCenterWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	if (_mainView.superview != self.view) {
 		return;
 	} else if ([_mainViewConstraints isKindOfClass:[NSArray class]]) {
@@ -508,9 +478,7 @@ static BOOL observeingAccessoryFrame = NO;
 	[self.view addConstraints:_mainViewConstraints];
 }
 
-- (void)setSecondChildConstraintsToRightWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    
+- (void)setSecondChildConstraintsToRightWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	if (_accessoryView.superview != self.view) {
 		return;
 	} else if ([_accessoryViewConstraints isKindOfClass:[NSArray class]]) {
@@ -538,8 +506,7 @@ static BOOL observeingAccessoryFrame = NO;
 	[self.view addConstraints:_accessoryViewConstraints];
 }
 
-- (void)setSecondChildConstraintsToNowhereWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (void)setSecondChildConstraintsToNowhereWithInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	if (_accessoryView.superview != self.view) {
 		return;
 	} else if ([_accessoryViewConstraints isKindOfClass:[NSArray class]]) {
@@ -561,8 +528,7 @@ static BOOL observeingAccessoryFrame = NO;
 }
 
 
-- (void)updateConstraintsForInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation animated:(BOOL)animated
-{
+- (void)updateConstraintsForInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation animated:(BOOL)animated {
 	[self showOverlayIfNeedsForInterfaceOrientation:toInterfaceOrientation animated:animated];
 	if (_accessoryViewController) {
 		[self setMainChildConstraintsToLeftWithInterfaceOrientation:toInterfaceOrientation];
@@ -571,8 +537,8 @@ static BOOL observeingAccessoryFrame = NO;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-                                duration:(NSTimeInterval)duration
-{
+                                duration:(NSTimeInterval)duration {
+    self.currentAnimationDuration = duration;
     [UIView animateWithDuration:duration delay:kNilOptions options:UIViewAnimationOptionOverrideInheritedOptions animations:^{
          [self updateConstraintsForInterfaceOrientation:toInterfaceOrientation animated:YES];
     } completion:NULL];
@@ -580,9 +546,7 @@ static BOOL observeingAccessoryFrame = NO;
     
 
 - (BOOL)showOverlayIfNeedsForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-                                         animated:(BOOL)animated
-{
-    
+                                         animated:(BOOL)animated {
     BOOL portraitCompatible = _mainViewWidth != _mainPortraitViewWidth || _accessoryViewWidth != _accessoryPortraitViewWidth;
 	if ((_accessoryViewController &&  (_accessoryExclusiveFocus || _dimWhenUnfocused)) ||
 	    (!portraitCompatible && _accessoryViewController && !_accessoryExclusiveFocus && !_dimWhenUnfocused && UIInterfaceOrientationIsPortrait(interfaceOrientation))) {
@@ -613,35 +577,17 @@ static BOOL observeingAccessoryFrame = NO;
 	}
 }
 
-- (void)shadowPathMakeForScrollView:(UIView *)view boundsView:(UIView *)boundsView
-{
-    
+- (void)shadowPathMakeForScrollView:(UIView *)view boundsView:(UIView *)boundsView duration:(NSTimeInterval)animationDuration {
 	[view.layer setShadowRadius:kJRScreenSceneDefaultShadowRadius];
-	[view.layer setShadowOffset:CGSizeMake(0, 2)];
+    [view.layer setShadowOffset:(CGSize){0, 2}];
 	[view.layer setShadowOpacity:1];
-	[view.layer setShadowColor:[[ColorScheme iPadSceneShadowColor] CGColor]];
-    
-	UIBezierPath *path = [UIBezierPath new];
-    
-	CGFloat lineHeight = JRScreenSceneShadowLineHeight;
-    
-	CGRect viewBounds = CGRectMake(boundsView.bounds.origin.x, boundsView.bounds.origin.y + kJRScreenSceneScrollViewContentTopMargin, view.frame.size.width, view.frame.size.height);
-    
-	[path moveToPoint:CGPointMake(viewBounds.origin.x, viewBounds.origin.y)];
-	[path addLineToPoint:CGPointMake(viewBounds.size.width, viewBounds.origin.y)];
-	[path addLineToPoint:CGPointMake(viewBounds.size.width, viewBounds.size.height)];
-    
-	[path addLineToPoint:CGPointMake(viewBounds.origin.x, viewBounds.size.height)];
-	[path addLineToPoint:CGPointMake(viewBounds.origin.x, viewBounds.origin.y + lineHeight)];
-	[path addLineToPoint:CGPointMake(viewBounds.origin.x + lineHeight, viewBounds.origin.y + lineHeight)];
-	[path addLineToPoint:CGPointMake(viewBounds.origin.x + lineHeight, viewBounds.size.height - lineHeight)];
-	[path addLineToPoint:CGPointMake(viewBounds.size.width - lineHeight, viewBounds.size.height - lineHeight)];
-	[path addLineToPoint:CGPointMake(viewBounds.size.width - lineHeight, viewBounds.origin.y + lineHeight)];
-	[path addLineToPoint:CGPointMake(viewBounds.origin.x, viewBounds.origin.y + lineHeight)];
-    
-	CGPathRef newPath = path.CGPath;
-    
-	view.layer.shadowPath = newPath;
+	[view.layer setShadowColor:[JRColorScheme iPadSceneShadowColor].CGColor];
+
+    UIBezierPath *const path = [self createShadowPathForFrame:boundsView.frame];
+    CABasicAnimation *const shadowAnimation = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
+    shadowAnimation.toValue = (__bridge id _Nullable)(path.CGPath);
+    shadowAnimation.duration = animationDuration;
+    [view.layer addAnimation:shadowAnimation forKey:@"shadowAnimation"];
 }
 
 - (CGFloat)mainViewWidthForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -650,6 +596,12 @@ static BOOL observeingAccessoryFrame = NO;
 
 - (CGFloat)accessoryViewWidthForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return UIInterfaceOrientationIsLandscape(interfaceOrientation) ? _accessoryViewWidth : _accessoryPortraitViewWidth;
+}
+
+- (UIBezierPath *)createShadowPathForFrame:(CGRect)frame {
+    const CGRect viewBounds = CGRectInset(frame, -JRScreenSceneShadowLineSize, -JRScreenSceneShadowLineSize);
+    return [UIBezierPath bezierPathWithRoundedRect:viewBounds
+                                      cornerRadius:kJRScreenSceneDefaultRadius];
 }
 
 @end

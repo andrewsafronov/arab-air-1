@@ -1,28 +1,32 @@
 //
 //  JRAirportPickerCellWithAirport.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 31/01/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRAirportPickerCellWithAirport.h"
 #import "JRSearchInfoUtils.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 #import "JRAirport+LocalizedName.h"
 
+static const CGFloat kIATAFontSize = 15;
+
 @interface JRAirportPickerCellWithAirport ()
+
 @property (weak, nonatomic) IBOutlet UILabel *cityAirportLabel;
 @property (weak, nonatomic) IBOutlet UILabel *iataCodeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countryLabel;
 
 @end
 
 @implementation JRAirportPickerCellWithAirport
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [super awakeFromNib];
-    [self setAirport:_airport];
+    
+    self.cityAirportLabel.textColor = [JRColorScheme darkTextColor];
+    self.iataCodeLabel.textColor = [JRColorScheme darkTextColor];
 }
 
 - (void)setAirport:(id<JRSDKAirport>)airport
@@ -37,10 +41,10 @@
 {
     NSString *iataString = [_airport.iata uppercaseString];
     
-    NSRange anyAirportRange = [_cityAirportLabel.attributedText.string.uppercaseString
+    NSRange anyAirportRange = [self.iataCodeLabel.attributedText.string.uppercaseString
                                rangeOfString:NSLS(@"JR_ANY_AIRPORT").uppercaseString options:NSCaseInsensitiveSearch];
     
-    UIColor *iataLabelColor = anyAirportRange.location != NSNotFound ? [ColorScheme darkTextColor] : [ColorScheme lightTextColor];
+    UIColor *iataLabelColor = anyAirportRange.location != NSNotFound ? [JRColorScheme darkTextColor] : [JRColorScheme lightTextColor];
     
     NSMutableAttributedString *attIataString;
     
@@ -61,25 +65,20 @@
             
             NSRange iataRangeOfSearchString = [searchStringComponent rangeOfString:iataString
                                                                            options:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch ];
-            
-            NSString *fontName = iataRangeOfSearchString.location != NSNotFound ? @"HelveticaNeue-Bold" : @"HelveticaNeue-Medium";
-            UIFont *font = [UIFont fontWithName:fontName size:15];
+            UIFont *font = iataRangeOfSearchString.location != NSNotFound ? [UIFont boldSystemFontOfSize:kIATAFontSize] : [UIFont systemFontOfSize:kIATAFontSize];
             
             [attIataString addAttribute:NSFontAttributeName value:font range:range];
         }
-        
-        
     }
     
     [_iataCodeLabel setAttributedText:attIataString];
     
 }
 
-- (void)setupAirportLabel
-{
-    NSString *cityString = [_airport.city uppercaseString];
+- (void)setupAirportLabel {
+    NSString *cityString = _airport.city;
     NSString *airportNameString = [JRAirport localizedNameForAirport:_airport];
-    NSString *countryNameString = [_airport.country uppercaseString];
+    NSString *countryNameString = _airport.country;
     
     NSMutableString *airportCountryString = [[NSMutableString alloc] init];
     if (airportNameString.length > 0) {
@@ -91,41 +90,9 @@
         }
         [airportCountryString appendString:countryNameString];
     }
-    
-    NSMutableAttributedString *airportCountryAttString = [[NSMutableAttributedString alloc]
-                                                          initWithString:airportCountryString];
-    
-    NSMutableAttributedString *labelAttributedString = [NSMutableAttributedString new];
-    if (cityString.length > 0) {
-        NSMutableAttributedString *cityAttributedString = [[NSMutableAttributedString alloc]
-                                                           initWithString:cityString];
-        NSRange range = NSMakeRange(0, cityString.length);
-        UIColor *color = [ColorScheme darkTextColor];
-        UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:13];
-        [cityAttributedString addAttribute:NSFontAttributeName value:font range:range];
-        [cityAttributedString addAttribute:NSForegroundColorAttributeName value:color range:range];
-        [labelAttributedString appendAttributedString:cityAttributedString];
-    }
-    if (airportCountryAttString.length && labelAttributedString.length > 0) {
-        NSAttributedString *nString = [[NSAttributedString alloc] initWithString:@"\n"];
-        [labelAttributedString appendAttributedString:nString];
-    }
-    if (airportCountryAttString.length) {
-        NSRange range = NSMakeRange(0, airportCountryAttString.length);
-        UIColor *color = [ColorScheme darkTextColor];
-        UIFont *font = [UIFont fontWithName:@"HelveticaNeue" size:9];
-        [airportCountryAttString addAttribute:NSFontAttributeName value:font range:range];
-        [airportCountryAttString addAttribute:NSForegroundColorAttributeName value:color range:range];
-        [labelAttributedString appendAttributedString:airportCountryAttString];
-    }
-    
-    NSString *labelString = [labelAttributedString string];
-    NSArray *searchStringsArray = [_searchString componentsSeparatedByString:@" "];
-    for (NSString *searchStringComponent in searchStringsArray) {
-        NSRange range = [labelString rangeOfString:[searchStringComponent uppercaseString] options:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch ];
-        [labelAttributedString addAttribute:NSForegroundColorAttributeName value:[ColorScheme darkTextColor] range:range];
-    }
-    [_cityAirportLabel setAttributedText:labelAttributedString];
+
+    self.cityAirportLabel.text = cityString;
+    self.countryLabel.text = airportCountryString;
 }
 
 @end

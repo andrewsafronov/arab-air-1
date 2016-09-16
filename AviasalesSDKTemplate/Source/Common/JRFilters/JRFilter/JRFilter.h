@@ -1,9 +1,8 @@
 //
 //  JRFilter.h
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 31/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterTask.h"
@@ -40,7 +39,7 @@
 
 @property (nonatomic, weak) id <JRFilterDelegate> delegate;
 
-- (instancetype)initWithSearchResults:(id<JRSDKSearchResult>)searchResults withSearchInfo:(id<JRSDKSearchInfo>)searchInfo;
+- (instancetype)initWithTickets:(NSOrderedSet<id<JRSDKTicket>> *)tiickets searchInfo:(id<JRSDKSearchInfo>)searchInfo;
 
 - (void)resetAllBounds;
 - (void)resetFilterBoundsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment;

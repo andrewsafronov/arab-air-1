@@ -1,11 +1,9 @@
 //
 //  JRFilterItemsFactory.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 23/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
-
 #import "JRFilterItemsFactory.h"
 
 #import "JRFilterItemProtocol.h"
@@ -14,6 +12,7 @@
 #import "JRFilterTravelSegmentItem.h"
 #import "JRFilterCheckBoxItem.h"
 #import "JRFilterListHeaderItem.h"
+#import "JRFilterListSeparatorItem.h"
 
 #import "JRFilter.h"
 #import "JRFilterTicketBounds.h"
@@ -41,12 +40,12 @@
 - (NSArray *)createSectionsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
     NSMutableArray *sections = [NSMutableArray array];
     
-    NSArray<id<JRFilterItemProtocol>> *stopoversItems = [self createStopoverItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *stopoversItems = [self createStopoverItemsForFirstTravelSegment:travelSegment lastTravelSegment:nil];
     if (stopoversItems.count > 0) {
         [sections addObject:stopoversItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *durationsItems = [self createDurationsItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *durationsItems = [self createDurationsItemsForFirstTravelSegment:travelSegment lastTravelSegment:nil];
     if (durationsItems.count > 0) {
         [sections addObject:durationsItems];
     }
@@ -56,17 +55,17 @@
         [sections addObject:timesItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *airlinesItems = [self createAirlinesItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *airlinesItems = [self createAirlinesItemsForFirstTravelSegment:travelSegment lastTravelSegment:nil];
     if (airlinesItems.count > 0) {
         [sections addObject:airlinesItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *alliancesItems = [self createAlliancesItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *alliancesItems = [self createAlliancesItemsForFirstTravelSegment:travelSegment lastTravelSegment:nil];
     if (alliancesItems.count > 0) {
         [sections addObject:alliancesItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *airportsItems = [self createAirportsItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *airportsItems = [self createAirportsItemsForFirstTravelSegment:travelSegment lastTravelSegment:nil];
     if (airportsItems.count > 0) {
         [sections addObject:airportsItems];
     }
@@ -103,10 +102,11 @@
 }
 
 - (NSArray *)createSectionsForSimpleMode {
-    id<JRSDKTravelSegment> travelSegment = self.filter.travelSegmentsBounds.firstObject.travelSegment;
     NSMutableArray *sections = [NSMutableArray array];
+    id<JRSDKTravelSegment> firstTravelSegment = self.filter.travelSegmentsBounds.firstObject.travelSegment;
+    id<JRSDKTravelSegment> lastTravelSegment = (self.filter.travelSegmentsBounds.count > 1) ? self.filter.travelSegmentsBounds.lastObject.travelSegment : nil;
     
-    NSArray<id<JRFilterItemProtocol>> *stopoversItems = [self createStopoverItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *stopoversItems = [self createStopoverItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
     if (stopoversItems.count > 0) {
         [sections addObject:stopoversItems];
     }
@@ -116,35 +116,34 @@
         [sections addObject:priceItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *durationsItems = [self createDurationsItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *durationsItems = [self createDurationsItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
     if (durationsItems.count > 0) {
         [sections addObject:durationsItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *timesToItems = [self createDepartureArrivalItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *timesToItems = [self createDepartureArrivalItemsForTravelSegment:firstTravelSegment];
     if (timesToItems.count > 0) {
         [sections addObject:timesToItems];
     }
     
-    if (self.filter.travelSegmentsBounds.count > 0) {
-        id<JRSDKTravelSegment> fromTravelSegment = self.filter.travelSegmentsBounds.lastObject.travelSegment;
-        NSArray<id<JRFilterItemProtocol>> *timesFromItems = [self createDepartureArrivalItemsForTravelSegment:fromTravelSegment];
+    if (lastTravelSegment) {
+        NSArray<id<JRFilterItemProtocol>> *timesFromItems = [self createDepartureArrivalItemsForTravelSegment:lastTravelSegment];
         if (timesFromItems.count > 0) {
             [sections addObject:timesFromItems];
         }
     }
     
-    NSArray<id<JRFilterItemProtocol>> *airlinesItems = [self createAirlinesItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *airlinesItems = [self createAirlinesItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
     if (airlinesItems.count > 0) {
         [sections addObject:airlinesItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *alliancesItems = [self createAlliancesItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *alliancesItems = [self createAlliancesItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
     if (alliancesItems.count > 0) {
         [sections addObject:alliancesItems];
     }
     
-    NSArray<id<JRFilterItemProtocol>> *airportsItems = [self createAirportsItemsForTravelSegment:travelSegment];
+    NSArray<id<JRFilterItemProtocol>> *airportsItems = [self createAirportsItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
     if (airportsItems.count > 0) {
         [sections addObject:airportsItems];
     }
@@ -171,7 +170,7 @@
                                                              currentValue:bounds.filterPrice];
     
     typeof(item) __weak weakItem = item;
-    item.filterAction = ^() {
+    item.filterAction = ^{
         bounds.filterPrice = weakItem.currentValue;
     };
     
@@ -202,7 +201,7 @@
             item.selected = [bounds.filterGates containsObject:gate];
             
             typeof(item) __weak weakItem = item;
-            item.filterAction = ^() {
+            item.filterAction = ^{
                 NSMutableOrderedSet<id<JRSDKGate>> *gates = [bounds.filterGates mutableCopy];
                 if (!weakItem.selected && [gates containsObject:gate]) {
                     [gates removeObject:gate];
@@ -233,7 +232,7 @@
             item.selected = [bounds.filterPaymentMethods containsObject:paymentMethod];
             
             typeof(item) __weak weakItem = item;
-            item.filterAction = ^() {
+            item.filterAction = ^{
                 NSMutableOrderedSet<id<JRSDKPaymentMethod>> *paymentMethods = [bounds.filterPaymentMethods mutableCopy];
                 if (!weakItem.selected && [paymentMethods containsObject:paymentMethod]) {
                     [paymentMethods removeObject:paymentMethod];
@@ -251,24 +250,42 @@
     return [items copy];
 }
 
-- (NSArray<id<JRFilterItemProtocol>> *)createStopoverItemsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
+- (NSArray<id<JRFilterItemProtocol>> *)createStopoverItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
     NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
-    JRFilterTravelSegmentBounds *travelSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:travelSegment];
+    JRFilterTravelSegmentBounds *firstSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:firstTravelSegment];
+    JRFilterTravelSegmentBounds *lastSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:lastTravelSegment];
     
-    if (travelSegmentBounds.transfersCounts.count > 1) {
-        for (NSNumber *transfersCount in travelSegmentBounds.transfersCounts) {
-            JRFilterStopoverItem *item = [[JRFilterStopoverItem alloc] initWithStopoverCount:transfersCount.integerValue];
-            item.selected = [travelSegmentBounds.filterTransfersCounts containsObject:transfersCount];
+    NSMutableOrderedSet<NSNumber *> *transfersCounts = [firstSegmentBounds.transfersCounts mutableCopy];
+    NSMutableOrderedSet<NSNumber *> *filterTransfersCounts = [firstSegmentBounds.filterTransfersCounts mutableCopy];
+    NSMutableDictionary<NSNumber *, NSNumber *> *transfersCountsWitnMinPrice = [firstSegmentBounds.transfersCountsWitnMinPrice mutableCopy];
+    if (lastSegmentBounds) {
+        [transfersCounts unionOrderedSet:lastSegmentBounds.transfersCounts];
+        [filterTransfersCounts unionOrderedSet:lastSegmentBounds.filterTransfersCounts];
+        
+        [lastSegmentBounds.transfersCountsWitnMinPrice enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
+            NSNumber *curMinPrice = transfersCountsWitnMinPrice[key];
+            if (!curMinPrice || obj.floatValue > curMinPrice.floatValue) {
+                transfersCountsWitnMinPrice[key] = obj;
+            }
+        }];
+    }
+    
+    if (transfersCounts.count > 1) {
+        for (NSNumber *transfersCount in transfersCounts) {
+            CGFloat minPrice = transfersCountsWitnMinPrice[transfersCount].floatValue;
+            JRFilterStopoverItem *item = [[JRFilterStopoverItem alloc] initWithStopoverCount:transfersCount.integerValue minPrice:minPrice];
+            item.selected = [filterTransfersCounts containsObject:transfersCount];
             
             typeof(item) __weak weakItem = item;
-            item.filterAction = ^() {
-                NSMutableOrderedSet<NSNumber *> *transfersCounts = [travelSegmentBounds.filterTransfersCounts mutableCopy];
-                if (!weakItem.selected && [transfersCounts containsObject:transfersCount]) {
-                    [transfersCounts removeObject:transfersCount];
-                    travelSegmentBounds.filterTransfersCounts = [transfersCounts copy];
-                } else if (weakItem.selected && ![transfersCounts containsObject:transfersCount]) {
-                    [transfersCounts addObject:transfersCount];
-                    travelSegmentBounds.filterTransfersCounts = [transfersCounts copy];
+            item.filterAction = ^{
+                if (!weakItem.selected && [filterTransfersCounts containsObject:transfersCount]) {
+                    [filterTransfersCounts removeObject:transfersCount];
+                    firstSegmentBounds.filterTransfersCounts = [filterTransfersCounts copy];
+                    lastSegmentBounds.filterTransfersCounts = [filterTransfersCounts copy];
+                } else if (weakItem.selected && ![filterTransfersCounts containsObject:transfersCount]) {
+                    [filterTransfersCounts addObject:transfersCount];
+                    firstSegmentBounds.filterTransfersCounts = [filterTransfersCounts copy];
+                    lastSegmentBounds.filterTransfersCounts = [filterTransfersCounts copy];
                 }
             };
             
@@ -279,79 +296,135 @@
     return items;
 }
 
-- (NSArray<id<JRFilterItemProtocol>> *)createDurationsItemsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
-    JRFilterTravelSegmentBounds *travelSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:travelSegment];
-    JRFilterTotalDurationItem *totalDurationItem = [[JRFilterTotalDurationItem alloc] initWithMinValue:travelSegmentBounds.minTotalDuration
-                                                                                              maxValue:travelSegmentBounds.maxTotalDuration
-                                                                                          currentValue:travelSegmentBounds.filterTotalDuration];
+- (NSArray<id<JRFilterItemProtocol>> *)createDurationsItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
+    NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
+    JRFilterTravelSegmentBounds *firstSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:firstTravelSegment];
+    JRFilterTravelSegmentBounds *lastSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:lastTravelSegment];
     
-    typeof(totalDurationItem) __weak weakTotalDurationItem = totalDurationItem;
-    totalDurationItem.filterAction = ^() {
-        travelSegmentBounds.filterTotalDuration = weakTotalDurationItem.currentValue;
-    };
+    JRSDKFlightDuration minTotalDuration = firstSegmentBounds.minTotalDuration;
+    JRSDKFlightDuration maxTotalDuration = firstSegmentBounds.maxTotalDuration;
+    JRSDKFlightDuration filterTotalDuration = firstSegmentBounds.filterTotalDuration;
     
-    JRFilterDelaysDurationItem *transferDurationItem = [[JRFilterDelaysDurationItem alloc] initWithMinValue:travelSegmentBounds.minDelaysDuration
-                                                                                                   maxValue:travelSegmentBounds.maxDelaysDuration
-                                                                                            currentMinValue:travelSegmentBounds.minFilterDelaysDuration
-                                                                                            currentMaxValue:travelSegmentBounds.maxFilterDelaysDuration];
+    JRSDKFlightDuration minDelaysDuration = firstSegmentBounds.minDelaysDuration;
+    JRSDKFlightDuration maxDelaysDuration = firstSegmentBounds.maxDelaysDuration;
+    JRSDKFlightDuration minFilterDelaysDuration = firstSegmentBounds.minFilterDelaysDuration;
+    JRSDKFlightDuration maxFilterDelaysDuration = firstSegmentBounds.maxFilterDelaysDuration;
     
-    typeof(transferDurationItem) __weak weakTransferDurationItem = transferDurationItem;
-    transferDurationItem.filterAction = ^() {
-        travelSegmentBounds.minFilterDelaysDuration = weakTransferDurationItem.currentMinValue;
-        travelSegmentBounds.maxFilterDelaysDuration = weakTransferDurationItem.currentMaxValue;
-    };
+    if (lastSegmentBounds) {
+        minTotalDuration = MIN(minTotalDuration, lastSegmentBounds.minTotalDuration);
+        maxTotalDuration = MAX(maxTotalDuration, lastSegmentBounds.maxTotalDuration);
+        filterTotalDuration = MAX(filterTotalDuration, lastSegmentBounds.filterTotalDuration);
+        
+        minDelaysDuration = MIN(minDelaysDuration, lastSegmentBounds.minDelaysDuration);
+        maxDelaysDuration = MAX(maxDelaysDuration, lastSegmentBounds.maxDelaysDuration);
+        minFilterDelaysDuration = MIN(minFilterDelaysDuration, lastSegmentBounds.minFilterDelaysDuration);
+        maxFilterDelaysDuration = MAX(maxFilterDelaysDuration, lastSegmentBounds.maxFilterDelaysDuration);
+    }
     
-    return @[totalDurationItem, transferDurationItem];
+    if (minTotalDuration != maxTotalDuration) {
+        JRFilterTotalDurationItem *totalDurationItem = [[JRFilterTotalDurationItem alloc] initWithMinValue:minTotalDuration
+                                                                                                  maxValue:maxTotalDuration
+                                                                                              currentValue:filterTotalDuration];
+        
+        typeof(totalDurationItem) __weak weakTotalDurationItem = totalDurationItem;
+        totalDurationItem.filterAction = ^{
+            firstSegmentBounds.filterTotalDuration = weakTotalDurationItem.currentValue;
+            
+            lastSegmentBounds.filterTotalDuration = weakTotalDurationItem.currentValue;
+        };
+        
+        [items addObject:totalDurationItem];
+    }
+    
+    if (minDelaysDuration != maxDelaysDuration) {
+        JRFilterDelaysDurationItem *transferDurationItem = [[JRFilterDelaysDurationItem alloc] initWithMinValue:minDelaysDuration
+                                                                                                       maxValue:maxDelaysDuration
+                                                                                                currentMinValue:minFilterDelaysDuration
+                                                                                                currentMaxValue:maxFilterDelaysDuration];
+        
+        typeof(transferDurationItem) __weak weakTransferDurationItem = transferDurationItem;
+        transferDurationItem.filterAction = ^{
+            firstSegmentBounds.minFilterDelaysDuration = weakTransferDurationItem.currentMinValue;
+            firstSegmentBounds.maxFilterDelaysDuration = weakTransferDurationItem.currentMaxValue;
+            
+            lastSegmentBounds.minFilterDelaysDuration = weakTransferDurationItem.currentMinValue;
+            lastSegmentBounds.maxFilterDelaysDuration = weakTransferDurationItem.currentMaxValue;
+        };
+        
+        [items addObject:transferDurationItem];
+    }
+    
+    return items;
 }
 
 - (NSArray<id<JRFilterItemProtocol>> *)createDepartureArrivalItemsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
+    NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
     JRFilterTravelSegmentBounds *travelSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:travelSegment];
-    JRFilterDepartureTimeItem *departureItem = [[JRFilterDepartureTimeItem alloc] initWithMinValue:travelSegmentBounds.minDepartureTime
-                                                                                          maxValue:travelSegmentBounds.maxDepartureTime
-                                                                                   currentMinValue:travelSegmentBounds.minFilterDepartureTime
-                                                                                   currentMaxValue:travelSegmentBounds.maxFilterDepartureTime];
     
-    typeof(departureItem) __weak weakDepartureItem = departureItem;
-    departureItem.filterAction = ^() {
-        travelSegmentBounds.minFilterDepartureTime = weakDepartureItem.currentMinValue;
-        travelSegmentBounds.maxFilterDepartureTime = weakDepartureItem.currentMaxValue;
-    };
+    if (travelSegmentBounds.minDepartureTime != travelSegmentBounds.maxDepartureTime) {
+        JRFilterDepartureTimeItem *departureItem = [[JRFilterDepartureTimeItem alloc] initWithMinValue:travelSegmentBounds.minDepartureTime
+                                                                                              maxValue:travelSegmentBounds.maxDepartureTime
+                                                                                       currentMinValue:travelSegmentBounds.minFilterDepartureTime
+                                                                                       currentMaxValue:travelSegmentBounds.maxFilterDepartureTime];
+        
+        typeof(departureItem) __weak weakDepartureItem = departureItem;
+        departureItem.filterAction = ^{
+            travelSegmentBounds.minFilterDepartureTime = weakDepartureItem.currentMinValue;
+            travelSegmentBounds.maxFilterDepartureTime = weakDepartureItem.currentMaxValue;
+        };
+        
+        [items addObject:departureItem];
+    }
     
-    JRFilterArrivalTimeItem *arrivalItem = [[JRFilterArrivalTimeItem alloc] initWithMinValue:travelSegmentBounds.minArrivalTime
-                                                                                    maxValue:travelSegmentBounds.maxArrivalTime
-                                                                             currentMinValue:travelSegmentBounds.minFilterArrivalTime
-                                                                             currentMaxValue:travelSegmentBounds.maxFilterArrivalTime];
+    if (travelSegmentBounds.minArrivalTime != travelSegmentBounds.maxArrivalTime) {
+        JRFilterArrivalTimeItem *arrivalItem = [[JRFilterArrivalTimeItem alloc] initWithMinValue:travelSegmentBounds.minArrivalTime
+                                                                                        maxValue:travelSegmentBounds.maxArrivalTime
+                                                                                 currentMinValue:travelSegmentBounds.minFilterArrivalTime
+                                                                                 currentMaxValue:travelSegmentBounds.maxFilterArrivalTime];
+        
+        typeof(arrivalItem) __weak weakArrivalItem = arrivalItem;
+        arrivalItem.filterAction = ^{
+            travelSegmentBounds.minFilterArrivalTime = weakArrivalItem.currentMinValue;
+            travelSegmentBounds.maxFilterArrivalTime = weakArrivalItem.currentMaxValue;
+        };
+        
+        [items addObject:arrivalItem];
+    }
     
-    typeof(arrivalItem) __weak weakArrivalItem = arrivalItem;
-    arrivalItem.filterAction = ^() {
-        travelSegmentBounds.minFilterArrivalTime = weakArrivalItem.currentMinValue;
-        travelSegmentBounds.maxFilterArrivalTime = weakArrivalItem.currentMaxValue;
-    };
-    
-    return @[departureItem, arrivalItem];
+    return items;
 }
 
-- (NSArray<id<JRFilterItemProtocol>> *)createAirlinesItemsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
-    JRFilterTravelSegmentBounds *travelSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:travelSegment];
+- (NSArray<id<JRFilterItemProtocol>> *)createAirlinesItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
     NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
+    JRFilterTravelSegmentBounds *firstSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:firstTravelSegment];
+    JRFilterTravelSegmentBounds *lastSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:lastTravelSegment];
     
-    if (travelSegmentBounds.airlines.count > 1) {
-        JRFilterAirlinesHeaderItem *headerItem = [[JRFilterAirlinesHeaderItem alloc] initWithItemsCount:travelSegmentBounds.airlines.count];
+    NSMutableOrderedSet<id<JRSDKAirline>> *airlines = [firstSegmentBounds.airlines mutableCopy];
+    NSMutableOrderedSet<id<JRSDKAirline>> *filterAirlines = [firstSegmentBounds.filterAirlines mutableCopy];
+    
+    if (lastSegmentBounds) {
+        [airlines unionOrderedSet:lastSegmentBounds.airlines];
+        [filterAirlines unionOrderedSet:lastSegmentBounds.filterAirlines];
+    }
+    
+    if (airlines.count > 1) {
+        JRFilterAirlinesHeaderItem *headerItem = [[JRFilterAirlinesHeaderItem alloc] initWithItemsCount:airlines.count];
         [items addObject:headerItem];
         
-        for (id<JRSDKAirline> airline in travelSegmentBounds.airlines) {
+        for (id<JRSDKAirline> airline in airlines) {
             JRFilterAirlineItem *item = [[JRFilterAirlineItem alloc] initWithAirline:airline];
-            item.selected = [travelSegmentBounds.filterAirlines containsObject:airline];
+            item.selected = [filterAirlines containsObject:airline];
             
             typeof(item) __weak weakItem = item;
-            item.filterAction = ^() {
-                NSMutableOrderedSet<id<JRSDKAirline>> *airlines = [travelSegmentBounds.filterAirlines mutableCopy];
-                if (!weakItem.selected && [airlines containsObject:airline]) {
-                    [airlines removeObject:airline];
-                    travelSegmentBounds.filterAirlines = [airlines copy];
-                } else if (weakItem.selected && ![airlines containsObject:airline]) {
-                    [airlines addObject:airline];
-                    travelSegmentBounds.filterAirlines = [airlines copy];
+            item.filterAction = ^{
+                if (!weakItem.selected && [filterAirlines containsObject:airline]) {
+                    [filterAirlines removeObject:airline];
+                    firstSegmentBounds.filterAirlines = [filterAirlines copy];
+                    lastSegmentBounds.filterAirlines = [filterAirlines copy];
+                } else if (weakItem.selected && ![filterAirlines containsObject:airline]) {
+                    [filterAirlines addObject:airline];
+                    firstSegmentBounds.filterAirlines = [filterAirlines copy];
+                    lastSegmentBounds.filterAirlines = [filterAirlines copy];
                 }
             };
             
@@ -362,27 +435,37 @@
     return items;
 }
 
-- (NSArray<id<JRFilterItemProtocol>> *)createAlliancesItemsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
-    JRFilterTravelSegmentBounds *travelSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:travelSegment];
+- (NSArray<id<JRFilterItemProtocol>> *)createAlliancesItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
     NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
+    JRFilterTravelSegmentBounds *firstSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:firstTravelSegment];
+    JRFilterTravelSegmentBounds *lastSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:lastTravelSegment];
     
-    if (travelSegmentBounds.alliances.count > 1) {
-        JRFilterAllianceHeaderItem *headerItem = [[JRFilterAllianceHeaderItem alloc] initWithItemsCount:travelSegmentBounds.alliances.count];
+    NSMutableOrderedSet<id<JRSDKAlliance>> *alliances = [firstSegmentBounds.alliances mutableCopy];
+    NSMutableOrderedSet<id<JRSDKAlliance>> *filterAlliances = [firstSegmentBounds.filterAlliances mutableCopy];
+    
+    if (lastSegmentBounds) {
+        [alliances unionOrderedSet:lastSegmentBounds.alliances];
+        [filterAlliances unionOrderedSet:lastSegmentBounds.filterAlliances];
+    }
+    
+    if (alliances.count > 1) {
+        JRFilterAllianceHeaderItem *headerItem = [[JRFilterAllianceHeaderItem alloc] initWithItemsCount:alliances.count];
         [items addObject:headerItem];
         
-        for (id<JRSDKAlliance> alliance in travelSegmentBounds.alliances) {
+        for (id<JRSDKAlliance> alliance in alliances) {
             JRFilterAllianceItem *item = [[JRFilterAllianceItem alloc] initWithAlliance:alliance];
-            item.selected = [travelSegmentBounds.filterAlliances containsObject:alliance];
+            item.selected = [filterAlliances containsObject:alliance];
             
             typeof(item) __weak weakItem = item;
-            item.filterAction = ^() {
-                NSMutableOrderedSet<id<JRSDKAlliance>> *alliances = [travelSegmentBounds.filterAlliances mutableCopy];
-                if (!weakItem.selected && [alliances containsObject:alliance]) {
-                    [alliances removeObject:alliance];
-                    travelSegmentBounds.filterAlliances = [alliances copy];
-                } else if (weakItem.selected && ![alliances containsObject:alliance]) {
-                    [alliances addObject:alliance];
-                    travelSegmentBounds.filterAlliances = [alliances copy];
+            item.filterAction = ^{
+                if (!weakItem.selected && [filterAlliances containsObject:alliance]) {
+                    [filterAlliances removeObject:alliance];
+                    firstSegmentBounds.filterAlliances = [filterAlliances copy];
+                    lastSegmentBounds.filterAlliances = [filterAlliances copy];
+                } else if (weakItem.selected && ![filterAlliances containsObject:alliance]) {
+                    [filterAlliances addObject:alliance];
+                    firstSegmentBounds.filterAlliances = [filterAlliances copy];
+                    lastSegmentBounds.filterAlliances = [filterAlliances copy];
                 }
             };
             
@@ -393,11 +476,150 @@
     return items;
 }
 
-- (NSArray<id<JRFilterItemProtocol>> *)createAirportsItemsForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
+- (NSArray<id<JRFilterItemProtocol>> *)createAirportsItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
     NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
+    NSMutableArray<id<JRFilterItemProtocol>> *airportsItems = [NSMutableArray array];
     
-//    JRFilterListHeaderItem *headerItem = [JRFilterListHeaderItem new];
-//    [items addObject:headerItem];
+    NSArray<id<JRFilterItemProtocol>> *originAirportsItems = [self createOriginAirportsItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
+    NSArray<id<JRFilterItemProtocol>> *stopoverAirportsItems = [self createStopoverAirportsItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
+    NSArray<id<JRFilterItemProtocol>> *destinationAirportsItems = [self createDestinationAirportsItemsForFirstTravelSegment:firstTravelSegment lastTravelSegment:lastTravelSegment];
+    NSInteger count = 0;
+    
+    if (originAirportsItems.count > 1) {
+        JRFilterListSeparatorItem *separatorItem = [[JRFilterListSeparatorItem alloc] initWithTitle:NSLS(@"JR_FILTER_AIRPORTS_ORIGIN")];
+        [airportsItems addObject:separatorItem];
+        [airportsItems addObjectsFromArray:originAirportsItems];
+        count += originAirportsItems.count;
+    }
+    
+    if (stopoverAirportsItems.count > 1) {
+        JRFilterListSeparatorItem *separatorItem = [[JRFilterListSeparatorItem alloc] initWithTitle:NSLS(@"JR_FILTER_AIRPORTS_STOPOVER")];
+        [airportsItems addObject:separatorItem];
+        [airportsItems addObjectsFromArray:stopoverAirportsItems];
+        count += stopoverAirportsItems.count;
+    }
+    
+    if (destinationAirportsItems.count > 1) {
+        JRFilterListSeparatorItem *separatorItem = [[JRFilterListSeparatorItem alloc] initWithTitle:NSLS(@"JR_FILTER_AIRPORTS_DESTINATION")];
+        [airportsItems addObject:separatorItem];
+        [airportsItems addObjectsFromArray:destinationAirportsItems];
+        count += destinationAirportsItems.count;
+    }
+    
+    if (count > 0) {
+        JRFilterAirportsHeaderItem *headerItem = [[JRFilterAirportsHeaderItem alloc] initWithItemsCount:count];
+        
+        [items addObject:headerItem];
+        [items addObjectsFromArray:airportsItems];
+    }
+    
+    return items;
+}
+
+- (NSArray<id<JRFilterItemProtocol>> *)createOriginAirportsItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
+    NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
+    JRFilterTravelSegmentBounds *firstSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:firstTravelSegment];
+    JRFilterTravelSegmentBounds *lastSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:lastTravelSegment];
+    
+    NSMutableOrderedSet<id<JRSDKAirport>> *originAirports = [firstSegmentBounds.originAirports mutableCopy];
+    NSMutableOrderedSet<id<JRSDKAirport>> *filterOriginAirports = [firstSegmentBounds.filterOriginAirports mutableCopy];
+    
+    if (lastSegmentBounds) {
+        [originAirports unionOrderedSet:lastSegmentBounds.originAirports];
+        [filterOriginAirports unionOrderedSet:lastSegmentBounds.filterOriginAirports];
+    }
+    
+    for (id<JRSDKAirport> airport in originAirports) {
+        JRFilterAirportItem *item = [[JRFilterAirportItem alloc] initWithAirport:airport];
+        item.selected = [filterOriginAirports containsObject:airport];
+        
+        typeof(item) __weak weakItem = item;
+        item.filterAction = ^{
+            if (!weakItem.selected && [filterOriginAirports containsObject:airport]) {
+                [filterOriginAirports removeObject:airport];
+                firstSegmentBounds.filterOriginAirports = [filterOriginAirports copy];
+                lastSegmentBounds.filterOriginAirports = [filterOriginAirports copy];
+            } else if (weakItem.selected && ![filterOriginAirports containsObject:airport]) {
+                [filterOriginAirports addObject:airport];
+                firstSegmentBounds.filterOriginAirports = [filterOriginAirports copy];
+                lastSegmentBounds.filterOriginAirports = [filterOriginAirports copy];
+            }
+        };
+        
+        [items addObject:item];
+    }
+    
+    return items;
+}
+
+- (NSArray<id<JRFilterItemProtocol>> *)createStopoverAirportsItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
+    NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
+    JRFilterTravelSegmentBounds *firstSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:firstTravelSegment];
+    JRFilterTravelSegmentBounds *lastSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:lastTravelSegment];
+    
+    NSMutableOrderedSet<id<JRSDKAirport>> *stopoverAirports = [firstSegmentBounds.stopoverAirports mutableCopy];
+    NSMutableOrderedSet<id<JRSDKAirport>> *filterStopoverAirports = [firstSegmentBounds.filterStopoverAirports mutableCopy];
+    
+    if (lastSegmentBounds) {
+        [stopoverAirports unionOrderedSet:lastSegmentBounds.destinationAirports];
+        [filterStopoverAirports unionOrderedSet:lastSegmentBounds.filterDestinationAirports];
+    }
+    
+    for (id<JRSDKAirport> airport in stopoverAirports) {
+        JRFilterAirportItem *item = [[JRFilterAirportItem alloc] initWithAirport:airport];
+        item.selected = [filterStopoverAirports containsObject:airport];
+        
+        typeof(item) __weak weakItem = item;
+        item.filterAction = ^{
+            if (!weakItem.selected && [filterStopoverAirports containsObject:airport]) {
+                [filterStopoverAirports removeObject:airport];
+                firstSegmentBounds.filterStopoverAirports = [filterStopoverAirports copy];
+                lastSegmentBounds.filterStopoverAirports = [filterStopoverAirports copy];
+            } else if (weakItem.selected && ![filterStopoverAirports containsObject:airport]) {
+                [filterStopoverAirports addObject:airport];
+                firstSegmentBounds.filterStopoverAirports = [filterStopoverAirports copy];
+                lastSegmentBounds.filterStopoverAirports = [filterStopoverAirports copy];
+            }
+        };
+        
+        [items addObject:item];
+    }
+    
+    return items;
+}
+
+- (NSArray<id<JRFilterItemProtocol>> *)createDestinationAirportsItemsForFirstTravelSegment:(id<JRSDKTravelSegment>)firstTravelSegment lastTravelSegment:(id<JRSDKTravelSegment>)lastTravelSegment {
+    NSMutableArray<id<JRFilterItemProtocol>> *items = [NSMutableArray array];
+    JRFilterTravelSegmentBounds *firstSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:firstTravelSegment];
+    JRFilterTravelSegmentBounds *lastSegmentBounds = [self.filter travelSegmentBoundsForTravelSegment:lastTravelSegment];
+    
+    NSMutableOrderedSet<id<JRSDKAirport>> *destinationAirports = [firstSegmentBounds.destinationAirports mutableCopy];
+    NSMutableOrderedSet<id<JRSDKAirport>> *filterDestinationAirports = [firstSegmentBounds.filterDestinationAirports mutableCopy];
+    
+    if (lastSegmentBounds) {
+        [destinationAirports unionOrderedSet:lastSegmentBounds.destinationAirports];
+        [filterDestinationAirports unionOrderedSet:lastSegmentBounds.filterDestinationAirports];
+    }
+    
+    for (id<JRSDKAirport> airport in destinationAirports) {
+        JRFilterAirportItem *item = [[JRFilterAirportItem alloc] initWithAirport:airport];
+        item.selected = [filterDestinationAirports containsObject:airport];
+        
+        typeof(item) __weak weakItem = item;
+        item.filterAction = ^{
+            if (!weakItem.selected && [filterDestinationAirports containsObject:airport]) {
+                [filterDestinationAirports removeObject:airport];
+                firstSegmentBounds.filterDestinationAirports = [filterDestinationAirports copy];
+                lastSegmentBounds.filterDestinationAirports = [filterDestinationAirports copy];
+            } else if (weakItem.selected && ![filterDestinationAirports containsObject:airport]) {
+                [filterDestinationAirports addObject:airport];
+                firstSegmentBounds.filterDestinationAirports = [filterDestinationAirports copy];
+                lastSegmentBounds.filterDestinationAirports = [filterDestinationAirports copy];
+            }
+        };
+        
+        [items addObject:item];
+    }
     
     return items;
 }

@@ -6,17 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "JRFlightSegment.h"
-#import "JRPrice.h"
-#import "JRAirline.h"
-
-@class JRSearchInfo;
 
 @interface JRTicket : NSObject <JRSDKTicket>
 
-@property (nonatomic, strong) NSOrderedSet <JRFlightSegment *> *flightSegments;
-@property (nonatomic, strong) NSSet <JRPrice *> *unorderedPrices;
-@property (nonatomic, strong) JRAirline *mainAirline;
-@property (nonatomic, weak) JRSearchInfo *searchInfo;
+@property (nonatomic, strong) NSOrderedSet<id<JRSDKPrice>> *prices;
+
+@property (nonatomic, weak) id<JRSDKSearchInfo> searchInfo;
+
++ (JRTicket *)ticketByCopyingFieldsFromTicket:(id<JRSDKTicket>)ticket;
 
 @end

@@ -1,9 +1,8 @@
 //
 //  JRFilterOneThumbSliderItem.h
-//  Aviasales iOS Apps
 //
-//  Created by Oleg on 06/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterItemProtocol.h"
@@ -11,14 +10,14 @@
 
 @interface JRFilterOneThumbSliderItem : NSObject <JRFilterItemProtocol>
 
-@property (nonatomic, assign, readonly) NSInteger minValue;
-@property (nonatomic, assign, readonly) NSInteger maxValue;
+@property (nonatomic, assign, readonly) CGFloat minValue;
+@property (nonatomic, assign, readonly) CGFloat maxValue;
 
-@property (nonatomic, assign) NSInteger currentValue;
+@property (nonatomic, assign) CGFloat currentValue;
 
 @property (nonatomic, copy) void (^filterAction)();
 
-- (instancetype)initWithMinValue:(NSInteger)minValue maxValue:(NSInteger)maxValue currentValue:(NSInteger)currentValue;
+- (instancetype)initWithMinValue:(CGFloat)minValue maxValue:(CGFloat)maxValue currentValue:(CGFloat)currentValue;
 
 @end
 

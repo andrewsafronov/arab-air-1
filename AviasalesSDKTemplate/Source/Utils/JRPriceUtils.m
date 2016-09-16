@@ -1,9 +1,8 @@
 //
 //  JRPriceUtils.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 13/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRPriceUtils.h"

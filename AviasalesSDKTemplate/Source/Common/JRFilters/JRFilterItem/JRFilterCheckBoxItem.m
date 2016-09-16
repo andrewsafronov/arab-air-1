@@ -1,9 +1,8 @@
 //
 //  JRFilterCheckBoxItem.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 07/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterCheckBoxItem.h"
@@ -34,12 +33,14 @@
 
 @implementation JRFilterStopoverItem {
     NSInteger _stopoverCount;
+    CGFloat _minPrice;
 }
 
-- (instancetype)initWithStopoverCount:(NSInteger)stopoverCount {
+- (instancetype)initWithStopoverCount:(NSInteger)stopoverCount minPrice:(CGFloat)minPrice {
     self = [super init];
     if (self) {
         _stopoverCount = stopoverCount;
+        _minPrice = minPrice;
     }
     
     return self;
@@ -47,16 +48,18 @@
 
 - (NSString *)tilte {
     if (_stopoverCount == 0) {
-        return NSLS(@"JR_TRANSFERS##{zero}");
+        return NSLS(@"JR_SEARCH_RESULTS_TRANSFERS##{zero}");
     }
     
-    NSString *format = NSLSP(@"JR_TRANSFERS", _stopoverCount);
+    NSString *format = NSLSP(@"JR_SEARCH_RESULTS_TRANSFERS", _stopoverCount);
     return [NSString stringWithFormat:format, _stopoverCount];
 }
 
 - (NSAttributedString *)attributedStringValue {
-    NSString *timeString = [DateUtil duration:1 durationStyle:JRDateUtilDurationLongStyle];
-    NSString *text = [NSString stringWithFormat:@"%@ %@", NSLS(@"JR_FILTER_CELL_TO_TEXT"), timeString];
+    JRSDKCurrency const userCurrency = [AviasalesSDK sharedInstance].currencyCode;
+    NSNumber *priceInUserCurrency = [AviasalesNumberUtil convertPrice:@(_minPrice) fromCurrency:@"usd" to:userCurrency];
+    NSString *priceString = [AviasalesNumberUtil formatPrice:priceInUserCurrency];
+    NSString *text = [NSString stringWithFormat:@"%@ %@", NSLS(@"JR_FILTER_TOTAL_DURATION_FROM"), priceString];
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text attributes:nil];
     
     return attributedText;
@@ -147,7 +150,27 @@
 }
 
 - (NSString *)tilte {
-    return _alliance.name;
+    return [_alliance.name isEqualToString:JR_OTHER_ALLIANCES] ? NSLS(@"JR_FILTER_OTHER_ALLIANCES") : _alliance.name;
+}
+
+@end
+
+
+@implementation JRFilterAirportItem {
+    id<JRSDKAirport> _airport;
+}
+
+- (instancetype)initWithAirport:(id<JRSDKAirport>)airport {
+    self = [super init];
+    if (self) {
+        _airport = airport;
+    }
+    
+    return self;
+}
+
+- (NSString *)tilte {
+    return _airport.airportName;
 }
 
 @end

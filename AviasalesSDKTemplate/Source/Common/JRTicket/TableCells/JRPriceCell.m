@@ -1,9 +1,8 @@
 //
 //  JRPriceCell.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 16/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRPriceCell.h"
@@ -22,7 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self.buyButton setTitle:AVIASALES_(@"AVIASALES_BUY") forState:UIControlStateNormal];
+    [self.buyButton setTitle:AVIASALES_(@"JR_TICKET_BUY_BUTTON") forState:UIControlStateNormal];
     
     [self updateContent];
 }

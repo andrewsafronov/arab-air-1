@@ -1,15 +1,14 @@
 //
 //  JRSearchedAirportsManager.m
-//  AviasalesSDKTemplate
 //
-//  Created by Dmitry Ryumin on 06/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRSearchedAirportsManager.h"
 
-#define kSearchedAirportsStorageKey @"kSearchedAirportsStorageKey"
-#define kSearchedAirportsMaxCount 20
+static NSString * const kJRSearchedAirportsStorageKey = @"kJRSearchedAirportsStorageKey";
+static NSInteger const kJRSearchedAirportsMaxCount = 20;
 
 @implementation JRSearchedAirportsManager
 
@@ -30,11 +29,11 @@
     
     [searchedAirports insertObject:airportData atIndex:0];
     
-    if ([searchedAirports count] > kSearchedAirportsMaxCount) {
-        [searchedAirports removeObjectsInRange:NSMakeRange(kSearchedAirportsMaxCount, [searchedAirports count] - kSearchedAirportsMaxCount)];
+    if ([searchedAirports count] > kJRSearchedAirportsMaxCount) {
+        [searchedAirports removeObjectsInRange:NSMakeRange(kJRSearchedAirportsMaxCount, [searchedAirports count] - kJRSearchedAirportsMaxCount)];
     }
     
-    [[NSUserDefaults standardUserDefaults] setValue:searchedAirports forKey:kSearchedAirportsStorageKey];
+    [[NSUserDefaults standardUserDefaults] setValue:searchedAirports forKey:kJRSearchedAirportsStorageKey];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -53,7 +52,7 @@
 }
 
 + (NSArray *)rawSearchedAirports {
-    id airportsData = [[NSUserDefaults standardUserDefaults] valueForKey:kSearchedAirportsStorageKey];
+    id airportsData = [[NSUserDefaults standardUserDefaults] valueForKey:kJRSearchedAirportsStorageKey];
     NSArray *searchedAirports = [NSArray array];
     if ([airportsData isKindOfClass:[NSArray class]]) {
         searchedAirports = (NSArray *)airportsData;

@@ -1,9 +1,8 @@
 //
 //  JRFilterTicketBounds.h
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 30/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,9 +12,9 @@
 @property (assign, nonatomic) BOOL mobileWebOnly;
 @property (assign, nonatomic) BOOL filterMobileWebOnly;
 
-@property (assign, nonatomic) NSInteger minPrice;    // In USD
-@property (assign, nonatomic) NSInteger maxPrice;    // In USD
-@property (assign, nonatomic) NSInteger filterPrice; // In USD
+@property (assign, nonatomic) CGFloat minPrice;    // In USD
+@property (assign, nonatomic) CGFloat maxPrice;    // In USD
+@property (assign, nonatomic) CGFloat filterPrice; // In USD
 
 @property (strong, nonatomic) NSOrderedSet<id<JRSDKGate>> *gates;
 @property (strong, nonatomic) NSOrderedSet<id<JRSDKGate>> *filterGates;

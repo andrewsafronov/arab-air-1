@@ -1,9 +1,9 @@
 //
 //  JRFilterItemProtocol.h
-//  Aviasales iOS Apps
 //
-//  Created by Oleg on 06/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
+//
 
 
 #import <Foundation/Foundation.h>
@@ -11,11 +11,12 @@
 
 @protocol JRFilterItemProtocol <NSObject>
 
-@property (nonatomic, copy) void (^filterAction)();
-
 - (NSString *)tilte;
 
 @optional
+
+@property (nonatomic, copy) void (^filterAction)();
+
 - (NSString *)detailsTitle;
 - (NSAttributedString *)attributedStringValue;
 

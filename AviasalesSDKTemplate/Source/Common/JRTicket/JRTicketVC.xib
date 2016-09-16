@@ -11,8 +11,6 @@
                 <outlet property="infoPanelViewHeightConstraint" destination="joq-Pi-duE" id="d1V-4x-13e"/>
                 <outlet property="tableView" destination="MGo-6E-JJg" id="uEx-4V-bee"/>
                 <outlet property="view" destination="1" id="3"/>
-                <outlet property="waitingLabel" destination="eOj-kC-rgr" id="F9Y-8c-0Ji"/>
-                <outlet property="waitingView" destination="79a-BO-AIu" id="5X2-xL-jr7"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -64,44 +62,6 @@
             </constraints>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
             <point key="canvasLocation" x="332" y="-336"/>
-        </view>
-        <view contentMode="scaleToFill" id="79a-BO-AIu">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rRg-XF-rsY">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="569"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Переход к покупке билета..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOj-kC-rgr">
-                    <rect key="frame" x="20" y="233" width="280" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="WNZ-7D-6AI"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2e6-bZ-DjO">
-                    <rect key="frame" x="141" y="266" width="37" height="37"/>
-                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                </activityIndicatorView>
-            </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="eOj-kC-rgr" secondAttribute="trailing" constant="20" symbolic="YES" id="CjY-Lj-aUO"/>
-                <constraint firstItem="rRg-XF-rsY" firstAttribute="top" secondItem="79a-BO-AIu" secondAttribute="top" id="Ese-xt-UUg"/>
-                <constraint firstItem="2e6-bZ-DjO" firstAttribute="top" secondItem="eOj-kC-rgr" secondAttribute="bottom" constant="12" id="KmP-FW-wRi"/>
-                <constraint firstItem="rRg-XF-rsY" firstAttribute="leading" secondItem="79a-BO-AIu" secondAttribute="leading" id="N1r-Yn-7Hg"/>
-                <constraint firstAttribute="centerX" secondItem="2e6-bZ-DjO" secondAttribute="centerX" id="Rtd-qZ-Zbi"/>
-                <constraint firstItem="eOj-kC-rgr" firstAttribute="leading" secondItem="79a-BO-AIu" secondAttribute="leading" constant="20" symbolic="YES" id="TeQ-bT-DGR"/>
-                <constraint firstItem="eOj-kC-rgr" firstAttribute="centerX" secondItem="rRg-XF-rsY" secondAttribute="centerX" id="lI1-gL-v7m"/>
-                <constraint firstAttribute="centerY" secondItem="2e6-bZ-DjO" secondAttribute="centerY" id="tjJ-jy-g2K"/>
-                <constraint firstItem="rRg-XF-rsY" firstAttribute="centerY" secondItem="2e6-bZ-DjO" secondAttribute="centerY" id="x1g-45-1Te"/>
-            </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="346" y="358"/>
         </view>
     </objects>
 </document>

@@ -1,11 +1,9 @@
 //
 //  JRFilterListHeaderItem.h
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 31/03/14.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
-//
-
 
 #import "JRFilterItemProtocol.h"
 
@@ -14,8 +12,6 @@
 @protected
     NSInteger _itemsCount;
 }
-
-@property (nonatomic, copy) void (^filterAction)();
 
 @property (nonatomic, assign) BOOL expanded;
 
@@ -41,5 +37,10 @@
 
 
 @interface JRFilterAllianceHeaderItem : JRFilterListHeaderItem
+
+@end
+
+
+@interface JRFilterAirportsHeaderItem : JRFilterListHeaderItem
 
 @end

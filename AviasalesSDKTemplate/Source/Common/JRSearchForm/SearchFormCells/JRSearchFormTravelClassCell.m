@@ -10,16 +10,18 @@
 #import "JRSegmentedControl.h"
 #import "UIImage+JRUIImage.h"
 #import "JRSearchInfoUtils.h"
-#import "ColorScheme.h"
-
-#define kJRSearchFormTravelClassCellAnimationDuration 0.15
+#import "JRColorScheme.h"
 
 @interface JRSearchFormTravelClassCell ()<JRSegmentedControlDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *travelClassLabel;
+
 @property (strong, nonatomic) JRSegmentedControl *segControl;
+
+@property (weak, nonatomic) IBOutlet UILabel *travelClassLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *travelClassIcon;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *arrowsRightMarginConstraint;
+
 @end
+
 
 @implementation JRSearchFormTravelClassCell {
 	UIImageView *_travelClassImage;
@@ -28,11 +30,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [_travelClassIcon setImage:[UIImage imageWithColor:[ColorScheme buttonBackgroundColor]]];
+    [_travelClassIcon setImage:[UIImage imageWithColor:[JRColorScheme buttonBackgroundColor]]];
 }
 
-- (void)updateCell
-{
+- (void)updateCell {
     // TODO:
 //	BOOL isEconomy = self.searchInfo.travelClass == JRSDKTravelClassEconomy || self.searchInfo.travelClass == JRSDKTravelClassPremiumEconomy;
 //	UIImage *image = [UIImage imageNamed:isEconomy ? @"JRSearchFormTravelClassEconomy" : @"JRSearchFormTravelClassBusiness"];
@@ -45,8 +46,7 @@
     [self.searchInfo setTravelClass:buttonIndex == 0 ? JRSDKTravelClassEconomy : JRSDKTravelClassBusiness];
 }
 
-- (void)action
-{
+- (void)action {
     [self.item.itemDelegate showTravelClassPickerFromView:_travelClassLabel];
 }
 

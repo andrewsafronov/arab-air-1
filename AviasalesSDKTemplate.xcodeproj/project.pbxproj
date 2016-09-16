@@ -7,31 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07082A201CAEC2B400CE4305 /* ASTSearchResultsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 07082A1F1CAEC2B400CE4305 /* ASTSearchResultsList.m */; };
-		070A23281D22A10500B0DE5B /* ASTAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A23271D22A10500B0DE5B /* ASTAirport.m */; };
-		070A232B1D22A16800B0DE5B /* ASTTravelSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 070A232A1D22A16800B0DE5B /* ASTTravelSegment.m */; };
-		07100BCC1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07100BCA1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.m */; };
-		07100BCD1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07100BCB1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.xib */; };
-		07100BD81CF712910071B5CA /* ASTResultsFlightSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07100BD61CF712910071B5CA /* ASTResultsFlightSegmentCell.m */; };
-		07100BD91CF712910071B5CA /* ASTResultsFlightSegmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07100BD71CF712910071B5CA /* ASTResultsFlightSegmentCell.xib */; };
+		07249CC41D8C376400497C1D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07249CC31D8C376400497C1D /* libc++.tbd */; };
+		07249CC71D8C388800497C1D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07249CC51D8C378D00497C1D /* libz.tbd */; };
+		07249CCD1D8C3D0700497C1D /* ASTAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07249CCA1D8C3D0700497C1D /* ASTAirport.m */; };
+		072714D41D79801E00545E63 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714D31D79801E00545E63 /* CoreTelephony.framework */; };
+		072714D61D79804C00545E63 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714D51D79804C00545E63 /* EventKit.framework */; };
+		072714D81D79808A00545E63 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714D71D79808A00545E63 /* MediaPlayer.framework */; };
+		072714DA1D7980A000545E63 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714D91D7980A000545E63 /* EventKitUI.framework */; };
+		072714DC1D7980C800545E63 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714DB1D7980C800545E63 /* MessageUI.framework */; };
+		072714DE1D7980EC00545E63 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714DD1D7980EC00545E63 /* MobileCoreServices.framework */; };
+		072714E01D7980F400545E63 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714DF1D7980F400545E63 /* SystemConfiguration.framework */; };
 		072CCA8B1CAABE73003A8834 /* App.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072CCA7A1CAABE73003A8834 /* App.xcassets */; };
 		072CCA8C1CAABE73003A8834 /* AVSLaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 072CCA7B1CAABE73003A8834 /* AVSLaunchScreen.xib */; };
 		072CCA8F1CAABE73003A8834 /* AviasalesTemplateLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 072CCA801CAABE73003A8834 /* AviasalesTemplateLocalizable.strings */; };
-		0736C9911D08594000E060C7 /* JRSearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 0736C9901D08594000E060C7 /* JRSearchResult.m */; };
-		073A1DD01D1D6C71008DBE2A /* JRSDKSearchInfoUrlCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 073A1DCF1D1D6C71008DBE2A /* JRSDKSearchInfoUrlCoder.m */; };
+		0733565A1D6DC2550023B597 /* JRNewsFeedNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073356591D6DC2550023B597 /* JRNewsFeedNativeAdView.m */; };
 		073E936B1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E936A1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m */; };
-		0756C0381CB249D60039443B /* ASTAdvertisementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C0371CB249D60039443B /* ASTAdvertisementManager.m */; };
-		0756C03B1CB252860039443B /* ASTVideoAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C03A1CB252860039443B /* ASTVideoAdLoader.m */; };
-		0756C0401CB262240039443B /* ASTVideoAdPlayerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C03F1CB262240039443B /* ASTVideoAdPlayerProxy.m */; };
-		0756C0431CB26C080039443B /* ASTNativeAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C0421CB26C080039443B /* ASTNativeAdLoader.m */; };
-		0756C0471CB26F780039443B /* ASTNewsFeedAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C0461CB26F780039443B /* ASTNewsFeedAdLoader.m */; };
-		0756C04E1CB291F70039443B /* ASTTableManagerUnion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C04D1CB291F70039443B /* ASTTableManagerUnion.m */; };
-		0756C0511CB29B830039443B /* ASTAdvertisementTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C0501CB29B830039443B /* ASTAdvertisementTableManager.m */; };
-		07599E531CFDCB5900A40113 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 07599E521CFDCB5900A40113 /* Constants.m */; };
+		0759897B1D86C19000326FE2 /* AmazonAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989621D86C19000326FE2 /* AmazonAd.framework */; };
+		0759897C1D86C19000326FE2 /* libAPDAmazonAdsAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989631D86C19000326FE2 /* libAPDAmazonAdsAdapter.a */; };
+		0759897D1D86C19000326FE2 /* libAPDPubnativeAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989651D86C19000326FE2 /* libAPDPubnativeAdapter.a */; };
+		075989811D86C19000326FE2 /* libAPDUnityAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0759896B1D86C19000326FE2 /* libAPDUnityAdapter.a */; };
+		075989821D86C19000326FE2 /* UnityAds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0759896C1D86C19000326FE2 /* UnityAds.bundle */; };
+		075989831D86C19000326FE2 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0759896D1D86C19000326FE2 /* UnityAds.framework */; };
+		075989841D86C19000326FE2 /* libAPDVungleAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0759896F1D86C19000326FE2 /* libAPDVungleAdapter.a */; };
+		075989851D86C19000326FE2 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = 075989711D86C19000326FE2 /* __vungle.db */; };
+		075989861D86C19000326FE2 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989721D86C19000326FE2 /* vg_close.png */; };
+		075989871D86C19000326FE2 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989731D86C19000326FE2 /* vg_cta.png */; };
+		075989881D86C19000326FE2 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989741D86C19000326FE2 /* vg_mute_off.png */; };
+		075989891D86C19000326FE2 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989751D86C19000326FE2 /* vg_mute_on.png */; };
+		0759898A1D86C19000326FE2 /* vg_privacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989761D86C19000326FE2 /* vg_privacy.png */; };
+		0759898B1D86C19000326FE2 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989771D86C19000326FE2 /* VungleSDK.framework */; };
+		0759898C1D86C19000326FE2 /* Appodeal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 075989781D86C19000326FE2 /* Appodeal.bundle */; };
+		0759898D1D86C19000326FE2 /* Appodeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989791D86C19000326FE2 /* Appodeal.framework */; };
+		07599E531CFDCB5900A40113 /* JRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 07599E521CFDCB5900A40113 /* JRConstants.m */; };
 		07599E5B1CFDD5A600A40113 /* UINavigationController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07599E5A1CFDD5A600A40113 /* UINavigationController+Additions.m */; };
-		075EDA2A1D007CC100418B8C /* ColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EDA291D007CC100418B8C /* ColorScheme.m */; };
-		07769DF81CF8B8AC004D5A72 /* UIFont+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 07769DF71CF8B8AC004D5A72 /* UIFont+Factory.m */; };
-		077C43791CB7DCFD007A3290 /* ASTAviasalesAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 077C43781CB7DCFD007A3290 /* ASTAviasalesAdLoader.m */; };
+		075EDA2A1D007CC100418B8C /* JRColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EDA291D007CC100418B8C /* JRColorScheme.m */; };
+		077B71DA1D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B71D91D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m */; };
+		077B71DD1D4A3A5500BB89BC /* JRStringsWidthComputer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B71DC1D4A3A5500BB89BC /* JRStringsWidthComputer.m */; };
+		07AB5F171D8823B1001E1DCD /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB5F151D8823B1001E1DCD /* GoogleMobileAds.framework */; };
+		07AB5F181D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB5F161D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a */; };
+		07ADF23C1D70747200517D96 /* JRNewsFeedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07ADF23B1D70747200517D96 /* JRNewsFeedNativeAdView.xib */; };
 		3A115BA51D01CDE000D94FAE /* JRAirportPickerCellWithAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A115B941D01CDE000D94FAE /* JRAirportPickerCellWithAirport.m */; };
 		3A115BA61D01CDE000D94FAE /* JRAirportPickerCellWithAirport.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A115B951D01CDE000D94FAE /* JRAirportPickerCellWithAirport.xib */; };
 		3A115BA71D01CDE000D94FAE /* JRAirportPickerCellWithInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A115B971D01CDE000D94FAE /* JRAirportPickerCellWithInfo.m */; };
@@ -43,9 +57,6 @@
 		3A115BAF1D01CDE000D94FAE /* JRAirportPickerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A115BA31D01CDE000D94FAE /* JRAirportPickerItem.m */; };
 		3A115BC01D05C8FE00D94FAE /* JRSearchedAirportsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A115BBF1D05C8FE00D94FAE /* JRSearchedAirportsManager.m */; };
 		3A7516DE1D2E8D6300BC97BE /* JRAirport+LocalizedName.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7516DD1D2E8D6300BC97BE /* JRAirport+LocalizedName.m */; };
-		3A76ED0E1D2A795300827700 /* JRAppLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A76ED0D1D2A795300827700 /* JRAppLauncher.m */; };
-		3A8DA1291D2A9640008575CF /* AviasalesSDKTemplate-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A8DA1271D2A9640008575CF /* AviasalesSDKTemplate-Info.plist */; };
-		3A8DA35E1D2A9776008575CF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DA35D1D2A9776008575CF /* main.m */; };
 		5E81EAF3B54F2F3E94B24FE7 /* libPods-AviasalesSDKTemplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21072BDEB6D7707508B56444 /* libPods-AviasalesSDKTemplate.a */; };
 		7C1371021D2E94BA0015C271 /* JRFilterTwoThumbSliderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C1371011D2E94BA0015C271 /* JRFilterTwoThumbSliderItem.m */; };
 		7C35F1571D1A972C00B9CB09 /* JRFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C35F1221D1A972C00B9CB09 /* JRFilter.m */; };
@@ -73,13 +84,32 @@
 		7C35F1751D1A972C00B9CB09 /* JRFilterVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C35F1561D1A972C00B9CB09 /* JRFilterVC~ipad.xib */; };
 		7C4024631D2D51C300D3A45D /* JRFilterOneThumbSliderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4024621D2D51C300D3A45D /* JRFilterOneThumbSliderItem.m */; };
 		7C7459751D1AD6C400EE4FE0 /* JRFilterVC_ipad.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7459741D1AD6C400EE4FE0 /* JRFilterVC_ipad.m */; };
+		7CCC2DAD1D3D032E0082FEFE /* JRSearchResultsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2D9F1D3D032E0082FEFE /* JRSearchResultsVC.m */; };
+		7CCC2DAE1D3D032F0082FEFE /* JRSearchResultsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCC2DA01D3D032E0082FEFE /* JRSearchResultsVC.xib */; };
+		7CCC2DB61D3D032F0082FEFE /* JRSearchResultsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DAC1D3D032E0082FEFE /* JRSearchResultsList.m */; };
+		7CCC2DC11D3D06280082FEFE /* JRResultsFlightSegmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DB91D3D06270082FEFE /* JRResultsFlightSegmentCell.m */; };
+		7CCC2DC21D3D06280082FEFE /* JRResultsFlightSegmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCC2DBA1D3D06280082FEFE /* JRResultsFlightSegmentCell.xib */; };
+		7CCC2DC31D3D06280082FEFE /* JRResultsTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DBC1D3D06280082FEFE /* JRResultsTicketCell.m */; };
+		7CCC2DC41D3D06280082FEFE /* JRResultsTicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCC2DBD1D3D06280082FEFE /* JRResultsTicketCell.xib */; };
+		7CCC2DC51D3D06280082FEFE /* JRResultsTicketPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DBF1D3D06280082FEFE /* JRResultsTicketPriceCell.m */; };
+		7CCC2DC61D3D06280082FEFE /* JRResultsTicketPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CCC2DC01D3D06280082FEFE /* JRResultsTicketPriceCell.xib */; };
+		7CCC2DCA1D3D06F10082FEFE /* JRAppLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DC91D3D06F10082FEFE /* JRAppLauncher.m */; };
+		7CCC2DCD1D3D09E10082FEFE /* JRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DCC1D3D09E10082FEFE /* JRAppDelegate.m */; };
+		7CCC2DD01D3D0A520082FEFE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DCF1D3D0A520082FEFE /* main.m */; };
+		7CCC2DD51D3D0F4C0082FEFE /* JRTableManagerUnion.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DD41D3D0F4C0082FEFE /* JRTableManagerUnion.m */; };
+		7CCC2E001D3D1E350082FEFE /* JRAviasalesAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DF21D3D1E350082FEFE /* JRAviasalesAdLoader.m */; };
+		7CCC2E011D3D1E350082FEFE /* JRNativeAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DF41D3D1E350082FEFE /* JRNativeAdLoader.m */; };
+		7CCC2E021D3D1E350082FEFE /* JRNewsFeedAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DF61D3D1E350082FEFE /* JRNewsFeedAdLoader.m */; };
+		7CCC2E031D3D1E350082FEFE /* JRVideoAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DF81D3D1E350082FEFE /* JRVideoAdLoader.m */; };
+		7CCC2E041D3D1E350082FEFE /* JRAdvertisementManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DFA1D3D1E350082FEFE /* JRAdvertisementManager.m */; };
+		7CCC2E051D3D1E350082FEFE /* JRAdvertisementTableManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2DFC1D3D1E350082FEFE /* JRAdvertisementTableManager.m */; };
+		7CCC2E0C1D3D23F10082FEFE /* UIFont+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2E0B1D3D23F10082FEFE /* UIFont+Factory.m */; };
+		7CCC2E101D3D24660082FEFE /* JRSDKSearchInfoUrlCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCC2E0F1D3D24660082FEFE /* JRSDKSearchInfoUrlCoder.m */; };
 		7CD376AD1D22B6DA003391AE /* JRFilterBoundsBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD376AC1D22B6DA003391AE /* JRFilterBoundsBuilder.m */; };
 		7CD78D141D1C30D20012A82F /* JRFilterCellsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78D131D1C30D20012A82F /* JRFilterCellsFactory.m */; };
 		7CD78D171D1C33C30012A82F /* JRFilterItemsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78D161D1C33C30012A82F /* JRFilterItemsFactory.m */; };
 		7CD78D1A1D1D3AEF0012A82F /* JRActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD78D191D1D3AEE0012A82F /* JRActivityIndicatorView.m */; };
 		7CD78D1C1D1D3B930012A82F /* JRActivityIndicatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD78D1B1D1D3B930012A82F /* JRActivityIndicatorView.xib */; };
-		7CD961011D2140C200DFBD14 /* JRAverageRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CD960FF1D2140C200DFBD14 /* JRAverageRateView.m */; };
-		7CD961021D2140C200DFBD14 /* JRAverageRateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD961001D2140C200DFBD14 /* JRAverageRateView.xib */; };
 		7CDA75B31D143FE90069FDD8 /* JRBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDA75AE1D143FE90069FDD8 /* JRBrowserVC.m */; };
 		7CDA75B41D143FE90069FDD8 /* JRBrowserVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CDA75AF1D143FE90069FDD8 /* JRBrowserVC.xib */; };
 		7CDA75B51D143FE90069FDD8 /* JRGateBrowserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CDA75B11D143FE90069FDD8 /* JRGateBrowserVC.m */; };
@@ -98,6 +128,7 @@
 		7CE545FB1D12D6060040065D /* JRPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE545F91D12D6060040065D /* JRPriceCell.m */; };
 		7CE545FC1D12D6060040065D /* JRPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE545FA1D12D6060040065D /* JRPriceCell.xib */; };
 		7CE545FE1D12EA0A0040065D /* JRInfoPanelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CE545FD1D12EA0A0040065D /* JRInfoPanelView.xib */; };
+		B48F6D89022CABDC403C279B /* libPods-AviasalesSDKTemplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6512EB8E2138DCDDAF0D230 /* libPods-AviasalesSDKTemplateTests.a */; };
 		C53C8D961CDA0EC900B7F54C /* JRSearchFormVC~ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C53C8D951CDA0EC900B7F54C /* JRSearchFormVC~ipad.xib */; };
 		C547DBB51CD895EC00CD0925 /* JRInspectableAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = C547DBB41CD895EC00CD0925 /* JRInspectableAttributes.m */; };
 		C56173081CC52EF30049E2EE /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173031CC52EF30049E2EE /* FPPopoverController.m */; };
@@ -111,7 +142,7 @@
 		C56173381CC53BCC0049E2EE /* NSLayoutConstraint+JRConstraintMake.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173371CC53BCC0049E2EE /* NSLayoutConstraint+JRConstraintMake.m */; };
 		C561733C1CC53C020049E2EE /* JRLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = C561733B1CC53C020049E2EE /* JRLayoutConstraint.m */; };
 		C56173401CC53C6C0049E2EE /* UIImage+JRUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C561733F1CC53C6C0049E2EE /* UIImage+JRUIImage.m */; };
-		C56173431CC627F60049E2EE /* Defines.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173421CC627F60049E2EE /* Defines.m */; };
+		C56173431CC627F60049E2EE /* JRDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173421CC627F60049E2EE /* JRDefines.m */; };
 		C56173481CC62C2F0049E2EE /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173471CC62C2F0049E2EE /* DateUtil.m */; };
 		C561734C1CC633450049E2EE /* UIView+JRFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = C561734B1CC633450049E2EE /* UIView+JRFadeAnimation.m */; };
 		C561735D1CC634F50049E2EE /* JRDatePickerDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C561734F1CC634F50049E2EE /* JRDatePickerDayCell.m */; };
@@ -139,15 +170,7 @@
 		C56173D71CC667030049E2EE /* UIViewController+JRAddChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173D01CC667030049E2EE /* UIViewController+JRAddChildViewController.m */; };
 		C56173D81CC667030049E2EE /* UIWindow+TopMostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173D31CC667030049E2EE /* UIWindow+TopMostViewController.m */; };
 		C56173E01CC66BBB0049E2EE /* UIView+NSLS.m in Sources */ = {isa = PBXBuildFile; fileRef = C56173DF1CC66BBB0049E2EE /* UIView+NSLS.m */; };
-		C580DB191CC52BC6009CA04B /* JRAirline.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB021CC52BC6009CA04B /* JRAirline.m */; };
 		C580DB1A1CC52BC6009CA04B /* JRAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB041CC52BC6009CA04B /* JRAirport.m */; };
-		C580DB1B1CC52BC6009CA04B /* JRAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB061CC52BC6009CA04B /* JRAlliance.m */; };
-		C580DB1C1CC52BC6009CA04B /* JRCurrencyRate.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB081CC52BC6009CA04B /* JRCurrencyRate.m */; };
-		C580DB1D1CC52BC6009CA04B /* JRFlight.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB0A1CC52BC6009CA04B /* JRFlight.m */; };
-		C580DB1E1CC52BC6009CA04B /* JRFlightSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB0C1CC52BC6009CA04B /* JRFlightSegment.m */; };
-		C580DB1F1CC52BC6009CA04B /* JRGate.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB0E1CC52BC6009CA04B /* JRGate.m */; };
-		C580DB201CC52BC6009CA04B /* JRPaymentMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB101CC52BC6009CA04B /* JRPaymentMethod.m */; };
-		C580DB211CC52BC6009CA04B /* JRPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB121CC52BC6009CA04B /* JRPrice.m */; };
 		C580DB221CC52BC6009CA04B /* JRSearchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB141CC52BC6009CA04B /* JRSearchInfo.m */; };
 		C580DB231CC52BC6009CA04B /* JRTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB161CC52BC6009CA04B /* JRTicket.m */; };
 		C580DB241CC52BC6009CA04B /* JRTravelSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = C580DB181CC52BC6009CA04B /* JRTravelSegment.m */; };
@@ -195,18 +218,7 @@
 		C60EC83B17E848DA00C5D52E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60EC83A17E848DA00C5D52E /* Foundation.framework */; };
 		C60EC83D17E848DA00C5D52E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60EC83C17E848DA00C5D52E /* CoreGraphics.framework */; };
 		C60EC83F17E848DA00C5D52E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60EC83E17E848DA00C5D52E /* UIKit.framework */; };
-		C60EC84B17E848DA00C5D52E /* ASTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C60EC84A17E848DA00C5D52E /* ASTAppDelegate.m */; };
-		C62DCD0A186C79190039C256 /* ASTResultsTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = C62DCD09186C79190039C256 /* ASTResultsTabBar.xib */; };
-		C63BA9EC1816B56E007A4F00 /* ASTCommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = C63BA9EB1816B56E007A4F00 /* ASTCommonFunctions.m */; };
-		C63BA9EF1816BA6A007A4F00 /* ASTSearchParams.m in Sources */ = {isa = PBXBuildFile; fileRef = C63BA9EE1816BA6A007A4F00 /* ASTSearchParams.m */; };
-		C67B450218916CA2006CBA73 /* ASTWebBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C67B450018916CA2006CBA73 /* ASTWebBrowserViewController.m */; };
-		C67B450318916CA2006CBA73 /* ASTWebBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C67B450118916CA2006CBA73 /* ASTWebBrowserViewController.xib */; };
 		C67CC6FB17F31A55006C659C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67CC6FA17F31A55006C659C /* CoreLocation.framework */; };
-		C6A0977B18113DD500862C71 /* ASTResultsTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C6A0977A18113DD500862C71 /* ASTResultsTicketCell.m */; };
-		C6B74F75181EA14A00FEF5B9 /* ASTResults.m in Sources */ = {isa = PBXBuildFile; fileRef = C6B74F73181EA14A00FEF5B9 /* ASTResults.m */; };
-		C6BA19941827581C00BAD465 /* ASTResultsTicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6A0977C18113DEA00862C71 /* ASTResultsTicketCell.xib */; };
-		C6EA13D218313BB800E77589 /* ASTResults.xib in Resources */ = {isa = PBXBuildFile; fileRef = C6B74F74181EA14A00FEF5B9 /* ASTResults.xib */; };
-		DBE7CF6CBE2909FD11538672 /* libPods-AviasalesSDKTemplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6512EB8E2138DCDDAF0D230 /* libPods-AviasalesSDKTemplateTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,60 +232,57 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07082A1E1CAEC2B400CE4305 /* ASTSearchResultsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTSearchResultsList.h; sourceTree = "<group>"; };
-		07082A1F1CAEC2B400CE4305 /* ASTSearchResultsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTSearchResultsList.m; sourceTree = "<group>"; };
-		070A23261D22A10500B0DE5B /* ASTAirport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTAirport.h; sourceTree = "<group>"; };
-		070A23271D22A10500B0DE5B /* ASTAirport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTAirport.m; sourceTree = "<group>"; };
-		070A23291D22A16800B0DE5B /* ASTTravelSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTTravelSegment.h; sourceTree = "<group>"; };
-		070A232A1D22A16800B0DE5B /* ASTTravelSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTTravelSegment.m; sourceTree = "<group>"; };
-		07100BC91CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTResultsTicketPriceCell.h; sourceTree = "<group>"; };
-		07100BCA1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTResultsTicketPriceCell.m; sourceTree = "<group>"; };
-		07100BCB1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASTResultsTicketPriceCell.xib; sourceTree = "<group>"; };
-		07100BD51CF712910071B5CA /* ASTResultsFlightSegmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTResultsFlightSegmentCell.h; sourceTree = "<group>"; };
-		07100BD61CF712910071B5CA /* ASTResultsFlightSegmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTResultsFlightSegmentCell.m; sourceTree = "<group>"; };
-		07100BD71CF712910071B5CA /* ASTResultsFlightSegmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASTResultsFlightSegmentCell.xib; sourceTree = "<group>"; };
+		07249CC31D8C376400497C1D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		07249CC51D8C378D00497C1D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		07249CC91D8C3D0700497C1D /* ASTAirport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTAirport.h; sourceTree = "<group>"; };
+		07249CCA1D8C3D0700497C1D /* ASTAirport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTAirport.m; sourceTree = "<group>"; };
+		072714D31D79801E00545E63 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		072714D51D79804C00545E63 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		072714D71D79808A00545E63 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		072714D91D7980A000545E63 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		072714DB1D7980C800545E63 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		072714DD1D7980EC00545E63 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		072714DF1D7980F400545E63 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		072CCA7A1CAABE73003A8834 /* App.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = App.xcassets; sourceTree = "<group>"; };
 		072CCA7B1CAABE73003A8834 /* AVSLaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AVSLaunchScreen.xib; sourceTree = "<group>"; };
-		072CCA811CAABE73003A8834 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
 		072CCA841CAABE73003A8834 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
-		072CCA871CAABE73003A8834 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
-		072CCA8A1CAABE73003A8834 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
-		0736C98F1D08594000E060C7 /* JRSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSearchResult.h; sourceTree = "<group>"; };
-		0736C9901D08594000E060C7 /* JRSearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSearchResult.m; sourceTree = "<group>"; };
-		073A1DCE1D1D6C71008DBE2A /* JRSDKSearchInfoUrlCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSDKSearchInfoUrlCoder.h; sourceTree = "<group>"; };
-		073A1DCF1D1D6C71008DBE2A /* JRSDKSearchInfoUrlCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSDKSearchInfoUrlCoder.m; sourceTree = "<group>"; };
-		073A1DD11D1D6CB7008DBE2A /* JRSDKSearchInfoCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSDKSearchInfoCoder.h; sourceTree = "<group>"; };
+		073356581D6DC2550023B597 /* JRNewsFeedNativeAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNewsFeedNativeAdView.h; sourceTree = "<group>"; };
+		073356591D6DC2550023B597 /* JRNewsFeedNativeAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNewsFeedNativeAdView.m; sourceTree = "<group>"; };
 		073E93511CABD93200C880D7 /* AviasalesSDKTemplateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AviasalesSDKTemplateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		073E93551CABD93200C880D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		073E936A1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AviasalesSearchParamsUrlCoderTests.m; sourceTree = "<group>"; };
-		0756C0361CB249D60039443B /* ASTAdvertisementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTAdvertisementManager.h; sourceTree = "<group>"; };
-		0756C0371CB249D60039443B /* ASTAdvertisementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTAdvertisementManager.m; sourceTree = "<group>"; };
-		0756C0391CB252860039443B /* ASTVideoAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTVideoAdLoader.h; sourceTree = "<group>"; };
-		0756C03A1CB252860039443B /* ASTVideoAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTVideoAdLoader.m; sourceTree = "<group>"; };
-		0756C03D1CB261E00039443B /* ASTVideoAdPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASTVideoAdPlayer.h; sourceTree = "<group>"; };
-		0756C03E1CB262240039443B /* ASTVideoAdPlayerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTVideoAdPlayerProxy.h; sourceTree = "<group>"; };
-		0756C03F1CB262240039443B /* ASTVideoAdPlayerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTVideoAdPlayerProxy.m; sourceTree = "<group>"; };
-		0756C0411CB26C080039443B /* ASTNativeAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTNativeAdLoader.h; sourceTree = "<group>"; };
-		0756C0421CB26C080039443B /* ASTNativeAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTNativeAdLoader.m; sourceTree = "<group>"; };
-		0756C0451CB26F780039443B /* ASTNewsFeedAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTNewsFeedAdLoader.h; sourceTree = "<group>"; };
-		0756C0461CB26F780039443B /* ASTNewsFeedAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTNewsFeedAdLoader.m; sourceTree = "<group>"; };
-		0756C0491CB291770039443B /* ASTTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTTableManager.h; sourceTree = "<group>"; };
-		0756C04C1CB291F70039443B /* ASTTableManagerUnion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTTableManagerUnion.h; sourceTree = "<group>"; };
-		0756C04D1CB291F70039443B /* ASTTableManagerUnion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTTableManagerUnion.m; sourceTree = "<group>"; };
-		0756C04F1CB29B830039443B /* ASTAdvertisementTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTAdvertisementTableManager.h; sourceTree = "<group>"; };
-		0756C0501CB29B830039443B /* ASTAdvertisementTableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTAdvertisementTableManager.m; sourceTree = "<group>"; };
-		07599E511CFDCB5900A40113 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		07599E521CFDCB5900A40113 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		075989621D86C19000326FE2 /* AmazonAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AmazonAd.framework; sourceTree = "<group>"; };
+		075989631D86C19000326FE2 /* libAPDAmazonAdsAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDAmazonAdsAdapter.a; sourceTree = "<group>"; };
+		075989651D86C19000326FE2 /* libAPDPubnativeAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDPubnativeAdapter.a; sourceTree = "<group>"; };
+		0759896B1D86C19000326FE2 /* libAPDUnityAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDUnityAdapter.a; sourceTree = "<group>"; };
+		0759896C1D86C19000326FE2 /* UnityAds.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UnityAds.bundle; sourceTree = "<group>"; };
+		0759896D1D86C19000326FE2 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
+		0759896F1D86C19000326FE2 /* libAPDVungleAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDVungleAdapter.a; sourceTree = "<group>"; };
+		075989711D86C19000326FE2 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
+		075989721D86C19000326FE2 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
+		075989731D86C19000326FE2 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
+		075989741D86C19000326FE2 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
+		075989751D86C19000326FE2 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
+		075989761D86C19000326FE2 /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
+		075989771D86C19000326FE2 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
+		075989781D86C19000326FE2 /* Appodeal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Appodeal.bundle; sourceTree = "<group>"; };
+		075989791D86C19000326FE2 /* Appodeal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Appodeal.framework; sourceTree = "<group>"; };
+		07599E511CFDCB5900A40113 /* JRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRConstants.h; sourceTree = "<group>"; };
+		07599E521CFDCB5900A40113 /* JRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRConstants.m; sourceTree = "<group>"; };
 		07599E591CFDD5A600A40113 /* UINavigationController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Additions.h"; sourceTree = "<group>"; };
 		07599E5A1CFDD5A600A40113 /* UINavigationController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Additions.m"; sourceTree = "<group>"; };
-		075EDA281D007CC100418B8C /* ColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorScheme.h; sourceTree = "<group>"; };
-		075EDA291D007CC100418B8C /* ColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorScheme.m; sourceTree = "<group>"; };
-		07769DF61CF8B8AC004D5A72 /* UIFont+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Factory.h"; sourceTree = "<group>"; };
-		07769DF71CF8B8AC004D5A72 /* UIFont+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Factory.m"; sourceTree = "<group>"; };
-		077C43771CB7DCFD007A3290 /* ASTAviasalesAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTAviasalesAdLoader.h; sourceTree = "<group>"; };
-		077C43781CB7DCFD007A3290 /* ASTAviasalesAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTAviasalesAdLoader.m; sourceTree = "<group>"; };
+		075EDA281D007CC100418B8C /* JRColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRColorScheme.h; sourceTree = "<group>"; };
+		075EDA291D007CC100418B8C /* JRColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRColorScheme.m; sourceTree = "<group>"; };
+		077B71D81D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSearchResultsFlightSegmentCellLayoutParameters.h; sourceTree = "<group>"; };
+		077B71D91D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSearchResultsFlightSegmentCellLayoutParameters.m; sourceTree = "<group>"; };
+		077B71DB1D4A3A5500BB89BC /* JRStringsWidthComputer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRStringsWidthComputer.h; sourceTree = "<group>"; };
+		077B71DC1D4A3A5500BB89BC /* JRStringsWidthComputer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStringsWidthComputer.m; sourceTree = "<group>"; };
+		07AB5F151D8823B1001E1DCD /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
+		07AB5F161D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDGoogleAdMobAdapter.a; sourceTree = "<group>"; };
+		07ADF23B1D70747200517D96 /* JRNewsFeedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRNewsFeedNativeAdView.xib; sourceTree = "<group>"; };
+		07BB679B1D462B7800D31F24 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		21072BDEB6D7707508B56444 /* libPods-AviasalesSDKTemplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AviasalesSDKTemplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		21FF8F8A5955D758C09CFAE9 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		32BDB0CC849C93D67A873A86 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A115B931D01CDE000D94FAE /* JRAirportPickerCellWithAirport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAirportPickerCellWithAirport.h; sourceTree = "<group>"; };
 		3A115B941D01CDE000D94FAE /* JRAirportPickerCellWithAirport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAirportPickerCellWithAirport.m; sourceTree = "<group>"; };
 		3A115B951D01CDE000D94FAE /* JRAirportPickerCellWithAirport.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRAirportPickerCellWithAirport.xib; sourceTree = "<group>"; };
@@ -290,14 +299,22 @@
 		3A115BA31D01CDE000D94FAE /* JRAirportPickerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAirportPickerItem.m; sourceTree = "<group>"; };
 		3A115BBE1D05C8FE00D94FAE /* JRSearchedAirportsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSearchedAirportsManager.h; sourceTree = "<group>"; };
 		3A115BBF1D05C8FE00D94FAE /* JRSearchedAirportsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSearchedAirportsManager.m; sourceTree = "<group>"; };
+		3A55FC5E1D391B88002CC963 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC5F1D391B93002CC963 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC601D391B9C002CC963 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC611D391BA4002CC963 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC621D391BD3002CC963 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/AviasalesTemplateLocalizable.strings"; sourceTree = "<group>"; };
+		3A55FC631D391BDC002CC963 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC641D391BEA002CC963 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC651D391BF3002CC963 /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/AviasalesTemplateLocalizable.strings"; sourceTree = "<group>"; };
+		3A55FC661D391C0B002CC963 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC671D391C16002CC963 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC681D391C52002CC963 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
+		3A55FC691D391C63002CC963 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AviasalesTemplateLocalizable.strings"; sourceTree = "<group>"; };
+		3A55FC6A1D391C84002CC963 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/AviasalesTemplateLocalizable.strings; sourceTree = "<group>"; };
 		3A7516DC1D2E8D6300BC97BE /* JRAirport+LocalizedName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JRAirport+LocalizedName.h"; sourceTree = "<group>"; };
 		3A7516DD1D2E8D6300BC97BE /* JRAirport+LocalizedName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JRAirport+LocalizedName.m"; sourceTree = "<group>"; };
-		3A76ED0C1D2A795300827700 /* JRAppLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAppLauncher.h; sourceTree = "<group>"; };
-		3A76ED0D1D2A795300827700 /* JRAppLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAppLauncher.m; sourceTree = "<group>"; };
 		3A8DA1271D2A9640008575CF /* AviasalesSDKTemplate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AviasalesSDKTemplate-Info.plist"; path = "../AviasalesSDKTemplate-Info.plist"; sourceTree = "<group>"; };
-		3A8DA35D1D2A9776008575CF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
-		3A8DA35F1D2A98E7008575CF /* JRHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRHeader.h; sourceTree = "<group>"; };
-		3A8DA3601D2A996A008575CF /* AviasalesSDKTemplate-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "AviasalesSDKTemplate-Prefix.pch"; path = "../AviasalesSDKTemplate-Prefix.pch"; sourceTree = "<group>"; };
 		7C1371001D2E94BA0015C271 /* JRFilterTwoThumbSliderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFilterTwoThumbSliderItem.h; sourceTree = "<group>"; };
 		7C1371011D2E94BA0015C271 /* JRFilterTwoThumbSliderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFilterTwoThumbSliderItem.m; sourceTree = "<group>"; };
 		7C35F1211D1A972C00B9CB09 /* JRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFilter.h; sourceTree = "<group>"; };
@@ -342,6 +359,47 @@
 		7C4024621D2D51C300D3A45D /* JRFilterOneThumbSliderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFilterOneThumbSliderItem.m; sourceTree = "<group>"; };
 		7C7459731D1AD6C400EE4FE0 /* JRFilterVC_ipad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFilterVC_ipad.h; sourceTree = "<group>"; };
 		7C7459741D1AD6C400EE4FE0 /* JRFilterVC_ipad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFilterVC_ipad.m; sourceTree = "<group>"; };
+		7CCC2D9E1D3D032E0082FEFE /* JRSearchResultsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSearchResultsVC.h; sourceTree = "<group>"; };
+		7CCC2D9F1D3D032E0082FEFE /* JRSearchResultsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSearchResultsVC.m; sourceTree = "<group>"; };
+		7CCC2DA01D3D032E0082FEFE /* JRSearchResultsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRSearchResultsVC.xib; sourceTree = "<group>"; };
+		7CCC2DAB1D3D032E0082FEFE /* JRSearchResultsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSearchResultsList.h; sourceTree = "<group>"; };
+		7CCC2DAC1D3D032E0082FEFE /* JRSearchResultsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSearchResultsList.m; sourceTree = "<group>"; };
+		7CCC2DB81D3D06270082FEFE /* JRResultsFlightSegmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRResultsFlightSegmentCell.h; sourceTree = "<group>"; };
+		7CCC2DB91D3D06270082FEFE /* JRResultsFlightSegmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRResultsFlightSegmentCell.m; sourceTree = "<group>"; };
+		7CCC2DBA1D3D06280082FEFE /* JRResultsFlightSegmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRResultsFlightSegmentCell.xib; sourceTree = "<group>"; };
+		7CCC2DBB1D3D06280082FEFE /* JRResultsTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRResultsTicketCell.h; sourceTree = "<group>"; };
+		7CCC2DBC1D3D06280082FEFE /* JRResultsTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRResultsTicketCell.m; sourceTree = "<group>"; };
+		7CCC2DBD1D3D06280082FEFE /* JRResultsTicketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRResultsTicketCell.xib; sourceTree = "<group>"; };
+		7CCC2DBE1D3D06280082FEFE /* JRResultsTicketPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRResultsTicketPriceCell.h; sourceTree = "<group>"; };
+		7CCC2DBF1D3D06280082FEFE /* JRResultsTicketPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRResultsTicketPriceCell.m; sourceTree = "<group>"; };
+		7CCC2DC01D3D06280082FEFE /* JRResultsTicketPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRResultsTicketPriceCell.xib; sourceTree = "<group>"; };
+		7CCC2DC71D3D06EA0082FEFE /* JRAppLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAppLauncher.h; sourceTree = "<group>"; };
+		7CCC2DC81D3D06EA0082FEFE /* JRHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRHeader.h; sourceTree = "<group>"; };
+		7CCC2DC91D3D06F10082FEFE /* JRAppLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAppLauncher.m; sourceTree = "<group>"; };
+		7CCC2DCB1D3D09E10082FEFE /* JRAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAppDelegate.h; sourceTree = "<group>"; };
+		7CCC2DCC1D3D09E10082FEFE /* JRAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAppDelegate.m; sourceTree = "<group>"; };
+		7CCC2DCE1D3D0A510082FEFE /* AviasalesSDKTemplate-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AviasalesSDKTemplate-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		7CCC2DCF1D3D0A520082FEFE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		7CCC2DD21D3D0F4C0082FEFE /* JRTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTableManager.h; sourceTree = "<group>"; };
+		7CCC2DD31D3D0F4C0082FEFE /* JRTableManagerUnion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTableManagerUnion.h; sourceTree = "<group>"; };
+		7CCC2DD41D3D0F4C0082FEFE /* JRTableManagerUnion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRTableManagerUnion.m; sourceTree = "<group>"; };
+		7CCC2DF11D3D1E350082FEFE /* JRAviasalesAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAviasalesAdLoader.h; sourceTree = "<group>"; };
+		7CCC2DF21D3D1E350082FEFE /* JRAviasalesAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAviasalesAdLoader.m; sourceTree = "<group>"; };
+		7CCC2DF31D3D1E350082FEFE /* JRNativeAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNativeAdLoader.h; sourceTree = "<group>"; };
+		7CCC2DF41D3D1E350082FEFE /* JRNativeAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNativeAdLoader.m; sourceTree = "<group>"; };
+		7CCC2DF51D3D1E350082FEFE /* JRNewsFeedAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRNewsFeedAdLoader.h; sourceTree = "<group>"; };
+		7CCC2DF61D3D1E350082FEFE /* JRNewsFeedAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRNewsFeedAdLoader.m; sourceTree = "<group>"; };
+		7CCC2DF71D3D1E350082FEFE /* JRVideoAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRVideoAdLoader.h; sourceTree = "<group>"; };
+		7CCC2DF81D3D1E350082FEFE /* JRVideoAdLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRVideoAdLoader.m; sourceTree = "<group>"; };
+		7CCC2DF91D3D1E350082FEFE /* JRAdvertisementManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAdvertisementManager.h; sourceTree = "<group>"; };
+		7CCC2DFA1D3D1E350082FEFE /* JRAdvertisementManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAdvertisementManager.m; sourceTree = "<group>"; };
+		7CCC2DFB1D3D1E350082FEFE /* JRAdvertisementTableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAdvertisementTableManager.h; sourceTree = "<group>"; };
+		7CCC2DFC1D3D1E350082FEFE /* JRAdvertisementTableManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAdvertisementTableManager.m; sourceTree = "<group>"; };
+		7CCC2E0A1D3D23F10082FEFE /* UIFont+Factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Factory.h"; sourceTree = "<group>"; };
+		7CCC2E0B1D3D23F10082FEFE /* UIFont+Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Factory.m"; sourceTree = "<group>"; };
+		7CCC2E0D1D3D24660082FEFE /* JRSDKSearchInfoCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSDKSearchInfoCoder.h; path = AviasalesSDKTemplate/Source/JRSDKSearchInfoCoder.h; sourceTree = SOURCE_ROOT; };
+		7CCC2E0E1D3D24660082FEFE /* JRSDKSearchInfoUrlCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSDKSearchInfoUrlCoder.h; path = AviasalesSDKTemplate/Source/JRSDKSearchInfoUrlCoder.h; sourceTree = SOURCE_ROOT; };
+		7CCC2E0F1D3D24660082FEFE /* JRSDKSearchInfoUrlCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRSDKSearchInfoUrlCoder.m; path = AviasalesSDKTemplate/Source/JRSDKSearchInfoUrlCoder.m; sourceTree = SOURCE_ROOT; };
 		7CD376AB1D22B6DA003391AE /* JRFilterBoundsBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFilterBoundsBuilder.h; sourceTree = "<group>"; };
 		7CD376AC1D22B6DA003391AE /* JRFilterBoundsBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFilterBoundsBuilder.m; sourceTree = "<group>"; };
 		7CD78D121D1C30D20012A82F /* JRFilterCellsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFilterCellsFactory.h; sourceTree = "<group>"; };
@@ -351,9 +409,6 @@
 		7CD78D181D1D3AEE0012A82F /* JRActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRActivityIndicatorView.h; sourceTree = "<group>"; };
 		7CD78D191D1D3AEE0012A82F /* JRActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRActivityIndicatorView.m; sourceTree = "<group>"; };
 		7CD78D1B1D1D3B930012A82F /* JRActivityIndicatorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRActivityIndicatorView.xib; sourceTree = "<group>"; };
-		7CD960FE1D2140C200DFBD14 /* JRAverageRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAverageRateView.h; sourceTree = "<group>"; };
-		7CD960FF1D2140C200DFBD14 /* JRAverageRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAverageRateView.m; sourceTree = "<group>"; };
-		7CD961001D2140C200DFBD14 /* JRAverageRateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRAverageRateView.xib; sourceTree = "<group>"; };
 		7CDA75AD1D143FE90069FDD8 /* JRBrowserVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRBrowserVC.h; sourceTree = "<group>"; };
 		7CDA75AE1D143FE90069FDD8 /* JRBrowserVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRBrowserVC.m; sourceTree = "<group>"; };
 		7CDA75AF1D143FE90069FDD8 /* JRBrowserVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRBrowserVC.xib; sourceTree = "<group>"; };
@@ -384,7 +439,7 @@
 		7CE545F91D12D6060040065D /* JRPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPriceCell.m; sourceTree = "<group>"; };
 		7CE545FA1D12D6060040065D /* JRPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRPriceCell.xib; sourceTree = "<group>"; };
 		7CE545FD1D12EA0A0040065D /* JRInfoPanelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRInfoPanelView.xib; sourceTree = "<group>"; };
-		954530852790D24A800A96E5 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.release.xcconfig"; sourceTree = "<group>"; };
+		98BB5625FBAC53ACECEDA649 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C53C8D951CDA0EC900B7F54C /* JRSearchFormVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "JRSearchFormVC~ipad.xib"; sourceTree = "<group>"; };
 		C547DBB31CD895EC00CD0925 /* JRInspectableAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRInspectableAttributes.h; sourceTree = "<group>"; };
 		C547DBB41CD895EC00CD0925 /* JRInspectableAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRInspectableAttributes.m; sourceTree = "<group>"; };
@@ -411,8 +466,8 @@
 		C561733B1CC53C020049E2EE /* JRLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRLayoutConstraint.m; sourceTree = "<group>"; };
 		C561733E1CC53C6C0049E2EE /* UIImage+JRUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JRUIImage.h"; sourceTree = "<group>"; };
 		C561733F1CC53C6C0049E2EE /* UIImage+JRUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JRUIImage.m"; sourceTree = "<group>"; };
-		C56173411CC627F60049E2EE /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
-		C56173421CC627F60049E2EE /* Defines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defines.m; sourceTree = "<group>"; };
+		C56173411CC627F60049E2EE /* JRDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRDefines.h; sourceTree = "<group>"; };
+		C56173421CC627F60049E2EE /* JRDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRDefines.m; sourceTree = "<group>"; };
 		C56173461CC62C2F0049E2EE /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
 		C56173471CC62C2F0049E2EE /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
 		C561734A1CC633450049E2EE /* UIView+JRFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JRFadeAnimation.h"; sourceTree = "<group>"; };
@@ -464,24 +519,8 @@
 		C56173D31CC667030049E2EE /* UIWindow+TopMostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+TopMostViewController.m"; sourceTree = "<group>"; };
 		C56173DE1CC66BBB0049E2EE /* UIView+NSLS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NSLS.h"; sourceTree = "<group>"; };
 		C56173DF1CC66BBB0049E2EE /* UIView+NSLS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NSLS.m"; sourceTree = "<group>"; };
-		C580DB011CC52BC6009CA04B /* JRAirline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAirline.h; sourceTree = "<group>"; };
-		C580DB021CC52BC6009CA04B /* JRAirline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAirline.m; sourceTree = "<group>"; };
 		C580DB031CC52BC6009CA04B /* JRAirport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAirport.h; sourceTree = "<group>"; };
 		C580DB041CC52BC6009CA04B /* JRAirport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAirport.m; sourceTree = "<group>"; };
-		C580DB051CC52BC6009CA04B /* JRAlliance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAlliance.h; sourceTree = "<group>"; };
-		C580DB061CC52BC6009CA04B /* JRAlliance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAlliance.m; sourceTree = "<group>"; };
-		C580DB071CC52BC6009CA04B /* JRCurrencyRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRCurrencyRate.h; sourceTree = "<group>"; };
-		C580DB081CC52BC6009CA04B /* JRCurrencyRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRCurrencyRate.m; sourceTree = "<group>"; };
-		C580DB091CC52BC6009CA04B /* JRFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFlight.h; sourceTree = "<group>"; };
-		C580DB0A1CC52BC6009CA04B /* JRFlight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFlight.m; sourceTree = "<group>"; };
-		C580DB0B1CC52BC6009CA04B /* JRFlightSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFlightSegment.h; sourceTree = "<group>"; };
-		C580DB0C1CC52BC6009CA04B /* JRFlightSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFlightSegment.m; sourceTree = "<group>"; };
-		C580DB0D1CC52BC6009CA04B /* JRGate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRGate.h; sourceTree = "<group>"; };
-		C580DB0E1CC52BC6009CA04B /* JRGate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRGate.m; sourceTree = "<group>"; };
-		C580DB0F1CC52BC6009CA04B /* JRPaymentMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPaymentMethod.h; sourceTree = "<group>"; };
-		C580DB101CC52BC6009CA04B /* JRPaymentMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPaymentMethod.m; sourceTree = "<group>"; };
-		C580DB111CC52BC6009CA04B /* JRPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPrice.h; sourceTree = "<group>"; };
-		C580DB121CC52BC6009CA04B /* JRPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPrice.m; sourceTree = "<group>"; };
 		C580DB131CC52BC6009CA04B /* JRSearchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSearchInfo.h; sourceTree = "<group>"; };
 		C580DB141CC52BC6009CA04B /* JRSearchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSearchInfo.m; sourceTree = "<group>"; };
 		C580DB151CC52BC6009CA04B /* JRTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRTicket.h; sourceTree = "<group>"; };
@@ -556,23 +595,7 @@
 		C60EC83A17E848DA00C5D52E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C60EC83C17E848DA00C5D52E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C60EC83E17E848DA00C5D52E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		C60EC84917E848DA00C5D52E /* ASTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ASTAppDelegate.h; path = ../ASTAppDelegate.h; sourceTree = "<group>"; };
-		C60EC84A17E848DA00C5D52E /* ASTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ASTAppDelegate.m; path = ../ASTAppDelegate.m; sourceTree = "<group>"; };
-		C62DCD09186C79190039C256 /* ASTResultsTabBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASTResultsTabBar.xib; sourceTree = "<group>"; };
-		C63BA9EA1816B56E007A4F00 /* ASTCommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTCommonFunctions.h; sourceTree = "<group>"; };
-		C63BA9EB1816B56E007A4F00 /* ASTCommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTCommonFunctions.m; sourceTree = "<group>"; };
-		C63BA9ED1816BA6A007A4F00 /* ASTSearchParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTSearchParams.h; sourceTree = "<group>"; };
-		C63BA9EE1816BA6A007A4F00 /* ASTSearchParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTSearchParams.m; sourceTree = "<group>"; };
-		C67B44FF18916CA2006CBA73 /* ASTWebBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTWebBrowserViewController.h; sourceTree = "<group>"; };
-		C67B450018916CA2006CBA73 /* ASTWebBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTWebBrowserViewController.m; sourceTree = "<group>"; };
-		C67B450118916CA2006CBA73 /* ASTWebBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASTWebBrowserViewController.xib; sourceTree = "<group>"; };
 		C67CC6FA17F31A55006C659C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		C6A0977918113DD500862C71 /* ASTResultsTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTResultsTicketCell.h; sourceTree = "<group>"; };
-		C6A0977A18113DD500862C71 /* ASTResultsTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTResultsTicketCell.m; sourceTree = "<group>"; };
-		C6A0977C18113DEA00862C71 /* ASTResultsTicketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASTResultsTicketCell.xib; sourceTree = "<group>"; };
-		C6B74F72181EA14A00FEF5B9 /* ASTResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTResults.h; sourceTree = "<group>"; };
-		C6B74F73181EA14A00FEF5B9 /* ASTResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ASTResults.m; sourceTree = "<group>"; };
-		C6B74F74181EA14A00FEF5B9 /* ASTResults.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASTResults.xib; sourceTree = "<group>"; };
 		C6B751E018240B5400FEF5B9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		D857DB3BB9A6C7C0254EDC3C /* Pods-AviasalesSDKTemplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate.release.xcconfig"; sourceTree = "<group>"; };
 		D9E35EAEF225DD040D60E1D2 /* Pods-AviasalesSDKTemplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate.debug.xcconfig"; sourceTree = "<group>"; };
@@ -584,7 +607,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE7CF6CBE2909FD11538672 /* libPods-AviasalesSDKTemplateTests.a in Frameworks */,
+				B48F6D89022CABDC403C279B /* libPods-AviasalesSDKTemplateTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,25 +615,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07249CC71D8C388800497C1D /* libz.tbd in Frameworks */,
+				07249CC41D8C376400497C1D /* libc++.tbd in Frameworks */,
+				0759897C1D86C19000326FE2 /* libAPDAmazonAdsAdapter.a in Frameworks */,
+				072714E01D7980F400545E63 /* SystemConfiguration.framework in Frameworks */,
+				0759898B1D86C19000326FE2 /* VungleSDK.framework in Frameworks */,
+				0759897D1D86C19000326FE2 /* libAPDPubnativeAdapter.a in Frameworks */,
+				0759897B1D86C19000326FE2 /* AmazonAd.framework in Frameworks */,
+				072714DE1D7980EC00545E63 /* MobileCoreServices.framework in Frameworks */,
+				072714DC1D7980C800545E63 /* MessageUI.framework in Frameworks */,
+				075989811D86C19000326FE2 /* libAPDUnityAdapter.a in Frameworks */,
+				072714DA1D7980A000545E63 /* EventKitUI.framework in Frameworks */,
+				072714D81D79808A00545E63 /* MediaPlayer.framework in Frameworks */,
+				075989841D86C19000326FE2 /* libAPDVungleAdapter.a in Frameworks */,
+				072714D61D79804C00545E63 /* EventKit.framework in Frameworks */,
+				072714D41D79801E00545E63 /* CoreTelephony.framework in Frameworks */,
 				C5B711871D00542000987E06 /* AviasalesSDK.framework in Frameworks */,
+				07AB5F171D8823B1001E1DCD /* GoogleMobileAds.framework in Frameworks */,
 				C67CC6FB17F31A55006C659C /* CoreLocation.framework in Frameworks */,
+				075989831D86C19000326FE2 /* UnityAds.framework in Frameworks */,
 				C60EC83D17E848DA00C5D52E /* CoreGraphics.framework in Frameworks */,
 				C60EC83F17E848DA00C5D52E /* UIKit.framework in Frameworks */,
 				C60EC83B17E848DA00C5D52E /* Foundation.framework in Frameworks */,
+				07AB5F181D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a in Frameworks */,
 				5E81EAF3B54F2F3E94B24FE7 /* libPods-AviasalesSDKTemplate.a in Frameworks */,
+				0759898D1D86C19000326FE2 /* Appodeal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		070A23251D22A0EC00B0DE5B /* Model */ = {
+		07249CC81D8C3D0700497C1D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				070A23261D22A10500B0DE5B /* ASTAirport.h */,
-				070A23271D22A10500B0DE5B /* ASTAirport.m */,
-				070A23291D22A16800B0DE5B /* ASTTravelSegment.h */,
-				070A232A1D22A16800B0DE5B /* ASTTravelSegment.m */,
+				07249CC91D8C3D0700497C1D /* ASTAirport.h */,
+				07249CCA1D8C3D0700497C1D /* ASTAirport.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -625,57 +665,96 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		073356571D6DC22D0023B597 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				073356581D6DC2550023B597 /* JRNewsFeedNativeAdView.h */,
+				073356591D6DC2550023B597 /* JRNewsFeedNativeAdView.m */,
+				07ADF23B1D70747200517D96 /* JRNewsFeedNativeAdView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		073E93521CABD93200C880D7 /* AviasalesSDKTemplateTests */ = {
 			isa = PBXGroup;
 			children = (
-				070A23251D22A0EC00B0DE5B /* Model */,
+				07249CC81D8C3D0700497C1D /* Model */,
 				073E93551CABD93200C880D7 /* Info.plist */,
 				073E936A1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m */,
 			);
 			path = AviasalesSDKTemplateTests;
 			sourceTree = "<group>";
 		};
-		0756C0351CB249BB0039443B /* Advertisement */ = {
+		0759895F1D86C19000326FE2 /* Appodeal */ = {
 			isa = PBXGroup;
 			children = (
-				0756C0441CB26F500039443B /* AdLoading */,
-				0756C0361CB249D60039443B /* ASTAdvertisementManager.h */,
-				0756C0371CB249D60039443B /* ASTAdvertisementManager.m */,
-				0756C03D1CB261E00039443B /* ASTVideoAdPlayer.h */,
-				0756C03E1CB262240039443B /* ASTVideoAdPlayerProxy.h */,
-				0756C03F1CB262240039443B /* ASTVideoAdPlayerProxy.m */,
-				0756C04F1CB29B830039443B /* ASTAdvertisementTableManager.h */,
-				0756C0501CB29B830039443B /* ASTAdvertisementTableManager.m */,
+				075989601D86C19000326FE2 /* Adapters */,
+				075989781D86C19000326FE2 /* Appodeal.bundle */,
+				075989791D86C19000326FE2 /* Appodeal.framework */,
 			);
-			name = Advertisement;
+			path = Appodeal;
 			sourceTree = "<group>";
 		};
-		0756C0441CB26F500039443B /* AdLoading */ = {
+		075989601D86C19000326FE2 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
-				0756C0411CB26C080039443B /* ASTNativeAdLoader.h */,
-				0756C0421CB26C080039443B /* ASTNativeAdLoader.m */,
-				0756C0391CB252860039443B /* ASTVideoAdLoader.h */,
-				0756C03A1CB252860039443B /* ASTVideoAdLoader.m */,
-				0756C0451CB26F780039443B /* ASTNewsFeedAdLoader.h */,
-				0756C0461CB26F780039443B /* ASTNewsFeedAdLoader.m */,
-				077C43771CB7DCFD007A3290 /* ASTAviasalesAdLoader.h */,
-				077C43781CB7DCFD007A3290 /* ASTAviasalesAdLoader.m */,
+				07AB5F141D8823B1001E1DCD /* APDGoogleAdMobAdapter.embeddedframework */,
+				075989611D86C19000326FE2 /* APDAmazonAdsAdapter.embeddedframework */,
+				075989641D86C19000326FE2 /* APDPubnativeAdapter.embeddedframework */,
+				0759896A1D86C19000326FE2 /* APDUnityAdapter.embeddedframework */,
+				0759896E1D86C19000326FE2 /* APDVungleAdapter.embeddedframework */,
 			);
-			name = AdLoading;
+			path = Adapters;
 			sourceTree = "<group>";
 		};
-		0756C0481CB291550039443B /* Utils */ = {
+		075989611D86C19000326FE2 /* APDAmazonAdsAdapter.embeddedframework */ = {
 			isa = PBXGroup;
 			children = (
-				073A1DD11D1D6CB7008DBE2A /* JRSDKSearchInfoCoder.h */,
-				073A1DCE1D1D6C71008DBE2A /* JRSDKSearchInfoUrlCoder.h */,
-				073A1DCF1D1D6C71008DBE2A /* JRSDKSearchInfoUrlCoder.m */,
-				0756C0491CB291770039443B /* ASTTableManager.h */,
-				0756C04C1CB291F70039443B /* ASTTableManagerUnion.h */,
-				0756C04D1CB291F70039443B /* ASTTableManagerUnion.m */,
+				075989621D86C19000326FE2 /* AmazonAd.framework */,
+				075989631D86C19000326FE2 /* libAPDAmazonAdsAdapter.a */,
 			);
-			name = Utils;
+			path = APDAmazonAdsAdapter.embeddedframework;
+			sourceTree = "<group>";
+		};
+		075989641D86C19000326FE2 /* APDPubnativeAdapter.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				075989651D86C19000326FE2 /* libAPDPubnativeAdapter.a */,
+			);
+			path = APDPubnativeAdapter.embeddedframework;
+			sourceTree = "<group>";
+		};
+		0759896A1D86C19000326FE2 /* APDUnityAdapter.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				0759896B1D86C19000326FE2 /* libAPDUnityAdapter.a */,
+				0759896C1D86C19000326FE2 /* UnityAds.bundle */,
+				0759896D1D86C19000326FE2 /* UnityAds.framework */,
+			);
+			path = APDUnityAdapter.embeddedframework;
+			sourceTree = "<group>";
+		};
+		0759896E1D86C19000326FE2 /* APDVungleAdapter.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				0759896F1D86C19000326FE2 /* libAPDVungleAdapter.a */,
+				075989701D86C19000326FE2 /* Resources */,
+				075989771D86C19000326FE2 /* VungleSDK.framework */,
+			);
+			path = APDVungleAdapter.embeddedframework;
+			sourceTree = "<group>";
+		};
+		075989701D86C19000326FE2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				075989711D86C19000326FE2 /* __vungle.db */,
+				075989721D86C19000326FE2 /* vg_close.png */,
+				075989731D86C19000326FE2 /* vg_cta.png */,
+				075989741D86C19000326FE2 /* vg_mute_off.png */,
+				075989751D86C19000326FE2 /* vg_mute_on.png */,
+				075989761D86C19000326FE2 /* vg_privacy.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		07599E581CFDD5A600A40113 /* UINavigationController+Additions */ = {
@@ -685,6 +764,15 @@
 				07599E5A1CFDD5A600A40113 /* UINavigationController+Additions.m */,
 			);
 			path = "UINavigationController+Additions";
+			sourceTree = "<group>";
+		};
+		07AB5F141D8823B1001E1DCD /* APDGoogleAdMobAdapter.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				07AB5F151D8823B1001E1DCD /* GoogleMobileAds.framework */,
+				07AB5F161D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a */,
+			);
+			path = APDGoogleAdMobAdapter.embeddedframework;
 			sourceTree = "<group>";
 		};
 		3A115B901D01CDC700D94FAE /* JRAirportPicker */ = {
@@ -817,14 +905,73 @@
 			path = JRFilterItem;
 			sourceTree = "<group>";
 		};
-		7CD960FD1D2140C200DFBD14 /* JRRaitingStars */ = {
+		7CCC2D9D1D3D032E0082FEFE /* JRSearchResults */ = {
 			isa = PBXGroup;
 			children = (
-				7CD960FE1D2140C200DFBD14 /* JRAverageRateView.h */,
-				7CD960FF1D2140C200DFBD14 /* JRAverageRateView.m */,
-				7CD961001D2140C200DFBD14 /* JRAverageRateView.xib */,
+				7CCC2DB71D3D06270082FEFE /* Cells */,
+				7CCC2D9E1D3D032E0082FEFE /* JRSearchResultsVC.h */,
+				7CCC2D9F1D3D032E0082FEFE /* JRSearchResultsVC.m */,
+				7CCC2DA01D3D032E0082FEFE /* JRSearchResultsVC.xib */,
+				7CCC2DAB1D3D032E0082FEFE /* JRSearchResultsList.h */,
+				7CCC2DAC1D3D032E0082FEFE /* JRSearchResultsList.m */,
 			);
-			path = JRRaitingStars;
+			path = JRSearchResults;
+			sourceTree = "<group>";
+		};
+		7CCC2DB71D3D06270082FEFE /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7CCC2DB81D3D06270082FEFE /* JRResultsFlightSegmentCell.h */,
+				7CCC2DB91D3D06270082FEFE /* JRResultsFlightSegmentCell.m */,
+				7CCC2DBA1D3D06280082FEFE /* JRResultsFlightSegmentCell.xib */,
+				7CCC2DBB1D3D06280082FEFE /* JRResultsTicketCell.h */,
+				7CCC2DBC1D3D06280082FEFE /* JRResultsTicketCell.m */,
+				7CCC2DBD1D3D06280082FEFE /* JRResultsTicketCell.xib */,
+				7CCC2DBE1D3D06280082FEFE /* JRResultsTicketPriceCell.h */,
+				7CCC2DBF1D3D06280082FEFE /* JRResultsTicketPriceCell.m */,
+				7CCC2DC01D3D06280082FEFE /* JRResultsTicketPriceCell.xib */,
+				077B71D81D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.h */,
+				077B71D91D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		7CCC2DD11D3D0F4C0082FEFE /* JRTableManager */ = {
+			isa = PBXGroup;
+			children = (
+				7CCC2DD21D3D0F4C0082FEFE /* JRTableManager.h */,
+				7CCC2DD31D3D0F4C0082FEFE /* JRTableManagerUnion.h */,
+				7CCC2DD41D3D0F4C0082FEFE /* JRTableManagerUnion.m */,
+			);
+			path = JRTableManager;
+			sourceTree = "<group>";
+		};
+		7CCC2DEF1D3D1E350082FEFE /* Advertisement */ = {
+			isa = PBXGroup;
+			children = (
+				073356571D6DC22D0023B597 /* Views */,
+				7CCC2DF01D3D1E350082FEFE /* AdLoading */,
+				7CCC2DF91D3D1E350082FEFE /* JRAdvertisementManager.h */,
+				7CCC2DFA1D3D1E350082FEFE /* JRAdvertisementManager.m */,
+				7CCC2DFB1D3D1E350082FEFE /* JRAdvertisementTableManager.h */,
+				7CCC2DFC1D3D1E350082FEFE /* JRAdvertisementTableManager.m */,
+			);
+			path = Advertisement;
+			sourceTree = "<group>";
+		};
+		7CCC2DF01D3D1E350082FEFE /* AdLoading */ = {
+			isa = PBXGroup;
+			children = (
+				7CCC2DF11D3D1E350082FEFE /* JRAviasalesAdLoader.h */,
+				7CCC2DF21D3D1E350082FEFE /* JRAviasalesAdLoader.m */,
+				7CCC2DF31D3D1E350082FEFE /* JRNativeAdLoader.h */,
+				7CCC2DF41D3D1E350082FEFE /* JRNativeAdLoader.m */,
+				7CCC2DF51D3D1E350082FEFE /* JRNewsFeedAdLoader.h */,
+				7CCC2DF61D3D1E350082FEFE /* JRNewsFeedAdLoader.m */,
+				7CCC2DF71D3D1E350082FEFE /* JRVideoAdLoader.h */,
+				7CCC2DF81D3D1E350082FEFE /* JRVideoAdLoader.m */,
+			);
+			path = AdLoading;
 			sourceTree = "<group>";
 		};
 		7CDA75AC1D143FE90069FDD8 /* JRBrowser */ = {
@@ -881,8 +1028,8 @@
 			children = (
 				D9E35EAEF225DD040D60E1D2 /* Pods-AviasalesSDKTemplate.debug.xcconfig */,
 				D857DB3BB9A6C7C0254EDC3C /* Pods-AviasalesSDKTemplate.release.xcconfig */,
-				21FF8F8A5955D758C09CFAE9 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */,
-				954530852790D24A800A96E5 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */,
+				98BB5625FBAC53ACECEDA649 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */,
+				32BDB0CC849C93D67A873A86 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -899,6 +1046,7 @@
 		C56172FF1CC52EB70049E2EE /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				0759895F1D86C19000326FE2 /* Appodeal */,
 				C56173001CC52EE90049E2EE /* FPPopover */,
 			);
 			path = Libs;
@@ -921,7 +1069,7 @@
 		C561730B1CC52F680049E2EE /* Essentials */ = {
 			isa = PBXGroup;
 			children = (
-				7CD960FD1D2140C200DFBD14 /* JRRaitingStars */,
+				7CCC2DD11D3D0F4C0082FEFE /* JRTableManager */,
 				C561731C1CC52F910049E2EE /* JRFPPoverController */,
 				C56173391CC53C020049E2EE /* JRLayoutConstraint */,
 				C56173A71CC65E5E0049E2EE /* JRNavigationController */,
@@ -978,6 +1126,8 @@
 		C56173341CC53B9B0049E2EE /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				7CCC2E0A1D3D23F10082FEFE /* UIFont+Factory.h */,
+				7CCC2E0B1D3D23F10082FEFE /* UIFont+Factory.m */,
 				3A7516DB1D2E8D3E00BC97BE /* JRAirport+LocalizedName */,
 				C5B1DBD01D22B11E00BD3F54 /* CAAnimation+JRPopup */,
 				C547DBB21CD895C000CD0925 /* JRInspectableAttributes */,
@@ -1032,6 +1182,8 @@
 				7CE1F2E41D34EECA00363B1A /* JRTicketUtils.m */,
 				7CE1F2E61D3638E100363B1A /* JRPriceUtils.h */,
 				7CE1F2E71D3638E200363B1A /* JRPriceUtils.m */,
+				077B71DB1D4A3A5500BB89BC /* JRStringsWidthComputer.h */,
+				077B71DC1D4A3A5500BB89BC /* JRStringsWidthComputer.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1195,14 +1347,21 @@
 		C580DAFF1CC52BAF009CA04B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C56173411CC627F60049E2EE /* Defines.h */,
-				C56173421CC627F60049E2EE /* Defines.m */,
-				075EDA281D007CC100418B8C /* ColorScheme.h */,
-				075EDA291D007CC100418B8C /* ColorScheme.m */,
-				07769DF61CF8B8AC004D5A72 /* UIFont+Factory.h */,
-				07769DF71CF8B8AC004D5A72 /* UIFont+Factory.m */,
-				07599E511CFDCB5900A40113 /* Constants.h */,
-				07599E521CFDCB5900A40113 /* Constants.m */,
+				7CCC2E0D1D3D24660082FEFE /* JRSDKSearchInfoCoder.h */,
+				7CCC2E0E1D3D24660082FEFE /* JRSDKSearchInfoUrlCoder.h */,
+				7CCC2E0F1D3D24660082FEFE /* JRSDKSearchInfoUrlCoder.m */,
+				7CCC2DCB1D3D09E10082FEFE /* JRAppDelegate.h */,
+				7CCC2DCC1D3D09E10082FEFE /* JRAppDelegate.m */,
+				7CCC2DC71D3D06EA0082FEFE /* JRAppLauncher.h */,
+				7CCC2DC91D3D06F10082FEFE /* JRAppLauncher.m */,
+				7CCC2DC81D3D06EA0082FEFE /* JRHeader.h */,
+				C56173411CC627F60049E2EE /* JRDefines.h */,
+				C56173421CC627F60049E2EE /* JRDefines.m */,
+				075EDA281D007CC100418B8C /* JRColorScheme.h */,
+				075EDA291D007CC100418B8C /* JRColorScheme.m */,
+				07599E511CFDCB5900A40113 /* JRConstants.h */,
+				07599E521CFDCB5900A40113 /* JRConstants.m */,
+				7CCC2DEF1D3D1E350082FEFE /* Advertisement */,
 				C561730B1CC52F680049E2EE /* Essentials */,
 				C56172FF1CC52EB70049E2EE /* Libs */,
 				C56173341CC53B9B0049E2EE /* Categories */,
@@ -1216,28 +1375,10 @@
 		C580DB001CC52BB9009CA04B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C580DB011CC52BC6009CA04B /* JRAirline.h */,
-				C580DB021CC52BC6009CA04B /* JRAirline.m */,
 				C580DB031CC52BC6009CA04B /* JRAirport.h */,
 				C580DB041CC52BC6009CA04B /* JRAirport.m */,
-				C580DB051CC52BC6009CA04B /* JRAlliance.h */,
-				C580DB061CC52BC6009CA04B /* JRAlliance.m */,
-				C580DB071CC52BC6009CA04B /* JRCurrencyRate.h */,
-				C580DB081CC52BC6009CA04B /* JRCurrencyRate.m */,
-				C580DB091CC52BC6009CA04B /* JRFlight.h */,
-				C580DB0A1CC52BC6009CA04B /* JRFlight.m */,
-				C580DB0B1CC52BC6009CA04B /* JRFlightSegment.h */,
-				C580DB0C1CC52BC6009CA04B /* JRFlightSegment.m */,
-				C580DB0D1CC52BC6009CA04B /* JRGate.h */,
-				C580DB0E1CC52BC6009CA04B /* JRGate.m */,
-				C580DB0F1CC52BC6009CA04B /* JRPaymentMethod.h */,
-				C580DB101CC52BC6009CA04B /* JRPaymentMethod.m */,
-				C580DB111CC52BC6009CA04B /* JRPrice.h */,
-				C580DB121CC52BC6009CA04B /* JRPrice.m */,
 				C580DB131CC52BC6009CA04B /* JRSearchInfo.h */,
 				C580DB141CC52BC6009CA04B /* JRSearchInfo.m */,
-				0736C98F1D08594000E060C7 /* JRSearchResult.h */,
-				0736C9901D08594000E060C7 /* JRSearchResult.m */,
 				C580DB151CC52BC6009CA04B /* JRTicket.h */,
 				C580DB161CC52BC6009CA04B /* JRTicket.m */,
 				C580DB171CC52BC6009CA04B /* JRTravelSegment.h */,
@@ -1249,6 +1390,7 @@
 		C580DB251CC52BC9009CA04B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7CCC2D9D1D3D032E0082FEFE /* JRSearchResults */,
 				7C35F11F1D1A972C00B9CB09 /* JRFilters */,
 				C5A681D81D1D4A7900C83CFE /* JRWaiting */,
 				7CDA75AC1D143FE90069FDD8 /* JRBrowser */,
@@ -1407,6 +1549,16 @@
 		C60EC83917E848DA00C5D52E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07249CC51D8C378D00497C1D /* libz.tbd */,
+				07249CC31D8C376400497C1D /* libc++.tbd */,
+				072714DF1D7980F400545E63 /* SystemConfiguration.framework */,
+				072714DD1D7980EC00545E63 /* MobileCoreServices.framework */,
+				072714DB1D7980C800545E63 /* MessageUI.framework */,
+				072714D91D7980A000545E63 /* EventKitUI.framework */,
+				072714D71D79808A00545E63 /* MediaPlayer.framework */,
+				072714D51D79804C00545E63 /* EventKit.framework */,
+				072714D31D79801E00545E63 /* CoreTelephony.framework */,
+				07BB679B1D462B7800D31F24 /* CoreMedia.framework */,
 				C5B711841D0053FB00987E06 /* AviasalesSDK.framework */,
 				C67CC6FA17F31A55006C659C /* CoreLocation.framework */,
 				C60EC83A17E848DA00C5D52E /* Foundation.framework */,
@@ -1423,20 +1575,7 @@
 			isa = PBXGroup;
 			children = (
 				C580DAFF1CC52BAF009CA04B /* Source */,
-				0756C0481CB291550039443B /* Utils */,
-				0756C0351CB249BB0039443B /* Advertisement */,
 				072CCA791CAABE73003A8834 /* Resources */,
-				C67B44FE18916C72006CBA73 /* Browser */,
-				C6B750161823F2DF00FEF5B9 /* Results Screen */,
-				C63BA9EA1816B56E007A4F00 /* ASTCommonFunctions.h */,
-				C63BA9EB1816B56E007A4F00 /* ASTCommonFunctions.m */,
-				C63BA9ED1816BA6A007A4F00 /* ASTSearchParams.h */,
-				C63BA9EE1816BA6A007A4F00 /* ASTSearchParams.m */,
-				C60EC84917E848DA00C5D52E /* ASTAppDelegate.h */,
-				C60EC84A17E848DA00C5D52E /* ASTAppDelegate.m */,
-				3A76ED0C1D2A795300827700 /* JRAppLauncher.h */,
-				3A76ED0D1D2A795300827700 /* JRAppLauncher.m */,
-				3A8DA35F1D2A98E7008575CF /* JRHeader.h */,
 				C60EC84117E848DA00C5D52E /* Supporting Files */,
 			);
 			path = AviasalesSDKTemplate;
@@ -1445,43 +1584,11 @@
 		C60EC84117E848DA00C5D52E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3A8DA35D1D2A9776008575CF /* main.m */,
+				7CCC2DCE1D3D0A510082FEFE /* AviasalesSDKTemplate-Prefix.pch */,
+				7CCC2DCF1D3D0A520082FEFE /* main.m */,
 				3A8DA1271D2A9640008575CF /* AviasalesSDKTemplate-Info.plist */,
-				3A8DA3601D2A996A008575CF /* AviasalesSDKTemplate-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C67B44FE18916C72006CBA73 /* Browser */ = {
-			isa = PBXGroup;
-			children = (
-				C67B44FF18916CA2006CBA73 /* ASTWebBrowserViewController.h */,
-				C67B450018916CA2006CBA73 /* ASTWebBrowserViewController.m */,
-				C67B450118916CA2006CBA73 /* ASTWebBrowserViewController.xib */,
-			);
-			name = Browser;
-			sourceTree = "<group>";
-		};
-		C6B750161823F2DF00FEF5B9 /* Results Screen */ = {
-			isa = PBXGroup;
-			children = (
-				C6B74F72181EA14A00FEF5B9 /* ASTResults.h */,
-				C6B74F73181EA14A00FEF5B9 /* ASTResults.m */,
-				C6B74F74181EA14A00FEF5B9 /* ASTResults.xib */,
-				C62DCD09186C79190039C256 /* ASTResultsTabBar.xib */,
-				C6A0977918113DD500862C71 /* ASTResultsTicketCell.h */,
-				C6A0977A18113DD500862C71 /* ASTResultsTicketCell.m */,
-				C6A0977C18113DEA00862C71 /* ASTResultsTicketCell.xib */,
-				07082A1E1CAEC2B400CE4305 /* ASTSearchResultsList.h */,
-				07082A1F1CAEC2B400CE4305 /* ASTSearchResultsList.m */,
-				07100BC91CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.h */,
-				07100BCA1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.m */,
-				07100BCB1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.xib */,
-				07100BD51CF712910071B5CA /* ASTResultsFlightSegmentCell.h */,
-				07100BD61CF712910071B5CA /* ASTResultsFlightSegmentCell.m */,
-				07100BD71CF712910071B5CA /* ASTResultsFlightSegmentCell.xib */,
-			);
-			name = "Results Screen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1495,8 +1602,8 @@
 				073E934D1CABD93200C880D7 /* Sources */,
 				073E934E1CABD93200C880D7 /* Frameworks */,
 				073E934F1CABD93200C880D7 /* Resources */,
-				7919D850BA4B21AC20899208 /* [CP] Embed Pods Frameworks */,
-				A66F4DDD3BEB8F0609C191BF /* [CP] Copy Pods Resources */,
+				D8094495C4250A9603736951 /* [CP] Embed Pods Frameworks */,
+				7C31750F8FEE98985DB7266B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1518,9 +1625,6 @@
 				C60EC83517E848DA00C5D52E /* Resources */,
 				E4ABF22AB848A6C1FCF88809 /* [CP] Embed Pods Frameworks */,
 				6FE12E2A3031362B62AD9DCE /* [CP] Copy Pods Resources */,
-				0BA5381A194B4D01355F2CB5 /* uD83DuDCE6 Embed Pods Frameworks */,
-				F513FEF864B97ACE9D1C7CAE /* uD83DuDCE6 Copy Pods Resources */,
-				1BB3F3AB7D9231B704FF6753 /* uD83DuDCE6 Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1545,6 +1649,10 @@
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = C60EC83617E848DA00C5D52E;
 					};
+					C60EC83617E848DA00C5D52E = {
+						DevelopmentTeam = C92M3ZV55X;
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = C60EC83217E848DA00C5D52E /* Build configuration list for PBXProject "AviasalesSDKTemplate" */;
@@ -1555,8 +1663,18 @@
 				en,
 				Base,
 				de,
-				ru,
 				es,
+				fr,
+				it,
+				"ja-JP",
+				ja,
+				pl,
+				"pt-PT",
+				pt,
+				ru,
+				tr,
+				"zh-Hans",
+				th,
 			);
 			mainGroup = C60EC82E17E848DA00C5D52E;
 			productRefGroup = C60EC83817E848DA00C5D52E /* Products */;
@@ -1581,33 +1699,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075989821D86C19000326FE2 /* UnityAds.bundle in Resources */,
 				C580DB7A1CC52D6E009CA04B /* JRSearchFormTravelClassCell.xib in Resources */,
-				C6EA13D218313BB800E77589 /* ASTResults.xib in Resources */,
 				7CE545F01D11BC340040065D /* JRFlightsSegmentHeaderView.xib in Resources */,
 				7CE545FC1D12D6060040065D /* JRPriceCell.xib in Resources */,
 				7C35F1631D1A972C00B9CB09 /* JRFilterListHeaderCell.xib in Resources */,
+				075989891D86C19000326FE2 /* vg_mute_on.png in Resources */,
 				7C35F1691D1A972C00B9CB09 /* JRFilterTravelSegmentCell.xib in Resources */,
 				3A115BA81D01CDE000D94FAE /* JRAirportPickerCellWithInfo.xib in Resources */,
 				C561735F1CC634F50049E2EE /* JRDatePickerDayView.xib in Resources */,
 				072CCA8C1CAABE73003A8834 /* AVSLaunchScreen.xib in Resources */,
 				3A115BAE1D01CDE000D94FAE /* JRAirportPickerVC.xib in Resources */,
 				7C35F1751D1A972C00B9CB09 /* JRFilterVC~ipad.xib in Resources */,
-				7CD961021D2140C200DFBD14 /* JRAverageRateView.xib in Resources */,
 				7C35F15E1D1A972C00B9CB09 /* JRFilterCellWithTwoThumbsSlider.xib in Resources */,
-				07100BD91CF712910071B5CA /* ASTResultsFlightSegmentCell.xib in Resources */,
 				7CE545F21D11BC340040065D /* JRTransferCell.xib in Resources */,
 				C580DB6B1CC52D6E009CA04B /* JRSearchFormComplexTableClearCell.xib in Resources */,
+				075989851D86C19000326FE2 /* __vungle.db in Resources */,
+				7CCC2DC41D3D06280082FEFE /* JRResultsTicketCell.xib in Resources */,
 				7CD78D1C1D1D3B930012A82F /* JRActivityIndicatorView.xib in Resources */,
 				C5B1DBCF1D22AE8700BD3F54 /* JRPurchaseInCreditAlert.xib in Resources */,
 				C580DB681CC52D6E009CA04B /* JRSearchFormComplexSegmentCell.xib in Resources */,
 				7CE545FE1D12EA0A0040065D /* JRInfoPanelView.xib in Resources */,
 				7CE545FE1D12EA0A0040065D /* JRInfoPanelView.xib in Resources */,
+				075989881D86C19000326FE2 /* vg_mute_off.png in Resources */,
+				0759898A1D86C19000326FE2 /* vg_privacy.png in Resources */,
 				C580DB2C1CC52BE1009CA04B /* JRSearchFormVC.xib in Resources */,
-				3A8DA1291D2A9640008575CF /* AviasalesSDKTemplate-Info.plist in Resources */,
 				7CE545EC1D11BC340040065D /* JRTicketVC.xib in Resources */,
 				7CE545EC1D11BC340040065D /* JRTicketVC.xib in Resources */,
 				C580DB661CC52D6E009CA04B /* JRSearchFormComplexSearchTableHeader.xib in Resources */,
-				C6BA19941827581C00BAD465 /* ASTResultsTicketCell.xib in Resources */,
 				7C35F1741D1A972C00B9CB09 /* JRFilterVC~iphone.xib in Resources */,
 				C580DB6E1CC52D6E009CA04B /* JRSearchFormDateCell.xib in Resources */,
 				072CCA8B1CAABE73003A8834 /* App.xcassets in Resources */,
@@ -1615,26 +1734,30 @@
 				C580DB881CC52D89009CA04B /* JRSearchFormPassengerPickerView.xib in Resources */,
 				7CE545EE1D11BC340040065D /* JRFlightCell.xib in Resources */,
 				7C35F1651D1A972C00B9CB09 /* JRFilterListSeparatorCell.xib in Resources */,
+				7CCC2DAE1D3D032F0082FEFE /* JRSearchResultsVC.xib in Resources */,
 				C53C8D961CDA0EC900B7F54C /* JRSearchFormVC~ipad.xib in Resources */,
 				7C35F1611D1A972C00B9CB09 /* JRFilterCheckboxCell.xib in Resources */,
 				C580DB601CC52D6E009CA04B /* JRSearchFormAirportsCell.xib in Resources */,
 				C56173651CC634F50049E2EE /* JRDatePickerVC.xib in Resources */,
 				072CCA8F1CAABE73003A8834 /* AviasalesTemplateLocalizable.strings in Resources */,
 				3A115BA61D01CDE000D94FAE /* JRAirportPickerCellWithAirport.xib in Resources */,
-				C62DCD0A186C79190039C256 /* ASTResultsTabBar.xib in Resources */,
+				07ADF23C1D70747200517D96 /* JRNewsFeedNativeAdView.xib in Resources */,
 				C580DB8B1CC52D89009CA04B /* JRSearchFormPassengersView.xib in Resources */,
 				3A115BAC1D01CDE000D94FAE /* JRAirportPickerSectionTitle.xib in Resources */,
 				C580DB781CC52D6E009CA04B /* JRSearchFormTravelClassAndPassengersCell.xib in Resources */,
+				0759898C1D86C19000326FE2 /* Appodeal.bundle in Resources */,
+				7CCC2DC61D3D06280082FEFE /* JRResultsTicketPriceCell.xib in Resources */,
+				075989871D86C19000326FE2 /* vg_cta.png in Resources */,
+				7CCC2DC21D3D06280082FEFE /* JRResultsFlightSegmentCell.xib in Resources */,
 				C580DB711CC52D6E009CA04B /* JRSearchFormDatesCell.xib in Resources */,
 				7CDA75B41D143FE90069FDD8 /* JRBrowserVC.xib in Resources */,
 				7C35F15C1D1A972C00B9CB09 /* JRFilterCellWithOneThumbSlider.xib in Resources */,
+				075989861D86C19000326FE2 /* vg_close.png in Resources */,
 				C580DB5D1CC52D6E009CA04B /* JRSearchFormAirportCell.xib in Resources */,
 				C5A681DD1D1D4AA800C83CFE /* JRWaitingViewController.xib in Resources */,
 				C56173611CC634F50049E2EE /* JRDatePickerMonthHeaderReusableView.xib in Resources */,
 				7C35F15F1D1A972C00B9CB09 /* JRFilterListAirportCell.xib in Resources */,
 				C580DB751CC52D6E009CA04B /* JRSearchFormPassengersCell.xib in Resources */,
-				07100BCD1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.xib in Resources */,
-				C67B450318916CA2006CBA73 /* ASTWebBrowserViewController.xib in Resources */,
 				C580DB9B1CC52DB1009CA04B /* JRSearchFormTravelClassPickerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1642,36 +1765,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0BA5381A194B4D01355F2CB5 /* uD83DuDCE6 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "uD83DuDCE6 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1BB3F3AB7D9231B704FF6753 /* uD83DuDCE6 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "uD83DuDCE6 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		41C28FC82222B18D766A6463 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1702,19 +1795,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7919D850BA4B21AC20899208 /* [CP] Embed Pods Frameworks */ = {
+		7C31750F8FEE98985DB7266B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		86E600707BCD24DFC31AB4DC /* [CP] Check Pods Manifest.lock */ = {
@@ -1732,19 +1825,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A66F4DDD3BEB8F0609C191BF /* [CP] Copy Pods Resources */ = {
+		D8094495C4250A9603736951 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4ABF22AB848A6C1FCF88809 /* [CP] Embed Pods Frameworks */ = {
@@ -1762,21 +1855,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F513FEF864B97ACE9D1C7CAE /* uD83DuDCE6 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "uD83DuDCE6 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1784,8 +1862,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				070A23281D22A10500B0DE5B /* ASTAirport.m in Sources */,
-				070A232B1D22A16800B0DE5B /* ASTTravelSegment.m in Sources */,
+				07249CCD1D8C3D0700497C1D /* ASTAirport.m in Sources */,
 				073E936B1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1795,21 +1872,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CE545E91D11BC340040065D /* JRTicketVC.m in Sources */,
-				07100BD81CF712910071B5CA /* ASTResultsFlightSegmentCell.m in Sources */,
-				C67B450218916CA2006CBA73 /* ASTWebBrowserViewController.m in Sources */,
-				C580DB1C1CC52BC6009CA04B /* JRCurrencyRate.m in Sources */,
-				0756C04E1CB291F70039443B /* ASTTableManagerUnion.m in Sources */,
 				C580DB5F1CC52D6E009CA04B /* JRSearchFormAirportsCell.m in Sources */,
 				C56173D51CC667030049E2EE /* UIButton+States.m in Sources */,
 				C5A681DC1D1D4AA800C83CFE /* JRWaitingViewController.m in Sources */,
 				C56173D71CC667030049E2EE /* UIViewController+JRAddChildViewController.m in Sources */,
 				C56173D61CC667030049E2EE /* UINavigationItem+JRCustomBarItems.m in Sources */,
-				073A1DD01D1D6C71008DBE2A /* JRSDKSearchInfoUrlCoder.m in Sources */,
-				0756C03B1CB252860039443B /* ASTVideoAdLoader.m in Sources */,
+				7CCC2DCA1D3D06F10082FEFE /* JRAppLauncher.m in Sources */,
+				0733565A1D6DC2550023B597 /* JRNewsFeedNativeAdView.m in Sources */,
+				7CCC2E031D3D1E350082FEFE /* JRVideoAdLoader.m in Sources */,
 				C56173B11CC65EDE0049E2EE /* JRSimplePopoverBackgroundView.m in Sources */,
 				7C1371021D2E94BA0015C271 /* JRFilterTwoThumbSliderItem.m in Sources */,
 				7C35F1641D1A972C00B9CB09 /* JRFilterListSeparatorCell.m in Sources */,
-				0756C0381CB249D60039443B /* ASTAdvertisementManager.m in Sources */,
 				07599E5B1CFDD5A600A40113 /* UINavigationController+Additions.m in Sources */,
 				C56173E01CC66BBB0049E2EE /* UIView+NSLS.m in Sources */,
 				C56173621CC634F50049E2EE /* JRDatePickerMonthItem.m in Sources */,
@@ -1817,96 +1890,85 @@
 				C580DB911CC52D9B009CA04B /* JRSearchFormComplexSearchTableView.m in Sources */,
 				C580DB921CC52D9B009CA04B /* JRSearchFormSimpleSearchTableView.m in Sources */,
 				7CE1F2E21D2EC25F00363B1A /* JRFilterCheckBoxItem.m in Sources */,
-				0756C0471CB26F780039443B /* ASTNewsFeedAdLoader.m in Sources */,
-				C6A0977B18113DD500862C71 /* ASTResultsTicketCell.m in Sources */,
 				C561732E1CC52F910049E2EE /* JRSegmentedControl.m in Sources */,
 				C561732C1CC52F910049E2EE /* FPPopoverView+DrawRect.m in Sources */,
 				C580DB651CC52D6E009CA04B /* JRSearchFormComplexSearchTableHeader.m in Sources */,
+				7CCC2E001D3D1E350082FEFE /* JRAviasalesAdLoader.m in Sources */,
 				C580DB2B1CC52BE1009CA04B /* JRSearchFormVC.m in Sources */,
 				C56173B61CC65F140049E2EE /* JRSlideTransitionAnimation.m in Sources */,
 				7C35F1621D1A972C00B9CB09 /* JRFilterListHeaderCell.m in Sources */,
 				7C35F1581D1A972C00B9CB09 /* JRFilterTask.m in Sources */,
 				7C35F1681D1A972C00B9CB09 /* JRFilterTravelSegmentCell.m in Sources */,
-				C63BA9EC1816B56E007A4F00 /* ASTCommonFunctions.m in Sources */,
 				C56173701CC635A10049E2EE /* JRScreenScene.m in Sources */,
 				7CD376AD1D22B6DA003391AE /* JRFilterBoundsBuilder.m in Sources */,
 				C580DB671CC52D6E009CA04B /* JRSearchFormComplexSegmentCell.m in Sources */,
+				7CCC2DC51D3D06280082FEFE /* JRResultsTicketPriceCell.m in Sources */,
 				C580DB5C1CC52D6E009CA04B /* JRSearchFormAirportCell.m in Sources */,
 				C56173D81CC667030049E2EE /* UIWindow+TopMostViewController.m in Sources */,
-				C580DB1D1CC52BC6009CA04B /* JRFlight.m in Sources */,
+				7CCC2DD51D3D0F4C0082FEFE /* JRTableManagerUnion.m in Sources */,
 				C580DB241CC52BC6009CA04B /* JRTravelSegment.m in Sources */,
 				C56173951CC64E5E0049E2EE /* JROverlayView.m in Sources */,
 				7C35F1571D1A972C00B9CB09 /* JRFilter.m in Sources */,
 				7C35F16D1D1A972C00B9CB09 /* JRFilterListSeparatorItem.m in Sources */,
+				077B71DA1D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m in Sources */,
 				C580DB221CC52BC6009CA04B /* JRSearchInfo.m in Sources */,
 				7CE545E71D11BC340040065D /* JRInfoPanelView.m in Sources */,
 				7C35F15B1D1A972C00B9CB09 /* JRFilterCellWithOneThumbSlider.m in Sources */,
-				07599E531CFDCB5900A40113 /* Constants.m in Sources */,
+				07599E531CFDCB5900A40113 /* JRConstants.m in Sources */,
 				C56173BD1CC65FB80049E2EE /* JRSearchInfoUtilsDateWithIATA.m in Sources */,
 				C56173401CC53C6C0049E2EE /* UIImage+JRUIImage.m in Sources */,
 				7C35F15A1D1A972C00B9CB09 /* JRFilterTravelSegmentBounds.m in Sources */,
 				C580DB641CC52D6E009CA04B /* JRSearchFormCell.m in Sources */,
-				C580DB1B1CC52BC6009CA04B /* JRAlliance.m in Sources */,
 				C561732F1CC52F910049E2EE /* JRTableViewCell.m in Sources */,
 				3A115BC01D05C8FE00D94FAE /* JRSearchedAirportsManager.m in Sources */,
 				C56173301CC52F910049E2EE /* JRViewController.m in Sources */,
 				7CE545ED1D11BC340040065D /* JRFlightCell.m in Sources */,
 				C561730A1CC52EF30049E2EE /* FPTouchView.m in Sources */,
 				C580DB9A1CC52DB1009CA04B /* JRSearchFormTravelClassPickerCell.m in Sources */,
+				077B71DD1D4A3A5500BB89BC /* JRStringsWidthComputer.m in Sources */,
 				7CDA75B51D143FE90069FDD8 /* JRGateBrowserVC.m in Sources */,
 				C580DB1A1CC52BC6009CA04B /* JRAirport.m in Sources */,
 				C56173711CC635A10049E2EE /* JRScreenSceneController.m in Sources */,
 				7C35F1731D1A972C00B9CB09 /* JRFilterVC.m in Sources */,
 				7C7459751D1AD6C400EE4FE0 /* JRFilterVC_ipad.m in Sources */,
-				3A76ED0E1D2A795300827700 /* JRAppLauncher.m in Sources */,
-				C63BA9EF1816BA6A007A4F00 /* ASTSearchParams.m in Sources */,
-				C580DB211CC52BC6009CA04B /* JRPrice.m in Sources */,
+				7CCC2DB61D3D032F0082FEFE /* JRSearchResultsList.m in Sources */,
 				7CD78D141D1C30D20012A82F /* JRFilterCellsFactory.m in Sources */,
 				7CE545FB1D12D6060040065D /* JRPriceCell.m in Sources */,
-				07769DF81CF8B8AC004D5A72 /* UIFont+Factory.m in Sources */,
 				7CE545F11D11BC340040065D /* JRTransferCell.m in Sources */,
 				7C4024631D2D51C300D3A45D /* JRFilterOneThumbSliderItem.m in Sources */,
-				07100BCC1CF6DC7F0071B5CA /* ASTResultsTicketPriceCell.m in Sources */,
+				7CCC2E0C1D3D23F10082FEFE /* UIFont+Factory.m in Sources */,
 				C56173821CC648CC0049E2EE /* UIViewController+JRScreenSceneController.m in Sources */,
 				C561734C1CC633450049E2EE /* UIView+JRFadeAnimation.m in Sources */,
-				C56173431CC627F60049E2EE /* Defines.m in Sources */,
-				0756C0511CB29B830039443B /* ASTAdvertisementTableManager.m in Sources */,
+				C56173431CC627F60049E2EE /* JRDefines.m in Sources */,
+				7CCC2E011D3D1E350082FEFE /* JRNativeAdLoader.m in Sources */,
 				3A115BAF1D01CDE000D94FAE /* JRAirportPickerItem.m in Sources */,
 				7CDA75B31D143FE90069FDD8 /* JRBrowserVC.m in Sources */,
 				7CE1F2E81D3638E200363B1A /* JRPriceUtils.m in Sources */,
-				0756C0401CB262240039443B /* ASTVideoAdPlayerProxy.m in Sources */,
-				7CD961011D2140C200DFBD14 /* JRAverageRateView.m in Sources */,
-				C6B74F75181EA14A00FEF5B9 /* ASTResults.m in Sources */,
-				C580DB1E1CC52BC6009CA04B /* JRFlightSegment.m in Sources */,
 				C56173BC1CC65FB80049E2EE /* JRSearchInfoUtils.m in Sources */,
 				C56173081CC52EF30049E2EE /* FPPopoverController.m in Sources */,
-				C580DB201CC52BC6009CA04B /* JRPaymentMethod.m in Sources */,
 				C56173481CC62C2F0049E2EE /* DateUtil.m in Sources */,
-				077C43791CB7DCFD007A3290 /* ASTAviasalesAdLoader.m in Sources */,
 				C580DB771CC52D6E009CA04B /* JRSearchFormTravelClassAndPassengersCell.m in Sources */,
+				7CCC2DC31D3D06280082FEFE /* JRResultsTicketCell.m in Sources */,
 				7C35F16B1D1A972C00B9CB09 /* JRFilterListHeaderItem.m in Sources */,
 				C56173601CC634F50049E2EE /* JRDatePickerMonthHeaderReusableView.m in Sources */,
 				C580DB6D1CC52D6E009CA04B /* JRSearchFormDateCell.m in Sources */,
 				C56173091CC52EF30049E2EE /* FPPopoverView.m in Sources */,
-				0736C9911D08594000E060C7 /* JRSearchResult.m in Sources */,
-				0756C0431CB26C080039443B /* ASTNativeAdLoader.m in Sources */,
+				7CCC2DC11D3D06280082FEFE /* JRResultsFlightSegmentCell.m in Sources */,
 				7CE545EF1D11BC340040065D /* JRFlightsSegmentHeaderView.m in Sources */,
-				07082A201CAEC2B400CE4305 /* ASTSearchResultsList.m in Sources */,
 				7CD78D171D1C33C30012A82F /* JRFilterItemsFactory.m in Sources */,
+				7CCC2E021D3D1E350082FEFE /* JRNewsFeedAdLoader.m in Sources */,
 				3A115BA71D01CDE000D94FAE /* JRAirportPickerCellWithInfo.m in Sources */,
 				C580DB231CC52BC6009CA04B /* JRTicket.m in Sources */,
-				C580DB191CC52BC6009CA04B /* JRAirline.m in Sources */,
 				C580DB741CC52D6E009CA04B /* JRSearchFormPassengersCell.m in Sources */,
 				C561735E1CC634F50049E2EE /* JRDatePickerDayView.m in Sources */,
 				C580DB731CC52D6E009CA04B /* JRSearchFormItem.m in Sources */,
 				C561733C1CC53C020049E2EE /* JRLayoutConstraint.m in Sources */,
-				C580DB1F1CC52BC6009CA04B /* JRGate.m in Sources */,
 				C56173631CC634F50049E2EE /* JRDatePickerStateObject.m in Sources */,
+				7CCC2DD01D3D0A520082FEFE /* main.m in Sources */,
 				C580DB8A1CC52D89009CA04B /* JRSearchFormPassengersView.m in Sources */,
+				7CCC2DCD1D3D09E10082FEFE /* JRAppDelegate.m in Sources */,
 				C580DB9C1CC52DB1009CA04B /* JRSearchFormTravelClassPickerVC.m in Sources */,
 				7CE1F2E51D34EECA00363B1A /* JRTicketUtils.m in Sources */,
-				C60EC84B17E848DA00C5D52E /* ASTAppDelegate.m in Sources */,
-				3A8DA35E1D2A9776008575CF /* main.m in Sources */,
 				C580DB791CC52D6E009CA04B /* JRSearchFormTravelClassCell.m in Sources */,
 				3A115BAB1D01CDE000D94FAE /* JRAirportPickerSectionTitle.m in Sources */,
 				C56173B21CC65EDE0049E2EE /* JRSimplePopoverController.m in Sources */,
@@ -1914,20 +1976,24 @@
 				7CD78D1A1D1D3AEF0012A82F /* JRActivityIndicatorView.m in Sources */,
 				C580DB6A1CC52D6E009CA04B /* JRSearchFormComplexTableClearCell.m in Sources */,
 				3A115BA51D01CDE000D94FAE /* JRAirportPickerCellWithAirport.m in Sources */,
+				7CCC2E041D3D1E350082FEFE /* JRAdvertisementManager.m in Sources */,
 				C580DB701CC52D6E009CA04B /* JRSearchFormDatesCell.m in Sources */,
 				C5B1DBD31D22B11E00BD3F54 /* CAAnimation+JRPopup.m in Sources */,
 				C580DB861CC52D89009CA04B /* JRSearchFormPassengerPickerVC.m in Sources */,
+				7CCC2DAD1D3D032E0082FEFE /* JRSearchResultsVC.m in Sources */,
 				7C35F1591D1A972C00B9CB09 /* JRFilterTicketBounds.m in Sources */,
 				7C35F1601D1A972C00B9CB09 /* JRFilterCheckboxCell.m in Sources */,
 				3A7516DE1D2E8D6300BC97BE /* JRAirport+LocalizedName.m in Sources */,
 				C56173811CC648CC0049E2EE /* JRViewController+JRScreenScene.m in Sources */,
 				C561732D1CC52F910049E2EE /* JRFPPopoverController.m in Sources */,
 				C56173641CC634F50049E2EE /* JRDatePickerVC.m in Sources */,
+				7CCC2E051D3D1E350082FEFE /* JRAdvertisementTableManager.m in Sources */,
 				7C35F1701D1A972C00B9CB09 /* JRFilterTravelSegmentItem.m in Sources */,
-				075EDA2A1D007CC100418B8C /* ColorScheme.m in Sources */,
+				075EDA2A1D007CC100418B8C /* JRColorScheme.m in Sources */,
 				C580DB871CC52D89009CA04B /* JRSearchFormPassengerPickerView.m in Sources */,
 				C56173381CC53BCC0049E2EE /* NSLayoutConstraint+JRConstraintMake.m in Sources */,
 				C56173AB1CC65E5E0049E2EE /* JRNavigationController.m in Sources */,
+				7CCC2E101D3D24660082FEFE /* JRSDKSearchInfoUrlCoder.m in Sources */,
 				C561735D1CC634F50049E2EE /* JRDatePickerDayCell.m in Sources */,
 				7C35F15D1D1A972C00B9CB09 /* JRFilterCellWithTwoThumbsSlider.m in Sources */,
 				3A115BAD1D01CDE000D94FAE /* JRAirportPickerVC.m in Sources */,
@@ -1948,10 +2014,20 @@
 		072CCA801CAABE73003A8834 /* AviasalesTemplateLocalizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				072CCA811CAABE73003A8834 /* de */,
 				072CCA841CAABE73003A8834 /* en */,
-				072CCA871CAABE73003A8834 /* es */,
-				072CCA8A1CAABE73003A8834 /* ru */,
+				3A55FC5E1D391B88002CC963 /* de */,
+				3A55FC5F1D391B93002CC963 /* es */,
+				3A55FC601D391B9C002CC963 /* fr */,
+				3A55FC611D391BA4002CC963 /* it */,
+				3A55FC621D391BD3002CC963 /* ja-JP */,
+				3A55FC631D391BDC002CC963 /* ja */,
+				3A55FC641D391BEA002CC963 /* pl */,
+				3A55FC651D391BF3002CC963 /* pt-PT */,
+				3A55FC661D391C0B002CC963 /* pt */,
+				3A55FC671D391C16002CC963 /* ru */,
+				3A55FC681D391C52002CC963 /* tr */,
+				3A55FC691D391C63002CC963 /* zh-Hans */,
+				3A55FC6A1D391C84002CC963 /* th */,
 			);
 			name = AviasalesTemplateLocalizable.strings;
 			sourceTree = "<group>";
@@ -1961,7 +2037,7 @@
 /* Begin XCBuildConfiguration section */
 		073E93581CABD93200C880D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21FF8F8A5955D758C09CFAE9 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */;
+			baseConfigurationReference = 98BB5625FBAC53ACECEDA649 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1983,7 +2059,7 @@
 		};
 		073E93591CABD93200C880D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 954530852790D24A800A96E5 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */;
+			baseConfigurationReference = 32BDB0CC849C93D67A873A86 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2082,15 +2158,54 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C92M3ZV55X;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "AviasalesSDKTemplate-Prefix.pch";
 				INFOPLIST_FILE = "AviasalesSDKTemplate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAppLovinAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/Flurry",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/FlurryAds",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDPubnativeAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDTwitterMoPubAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.aviasales.sdkexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ea7f3efe-46d6-4272-8186-a3f905e44f38";
+				PROVISIONING_PROFILE_SPECIFIER = "XC: ru.aviasales.sdkexample";
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = all;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2107,14 +2222,52 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C92M3ZV55X;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "AviasalesSDKTemplate-Prefix.pch";
 				INFOPLIST_FILE = "AviasalesSDKTemplate-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAppLovinAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/Flurry",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/FlurryAds",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDPubnativeAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDTwitterMoPubAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
+					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.aviasales.sdkexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9ba7d1e7-416f-4125-bc6d-783025e0b3b9";
+				PROVISIONING_PROFILE_SPECIFIER = "XC Ad Hoc CI: ru.aviasales.sdkexample";
 				SKIP_INSTALL = NO;
 				STRIP_STYLE = all;
 				TARGETED_DEVICE_FAMILY = "1,2";

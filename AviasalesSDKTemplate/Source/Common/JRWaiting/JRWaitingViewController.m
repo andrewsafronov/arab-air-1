@@ -1,23 +1,34 @@
+//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
+//
+
+
 #import "JRWaitingViewController.h"
-#import "ASTVideoAdPlayer.h"
-#import "ASTAdvertisementManager.h"
-#import "ColorScheme.h"
+#import "JRAdvertisementManager.h"
+#import "JRColorScheme.h"
 #import "JRSearchInfo.h"
 #import "NSTimer+WeakTarget.h"
 
 static const NSTimeInterval kSearchTime = 40;
 static const NSTimeInterval kProgressUpdateInterval = 0.1;
+static const NSTimeInterval kAviasalesAdsAnimationDuration = 0.3;
 
 @interface JRWaitingViewController () <JRSDKSearchPerformerDelegate>
+
 @property (nonatomic, weak) IBOutlet UIView *waitingView;
 @property (nonatomic, weak) IBOutlet UIProgressView *progressView;
 @property (nonatomic, weak) IBOutlet UILabel *progressLabel;
 @property (nonatomic, strong) NSTimer *progressTimer;
-@property (strong, nonatomic) id<ASTVideoAdPlayer> waitingAdPlayer;
 @property (strong, nonatomic) JRSDKSearchPerformer *searchPerformer;
-@property (nonatomic, weak) IBOutlet UIView *adContainerView;
+@property (nonatomic, weak) IBOutlet UIView *aviasalesAdContainerView;
+@property (nonatomic, weak) IBOutlet UIView *appodealAdContainerView;
 @property (nonatomic, strong) id <JRSDKSearchInfo> searchInfo;
 @property (nonatomic, assign) BOOL didRequestAd;
+
+//Constraints
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *aviasalesAdsBottom;
+
 @end
 
 @implementation JRWaitingViewController
@@ -32,16 +43,17 @@ static const NSTimeInterval kProgressUpdateInterval = 0.1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = iPhone() ? [ColorScheme mainBackgroundColor] : [ColorScheme lightBackgroundColor];
-    self.waitingAdPlayer = [[ASTAdvertisementManager sharedInstance] presentVideoAdInViewIfNeeded:self.waitingView rootViewController:self];
+    self.view.backgroundColor = iPhone() ? [JRColorScheme mainBackgroundColor] : [JRColorScheme lightBackgroundColor];
+    [[JRAdvertisementManager sharedInstance] presentVideoAdInViewIfNeeded:self.appodealAdContainerView rootViewController:self];
 
-    [self.progressLabel setText:AVIASALES_(@"AVIASALES_SEARCHING_PROGRESS")];
+    [self.progressLabel setText:AVIASALES_(@"JR_WAITING_TITLE")];
     [self.progressView setProgress:0];
-    self.progressView.progressTintColor = [ColorScheme darkTextColor];
+    self.progressView.progressTintColor = [JRColorScheme darkTextColor];
 
     self.progressTimer = [NSTimer timerWithTimeInterval:kProgressUpdateInterval weakTarget:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_progressTimer forMode:NSRunLoopCommonModes];
 
+    [self.waitingView removeConstraint:self.aviasalesAdsBottom];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,7 +87,7 @@ static const NSTimeInterval kProgressUpdateInterval = 0.1;
     searchPerformer.delegate = self;
 
     [self.searchPerformer performSearchWithSearchInfo:self.searchInfo
-                                          knowEnglish:YES];
+                              includeResultsInEnglish:YES];
 }
 
 - (void)finish {
@@ -84,7 +96,6 @@ static const NSTimeInterval kProgressUpdateInterval = 0.1;
     [UIView animateWithDuration:0.5f animations:^{
         [_waitingView setAlpha:0];
     } completion:^(BOOL finished) {
-        [self.waitingAdPlayer stop];
         [_waitingView removeFromSuperview];
     }];
 }
@@ -97,10 +108,16 @@ static const NSTimeInterval kProgressUpdateInterval = 0.1;
     self.didRequestAd = YES;
 
     __weak typeof(self) weakSelf = self;
-    [[AviasalesSDK sharedInstance].adsManager loadAdsViewForWaitingScreenWithSearchInfo:self.searchInfo
-                                                                             completion:^(AviasalesSDKAdsView * _Nullable adsView, NSError * _Nullable error) {
-                                                                                 [adsView placeIntoView:weakSelf.adContainerView];
-                                                                             }];
+    [[AviasalesSDK sharedInstance].adsManager loadAdsViewForWaitingScreenWithSearchInfo:self.searchInfo completion:^(AviasalesSDKAdsView * _Nullable adsView, NSError * _Nullable error) {
+        typeof(self) sSelf = weakSelf;
+        if (sSelf && !error && adsView) {
+            [adsView placeIntoView:sSelf.aviasalesAdContainerView];
+            [sSelf.waitingView addConstraint:sSelf.aviasalesAdsBottom];
+            [UIView animateWithDuration:kAviasalesAdsAnimationDuration delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                [sSelf.waitingView layoutIfNeeded];
+            } completion:nil];
+        }
+    }];
 }
 
 + (NSString *)nibFileName {
@@ -114,7 +131,7 @@ static const NSTimeInterval kProgressUpdateInterval = 0.1;
                                   result:result];
 }
 
-- (void)searchPerformer:(JRSDKSearchPerformer *)searchPerformer didFailSearchWithError:(NSError *)error connection:(JRServerAPIConnection *)connection {
+- (void)searchPerformer:(JRSDKSearchPerformer *)searchPerformer didFailSearchWithError:(NSError *)error {
     [self.delegate waitingViewController:self didFinishSearchWithError:error];
 }
 

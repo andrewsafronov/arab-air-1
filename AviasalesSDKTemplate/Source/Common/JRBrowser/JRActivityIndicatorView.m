@@ -1,9 +1,8 @@
 //
 //  JRActivityIndicatorView.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 24/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRActivityIndicatorView.h"

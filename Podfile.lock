@@ -1,112 +1,19 @@
 PODS:
-  - AdColony (2.6.1)
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - AmazonAds (2.2.14)
-  - AppLovin (3.3.1)
-  - Appodeal (0.10.4):
-    - AdColony (~> 2.5)
-    - AFNetworking (~> 2.0)
-    - AmazonAds (~> 2.2)
-    - AppLovin (~> 3.1)
-    - Avocarrot (~> 3.4)
-    - ChartboostSDK (~> 6.0)
-    - CocoaLumberjack
-    - FBAudienceNetwork (~> 4.10)
-    - Flurry-iOS-SDK/FlurryAds (~> 7.2)
-    - Flurry-iOS-SDK/FlurrySDK (~> 7.2)
-    - Godzippa (~> 1.1)
-    - Google-Mobile-Ads-SDK (~> 7.5)
-    - Haneke (~> 1.0)
-    - HCSStarRatingView (~> 1.4)
-    - InMobiSDK (= 5.2.0-fix)
-    - Mantle (~> 2.0)
-    - Masonry (~> 0.6)
-    - mopub-ios-sdk (~> 4.0)
-    - MyTarget (~> 4.0)
-    - NexageSourceKitMRAID (~> 1.0.6)
-    - PubNative (~> 1.3)
-    - StartApp (~> 3.2)
-    - SVProgressHUD (~> 1.1)
-    - UnityAds (~> 1.5.3)
-    - VungleSDK-iOS (~> 3.2)
-    - YandexMobileAds (~> 2.0.0-beta1)
-  - AutoCoding (2.2.1)
-  - AviasalesSDK (2.0.0-beta1)
-  - Avocarrot (3.4.3)
-  - ChartboostSDK (6.4.4)
-  - CocoaLumberjack (2.3.0):
-    - CocoaLumberjack/Default (= 2.3.0)
-    - CocoaLumberjack/Extensions (= 2.3.0)
-  - CocoaLumberjack/Core (2.3.0)
-  - CocoaLumberjack/Default (2.3.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.3.0):
-    - CocoaLumberjack/Default
-  - Crashlytics (3.7.1):
-    - Fabric (~> 1.6.3)
-  - Fabric (1.6.7)
-  - FBAudienceNetwork (4.12.0)
-  - Flurry-iOS-SDK/FlurryAds (7.6.3):
-    - Flurry-iOS-SDK/FlurrySDK
-  - Flurry-iOS-SDK/FlurrySDK (7.6.3)
+  - AutoCoding (2.2.2)
+  - AviasalesSDK (2.0.0-beta4)
+  - AXRatingView (1.0.3)
   - FXBlurView (1.6.4)
-  - Godzippa (1.1.0)
-  - Google-Mobile-Ads-SDK (7.8.1)
-  - Haneke (1.0.2)
-  - HCSStarRatingView (1.4.5)
-  - InMobiSDK (5.2.0-fix)
-  - Mantle (2.0.7):
-    - Mantle/extobjc (= 2.0.7)
-  - Mantle/extobjc (2.0.7)
-  - Masonry (0.6.4)
-  - mopub-ios-sdk (4.6.0):
-    - mopub-ios-sdk/MoPubSDK (= 4.6.0)
-  - mopub-ios-sdk/MoPubSDK (4.6.0)
-  - MyTarget (4.4.5)
-  - NexageSourceKitCommon (1.0.3)
-  - NexageSourceKitMRAID (1.0.6):
-    - NexageSourceKitCommon (~> 1.0.3)
   - NMRangeSlider (1.2.1)
   - NSTimer+WeakTarget (1.0)
-  - PubNative (1.4.0)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
-  - Smartling.i18n (1.0.11)
-  - StartApp (3.3.3)
-  - SVProgressHUD (1.1.3)
-  - UnityAds (1.5.6)
-  - VungleSDK-iOS (3.2.0)
-  - YandexMobileAds (2.0.2):
-    - YandexMobileMetrica (<= 2.3.1, >= 2.0.0)
-  - YandexMobileMetrica (2.3.1)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - Smartling.i18n (1.0.13)
 
 DEPENDENCIES:
-  - Appodeal (~> 0.10.0)
   - AutoCoding (~> 2.2)
-  - AviasalesSDK (~> 2.0.0-beta1)
-  - Crashlytics
-  - Fabric
+  - AviasalesSDK (~> 2.0.0-beta4)
+  - AXRatingView
   - FXBlurView (~> 1.6)
   - NMRangeSlider (~> 1.2)
   - NSTimer+WeakTarget (~> 1.0)
@@ -114,44 +21,15 @@ DEPENDENCIES:
   - Smartling.i18n (~> 1.0)
 
 SPEC CHECKSUMS:
-  AdColony: 6a43793132c32aff6f7bb68224bf1c924387a58e
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  AmazonAds: cc2499a1059583f790210d1d146c820af31592c1
-  AppLovin: ddd121e20927f6891fd6adb48431c86db9b221a1
-  Appodeal: c7375773c8bd5af68898fa83d2073c165b9325cd
-  AutoCoding: b47e528426c84346371dd532b8e6458929e4da34
-  AviasalesSDK: 2b620e209bad90555180fc91c1f5a1bf351293f6
-  Avocarrot: cd381db4f0b9e9eb70892e7c5d0f9d64e0d055e8
-  ChartboostSDK: 7ee1b62aa05f99163d6a31b4ce23bcf244befaf3
-  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
-  Crashlytics: 3cdd4c9655be68032a0cf0379e0fb5ef6af22cad
-  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
-  FBAudienceNetwork: e45718b5a5d854c19d7eef32d9f642af719ea07f
-  Flurry-iOS-SDK: 5ea9c76a73ce16bff005d21a4f0b539d2c15d97d
+  AutoCoding: 56fa46dbfa89d44189a26ce64e6a470ed8ff4661
+  AviasalesSDK: 8bcf79ddd7c6dacd1d91df88b346c4282299ee58
+  AXRatingView: ccaadc1bbda99a4b7e1d556059482d2b933a9f4e
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
-  Godzippa: 21621e8ddc2f1521db473a72b48148c3f0e79d76
-  Google-Mobile-Ads-SDK: 3c2a6656117989469bfe7645640aa1de024a4c6c
-  Haneke: 01454a67322faa0dd9d81fc0f447885044e71521
-  HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
-  InMobiSDK: 0853b9fefc4e2a6301ff69aa7c748c9acde68560
-  Mantle: bc40bb061d8c2c6fb48d5083e04d928c3b7f73d9
-  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  mopub-ios-sdk: 5e7193f1a0f9bfe6513816416117d9c28d8dcf19
-  MyTarget: 6c1b545f471af77dc892eebe44abf9c1db4b17c7
-  NexageSourceKitCommon: 629eff3bc2135384e817ff8462a602269b100608
-  NexageSourceKitMRAID: 143794bbd822a07d4506e222f0f72860c63fe3ec
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
   NSTimer+WeakTarget: e2ad90bca1833a2766f98f9288bb687d3baa06ca
-  PubNative: 6176beb2be298908040a8551124dabe072b4891b
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  Smartling.i18n: 9d24e105ae674678e1ae4d1c78bcabf524f0636b
-  StartApp: b6862fd62d1c185e30afe44cd52c27c87b4cfba6
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
-  UnityAds: da21eed127f51ea65e6850f639648c934d09fa00
-  VungleSDK-iOS: abc16dfa19ced4cbbedf3c3f0a5d568449bd7437
-  YandexMobileAds: 8d6e509b7d3a156902abc6f58e7d6d7bdbb39d7f
-  YandexMobileMetrica: f62863f47190292ed993e8aa0631adec93fbc31e
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  Smartling.i18n: 03ef7a5643965212c6ca9ed7d65385950ca4a989
 
-PODFILE CHECKSUM: acc1ee77adc497ebf517f8ae4f7eb3c48ed6121b
+PODFILE CHECKSUM: ac88f51ec91c9f79f08081b2ed6185e5184ec65f
 
 COCOAPODS: 1.0.1

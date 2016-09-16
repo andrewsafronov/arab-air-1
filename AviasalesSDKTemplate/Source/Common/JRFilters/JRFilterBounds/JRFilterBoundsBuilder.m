@@ -1,9 +1,8 @@
 //
 //  JRFilterBoundsBuilder.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 28/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterBoundsBuilder.h"
@@ -59,30 +58,30 @@
     NSMutableOrderedSet<id<JRSDKGate>> *allGates = [NSMutableOrderedSet orderedSet];
     
     for (id<JRSDKTicket> ticket in self.tickets) {
+        CGFloat curMinPrice = [JRSDKModelUtils priceInUSD:ticket.prices.firstObject].floatValue;
+        CGFloat curMaxPrice = [JRSDKModelUtils priceInUSD:ticket.prices.lastObject].floatValue;
+        self.ticketBounds.minPrice = MIN(curMinPrice, self.ticketBounds.minPrice);
+        self.ticketBounds.maxPrice = MAX(curMaxPrice, self.ticketBounds.maxPrice);
+        
         for (id<JRSDKTravelSegment> travelSegment in self.searchInfo.travelSegments) {
             NSInteger indexOfTravelSegment = [self.searchInfo.travelSegments indexOfObject:travelSegment];
             id<JRSDKFlightSegment> flightSegment = [ticket.flightSegments objectAtIndex:indexOfTravelSegment];
             JRFilterTravelSegmentBounds *travelSegmentBounds = [self.travelSegmentsBounds objectAtIndex:indexOfTravelSegment];
-            [self processFlightSegment:flightSegment withTravelSegmentBounds:travelSegmentBounds];
+            [self processFlightSegment:flightSegment withTravelSegmentBounds:travelSegmentBounds minPrice:curMinPrice];
         }
         
         for (id<JRSDKPrice> price in ticket.prices) {
             [allPaymentMethods unionSet:price.gate.paymentMethods];
             [allGates addObject:price.gate];
         }
-        
-        NSUInteger curMinPrice = [JRSDKModelUtils priceInUSD:ticket.prices.firstObject].integerValue;
-        NSUInteger curMaxPrice = [JRSDKModelUtils priceInUSD:ticket.prices.lastObject].integerValue;
-        self.ticketBounds.minPrice = MIN(curMinPrice, self.ticketBounds.minPrice);
-        self.ticketBounds.maxPrice = MAX(curMaxPrice, self.ticketBounds.maxPrice);
     }
     
     self.ticketBounds.paymentMethods = [allPaymentMethods copy];
     self.ticketBounds.gates = [allGates copy];
 }
 
-- (void)processFlightSegment:(id<JRSDKFlightSegment>)flightSegment withTravelSegmentBounds:(JRFilterTravelSegmentBounds *)travelSegmentBounds {
-    NSMutableOrderedSet<NSNumber *> *transfersCounts = [travelSegmentBounds.transfersCounts mutableCopy];
+- (void)processFlightSegment:(id<JRSDKFlightSegment>)flightSegment withTravelSegmentBounds:(JRFilterTravelSegmentBounds *)travelSegmentBounds minPrice:(CGFloat)minPrice {
+    NSMutableDictionary<NSNumber *, NSNumber *> *transfersCountsWitnMinPrice = [travelSegmentBounds.transfersCountsWitnMinPrice mutableCopy];
     NSMutableOrderedSet<id<JRSDKAlliance>> *allAlliances = [travelSegmentBounds.alliances mutableCopy];
     NSMutableOrderedSet<id<JRSDKAirline>> *allAirlines = [travelSegmentBounds.airlines mutableCopy];
     NSMutableOrderedSet<id<JRSDKAirport>> *originAirports = [travelSegmentBounds.originAirports mutableCopy];
@@ -105,7 +104,11 @@
     travelSegmentBounds.maxArrivalTime = MAX(flightSegment.arrivalDateTimestamp.doubleValue, travelSegmentBounds.maxArrivalTime);
     
     if (flightSegment.flights.count > 0) {
-        [transfersCounts addObject:@(flightSegment.flights.count - 1)];
+        NSNumber *transferCount = @(flightSegment.flights.count - 1);
+        NSNumber *minPriceForTransferCount = transfersCountsWitnMinPrice[transferCount];
+        if (!minPriceForTransferCount || minPriceForTransferCount.floatValue > minPrice) {
+            transfersCountsWitnMinPrice[transferCount] = @(minPrice);
+        }
     }
     
     id<JRSDKAirport> originAirport = flightSegment.flights.firstObject.originAirport;
@@ -125,7 +128,7 @@
         }
     }
 
-    travelSegmentBounds.transfersCounts = [transfersCounts copy];
+    travelSegmentBounds.transfersCountsWitnMinPrice = [transfersCountsWitnMinPrice copy];
     travelSegmentBounds.airlines = [allAirlines copy];
     travelSegmentBounds.alliances = [allAlliances copy];
     travelSegmentBounds.originAirports = [originAirports copy];
@@ -147,7 +150,7 @@
     [self.ticketBounds resetBounds];
     
     for (JRFilterTravelSegmentBounds *travelSegmentBounds in self.travelSegmentsBounds) {
-        NSMutableOrderedSet<NSNumber *> *transfersCounts = [travelSegmentBounds.transfersCounts mutableCopy];
+        NSMutableOrderedSet<NSNumber *> *transfersCounts = [NSMutableOrderedSet orderedSetWithArray:travelSegmentBounds.transfersCountsWitnMinPrice.allKeys];
         NSMutableOrderedSet<id<JRSDKAlliance>> *allAlliances = [travelSegmentBounds.alliances mutableCopy];
         NSMutableOrderedSet<id<JRSDKAirline>> *allAirlines =[travelSegmentBounds.airlines mutableCopy];
         NSMutableOrderedSet<id<JRSDKAirport>> *originAirports = [travelSegmentBounds.originAirports mutableCopy];

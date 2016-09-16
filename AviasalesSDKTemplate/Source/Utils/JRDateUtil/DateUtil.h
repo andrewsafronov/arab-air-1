@@ -65,6 +65,7 @@ typedef NS_ENUM (NSInteger, JRDateUtilDurationStyle) {
 
 + (NSString *)datesIntervalStringWithSameMonth:(NSDate *)fromDate toDate:(NSDate *)toDate;
 + (NSString *)dateToTimeString:(NSDate *)date;
++ (NSString *)dateToDateString:(NSDate *)date;
 + (NSString *)dateToYearString:(NSDate *)date;
 + (NSString *)dayFromDate:(NSDate *)date;
 + (NSString *)dayFullMonthStringFromDate:(NSDate *)date;
@@ -74,6 +75,7 @@ typedef NS_ENUM (NSInteger, JRDateUtilDurationStyle) {
 + (NSString *)dayMonthYearStringFromDate:(NSDate *)date;
 + (NSString *)dayMonthYearWeekdayStringFromDate:(NSDate *)date;
 + (NSString *)fullDayMonthYearWeekdayStringFromDate:(NSDate *)date;
++ (NSString *)rawDayNumberFromDate:(NSDate *)date;
 + (NSString *)dayNumberFromDate:(NSDate *)date;
 + (NSString *)duration:(NSInteger)duration durationStyle:(JRDateUtilDurationStyle)durationStyle;
 + (NSString *)fastDayMonthString:(NSDate *)date;
@@ -81,7 +83,5 @@ typedef NS_ENUM (NSInteger, JRDateUtilDurationStyle) {
 + (NSString *)monthName:(NSDate *)date;
 + (NSString *)shortDatesIntervalStringWithSameMonth:(NSDate *)fromDate toDate:(NSDate *)toDate;
 + (NSString *)stringForSpeakDayMonthYearDayOfWeek:(NSDate *)date;
-
-+ (NSString *)formatDurationInMinutes:(NSUInteger)durationInMinutes toHourAndMinutesStringWithFormat:(NSString *)localizedFormat;
 
 @end

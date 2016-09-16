@@ -8,8 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JRFilterVC_ipad">
             <connections>
                 <outlet property="datesIntervalString" destination="0o3-ON-Cfx" id="GQw-i0-IAB"/>
+                <outlet property="directionInfoLabel" destination="gz5-8L-Oee" id="cOx-6B-a2E"/>
                 <outlet property="passengersInfoLabel" destination="rqA-Rm-XLY" id="Aod-NX-QA1"/>
-                <outlet property="resetButton" destination="25J-3j-cbT" id="Ju7-td-Bqx"/>
+                <outlet property="resetButton" destination="25J-3j-cbT" id="mri-do-6MY"/>
                 <outlet property="tableView" destination="Zvw-sA-FBL" id="tEF-nL-wUa"/>
                 <outlet property="toolBarTopDividerHeightConstraint" destination="Ovp-uq-vfR" id="N3y-Gd-EhL"/>
                 <outlet property="toolbarLabel" destination="UiD-yq-4yf" id="ruX-fb-9rX"/>
@@ -44,26 +45,30 @@
                                 <constraint firstAttribute="height" constant="1" id="Ovp-uq-vfR"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" text="Найдено" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" preferredMaxLayoutWidth="196" translatesAutoresizingMaskIntoConstraints="NO" id="UiD-yq-4yf">
-                            <rect key="frame" x="15" y="10" width="61.5" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" text="Найдено" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" preferredMaxLayoutWidth="196" translatesAutoresizingMaskIntoConstraints="NO" id="UiD-yq-4yf">
+                            <rect key="frame" x="10" y="10" width="195" height="24"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.43921568630000002" green="0.43921568630000002" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25J-3j-cbT">
-                            <rect key="frame" x="207" y="0.0" width="98" height="44"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25J-3j-cbT">
+                            <rect key="frame" x="210" y="0.0" width="100" height="44"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="100" id="1oK-Lo-Uji"/>
                                 <constraint firstAttribute="height" constant="44" id="v64-SO-tOQ"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                             <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                             <state key="normal" title="СБРОСИТЬ">
                                 <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="disabled">
+                                <color key="titleColor" red="0.68627450980000004" green="0.69411764710000001" blue="0.69411764710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="selected">
                                 <color key="titleColor" red="0.12549019610000001" green="0.72156862749999995" blue="0.88235294119999996" alpha="0.41999999999999998" colorSpace="calibratedRGB"/>
@@ -83,25 +88,25 @@
                         <constraint firstItem="UiD-yq-4yf" firstAttribute="top" secondItem="kAt-di-xKo" secondAttribute="top" constant="10" id="KHp-yS-Mn2"/>
                         <constraint firstAttribute="trailing" secondItem="FEL-Qf-FK5" secondAttribute="trailing" id="Rfh-02-f6Y"/>
                         <constraint firstAttribute="bottom" secondItem="UiD-yq-4yf" secondAttribute="bottom" constant="10" id="YFe-Oo-f4x"/>
-                        <constraint firstItem="25J-3j-cbT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UiD-yq-4yf" secondAttribute="trailing" constant="8" id="Yjx-Jz-j8R"/>
+                        <constraint firstItem="25J-3j-cbT" firstAttribute="leading" secondItem="UiD-yq-4yf" secondAttribute="trailing" constant="5" id="Yjx-Jz-j8R"/>
                         <constraint firstItem="FEL-Qf-FK5" firstAttribute="top" secondItem="kAt-di-xKo" secondAttribute="top" id="c9F-zZ-tUe"/>
-                        <constraint firstAttribute="trailing" secondItem="25J-3j-cbT" secondAttribute="trailing" constant="15" id="cha-ov-7ot"/>
+                        <constraint firstAttribute="trailing" secondItem="25J-3j-cbT" secondAttribute="trailing" constant="10" id="cha-ov-7ot"/>
                         <constraint firstAttribute="centerY" secondItem="25J-3j-cbT" secondAttribute="centerY" id="dsW-YW-9b5"/>
-                        <constraint firstItem="UiD-yq-4yf" firstAttribute="leading" secondItem="kAt-di-xKo" secondAttribute="leading" constant="15" id="pbQ-D4-FFK"/>
+                        <constraint firstItem="UiD-yq-4yf" firstAttribute="leading" secondItem="kAt-di-xKo" secondAttribute="leading" constant="10" id="pbQ-D4-FFK"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B2a-gx-Tyb" userLabel="Toolbar">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                     <subviews>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 пассажира, эконом" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqA-Rm-XLY">
-                            <rect key="frame" x="15" y="71" width="120.5" height="14"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                            <rect key="frame" x="15" y="70" width="127" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31 октября 2013 — 5 ноября 2013" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0o3-ON-Cfx">
-                            <rect key="frame" x="15" y="52" width="191.5" height="14"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                            <rect key="frame" x="15" y="50" width="198" height="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -114,7 +119,7 @@
                         </view>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LED" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gz5-8L-Oee">
                             <rect key="frame" x="15" y="15" width="290" height="29"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                             <color key="textColor" red="0.4941176471" green="0.4941176471" blue="0.4941176471" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>

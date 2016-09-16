@@ -1,9 +1,8 @@
 //
 //  JRFilterVC.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 30/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterVC.h"
@@ -21,8 +20,9 @@
 #import "JRFilterCellWithTwoThumbsSlider.h"
 #import "JRFilterCheckBoxCell.h"
 
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 #import "JRSearchInfoUtils.h"
+#import "JRPriceUtils.h"
 
 #import "NSLayoutConstraint+JRConstraintMake.h"
 
@@ -77,16 +77,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.resetButton.frame = CGRectMake(0.0, 0.0, 100.0, 44.0);
-    self.resetButton.titleLabel.textAlignment = NSTextAlignmentRight;
-    [self.resetButton setTitleColor:[ColorScheme lightTextColor] forState:UIControlStateNormal];
-    [self.resetButton setTitle:NSLS(@"JR_FILTER_BUTTON_RESET") forState:UIControlStateNormal];
-    [self.resetButton addTarget:self.filter action:@selector(resetAllBounds) forControlEvents:UIControlEventTouchUpInside];
     
     self.cellsFactory = [[JRFilterCellsFactory alloc] initWithTableView:self.tableView withFilterMode:self.filterMode];
     
+    [self setupResetButton];
     [self setupNavigationBar];
     [self setupToolbarView];
     [self reloadViews];
@@ -102,6 +96,32 @@
 
 #pragma mark - Protected methds
 
+- (void)setupResetButton {
+    self.resetButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.resetButton.frame = CGRectMake(0.0, 0.0, 80.0, 44.0);
+    self.resetButton.titleLabel.textAlignment = NSTextAlignmentRight;
+    self.resetButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+    [self.resetButton setTitleColor:[JRColorScheme darkTextColor] forState:UIControlStateNormal];
+    [self.resetButton setTitleColor:[JRColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
+    [self.resetButton setTitle:NSLS(@"JR_FILTER_RESET") forState:UIControlStateNormal];
+    [self.resetButton addTarget:self action:@selector(resetButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *resetItem = [[UIBarButtonItem alloc] initWithCustomView:self.resetButton];
+    self.navigationItem.rightBarButtonItems = @[resetItem];
+}
+
+- (IBAction)resetButtonAction:(UIButton *)sender {
+    switch (self.filterMode) {
+        case JRFilterTravelSegmentMode:
+            [self.filter resetFilterBoundsForTravelSegment:self.selectedTravelSegment];
+            break;
+            
+        default:
+            [self.filter resetAllBounds];
+            break;
+    }
+}
+
 - (void)showFiltersForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {
     JRFilterVC *segmentFilterVC = [[JRFilterVC alloc] initWithFilter:self.filter
                                                        forFilterMode:JRFilterTravelSegmentMode
@@ -115,26 +135,15 @@
     if (self.filter.filteredTickets.count == 0) {
         toolbarLabelText = [[NSMutableAttributedString alloc] initWithString:NSLS(@"JR_FILTER_TICKETS_NOT_FOUND")];
     } else {
+        NSInteger ticketsCount =  self.filter.filteredTickets.count;
         UIFont *numbersFont = [UIFont systemFontOfSize:18.0 weight: UIFontWeightSemibold];
-        NSInteger priceValue = [JRSDKModelUtils priceInUserCurrency:self.filter.minFilteredPrice].integerValue;
-        NSString *minPriceString = [NSString stringWithFormat:@"%ld", (long)priceValue];
+        NSString *minPriceString = [JRPriceUtils formattedPriceInUserCurrency:self.filter.minFilteredPrice];
         NSString *foundTicketsCountString = @(self.filter.filteredTickets.count).stringValue;
-        NSString *text = [NSString stringWithFormat:@"%@ %@ %@", foundTicketsCountString, NSLS(@"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE"), minPriceString];
+        NSString *format = NSLSP(@"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE", ticketsCount);
+        NSString *text = [NSString stringWithFormat:format, ticketsCount, minPriceString];
         toolbarLabelText = [[NSMutableAttributedString alloc] initWithString:text attributes:nil];
         [toolbarLabelText addAttribute:NSFontAttributeName value:numbersFont range:[toolbarLabelText.string rangeOfString:foundTicketsCountString]];
         [toolbarLabelText addAttribute:NSFontAttributeName value:numbersFont range:[toolbarLabelText.string rangeOfString:minPriceString]];
-        
-        NSString *currencyCode = [AviasalesSDK sharedInstance].currencyCode.uppercaseString;
-        NSString *currencyString = [NSString stringWithFormat:@"\u00A0%@", currencyCode];
-        NSAttributedString *currencyAttributedString = [[NSAttributedString alloc] initWithString:currencyString attributes:nil];
-        [toolbarLabelText appendAttributedString:currencyAttributedString];
-       
-        NSRange currencyRange = [toolbarLabelText.string rangeOfString:currencyString];
-        if (currencyRange.location != NSNotFound) {
-            UIFont *currencyFont = [UIFont systemFontOfSize:8.0];
-            [toolbarLabelText addAttribute:NSFontAttributeName value:currencyFont range:currencyRange];
-            [toolbarLabelText addAttribute:NSBaselineOffsetAttributeName value:@7 range:currencyRange];
-        }
     }
     
     NSString *oldString = self.toolbarLabel.attributedText.string;
@@ -144,16 +153,12 @@
 }
 
 - (void)setupNavigationBar {
-    UIBarButtonItem *resetItem = [[UIBarButtonItem alloc] initWithCustomView:self.resetButton];
-    
-    self.navigationItem.rightBarButtonItems = @[resetItem];
-    
     if (self.filterMode == JRFilterTravelSegmentMode) {
         self.title = [NSString stringWithFormat:@"%@ – %@", self.selectedTravelSegment.originAirport.iata, self.selectedTravelSegment.destinationAirport.iata];
     } else {
         UIBarButtonItem *closeItem = [UINavigationItem barItemWithImageName:@"JRCloseCross" target:self action:@selector(closeButtonAction:)];
         self.navigationItem.leftBarButtonItems = @[closeItem];
-        self.title = NSLS(@"JR_FILTER_VC_TITLE");
+        self.title = NSLS(@"JR_FILTER_BUTTON");
     }
 }
 
@@ -183,6 +188,7 @@
 }
 
 - (void)filterBoundsDidChange:(NSNotification *)notification {
+    [self updateResetButton];
 }
 
 - (void)filterMinPriceDidUpdate:(NSNotification *)notification {
@@ -239,18 +245,6 @@
 
 #pragma mark - Actions
 
-- (IBAction)resetButtonAction:(UIButton *)sender {
-    switch (self.filterMode) {
-        case JRFilterTravelSegmentMode:
-            [self.filter resetFilterBoundsForTravelSegment:self.selectedTravelSegment];
-            break;
-            
-        default:
-            [self.filter resetAllBounds];
-            break;
-    }
-}
-
 - (void)closeButtonAction:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -266,7 +260,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.sections[section] count];
+    NSArray<id<JRFilterItemProtocol>> *const items = self.sections[section];
+    NSInteger numberOfRows = items.count;
+    
+    JRFilterListHeaderItem *const headerItem = (JRFilterListHeaderItem *)items.firstObject;
+    if (headerItem && [headerItem isKindOfClass:[JRFilterListHeaderItem class]]) {
+        numberOfRows = headerItem.expanded ? items.count : 1;
+    }
+    
+    return numberOfRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -289,6 +291,13 @@
     } else if ([item isKindOfClass:[JRFilterCheckBoxItem class]]) {
         JRFilterCheckboxCell *cell = (JRFilterCheckboxCell *)[tableView cellForRowAtIndexPath:indexPath];
         cell.checked = !cell.checked;
+    } else if ([item isKindOfClass:[JRFilterListHeaderItem class]]) {
+        JRFilterListHeaderCell *cell = (JRFilterListHeaderCell *)[tableView cellForRowAtIndexPath:indexPath];
+        [cell setExpanded:!cell.expanded animated:YES];
+        
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationBottom];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
@@ -309,7 +318,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *const footerView = [UIView new];
-    footerView.backgroundColor = [ColorScheme separatorLineColor];
+    footerView.backgroundColor = [JRColorScheme separatorLineColor];
     
     return footerView;
 }

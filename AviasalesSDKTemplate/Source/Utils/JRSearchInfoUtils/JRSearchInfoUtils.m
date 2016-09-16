@@ -11,12 +11,11 @@
 #import "DateUtil.h"
 #import "JRTravelSegment.h"
 
-static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear);
+static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear, BOOL numberRepresentation);
 
 @implementation JRSearchInfoUtils
 
-+ (NSArray *)getDirectionIATAsForSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSArray *)getDirectionIATAsForSearchInfo:(JRSearchInfo *)searchInfo {
 	NSMutableArray *iatas = [NSMutableArray new];
 	for (JRTravelSegment *travelSegment in searchInfo.travelSegments) {
 		NSString *originIATA = travelSegment.originAirport.iata;
@@ -38,8 +37,7 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
 	}
 }
 
-+ (NSArray *)getMainIATAsForSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSArray *)getMainIATAsForSearchInfo:(JRSearchInfo *)searchInfo {
 	NSMutableArray *iatasForSearchInfo = [[self getDirectionIATAsForSearchInfo:searchInfo] mutableCopy];
 	NSMutableArray *mainIATAsForSearchInfo = [NSMutableArray new];
 	for (NSString *iata in iatasForSearchInfo) {
@@ -51,8 +49,7 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
 	return mainIATAsForSearchInfo;
 }
 
-+ (NSArray *)datesForSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSArray *)datesForSearchInfo:(JRSearchInfo *)searchInfo {
 	NSMutableArray *dates = [NSMutableArray new];
     
 	for (JRTravelSegment *travelSegment in searchInfo.travelSegments) {
@@ -64,17 +61,14 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
 	return dates;
 }
 
-
-+ (NSString *)shortDirectionIATAStringForSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSString *)shortDirectionIATAStringForSearchInfo:(JRSearchInfo *)searchInfo {
 	NSArray *iatas = [self getDirectionIATAsForSearchInfo:searchInfo];
     
     NSString *separator = searchInfo.isComplexSearch ? @" … " : @" — ";
 	return [NSString stringWithFormat:@"%@ %@ %@", iatas.firstObject, separator, iatas.lastObject];
 }
 
-+ (NSString *)fullDirectionIATAStringForSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSString *)fullDirectionIATAStringForSearchInfo:(JRSearchInfo *)searchInfo {
     NSMutableString *directionString = [NSMutableString new];
     for (JRTravelSegment *travelSegment in searchInfo.travelSegments) {
         if (travelSegment != searchInfo.travelSegments.firstObject) {
@@ -100,8 +94,7 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
 	return directionString;
 }
 
-+ (NSString *)datesIntervalStringWithSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSString *)datesIntervalStringWithSearchInfo:(JRSearchInfo *)searchInfo {
 	NSString *datesString;
     
 	NSDate *firstDate = [searchInfo.travelSegments.firstObject departureDate];
@@ -115,26 +108,22 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
 	return datesString;
 }
 
-+ (NSString *)passengersCountAndTravelClassStringWithSearchInfo:(id<JRSDKSearchInfo>)searchInfo
-{
++ (NSString *)passengersCountAndTravelClassStringWithSearchInfo:(id<JRSDKSearchInfo>)searchInfo {
     NSString *passengersCountStringWithSearchInfo = [JRSearchInfoUtils passengersCountStringWithSearchInfo:searchInfo];
     return [NSString stringWithFormat:@"%@, %@", passengersCountStringWithSearchInfo, [JRSearchInfoUtils travelClassStringWithSearchInfo:searchInfo].lowercaseString];
 }
 
-+ (NSString *)passengersCountStringWithSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSString *)passengersCountStringWithSearchInfo:(JRSearchInfo *)searchInfo {
 	NSInteger passengers = searchInfo.adults + searchInfo.children  + searchInfo.infants;
     NSString *format = NSLSP(@"JR_SEARCHINFO_PASSENGERS", passengers);
 	return [NSString stringWithFormat:format, passengers];
 }
 
-+ (NSString *)travelClassStringWithSearchInfo:(JRSearchInfo *)searchInfo
-{
++ (NSString *)travelClassStringWithSearchInfo:(JRSearchInfo *)searchInfo {
     return [self travelClassStringWithTravelClass:searchInfo.travelClass];
 }
 
-+ (NSString *)travelClassStringWithTravelClass:(JRSDKTravelClass)travelClass
-{
++ (NSString *)travelClassStringWithTravelClass:(JRSDKTravelClass)travelClass {
     switch (travelClass) {
         case JRSDKTravelClassBusiness : {
             return NSLS(@"JR_SEARCHINFO_BUSINESS");
@@ -151,8 +140,25 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
     }
 }
 
-+ (NSString *)formattedDatesForSearchInfo:(id<JRSDKSearchInfo>)searchInfo {
++ (NSString *)formattedIatasForSearchInfo:(id<JRSDKSearchInfo>)searchInfo {
+    NSMutableArray *const iatas = [NSMutableArray array];
+    for (id<JRSDKTravelSegment> travelSegment in searchInfo.travelSegments) {
+        [iatas addObject:travelSegment.originAirport.iata];
+    }
+    JRSDKIATA const lastIata = searchInfo.travelSegments.lastObject.destinationAirport.iata;
+    if (![iatas[0] isEqualToString:lastIata]) {
+        [iatas addObject:lastIata];
+    }
+    NSString *result;
+    if (iatas.count > 2) {
+        result = [NSString stringWithFormat:@"%@ – … –  %@", iatas[0], iatas[iatas.count - 1]];
+    } else {
+        result = [NSString stringWithFormat:@"%@ — %@", iatas[0], iatas[iatas.count - 1]];
+    }
+    return result;
+}
 
++ (NSString *)formattedDatesForSearchInfo:(id<JRSDKSearchInfo>)searchInfo {
     id<JRSDKTravelSegment> const firstTravelSegment = searchInfo.travelSegments.firstObject;
     if (firstTravelSegment.departureDate == nil) {
         return nil;
@@ -164,7 +170,7 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
     NSDateComponents *const currentYear = [calendar components:NSCalendarUnitYear fromDate:[NSDate date]];
 
     if (searchInfo.travelSegments.count == 1) {
-        return formattedDate(firstTravelSegment.departureDate, YES, departureDateComponents.year != currentYear.year);
+        return formattedDate(firstTravelSegment.departureDate, YES, departureDateComponents.year != currentYear.year, NO);
     }
 
     id<JRSDKTravelSegment> const lastTravelSegment = searchInfo.travelSegments.lastObject;
@@ -184,8 +190,10 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
         departureIncludeMonth = YES;
     }
 
-    NSString *const formattedDeparture = formattedDate(firstTravelSegment.departureDate, departureIncludeMonth, departureIncludeYear);
-    NSString *const formattedReturn = formattedDate(lastTravelSegment.departureDate, returnIncludeMonth, returnIncludeYear);
+    const BOOL numberRepresentation = searchInfo.travelSegments.count > 2;
+
+    NSString *const formattedDeparture = formattedDate(firstTravelSegment.departureDate, departureIncludeMonth, departureIncludeYear, numberRepresentation);
+    NSString *const formattedReturn = formattedDate(lastTravelSegment.departureDate, returnIncludeMonth, returnIncludeYear, numberRepresentation);
     NSString *const separator = departureIncludeMonth ? @" - " : @"-";
 
     return [NSString stringWithFormat:@"%@%@%@", formattedDeparture, separator, formattedReturn];
@@ -193,17 +201,21 @@ static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear
 
 @end
 
-static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear) {
+static NSString *formattedDate(NSDate *date, BOOL includeMonth, BOOL includeYear, BOOL numberRepresentation) {
     NSString *format;
-    if (includeMonth && includeYear) {
-        format = @"dd MMM yyyy";
-    } else if (includeMonth) {
-        format = @"dd MMM";
+    if (numberRepresentation) {
+        format = @"dd.MM";
     } else {
-        format = @"dd";
+        if (includeMonth && includeYear) {
+            format = @"dd MMM yyyy";
+        } else if (includeMonth) {
+            format = @"dd MMM";
+        } else {
+            format = @"dd";
+        }
     }
 
-    NSDateFormatter *const formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = format;
+    NSDateFormatter *const formatter = [NSDateFormatter applicationUIDateFormatter];
+    formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:format options:kNilOptions locale:formatter.locale];
     return [formatter stringFromDate:date];
 }

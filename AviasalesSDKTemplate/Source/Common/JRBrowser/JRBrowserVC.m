@@ -1,16 +1,15 @@
 //
 //  JRBrowserVC.m
-//  Aviasales iOS Apps
 //
-//  Created by Dmitry Ryumin on 01/04/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRBrowserVC.h"
 
 #import "JRNavigationController.h"
 #import "JRActivityIndicatorView.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 #import "NSLayoutConstraint+JRConstraintMake.h"
 
@@ -70,7 +69,7 @@
     navigationController.allowedIphoneAutorotate = YES;
     
     __weak typeof(self) weakSelf = self;
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
     [window.rootViewController presentViewController:navigationController animated:YES completion:^{
         if (weakSelf.needDismiss) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -115,7 +114,7 @@
 #pragma mark - Activity indicator
 
 - (NSString *)activityIndicatorText {
-    return NSLS(@"JR_BROWSER_ACTIVITY_OVERLAY_TITLE");
+    return NSLS(@"BROWSER_OVERLAY_DEFAULT_TEXT");
 }
 
 - (void)showActivityIndicator {
@@ -164,10 +163,10 @@
     [self.backButton setTitle:NSLS(@"JR_BROWSER_BACK_BTN_TITLE") forState:UIControlStateNormal];
     [self.forwardButton setTitle:NSLS(@"JR_BROWSER_FORWARD_BTN_TITLE") forState:UIControlStateNormal];
     
-    [self.backButton setTitleColor:[ColorScheme lightTextColor] forState:UIControlStateNormal];
-    [self.forwardButton setTitleColor:[ColorScheme lightTextColor] forState:UIControlStateNormal];
-    [self.backButton setTitleColor:[ColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
-    [self.forwardButton setTitleColor:[ColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
+    [self.backButton setTitleColor:[JRColorScheme darkTextColor] forState:UIControlStateNormal];
+    [self.backButton setTitleColor:[JRColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
+    [self.forwardButton setTitleColor:[JRColorScheme darkTextColor] forState:UIControlStateNormal];
+    [self.forwardButton setTitleColor:[JRColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
     
     self.bottomNavBar.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"JRBrowserNavigationBg"]];
 }
@@ -217,10 +216,10 @@
 }
 
 - (void)showAlertViewWithText:(NSString *)text {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"JR_BROWSER_ERROR_ALERT_TITLE")
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"AVIASALES_ALERT_ERROR_TITLE")
                                                         message:text
                                                        delegate:self
-                                              cancelButtonTitle:NSLS(@"JR_BROWSER_ERROR_ALERT_CANCEL_BUTTON_TITLE")
+                                              cancelButtonTitle:NSLS(@"JR_CLOSE_BUTTON_TITLE")
                                               otherButtonTitles:nil];
     [alertView show];
 }

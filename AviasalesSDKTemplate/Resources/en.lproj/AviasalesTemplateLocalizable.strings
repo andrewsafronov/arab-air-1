@@ -1,141 +1,22 @@
-"LANGUAGE"                                          = "EN";
 
-"AVIASALES_LANG" = "en";
-
-"AVIASALES_CLOSE_BUTTON" = "Close";
-
-"AVIASALES_SEARCH_BUTTON" = "Search";
-
-"AVIASALES_FORM_TITLE" = "Tickets";
-
-"AVIASALES_ALERT_ERROR_TITLE" = "Error";
-
-"AVIASALES_ALERT_UNKNOWN_ERROR_TEXT" = "Unknown error";
-
-"AVIASALES_BACK" = "Back";
-
-"AVIASALES_RETRY" = "Retry";
-
-"AVIASALES_CANCEL" = "Cancel";
-
-"AVIASALES_ORIGIN" = "Select origin";
-
-"AVIASALES_DESTINATION" = "Select destination";
-
-"AVIASALES_DEPARTURE_DATE" = "Departure date";
-
-"AVIASALES_RETURN_DATE" = "Return date";
-
-"AVIASALES_RETURN_FLIGHT" = "Round-trip";
-
-"AVIASALES_PICKER_ADULTS" = "Adults";
-
-"AVIASALES_PICKER_CHILDREN" = "2-11 years";
-
-"AVIASALES_PICKER_INFANTS" = "0-2 years";
-
-"AVIASALES_TRAVEL_CLASS_0" = "Economy";
-
-"AVIASALES_TRAVEL_CLASS_1" = "Business";
-
-"AVIASALES_NEARBY" = "Nearest Airports";
-
-"AVIASALES_NEARBY_ERROR" = "No airports found in your area";
-
-"AVIASALES_SEARCH_HISTORY" = "Search History";
-
-"AVIASALES_ANY_AIRPORT" = "All Airports";
-
-"AVIASALES_SEARCHING_PROGRESS" = "Searching...";
-
-"AVIASALES_FILTERS" = "Filters";
-
-"AVIASALES_FILTERS_EMPTY" = "No results found. Try to use other filter settings";
-
-"AVIASALES_CURRENCY" = "Currency";
-
-"AVIASALES_DURATION_FORMAT" = "%ih %im";
-
-"AVIASALES_DURATION_FORMAT_LONG" = "%@ h %@ m";
-
-"AVIASALES_RESET" = "Reset";
-
-"AVIASALES_FILTER_NONSTOP" = "No Stop Overs";
-
-"AVIASALES_FILTER_ONE_STOP" = "%d Stop Over";
-
-"AVIASALES_FILTER_TWO_STOPS" = "%d Stop Overs";
-
-"AVIASALES_FILTER_NIGHT" = "Flights with Overnight Stop Overs";
-
-"AVIASALES_FILTER_PRICE" = "Ticket Price";
-
-"AVIASALES_FILTER_TOTAL_DURATION" = "Flight Duration";
-
-"AVIASALES_FILTER_STOPOVER_DURATION" = "Stop Over Duration";
-
-"AVIASALES_FILTER_DEPARTURE" = "Departure";
-
-"AVIASALES_FILTER_ARRIVAL" = "Arrival";
-
-"AVIASALES_FILTER_RETURN_DEPARTURE" = "Return Flight";
-
-"AVIASALES_FILTER_RETURN_ARRIVAL" = "Coming back";
-
-"AVIASALES_FILTER_AIRLINES" = "Airlines";
-
-"AVIASALES_FILTER_ALL_AIRLINES" = "All airlines";
-
-"AVIASALES_FILTER_ALLIANCES" = "Alliances";
-
-"AVIASALES_FILTER_ALL_ALLIANCES" = "All Alliances";
-
-"AVIASALES_FILTER_AIRPORTS" = "Airports";
-
-"AVIASALES_FILTER_ALL_AIRPORTS" = "All Airports";
-
-"AVIASALES_FILTER_FROM" = "From";
-
-"AVIASALES_FILTER_STOPOVERS" = "Stopovers";
-
-"AVIASALES_FILTER_TO" = "To";
-
-"AVIASALES_FILTER_AGENCIES" = "Travel Companies";
-
-"AVIASALES_FILTER_ALL_AGENCIES" = "All Travel Companies";
-
-"AVIASALES_FILTER_MOBILE" = "Only partners with mobile-optimized websites";
-
-"AVIASALES_FILTER_FOUND" = "Flights found";
-
-"AVIASALES_FILTER_FROM1" = "from";
-
-"AVIASALES_FILTER_FROM2" = "from";
-
-"AVIASALES_FILTER_UP_TO" = "to";
-
-"AVIASALES_TICKET" = "Flight Details";
-
-"AVIASALES_PASSENGERS" = "Passengers: %d, %@";
-
-"AVIASALES_BUY" = "Book Now";
-
-"AVIASALES_BUY_TICKET" = "Buy ticket";
-"AVIASALES_BUY_TICKET_IN_CREDIT" = "Buy in credit";
-"AVIASALES_BUY_TICKET_IN_CREDIT_SHORT" = "In credit";
-
-"AVIASALES_ON" = "on";
-
-"AVIASALES_FLIGHT_DURATION" = "Flight";
-
-"AVIASALES_FLIGHT" = "Flight";
-
-"AVIASALES_STOPOVER" = "Stopover";
-
-"AVIASALES_PLEASE_WAIT" = "Please, wait...";
+"LANGUAGE"                                          = "en";
 
 "SHORT_TIME_FORMAT"                                 = "%@h %@m";
 "LONG_TIME_FORMAT"                                  = "%@ h %@ min";
+
+"JR_ERROR_TITLE"                             = "ERROR";
+
+"JR_BACK_TITLE" = "Back";
+
+"JR_TRY_AGAIN_TITLE"        = "Try again";
+
+"JR_CANCEL_TITLE"             = "Cancel";
+
+"CURRENCY" = "Currency";
+
+"JR_ANY_AIRPORT"                                    = "Any airport";
+
+"JR_OK_BUTTON"   = "OK";
 
 "JR_DATE_PICKER_DEPARTURE_DATE_TITLE"               = "Departure date";
 "JR_DATE_PICKER_RETURN_DATE_TITLE"                  = "Return date";
@@ -194,10 +75,6 @@
 "JR_SEARCH_FORM_PASSENGERS_INFANTS##{other}" = "infants";
 "JR_SEARCH_FORM_PASSENGERS_INFANTS##{many}" = "infants";
 
-"ALERT_DEFAULT_BUTTON" = "OK";
-
-"ACTIVITY_INDICATOR_DEFAULT_TITLE" = "Loading...";
-
 "JR_AIRPORT_PICKER_DESTINATION_MODE_TITLE"          = "Destination";
 "JR_AIRPORT_PICKER_NEAREST_AIRPORTS"                = "Nearest airports";
 "JR_AIRPORT_PICKER_NEAREST_AIRPORTS_READING_ERROR"  = "Geolocation service is temporarily unavailable ";
@@ -214,47 +91,72 @@
 "JR_AIRPORT_PICKER_SEARCHING_ON_SERVER_TEXT"        = "Searching...";
 "JR_AIRPORT_PICKER_UPDATING_NEAREST_AIRPORTS"       = "Searching for the nearest airports...";
 
-// Filters
+"JR_FILTER_BUTTON"                            = "Filters";
 
-"JR_FILTER_VC_TITLE" = "Filters";
-"JR_FILTER_BUTTON_RESET" = "Reset";
-"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE" = "found from";
-"JR_FILTER_TICKETS_NOT_FOUND" = "No tickets found";
-"JR_FILTER_CELL_TO_TEXT" = "to";
-"JR_FILTER_CELL_FROM_TEXT" = "from";
+"JR_FILTER_RESET_ALL"                               = "Clear all";
+"JR_FILTER_RESET"                                   = "Clear";
+"JR_FILTER_TICKETS_NOT_FOUND"                       = "No results found";
 
-"JR_FILTER_DEPARTURE_CELL_TITLE" = "Departure";
-"JR_FILTER_ARRIVAL_CELL_TITLE" = "Arrival";
-"JR_FILTER_PRICE_CELL_TITLE" = "Price";
-"JR_FILTER_TOTAL_DURATION_CELL_TITLE" = "Travel time";
-"JR_FILTER_TRANSFER_DURATION_CELL_TITLE" = "Transfer duration";
+"JR_FILTER_STOPOVER_OVERNIGHT"                      = "Possible night stopover";
+"JR_FILTER_PRICE_FILTER"                            = "Price";
+"JR_FILTER_TOTAL_DURATION"                          = "Journey time";
+"JR_FILTER_DELAY_DURATION"                          = "Stopover duration";
+"JR_FILTER_TOTAL_TIME_FROM"                         = "from";
+"JR_FILTER_TOTAL_DURATION_FROM"                     = "from";
+"JR_FILTER_TOTAL_DURATION_PRIOR_TO"                 = "to";
+"JR_FILTER_TOTAL_DURATION_PRIOR_UP_TO"              = "up to";
 
-"JR_FILTER_DAY_TIME_MORNING" = "Morning";
-"JR_FILTER_DAY_TIME_DAY" = "Day";
-"JR_FILTER_DAY_TIME_EVENING" = "Evening";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{one}"          = "%d flight starting from %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{few}"          = "%d flights starting from %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{many}"         = "%d flights starting from %@ ";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{other}"        = "%d flights starting from %@  ";
 
-"JR_FILTER_SECTIONS_GATES_TITLE" = "Gates";
-"JR_FILTER_SECTIONS_AIRLINES_TITLE" = "Airlines";
-"JR_FILTER_SECTIONS_ALLIANCES_TITLE" = "Alliances";
-"JR_FILTER_SECTIONS_PAYMENT_METHODS_TITLE" = "Payment methds";
+"JR_FILTER_RETURN_DEPARTURE_TIME"                   = "Return Take-off Time";
+"JR_FILTER_DEPARTURE_TIME"                          = "Outbound Take-off Time";
+"JR_FILTER_ARRIVAL_TIME"                            = "Outbound Landing Time";
+"JR_FILTER_RETURN_ARRIVAL_TIME"                     = "Return Landing Time";
 
-"JR_TRANSFERS##{zero}"               = "Direct";
-"JR_TRANSFERS##{one}"                = "%d stop";
-"JR_TRANSFERS##{few}"                = "%d stops";
-"JR_TRANSFERS##{many}"               = "%d stops";
-"JR_TRANSFERS##{other}"              = "%d stops";
+"JR_FILTER_AIRPORTS_ORIGIN"                         = "From";
+"JR_FILTER_AIRPORTS_STOPOVER"                       = "Transfers";
+"JR_FILTER_AIRPORTS_DESTINATION"                    = "To";
 
-// Browser
+"JR_FILTER_DAY_TIME_MORNING"                        = "morning";
+"JR_FILTER_DAY_TIME_DAY"                            = "afternoon";
+"JR_FILTER_DAY_TIME_EVENING"                        = "evening";
 
-"JR_BROWSER_BACK_BTN_TITLE" = "Back";
-"JR_BROWSER_FORWARD_BTN_TITLE" = "Forward";
-"JR_BROWSER_CONNECTION_ERROR_TITLE" = "Browser connection error";
-"JR_BROWSER_ACTIVITY_OVERLAY_TITLE" = "Wait Wait Wait";
-"JR_BROWSER_ERROR_ALERT_TITLE" = "Error";
-"JR_BROWSER_ERROR_ALERT_CANCEL_BUTTON_TITLE" = "Close";
+"JR_FILTER_GATES"                                   = "Agencies";
+"JR_FILTER_GATES_ALL"                               = "All agencies";
+
+"JR_FILTER_PAYMENT_METHODS"                         = "Methods of payment";
+"JR_FILTER_PAYMENT_METHODS_ALL"                     = "All methods of payment";
+
+"JR_FILTER_AIRLINES"                                = "Airlines";
+"JR_FILTER_AIRLINES_ALL"                            = "All airlines";
+
+"JR_FILTER_ALLIANCES"                               = "Alliances";
+"JR_FILTER_OTHER_ALLIANCES"                         = "Airlines without any alliances";
+"JR_FILTER_ALLIANCES_ALL"                           = "All alliances";
+
+"JR_FILTER_AIRPORTS"                                = "Airports";
+"JR_FILTER_AIRPORTS_ALL"                            = "All airports";
+
+"JR_SEARCH_RESULTS_TRANSFERS##{zero}"               = "Direct";
+"JR_SEARCH_RESULTS_TRANSFERS##{one}"                = "%d stop";
+"JR_SEARCH_RESULTS_TRANSFERS##{few}"                = "%d stops";
+"JR_SEARCH_RESULTS_TRANSFERS##{many}"               = "%d stops";
+"JR_SEARCH_RESULTS_TRANSFERS##{other}"              = "%d stops";
+
+"JR_SEARCH_RESULTS_TICKET_PLACEHOLDER_TEXT"         = "No options left after filtering";
+
+"JR_BROWSER_BACK_BTN_TITLE"     = "Back";
+"JR_BROWSER_FORWARD_BTN_TITLE"  = "Forward";
+"JR_BROWSER_ERROR_ALERT_TITLE"  = "Error";
+
+"BROWSER_CHECK_CONNECTION"          = "Please check your Internet connection.";
+"BROWSER_OVERLAY_DEFAULT_TEXT"      = "Loading...";
+"JR_CLOSE_BUTTON_TITLE"            = "Close";
 
 "JR_SEARCH_RESULTS_NON_STRICT_MATCHED_ALERT_MESSAGE" = "Sorry, we couldn't find flights between selected airports for the route %@. However, we can show you other flights between these cities.";
-
 
 "JR_SEARCH_RESULTS_TICKET_IN_THE"                          = "on";
 
@@ -288,6 +190,15 @@
 "JR_TICKET_CREDIT_MONTH_11" = "november";
 "JR_TICKET_CREDIT_MONTH_12" = "december";
 
+"JR_TICKET_BUY_IN_THE_AGENCY_BUTTON"                = "Buy at";
+"JR_TICKET_BUY_BUTTON"                              = "Buy ticket";
+"JR_TICKET_BUY_IN_CREDIT_BUTTON"                    = "Get a loan";
+"JR_TICKET_OTHER_BUTTON"                            = "Other";
+"JR_TICKET_FLIGHT"                                  = "Flight";
+"JR_TICKET_TRANSFER"                                = "Stopover";
+"JR_TICKET_DURATION"                                = "Journey time";
+
+"JR_WAITING_TITLE" = "Searching...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE"                = "No results found. Try adjusting search parameters.";
 "JR_WAITING_ERROR_CONNECTION_ERROR"                 = "Connection error (%@)";
 "JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE"             = "Sorry, the Jetradar service is temporarily unavailable (%@)";

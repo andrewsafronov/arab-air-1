@@ -1,9 +1,8 @@
 //
 //  JRAirportPickerCellWithInformation.m
-//  ; iOS Apps
 //
-//  Created by Ruslan Shevchuk on 30/01/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRAirportPickerCellWithInfo.h"
@@ -12,8 +11,10 @@
 #define kJRAirportPickerCellWithInfoEnabledActivityIndicatorHorizontalSpace 48
 
 @interface JRAirportPickerCellWithInfo ()
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *labelHorizontConstaint;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+
 @end
 
 @implementation JRAirportPickerCellWithInfo

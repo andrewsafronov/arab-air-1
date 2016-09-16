@@ -1,9 +1,8 @@
 //
 //  JRFilterCheckBoxItem.h
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 07/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterItemProtocol.h"
@@ -23,7 +22,7 @@
 
 @interface JRFilterStopoverItem : JRFilterCheckBoxItem
 
-- (instancetype)initWithStopoverCount:(NSInteger)stopoverCount;
+- (instancetype)initWithStopoverCount:(NSInteger)stopoverCount minPrice:(CGFloat)minPrice;
 
 @end
 
@@ -52,6 +51,13 @@
 @interface JRFilterAllianceItem : JRFilterCheckBoxItem
 
 - (instancetype)initWithAlliance:(id<JRSDKAlliance>)alliance;
+
+@end
+
+
+@interface JRFilterAirportItem : JRFilterCheckBoxItem
+
+- (instancetype)initWithAirport:(id<JRSDKAirport>)airport;
 
 @end
 

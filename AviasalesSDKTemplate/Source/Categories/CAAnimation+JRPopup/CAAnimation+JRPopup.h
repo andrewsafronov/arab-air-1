@@ -1,6 +1,8 @@
 //
-// Created by Ilya Amelchenkov on 08.11.15.
-// Copyright (c) 2015 aviasales. All rights reserved.
+//  CAAnimation+JRPopup.h
+//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 

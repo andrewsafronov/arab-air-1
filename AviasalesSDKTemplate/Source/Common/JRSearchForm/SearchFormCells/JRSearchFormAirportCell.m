@@ -8,9 +8,8 @@
 #import "JRSearchFormAirportCell.h"
 #import "UIImage+JRUIImage.h"
 #import <AviasalesSDK/AviasalesSDK.h>
-#import "ColorScheme.h"
-
-#define kJRSearchFormAirportCellPlaceholderFont [UIFont fontWithName:@"HelveticaNeue-Medium" size:12.0]
+#import "JRColorScheme.h"
+#import "JRAirport+LocalizedName.h"
 
 @interface JRSearchFormAirportCell ()
 
@@ -22,30 +21,26 @@
 
 @end
 
+
 @implementation JRSearchFormAirportCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // TODO: tinted image
-    _pinImageView.image = [UIImage imageWithColor:[ColorScheme buttonBackgroundColor]];
+    _pinImageView.image = [UIImage imageWithColor:[JRColorScheme buttonBackgroundColor]];
 //    [_pinImageView setImage:[_pinImageView.image imageTintedWithColor:[JRC SF_CELL_IMAGES_TINT]]];
 }
 
 
-- (void)setupAirportLabelWithAirport:(id<JRSDKAirport>)airport item:(JRSearchFormItem *)item
-{
+- (void)setupAirportLabelWithAirport:(id<JRSDKAirport>)airport item:(JRSearchFormItem *)item{
 	NSString *placeholderString = nil;
-    
 	NSString *cityString = [airport.city uppercaseString];
 	NSString *countryNameString = [airport.country uppercaseString];
-    
 	NSMutableString *airportCountryString = [[NSMutableString alloc] init];
     
 	if (airport) {
-        
-        // TODO: localize airport.isCity
-		NSString *airportNameString = [airport.airportName uppercaseString];
-        
+		NSString *airportNameString = [JRAirport localizedNameForAirport:airport];
+
 		if (airportNameString.length > 0 && airport.city) {
 			[airportCountryString appendString:airportNameString];
 		} else {
@@ -76,8 +71,7 @@
 }
 
 
-- (void)setupIataLabelForSearchInfo:(JRSearchInfo *)searchInfo item:(JRSearchFormItem *)item
-{
+- (void)setupIataLabelForSearchInfo:(JRSearchInfo *)searchInfo item:(JRSearchFormItem *)item {
 	id<JRSDKAirport> airport = nil;
     
 	JRTravelSegment *travelSegment = [searchInfo.travelSegments firstObject];
@@ -91,13 +85,11 @@
     [self setupAirportLabelWithAirport:airport item:item];
 }
 
-- (void)updateCell
-{
+- (void)updateCell {
 	[self setupIataLabelForSearchInfo:self.searchInfo item:self.item];
 }
 
-- (void)action
-{
+- (void)action {
 	JRTravelSegment *travelSegment = [self.item.itemDelegate.searchInfo.travelSegments firstObject];
 	if (self.item.type == JRSearchFormTableViewOriginAirportItem) {
 		[self.item.itemDelegate selectOriginIATAForTravelSegment:travelSegment itemType:self.item.type];

@@ -10,10 +10,14 @@
 
 @class JRDatePickerVC;
 
+
 @protocol JRDatePickerDelegate <NSObject>
+
 @optional
 - (void)datePicker:(JRDatePickerVC *)datePickerVC didSelectDepartDate:(NSDate *)departDate inTravelSegment:(JRTravelSegment *)travelSegment;
+
 @end
+
 
 @interface JRDatePickerVC : JRViewController
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -28,9 +28,9 @@
                     <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LED - CDG" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AEv-Sp-WAF">
-                    <rect key="frame" x="17" y="17" width="117" height="29"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="LED - CDG " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="AEv-Sp-WAF">
+                    <rect key="frame" x="17" y="22" width="103.5" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <color key="textColor" red="0.36470588240000001" green="0.36470588240000001" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -43,7 +43,7 @@
                 <constraint firstAttribute="trailing" secondItem="mO4-FP-2iY" secondAttribute="trailing" id="S2w-qc-i9g"/>
                 <constraint firstItem="mO4-FP-2iY" firstAttribute="top" secondItem="gbN-Sp-VON" secondAttribute="top" id="Tay-G7-TDl"/>
                 <constraint firstAttribute="bottom" secondItem="sRv-tR-xaj" secondAttribute="bottom" id="hhV-zu-CjV"/>
-                <constraint firstItem="4Ps-Cm-BFG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AEv-Sp-WAF" secondAttribute="trailing" constant="15" id="mgy-lK-tH3"/>
+                <constraint firstItem="4Ps-Cm-BFG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AEv-Sp-WAF" secondAttribute="trailing" constant="10" id="mgy-lK-tH3"/>
                 <constraint firstItem="sRv-tR-xaj" firstAttribute="leading" secondItem="gbN-Sp-VON" secondAttribute="leading" constant="20" id="mnF-U6-gb8"/>
                 <constraint firstAttribute="bottom" secondItem="mO4-FP-2iY" secondAttribute="bottom" id="rbO-iN-Eyd"/>
                 <constraint firstAttribute="trailing" secondItem="4Ps-Cm-BFG" secondAttribute="trailing" constant="20" id="x2f-zL-InX"/>

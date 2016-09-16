@@ -1,6 +1,8 @@
 //
 //  JRFlightCell.m
-//  AviasalesSDKTemplate
+//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFlightCell.h"
@@ -21,29 +23,13 @@
     return flightNumberFormatter;
 }
 
-+ (NSDateFormatter *)timeFormatter {
-    static NSDateFormatter *timeFormatter;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        timeFormatter = [NSDateFormatter new];
-        timeFormatter.dateFormat = @"HH:mm";
-        timeFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-        timeFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-    });
-    
-    return timeFormatter;
-}
-
 + (NSDateFormatter *)dateFormatter {
     static NSDateFormatter *dateFormatter;
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"d MMM, EE";
-        dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-        dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:AVIASALES__(@"AVIASALES_LANG", [NSLocale currentLocale].localeIdentifier)];
+        dateFormatter = [NSDateFormatter applicationUIDateFormatter];
+        dateFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"d MMM, EE" options:kNilOptions locale:dateFormatter.locale];
     });
     
     return dateFormatter;
@@ -73,12 +59,12 @@
 #pragma mark JRTicketCellProtocol methods
 
 - (void)applyFlight:(id<JRSDKFlight>)flight {
-    self.durationLabel.text = [NSString stringWithFormat:@"%@: %@", AVIASALES_(@"AVIASALES_FLIGHT_DURATION"),
-                               [DateUtil formatDurationInMinutes:flight.duration.integerValue toHourAndMinutesStringWithFormat:AVIASALES_(@"AVIASALES_DURATION_FORMAT")]];
+    self.durationLabel.text = [NSString stringWithFormat:@"%@: %@", AVIASALES_(@"JR_TICKET_DURATION"),
+                               [DateUtil duration:flight.duration.integerValue durationStyle:JRDateUtilDurationShortStyle]];
     
-    self.departureTimeLabel.text = [[JRFlightCell timeFormatter] stringFromDate:flight.departureDate];
+    self.departureTimeLabel.text = [DateUtil dateToTimeString:flight.departureDate];
     
-    self.arrivalTimeLabel.text = [[JRFlightCell timeFormatter] stringFromDate:flight.arrivalDate];
+    self.arrivalTimeLabel.text = [DateUtil dateToTimeString:flight.arrivalDate];
     
     self.departureDateLabel.text = [[JRFlightCell dateFormatter] stringFromDate:flight.departureDate];
     
@@ -89,7 +75,7 @@
     self.destinationLabel.text = [NSString stringWithFormat:@"%@ %@", flight.destinationAirport.city, flight.destinationAirport.iata];
     
     NSNumber *const flightNumber = [[JRFlightCell flightNumberFormatter] numberFromString:flight.number];
-    self.flightNumberLabel.text = [NSString localizedStringWithFormat:@"%@ %@-%@", AVIASALES_(@"AVIASALES_FLIGHT"), flight.airline.iata, [[JRFlightCell flightNumberFormatter] stringFromNumber:flightNumber]];
+    self.flightNumberLabel.text = [NSString localizedStringWithFormat:@"%@ %@-%@", AVIASALES_(@"JR_TICKET_FLIGHT"), flight.airline.iata, [[JRFlightCell flightNumberFormatter] stringFromNumber:flightNumber]];
     
     [self downloadAndSetupImageForImageView:self.logoIcon forAirline:flight.airline];
 }

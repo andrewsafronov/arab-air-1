@@ -1,25 +1,18 @@
 //
 //  JRFilterCheckboxCell.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 31/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterCheckboxCell.h"
 
 #import "JRFilterCheckBoxItem.h"
-#import "JRAverageRateView.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
+#import <AXRatingView/AXRatingView.h>
 
 
 static const CGFloat kCellInnerPaddings = 100.0;
-
-
-@interface JRFilterCheckboxCell ()
-
-@end
-
 
 @implementation JRFilterCheckboxCell
 
@@ -29,9 +22,14 @@ static const CGFloat kCellInnerPaddings = 100.0;
     self.separatorInset = UIEdgeInsetsMake(0.0, 44.0, 0.0, 0.0);
     
     self.listItemLabel.numberOfLines = 3;
-    self.listItemDetailLabel.textColor = [ColorScheme darkTextColor];
+    self.listItemDetailLabel.textColor = [JRColorScheme darkTextColor];
     
-    self.averageRateView = LOAD_VIEW_FROM_NIB_NAMED(@"JRAverageRateView");
+    self.averageRateView = [[AXRatingView alloc] init];
+    self.averageRateView.markFont = [UIFont systemFontOfSize:15];
+    self.averageRateView.baseColor = [JRColorScheme ratingStarDefaultColor];
+    self.averageRateView.highlightColor = [JRColorScheme ratingStarSelectedColor];
+    self.averageRateView.numberOfStar = 5;
+    self.averageRateView.userInteractionEnabled = NO;
     self.averageRateView.frame = self.averageRateViewContainer.bounds;
     [self.averageRateViewContainer addSubview:self.averageRateView];
     self.averageRateViewContainer.backgroundColor = [UIColor clearColor];
@@ -51,7 +49,8 @@ static const CGFloat kCellInnerPaddings = 100.0;
     _item = item;
     _checked = item.selected;
     
-    self.averageRateView.hidden = item.showAverageRate;
+    self.averageRateView.hidden = !item.showAverageRate;
+    self.averageRateView.value = item.rating;
     self.listItemLabel.text = item.tilte;
     self.listItemDetailLabel.attributedText = item.attributedStringValue;
     self.selectedIndicator.selected = item.selected;

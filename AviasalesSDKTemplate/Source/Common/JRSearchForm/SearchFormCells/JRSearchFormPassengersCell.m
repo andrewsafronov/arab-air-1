@@ -10,7 +10,7 @@
 #import "JRSearchFormPassengerPickerView.h"
 #import "UIImage+JRUIImage.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 @interface JRSearchFormPassengersCell ()
 
@@ -24,11 +24,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [_passengerIcon setImage:[UIImage imageWithColor:[ColorScheme buttonBackgroundColor]]];
+    [_passengerIcon setImage:[UIImage imageWithColor:[JRColorScheme buttonBackgroundColor]]];
 }
 
-- (void)updateCell
-{
+- (void)updateCell {
     NSMutableArray *passengersTextComponents = [NSMutableArray new];
     if (self.searchInfo.adults > 0) {
         [passengersTextComponents addObject:[NSString stringWithFormat:@"%ld\u00a0%@",
@@ -53,8 +52,7 @@
     [self.item.itemDelegate showPassengerPicker];
 }
 
-- (NSString *)accessibilityLabel
-{
+- (NSString *)accessibilityLabel {
     return _passengersCountLabel.text;
 }
 

@@ -9,17 +9,19 @@
 #import "JRSearchInfo.h"
 
 @protocol JRSearchFormPassengerPickerViewDelegate<NSObject>
+
 @required
 - (void)passengerViewDismiss;
 - (void)passengerViewDidChangePassengers;
 - (void)passengerViewExceededTheAllowableNumberOfInfants;
+
 @end
+
 
 @interface JRSearchFormPassengerPickerView : UIView
 
 @property (strong, nonatomic) id<JRSearchFormPassengerPickerViewDelegate>delegate;
 @property (strong, nonatomic) JRSearchInfo *searchInfo;
-
 @property (strong, nonatomic) NSArray *passengerViews;
 
 @end

@@ -1,9 +1,8 @@
 //
 //  JRFilterOneThumbSliderItem.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 06/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterOneThumbSliderItem.h"
@@ -13,7 +12,7 @@
 
 @implementation JRFilterOneThumbSliderItem
 
-- (instancetype)initWithMinValue:(NSInteger)minValue maxValue:(NSInteger)maxValue currentValue:(NSInteger)currentValue {
+- (instancetype)initWithMinValue:(CGFloat)minValue maxValue:(CGFloat)maxValue currentValue:(CGFloat)currentValue {
     self = [super init];
     if (self) {
         _minValue = minValue;
@@ -42,27 +41,15 @@
 #pragma - mark JRFilterItemProtocol
 
 - (NSString *)tilte {
-    return NSLS(@"JR_FILTER_PRICE_CELL_TITLE");
+    return NSLS(@"JR_FILTER_PRICE_FILTER");
 }
 
 - (NSAttributedString *)attributedStringValue {
     JRSDKCurrency const userCurrency = [AviasalesSDK sharedInstance].currencyCode;
     NSNumber *priceInUserCurrency = [AviasalesNumberUtil convertPrice:@(self.currentValue) fromCurrency:@"usd" to:userCurrency];
-    NSString *priceString = [NSString stringWithFormat:@"%ld", (long)priceInUserCurrency.integerValue];
-    NSString *text = [NSString stringWithFormat:@"%@ %@", NSLS(@"JR_FILTER_CELL_TO_TEXT"), priceString];
+    NSString *priceString = [AviasalesNumberUtil formatPrice:priceInUserCurrency];
+    NSString *text = [NSString stringWithFormat:@"%@ %@", NSLS(@"JR_FILTER_TOTAL_DURATION_PRIOR_UP_TO"), priceString];
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text attributes:nil];
-    
-    NSString *currencyCode = [AviasalesSDK sharedInstance].currencyCode.uppercaseString;
-    NSString *currencyString = [NSString stringWithFormat:@"\u00A0%@", currencyCode];
-    NSAttributedString *currencyAttributedString = [[NSAttributedString alloc] initWithString:currencyString attributes:nil];
-    [attributedText appendAttributedString:currencyAttributedString];
-    
-    NSRange currencyRange = [attributedText.string rangeOfString:currencyString];
-    if (currencyRange.location != NSNotFound) {
-        UIFont *currencyFont = [UIFont systemFontOfSize:8.0];
-        [attributedText addAttribute:NSFontAttributeName value:currencyFont range:currencyRange];
-        [attributedText addAttribute:NSBaselineOffsetAttributeName value:@6 range:currencyRange];
-    }
     
     return attributedText;
 }
@@ -75,12 +62,12 @@
 #pragma - mark JRFilterItemProtocol
 
 - (NSString *)tilte {
-    return NSLS(@"JR_FILTER_TOTAL_DURATION_CELL_TITLE");
+    return NSLS(@"JR_FILTER_TOTAL_DURATION");
 }
 
 - (NSAttributedString *)attributedStringValue {
     NSString *timeString = [DateUtil duration:self.currentValue durationStyle:JRDateUtilDurationLongStyle];
-    NSString *text = [NSString stringWithFormat:@"%@ %@", NSLS(@"JR_FILTER_CELL_TO_TEXT"), timeString];
+    NSString *text = [NSString stringWithFormat:@"%@ %@", NSLS(@"JR_FILTER_TOTAL_DURATION_PRIOR_UP_TO"), timeString];
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text attributes:nil];
     
     return attributedText;

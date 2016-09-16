@@ -21,4 +21,5 @@
 @property (strong, readonly, nonatomic) NSDate *firstDayOfMonth;
 
 + (instancetype)monthItemWithFirstDateOfMonth:(NSDate *)firstDayOfMonth stateObject:(JRDatePickerStateObject *)stateObject;
+
 @end

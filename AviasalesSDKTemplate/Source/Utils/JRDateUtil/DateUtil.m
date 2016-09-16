@@ -7,7 +7,7 @@
 
 #import "DateUtil.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_0 || WATCH
+#if __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_0 || __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_1 || WATCH
 #define kDateUtilGregorianIdentifier NSCalendarIdentifierGregorian
 #define kDateUtilUnitYear NSCalendarUnitYear
 #define kDateUtilUnitMonth NSCalendarUnitMonth
@@ -40,7 +40,7 @@
 
 + (NSDateFormatter *)applicationUIDateFormatter {
     NSDateFormatter *applicationUIDateFormatter = [NSDateFormatter USPOSIXDateFormatter];
-    [applicationUIDateFormatter setLocale:[NSLocale currentLocale]];
+    [applicationUIDateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:AVIASALES__(@"LANGUAGE", [NSLocale currentLocale].localeIdentifier)]];
     [applicationUIDateFormatter setCalendar:[DateUtil systemCalendar]];
     return applicationUIDateFormatter;
 }
@@ -165,13 +165,24 @@
     return [formatter stringFromDate:date];
 }
 
++ (NSString *)rawDayNumberFromDate:(NSDate *)date
+{
+    static NSDateFormatter *formatter;
+    if (formatter == nil) {
+        formatter = [NSDateFormatter applicationUIDateFormatter];
+    }
+    [formatter setDateFormat:@"d"];
+    NSString *dateString = [formatter stringFromDate:date];
+    return dateString;
+}
+
 + (NSString *)dayNumberFromDate:(NSDate *)date
 {
     static NSDateFormatter *formatter;
     if (formatter == nil) {
         formatter = [NSDateFormatter applicationUIDateFormatter];
     }
-	[formatter setDateFormat:@"d"];
+	[formatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"d" options:kNilOptions locale:formatter.locale]];
 	NSString *dateString = [formatter stringFromDate:date];
 	return dateString;
 }
@@ -310,7 +321,7 @@ static BOOL user24HourTimeCyclePreference = NO;
         update24HourTimeCyclePreference();
     }
     
-	if (user24HourTimeCyclePreference == YES) {
+	if (user24HourTimeCyclePreference == YES || [AVIASALES__(@"LANGUAGE", nil) isEqualToString:@"ru"]) {
         
         [formatter setDateFormat:@"HH:mm"];
         
@@ -326,6 +337,19 @@ static BOOL user24HourTimeCyclePreference = NO;
         
 	}
     
+}
+
++(NSString *)dateToDateString:(NSDate *)date
+{
+    
+    static NSDateFormatter *formatter;
+    if (formatter == nil) {
+        formatter = [NSDateFormatter applicationUIDateFormatter];
+    }
+    
+    [formatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"d MMM" options:kNilOptions locale:formatter.locale]];
+    
+    return [formatter stringFromDate:date];
 }
 
 +(NSString *)duration:(NSInteger)duration durationStyle:(JRDateUtilDurationStyle)durationStyle
@@ -615,13 +639,7 @@ static BOOL user24HourTimeCyclePreference = NO;
 
 + (BOOL)date:(NSDate *)date isEqualToDateIgnoringTime:(NSDate *)aDate
 {
-    NSCalendarUnit dateComponents;
-
-#if __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_0 || WATCH
-    dateComponents = (kDateUtilUnitYear| kDateUtilUnitMonth | kDateUtilUnitDay | NSCalendarUnitWeekOfYear |  kDateUtilUnitHour | kDateUtilUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal);
-#else
-    dateComponents = (kDateUtilUnitYear| kDateUtilUnitMonth | kDateUtilUnitDay | NSWeekCalendarUnit |  kDateUtilUnitHour | kDateUtilUnitMinute | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit);
-#endif
+    NSCalendarUnit dateComponents = (kDateUtilUnitYear| kDateUtilUnitMonth | kDateUtilUnitDay | NSCalendarUnitWeekOfYear |  kDateUtilUnitHour | kDateUtilUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal);
     
     NSDateComponents *components1 = [[DateUtil gregorianCalendar] components:dateComponents fromDate:date];
 	NSDateComponents *components2 = [[DateUtil gregorianCalendar] components:dateComponents fromDate:aDate];
@@ -778,13 +796,6 @@ static BOOL user24HourTimeCyclePreference = NO;
     }
     [formatter setDateFormat:@"dd MMMM yyyy, EEEE"];
     return [formatter stringFromDate:date];
-}
-
-+ (NSString *)formatDurationInMinutes:(NSUInteger)durationInMinutes toHourAndMinutesStringWithFormat:(NSString *)localizedFormat {
-    long hours = durationInMinutes / 60;
-    long minutes = durationInMinutes % 60;
-    
-    return durationInMinutes > 0 ? [NSString stringWithFormat:localizedFormat, hours, minutes] : @"";
 }
 
 @end

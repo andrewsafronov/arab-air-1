@@ -7,16 +7,19 @@
 
 #import "JRSimplePopoverBackgroundView.h"
 #import "UIImage+JRUIImage.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 #define JR_SIMPLE_POPOVER_CORNER_RADIUS 10.f
 #define JR_SIMPLE_POPOVER_CONTENT_INSET 6.f
 #define JR_SIMPLE_POPOVER_FROM_POINT_MARGIN 10.f
 
 @interface JRSimplePopoverBackgroundView ()
+
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIImageView *arrowView;
+
 @end
+
 
 @implementation JRSimplePopoverBackgroundView
 
@@ -28,7 +31,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         _backgroundView = [UIView new];
-        [_backgroundView setBackgroundColor:[ColorScheme mainBackgroundColor]];
+        [_backgroundView setBackgroundColor:[JRColorScheme mainBackgroundColor]];
         [_backgroundView setClipsToBounds:YES];
         [self addSubview:_backgroundView];
         _backgroundView.layer.cornerRadius = [[self class] cornerRadius];
@@ -42,7 +45,7 @@
 
 + (UIImage *)arrowImage
 {
-    return [[UIImage imageNamed:@"JRSimpleAnnotationArrow"] imageTintedWithColor:[ColorScheme mainBackgroundColor]];
+    return [[UIImage imageNamed:@"JRSimpleAnnotationArrow"] imageTintedWithColor:[JRColorScheme mainBackgroundColor]];
 }
 
 + (CGFloat)cornerRadius

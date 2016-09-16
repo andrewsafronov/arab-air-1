@@ -8,7 +8,7 @@
 #import "JRSimplePopoverController.h"
 #import "JRSimplePopoverBackgroundView.h"
 #import "UIImage+JRUIImage.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 @implementation JRSimplePopoverController
 {
@@ -21,7 +21,7 @@
     [nc.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
     CGRect frame = vc.view.frame;
     nc.view.frame = frame;
-    [nc.navigationBar setBackgroundImage:[UIImage imageWithColor:[ColorScheme popoverBackgroundColor]] forBarMetrics:UIBarMetricsDefault];
+    [nc.navigationBar setBackgroundImage:[UIImage imageWithColor:[JRColorScheme popoverBackgroundColor]] forBarMetrics:UIBarMetricsDefault];
     
     self = [super initWithContentViewController:nc];
     if (self) {

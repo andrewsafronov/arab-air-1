@@ -1,131 +1,203 @@
-"AVIASALES_LANG" = "ru";
-
-"AVIASALES_CLOSE_BUTTON" = "Закрыть";
-
-"AVIASALES_SEARCH_BUTTON" = "Искать";
-
-"AVIASALES_FORM_TITLE" = "Авиабилеты";
-
-"AVIASALES_ALERT_ERROR_TITLE" = "Ошибка";
-
-"AVIASALES_ALERT_UNKNOWN_ERROR_TEXT" = "Неизвестная ошибка";
-
-"AVIASALES_BACK" = "Назад";
-
-"AVIASALES_CANCEL" = "Отмена";
-
-"AVIASALES_ORIGIN" = "Город отправления";
-
-"AVIASALES_DESTINATION" = "Город назначения";
-
-"AVIASALES_DEPARTURE_DATE" = "Дата отправления";
-
-"AVIASALES_RETURN_DATE" = "Дата возвращения";
-
-"AVIASALES_RETURN_FLIGHT" = "Обратно";
-
-"AVIASALES_PICKER_ADULTS" = "> 12 лет";
-
-"AVIASALES_PICKER_CHILDREN" = "2 — 12 лет";
-
-"AVIASALES_PICKER_INFANTS" = "< 2 лет";
-
-"AVIASALES_TRAVEL_CLASS_0" = "Эконом класс";
-
-"AVIASALES_TRAVEL_CLASS_1" = "Бизнес класс";
-
-"AVIASALES_NEARBY" = "Ближайшие аэропорты";
-
-"AVIASALES_NEARBY_ERROR" = "Не найдено аэропортов рядом";
-
-"AVIASALES_SEARCH_HISTORY" = "Вы уже искали";
-
-"AVIASALES_ANY_AIRPORT" = "Любой аэропорт";
-
-"AVIASALES_SEARCHING_PROGRESS" = "Выполняется поиск...";
-
-"AVIASALES_FILTERS" = "Фильтры";
-
-"AVIASALES_FILTERS_EMPTY" = "По данным параметрам предложений не найдено";
-
-"AVIASALES_CURRENCY" = "Валюта";
-
-"AVIASALES_DURATION_FORMAT" = "%iч %iм";
-
-"AVIASALES_DURATION_FORMAT_LONG" = "%@ ч %@ мин";
-
-"AVIASALES_RESET" = "Сбросить";
-
-"AVIASALES_FILTER_NONSTOP" = "Без пересадок";
-
-"AVIASALES_FILTER_ONE_STOP" = "%d пересадка";
-
-"AVIASALES_FILTER_TWO_STOPS" = "%d пересадки";
-
-"AVIASALES_FILTER_NIGHT" = "Допустима ночная пересадка";
-
-"AVIASALES_FILTER_PRICE" = "Цена билета";
-
-"AVIASALES_FILTER_TOTAL_DURATION" = "Время в пути";
-
-"AVIASALES_FILTER_STOPOVER_DURATION" = "Время на пересадки";
-
-"AVIASALES_FILTER_DEPARTURE" = "Вылет";
-
-"AVIASALES_FILTER_ARRIVAL" = "Прибытие";
-
-"AVIASALES_FILTER_RETURN_DEPARTURE" = "Вылет обратно";
-
-"AVIASALES_FILTER_RETURN_ARRIVAL" = "Прибытие обратно";
-
-"AVIASALES_FILTER_AIRLINES" = "Авиакомпании";
-
-"AVIASALES_FILTER_ALL_AIRLINES" = "Все авиакомпании";
-
-"AVIASALES_FILTER_ALLIANCES" = "Альянсы";
-
-"AVIASALES_FILTER_ALL_ALLIANCES" = "Все альянсы";
-
-"AVIASALES_FILTER_AIRPORTS" = "Аэропорты";
-
-"AVIASALES_FILTER_ALL_AIRPORTS" = "Все аэропорты";
-
-"AVIASALES_FILTER_FROM" = "Откуда";
-
-"AVIASALES_FILTER_STOPOVERS" = "Пересадки";
-
-"AVIASALES_FILTER_TO" = "Куда";
-
-"AVIASALES_FILTER_AGENCIES" = "Агентства";
-
-"AVIASALES_FILTER_ALL_AGENCIES" = "Все агентства";
-
-"AVIASALES_FILTER_MOBILE" = "Агентства с мобильным интерфейсом";
-
-"AVIASALES_FILTER_FOUND" = "Найдено предложений";
-
-"AVIASALES_FILTER_FROM1" = "с";
-
-"AVIASALES_FILTER_FROM2" = "от";
-
-"AVIASALES_FILTER_UP_TO" = "до";
-
-"AVIASALES_TICKET" = "Билет";
-
-"AVIASALES_PASSENGERS" = "Пассажиры: %d, %@";
-
-"AVIASALES_BUY" = "Купить";
-
-"AVIASALES_BUY_TICKET" = "Купить билет";
-"AVIASALES_BUY_TICKET_IN_CREDIT" = "Купить в кредит";
-"AVIASALES_BUY_TICKET_IN_CREDIT_SHORT" = "В кредит";
-
-"AVIASALES_FLIGHT" = "Рейс";
-
-"AVIASALES_ON" = "на";
-
-"AVIASALES_FLIGHT_DURATION" = "Перелет";
-
-"AVIASALES_STOPOVER" = "Пересадка";
-
-"AVIASALES_PLEASE_WAIT" = "Пожалуйста, подождите";
+"LANGUAGE" = "ru";
+
+"SHORT_TIME_FORMAT" = "%@ч %@м";
+"LONG_TIME_FORMAT" = "%@ ч %@ мин";
+
+"JR_ERROR_TITLE" = "ОШИБКА";
+
+"JR_BACK_TITLE" = "Назад";
+
+"JR_TRY_AGAIN_TITLE" = "Повторить";
+
+"JR_CANCEL_TITLE" = "Отмена";
+
+"CURRENCY" = "Валюта";
+
+"JR_ANY_AIRPORT" = "Любой аэропорт";
+
+"JR_OK_BUTTON" = "ОК";
+
+"JR_DATE_PICKER_DEPARTURE_DATE_TITLE" = "Дата отправления";
+"JR_DATE_PICKER_RETURN_DATE_TITLE" = "Дата возвращения";
+"JR_DATE_PICKER_TRAVEL_DATES_TITLE" = "Даты перелёта";
+"JR_DATE_PICKER_TODAY_DATE_TITLE" = "Сегодня";
+"JR_DATE_PICKER_SEARCH_TICKETS_BUTTON" = "Искать билеты";
+"JR_SEARCHINFO_BUSINESS" = "Бизнес";
+"JR_SEARCHINFO_ECONOMY" = "Эконом";
+"JR_SEARCHINFO_PREMIUM_ECONOMY" = "Премиальный эконом";
+"JR_SEARCHINFO_FIRST" = "Первый";
+"JR_SEARCHINFO_PASSENGERS##{one}" = "%d пассажир";
+"JR_SEARCHINFO_PASSENGERS##{few}" = "%d пассажира";
+"JR_SEARCHINFO_PASSENGERS##{many}" = "%d пассажиров";
+"JR_SEARCHINFO_PASSENGERS##{other}" = "%d пассажиров";
+"JR_SEARCH_FORM_AIRPORT_CELL_EMPTY_DESTINATION" = "Город прибытия";
+"JR_SEARCH_FORM_AIRPORT_CELL_EMPTY_ORIGIN" = "Город вылета";
+"JR_SEARCH_FORM_COMPLEX_DATE" = "ДАТА";
+"JR_SEARCH_FORM_COMPLEX_DESTINATION" = "КУДА";
+"JR_SEARCH_FORM_COMPLEX_ORIGIN" = "ОТКУДА";
+"JR_SEARCH_FORM_COMPLEX_SEARCH_SEGMENT_TITLE" = "сложный";
+"JR_SEARCH_FORM_DATE_CELL_EMPTY_DIRECT" = "Дата вылета";
+"JR_SEARCH_FORM_DATE_CELL_EMPTY_RETURN" = "Обратно";
+"JR_SEARCH_FORM_DATE_CELL_RETURN_BUTTON_TITLE" = "обратно";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_SEGMENT_TITLE" = "простой";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_ONE_WAY_SEGMENT_TITLE" = "в одну сторону";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_ROUND_TRIP_SEGMENT_TITLE" = "возвратный";
+"JR_SEARCH_FORM_TITLE" = "Поиск билетов";
+"JR_SEARCH_FORM_SEARCH_BUTTON" = "Искать билеты";
+"JR_SEARCH_FORM_EXCEEDED_THE_ALLOWABLE_NUMBER_OF_INFANTS" = "Число младенцев без места не может превышать число взрослых.";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_ORIGIN_ERROR" = "Пожалуйста, укажите пункт отправления";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_DESTINATION_ERROR" = "Пожалуйста, укажите пункт назначения";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_SAME_CITY_ERROR" = "Пункт отправления и\U00A0пункт назначения не могут совпадать.";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_DEPARTURE_DATE" = "Пожалуйста, укажите дату отправления";
+"JR_SEARCH_FORM_COMPLEX_PLACEHOLDER_AIRPORT_CELL_ACC" = "Выбрать";
+
+"JR_SEARCH_FORM_ADD_TRAVEL_SEGMENT" = "ДОБАВИТЬ";
+"JR_SEARCH_FORM_DELETE_TRAVEL_SEGMENT" = "УДАЛИТЬ";
+
+"JR_SEARCH_FORM_PASSENGERS_DECREASE_BTN_TITLE_ACC" = "Уменьшить количество пассажиров %@";
+"JR_SEARCH_FORM_PASSENGERS_INCREASE_BTN_TITLE_ACC" = "Увеличить количество пассажиров %@";
+"JR_SEARCH_FORM_PASSENGERS_COUNT_ACC" = "%@ пассажиров %@";
+"JR_SEARCH_FORM_PASSENGERS_OLDER_THEN_12" = "СТАРШЕ 12 ЛЕТ";
+"JR_SEARCH_FORM_PASSENGERS_FROM_2_TO_12_YEARS" = "ОТ 2 ДО 12 ЛЕТ";
+"JR_SEARCH_FORM_PASSENGERS_UP_TO_2_YEARS" = "ДО 2 ЛЕТ";
+
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{one}" = "взрослый";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{few}" = "взрослых";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{many}" = "взрослых";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{other}" = "взрослых";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{one}" = "ребенок";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{few}" = "детей";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{many}" = "детей";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{other}" = "детей";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{one}" = "младенец";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{few}" = "младенцев";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{other}" = "младенцев";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{many}" = "младенцев";
+
+"JR_AIRPORT_PICKER_DESTINATION_MODE_TITLE" = "Пункт назначения";
+"JR_AIRPORT_PICKER_NEAREST_AIRPORTS" = "Ближайшие аэропорты";
+"JR_AIRPORT_PICKER_NEAREST_AIRPORTS_READING_ERROR" = "Сервис геолокации временно недоступен";
+
+"JR_AIRPORT_PICKER_ORIGIN_MODE_TITLE" = "Пункт отправления";
+"JR_AIRPORT_PICKER_NO_NEAREST_AIRPORTS" = "Рядом с\U00A0вами нет аэропортов";
+"JR_AIRPORT_PICKER_PLACEHOLDER_TEXT" = "Введите город или аэропорт";
+"JR_AIRPORT_PICKER_PLACEHOLDER_TEXT_SHORT" = "Поиск";
+"JR_AIRPORT_PICKER_POPULAR_CATEGORY_MODE_TITLE" = "Интересы";
+"JR_AIRPORT_PICKER_POPULAR_DESTINATIONS" = "Маршруты по интересам";
+"JR_AIRPORT_PICKER_BACK_BUTTON" = "Назад";
+"JR_AIRPORT_PICKER_SEARCHED_AIRPORTS" = "Вы уже искали";
+"JR_AIRPORT_PICKER_NOTHING_IS_FOUND" = "Нет рейсов";
+"JR_AIRPORT_PICKER_SEARCHING_ON_SERVER_TEXT" = "Ищем билеты...";
+"JR_AIRPORT_PICKER_UPDATING_NEAREST_AIRPORTS" = "Поиск ближайших аэропортов...";
+
+"JR_FILTER_BUTTON" = "Фильтры";
+
+"JR_FILTER_RESET_ALL" = "Сбросить все";
+"JR_FILTER_RESET" = "Сбросить";
+"JR_FILTER_TICKETS_NOT_FOUND" = "Ничего не найдено";
+
+"JR_FILTER_STOPOVER_OVERNIGHT" = "Ночная пересадка";
+"JR_FILTER_PRICE_FILTER" = "Цене";
+"JR_FILTER_TOTAL_DURATION" = "Время в\U00A0пути";
+"JR_FILTER_DELAY_DURATION" = "Длительность пересадок";
+"JR_FILTER_TOTAL_TIME_FROM" = "с";
+"JR_FILTER_TOTAL_DURATION_FROM" = "от";
+"JR_FILTER_TOTAL_DURATION_PRIOR_TO" = "по";
+"JR_FILTER_TOTAL_DURATION_PRIOR_UP_TO" = "до";
+
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{one}" = "%d рейс от %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{few}" = "%d рейса от %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{many}" = "%d рейсов от %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{other}" = "%d рейсов от %@";
+
+"JR_FILTER_RETURN_DEPARTURE_TIME" = "Вылет обратно";
+"JR_FILTER_DEPARTURE_TIME" = "Вылет";
+"JR_FILTER_ARRIVAL_TIME" = "Прибытие";
+"JR_FILTER_RETURN_ARRIVAL_TIME" = "Прибытие обратно";
+
+"JR_FILTER_AIRPORTS_ORIGIN" = "Город отправления";
+"JR_FILTER_AIRPORTS_STOPOVER" = "Пересадки";
+"JR_FILTER_AIRPORTS_DESTINATION" = "Прибытие";
+
+"JR_FILTER_DAY_TIME_MORNING" = "утро";
+"JR_FILTER_DAY_TIME_DAY" = "день";
+"JR_FILTER_DAY_TIME_EVENING" = "вечер";
+
+"JR_FILTER_GATES" = "Агентства";
+"JR_FILTER_GATES_ALL" = "Все aгентства";
+
+"JR_FILTER_PAYMENT_METHODS" = "Способы оплаты";
+"JR_FILTER_PAYMENT_METHODS_ALL" = "Все cпособы оплаты";
+
+"JR_FILTER_AIRLINES" = "Авиакомпании";
+"JR_FILTER_AIRLINES_ALL" = "Все aвиакомпании";
+
+"JR_FILTER_ALLIANCES" = "Альянсы";
+"JR_FILTER_OTHER_ALLIANCES" = "Авиакомпании без альянса";
+"JR_FILTER_ALLIANCES_ALL" = "Все альянсы";
+
+"JR_FILTER_AIRPORTS" = "Аэропорты";
+"JR_FILTER_AIRPORTS_ALL" = "Все аэропорты";
+
+"JR_SEARCH_RESULTS_TRANSFERS##{zero}" = "Прямые";
+"JR_SEARCH_RESULTS_TRANSFERS##{one}" = "%d пересадка";
+"JR_SEARCH_RESULTS_TRANSFERS##{few}" = "%d пересадки";
+"JR_SEARCH_RESULTS_TRANSFERS##{many}" = "%d пересадок";
+"JR_SEARCH_RESULTS_TRANSFERS##{other}" = "%d пересадок";
+
+"JR_SEARCH_RESULTS_TICKET_PLACEHOLDER_TEXT" = "Не осталось билетов, удовлетворяющих критериям,\nвыбранным в\U00A0фильтрах.";
+
+"JR_BROWSER_BACK_BTN_TITLE" = "Назад";
+"JR_BROWSER_FORWARD_BTN_TITLE" = "Вперед";
+"JR_BROWSER_ERROR_ALERT_TITLE" = "Ошибка";
+
+"BROWSER_CHECK_CONNECTION" = "Не удалось загрузить сайт";
+"BROWSER_OVERLAY_DEFAULT_TEXT" = "Загрузка...";
+"JR_CLOSE_BUTTON_TITLE" = "Закрыть";
+
+"JR_SEARCH_RESULTS_NON_STRICT_MATCHED_ALERT_MESSAGE" = "Вы искали рейс следующий по маршруту %@. К\U00A0сожалению, нам не удалось найти перелётов конкретно между этими аэропортами, поэтому мы показываем все возможные перелеты между этими городами.";
+
+"JR_SEARCH_RESULTS_TICKET_IN_THE" = "в";
+
+"JR_TICKET_CREDIT_ALERT_BUY_BUTTON" = "Купить";
+"JR_TICKET_CREDIT_ALERT_CONDITIONS" = "Условия";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{few}" = "платежей";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{one}" = "платеж";
+"JR_TICKET_CREDIT_ALERT_CANCEL_BUTTON" = "Отмена";
+"JR_TICKET_CREDIT_ALERT_DAYS##{one}" = "день";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{other}" = "платежей";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{many}" = "платежей";
+"JR_TICKET_CREDIT_ALERT_DAYS##{few}" = "дня";
+"JR_TICKET_CREDIT_ALERT_MONTH" = "мес.";
+"JR_TICKET_CREDIT_ALERT_DAYS##{other}" = "дней";
+"JR_TICKET_CREDIT_ALERT_TILL" = "до";
+"JR_TICKET_CREDIT_ALERT_DAYS##{many}" = "дней";
+"JR_TICKET_CREDIT_ALERT_OVERPAYMENT" = "Переплата";
+"JR_TICKET_CREDIT_ALERT_DURATION" = "Срок кредита";
+"JR_TICKET_CREDIT_ALERT_OVERPAYMENT_SUFFIX" = "от цены";
+"JR_TICKET_CREDIT_ALERT_GRACE_PERIOD" = "Льготный период";
+"JR_TICKET_CREDIT_MONTH_2" = "февраля";
+"JR_TICKET_CREDIT_MONTH_1" = "января";
+"JR_TICKET_CREDIT_MONTH_3" = "марта";
+"JR_TICKET_CREDIT_MONTH_6" = "июня";
+"JR_TICKET_CREDIT_MONTH_4" = "апреля";
+"JR_TICKET_CREDIT_MONTH_7" = "июля";
+"JR_TICKET_CREDIT_MONTH_5" = "мая";
+"JR_TICKET_CREDIT_MONTH_8" = "августа";
+"JR_TICKET_CREDIT_MONTH_9" = "сентября";
+"JR_TICKET_CREDIT_MONTH_10" = "октября";
+"JR_TICKET_CREDIT_MONTH_11" = "ноября";
+"JR_TICKET_CREDIT_MONTH_12" = "декабря";
+
+"JR_TICKET_BUY_IN_THE_AGENCY_BUTTON" = "Купить на";
+"JR_TICKET_BUY_BUTTON" = "Купить";
+"JR_TICKET_BUY_IN_CREDIT_BUTTON" = "Купить в\U00A0кредит";
+"JR_TICKET_FLIGHT" = "Рейс";
+"JR_TICKET_TRANSFER" = "Пересадка";
+"JR_TICKET_OTHER_BUTTON" = "Другие";
+"JR_TICKET_DURATION" = "Время в\U00A0пути";
+
+"JR_WAITING_TITLE" = "Ищем билеты...";
+"JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "Ничего не найдено. Попробуйте изменить параметры поиска.";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "Ошибка соединения (%@)";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Извините, сервис Aviasales временно недоступен (%@)";

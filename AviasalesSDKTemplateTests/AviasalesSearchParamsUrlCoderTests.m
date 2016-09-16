@@ -157,7 +157,6 @@
     XCTAssertEqualObjects(resultString, @"LED1205MOW-MOW1506LED853Y");
 }
 
-#pragma mark - Decoding
 #pragma mark One way
 
 - (void)testOneWayFlightWithOnePassengerCorrectlyDecodedFromUrl {

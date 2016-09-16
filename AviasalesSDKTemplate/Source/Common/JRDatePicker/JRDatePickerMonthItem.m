@@ -8,18 +8,14 @@
 #import "JRDatePickerMonthItem.h"
 #import "DateUtil.h"
 
-@interface JRDatePickerMonthItem ()
-@end
 
 @implementation JRDatePickerMonthItem
 
-+ (id)monthItemWithFirstDateOfMonth:(NSDate *)firstDayOfMonth stateObject:(JRDatePickerStateObject *)stateObject
-{
++ (id)monthItemWithFirstDateOfMonth:(NSDate *)firstDayOfMonth stateObject:(JRDatePickerStateObject *)stateObject {
 	return [[JRDatePickerMonthItem alloc] initWithFirstDateOfMonth:firstDayOfMonth stateObject:stateObject];
 }
 
-- (id)initWithFirstDateOfMonth:(NSDate *)firstDayOfMonth stateObject:(JRDatePickerStateObject *)stateObject
-{
+- (id)initWithFirstDateOfMonth:(NSDate *)firstDayOfMonth stateObject:(JRDatePickerStateObject *)stateObject {
 	self = [super init];
 	if (self) {
 		_stateObject = stateObject;
@@ -29,8 +25,7 @@
 	return self;
 }
 
-- (NSMutableArray *)getPreviousDates:(NSDate *)firstDate firstWeekday:(NSInteger)firstWeekday
-{
+- (NSMutableArray *)getPreviousDates:(NSDate *)firstDate firstWeekday:(NSInteger)firstWeekday {
 	NSMutableArray *prevDates = [[NSMutableArray alloc] init];
     
 	for (NSInteger i = firstWeekday; i > [[DateUtil gregorianCalendar] firstWeekday]; i--) {
@@ -41,8 +36,7 @@
 	return prevDates;
 }
 
-- (NSMutableArray *)getDatesInThisMonth
-{
+- (NSMutableArray *)getDatesInThisMonth {
 	NSMutableArray *datesThisMonth = [[NSMutableArray alloc] init];
     
 	NSRange rangeOfDaysThisMonth = [[DateUtil gregorianCalendar]
@@ -61,8 +55,7 @@
 	return datesThisMonth;
 }
 
-- (NSMutableArray *)getFutureDatesForLastWeek:(NSArray *)lastWeek
-{
+- (NSMutableArray *)getFutureDatesForLastWeek:(NSArray *)lastWeek {
 	NSMutableArray *futureDates = [[NSMutableArray alloc] init];
 	for (NSInteger i = lastWeek.count; i < 7; i++) {
 		NSDate *newDate = futureDates.count ?
@@ -73,8 +66,7 @@
 	return futureDates;
 }
 
-- (NSMutableDictionary *)getWeeksForDatesInFinalArray:(NSMutableArray *)finalArray
-{
+- (NSMutableDictionary *)getWeeksForDatesInFinalArray:(NSMutableArray *)finalArray {
 	NSMutableDictionary *weeks = [NSMutableDictionary new];
 	NSNumber *weekCount = @0;
 	for (NSDate *day in finalArray) {
@@ -110,8 +102,7 @@
 	return weeks;
 }
 
-- (void)setupDatePickerItemWithWeeksDictionary:(NSMutableDictionary *)weeksDictionary
-{
+- (void)setupDatePickerItemWithWeeksDictionary:(NSMutableDictionary *)weeksDictionary {
 	_weeks = [NSMutableArray new];
     
 	NSArray *weekKeys = [[weeksDictionary allKeys] sortedArrayUsingComparator: ^NSComparisonResult (NSString *a, NSString *b) {
@@ -130,7 +121,7 @@
 					_stateObject.today = date;
 				}
 				[self markFirstOrSecondSelectedDateIfNeeds:date];
-				(_stateObject.weeksStrings)[date] = [DateUtil dayNumberFromDate:date];
+				(_stateObject.weeksStrings)[date] = [DateUtil rawDayNumberFromDate:date];
 				NSComparisonResult borderCompare = [_stateObject.borderDate compare:date];
 				if (borderCompare == NSOrderedSame) {
 					_stateObject.borderDate = date;
@@ -144,8 +135,7 @@
 	}
 }
 
-- (void)prepareDatesForCurrrentMonth
-{
+- (void)prepareDatesForCurrrentMonth {
 	NSMutableArray *datesInThisMonth = [self getDatesInThisMonth];
     
 	NSDate *firstDate = [datesInThisMonth firstObject];
@@ -167,8 +157,7 @@
 	[self setupDatePickerItemWithWeeksDictionary:weeksDictionary];
 }
 
-- (void)markFirstOrSecondSelectedDateIfNeeds:(NSDate *)date
-{
+- (void)markFirstOrSecondSelectedDateIfNeeds:(NSDate *)date {
 	if (_stateObject.mode == JRDatePickerModeDefault) {
 		JRTravelSegment *travelSegment = _stateObject.travelSegment;
 		[self selectedCheckWithTravelSegment:travelSegment date:date];
@@ -183,8 +172,7 @@
 	}
 }
 
-- (void)selectedCheckWithTravelSegment:(JRTravelSegment *)travelSegment date:(NSDate *)date
-{
+- (void)selectedCheckWithTravelSegment:(JRTravelSegment *)travelSegment date:(NSDate *)date {
 	NSDate *departureDate = travelSegment.departureDate;
 	if (departureDate) {
 		NSComparisonResult selectedCompare = [[DateUtil resetTimeForDate:departureDate] compare:date];

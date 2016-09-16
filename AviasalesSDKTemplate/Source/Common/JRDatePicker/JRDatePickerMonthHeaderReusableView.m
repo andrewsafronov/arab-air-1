@@ -9,29 +9,28 @@
 #import "JRViewController.h"
 #import "DateUtil.h"
 
-#define WEEKDAY_LABEL_TAG_OFFSET 1000
+static const NSInteger kWeekDayLabelTagOffset = 1000;
 
 @interface JRDatePickerMonthHeaderReusableView ()
+
 @property (weak, nonatomic) IBOutlet UILabel *monthYearLabel;
 
 @end
 
 @implementation JRDatePickerMonthHeaderReusableView
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 	[super awakeFromNib];
+    
 	[self updateView];
 }
 
-- (void)setMonthItem:(JRDatePickerMonthItem *)monthItem
-{
+- (void)setMonthItem:(JRDatePickerMonthItem *)monthItem {
 	_monthItem = monthItem;
 	[self updateView];
 }
 
-- (NSString *)getMonthYearString
-{
+- (NSString *)getMonthYearString {
 	NSDate *date = _monthItem.firstDayOfMonth;
 	NSString *monthYearString = nil;
 	if (date) {
@@ -42,15 +41,14 @@
 	return monthYearString;
 }
 
-- (void)updateView
-{
+- (void)updateView {
 	NSString *monthYearString;
 	monthYearString = [self getMonthYearString];
 	[_monthYearLabel setText:monthYearString];
     
     
 	for (NSString *weekday in _monthItem.weekdays) {
-		NSUInteger labelTag = [_monthItem.weekdays indexOfObject:weekday] + WEEKDAY_LABEL_TAG_OFFSET;
+		NSUInteger labelTag = [_monthItem.weekdays indexOfObject:weekday] + kWeekDayLabelTagOffset;
 		UILabel *weekdayLabel = (UILabel *)[self viewWithTag:labelTag];
 		[weekdayLabel setText:[weekday lowercaseString]];
 	}

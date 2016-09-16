@@ -8,8 +8,11 @@
 #import "JRViewController.h"
 #import "JRSearchInfo.h"
 
+
 @protocol JRSearchFormTravelClassPickerDelegate <NSObject>
+
 - (void)classPickerDidSelectTravelClass;
+
 @end
 
 

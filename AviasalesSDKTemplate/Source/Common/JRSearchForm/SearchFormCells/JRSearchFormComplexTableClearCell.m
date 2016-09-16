@@ -8,27 +8,20 @@
 #import "JRSearchFormComplexTableClearCell.h"
 #import "UIImage+JRUIImage.h"
 
-#define JRSearchFormComplexTableClearCellMinTravelSegmentsCount 1
-#define JRSearchFormComplexTableClearCellMaxTravelSegmentsCount 8
-#define JRSearchFormComplexAnimationDuration 0.25
-
+static const NSInteger kJRSearchFormComplexTableClearCellMaxTravelSegmentsCount = 8;
 
 @interface JRSearchFormComplexTableClearCell ()
+
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 @property (weak, nonatomic) IBOutlet UIButton *removeButton;
+
 @end
 
 
 @implementation JRSearchFormComplexTableClearCell
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-}
-
-- (void)updateCell
-{
-    [_addButton setEnabled:self.searchInfo.travelSegments.count < JRSearchFormComplexTableClearCellMaxTravelSegmentsCount];
+- (void)updateCell {
+    [_addButton setEnabled:self.searchInfo.travelSegments.count < kJRSearchFormComplexTableClearCellMaxTravelSegmentsCount];
     
     if (self.searchInfo.travelSegments.count >= 3) {
         [_removeButton setEnabled:YES];
@@ -41,12 +34,12 @@
     }
     
 }
+
 - (IBAction)addTravelSegment:(id)sender {
     [self.addCellDelegate addTravelSegment];
 }
 
-- (IBAction)removeButtonAction:(id)sender
-{
+- (IBAction)removeButtonAction:(id)sender {
 	[self.addCellDelegate removeLastSegment];
 }
 

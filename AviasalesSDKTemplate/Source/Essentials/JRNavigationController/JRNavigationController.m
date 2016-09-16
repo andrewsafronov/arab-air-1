@@ -8,7 +8,7 @@
 #import "JRNavigationController.h"
 #import "UIImage+JRUIImage.h"
 #import "UIFont+Factory.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 #import "JRViewController.h"
 
 @interface JRNavigationController ()<UIGestureRecognizerDelegate, UINavigationControllerDelegate>
@@ -30,7 +30,7 @@
 	if (iPhone()) {
         [self setDelegate:self];
         [self.interactivePopGestureRecognizer setDelegate:self];
-		[self.view setBackgroundColor:[ColorScheme darkTextColor]];
+		[self.view setBackgroundColor:[JRColorScheme darkTextColor]];
 	}
 }
 
@@ -49,7 +49,7 @@
 - (void)setupNavigationBar {
     NSDictionary *titleTextAttributes = @{
         NSFontAttributeName : [UIFont mediumSystemFontOfSize: 15],
-        NSForegroundColorAttributeName :  [ColorScheme darkTextColor]
+        NSForegroundColorAttributeName :  [JRColorScheme darkTextColor]
     };
     
 	UINavigationBar *const navigationBar = self.navigationBar;

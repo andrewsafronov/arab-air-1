@@ -1,12 +1,11 @@
 //
 //  JRAirportPickerVC.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 28/01/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 #import "JRAirportPickerCellWithAirport.h"
 #import "JRAirportPickerCellWithInfo.h"
 #import "JRAirportPickerItem.h"
@@ -19,6 +18,7 @@
 #define kJRAirportPickerMaxSearchedCount (iPhone() ? 5 : 10)
 #define kJRAirportPickerHeightForTitledHeader   44
 #define kJRAirportPickerHeightForUntitledHeader 10
+#define kJRAirportPicketHeightForRow 60
 #define kJRAirportPickerHeightForFooter  JRPixel()
 #define kJRAirportPickerBottomLineOffset 20
 #define kJRAirportPickerMaxSearchedAirportListSize (iPhone() ? 7 : 15)
@@ -26,7 +26,9 @@
 static NSString * const kJRAirportPickerCellWithInfo = @"JRAirportPickerCellWithInfo";
 static NSString * const kJRAirportPickerCellWithAirport = @"JRAirportPickerCellWithAirport";
 
-@interface JRAirportPickerVC ()<UITableViewDataSource, UITableViewDelegate, AviasalesSearchPerformerDelegate>
+
+@interface JRAirportPickerVC ()<UITableViewDataSource, UITableViewDelegate, AviasalesSearchPerformerDelegate, UISearchDisplayDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) JRAirportPickerMode mode;
 @property (strong, nonatomic) JRTravelSegment *travelSegment;
@@ -37,7 +39,9 @@ static NSString * const kJRAirportPickerCellWithAirport = @"JRAirportPickerCellW
 @property (strong, nonatomic) NSString *searchString;
 @property (strong, nonatomic) AviasalesAirportsSearchPerformer *airportsSearchPerformer;
 @property (nonatomic) BOOL searching;
+
 @end
+
 
 @implementation JRAirportPickerVC
 
@@ -104,7 +108,14 @@ static NSString * const kJRAirportPickerCellWithAirport = @"JRAirportPickerCellW
 
 -(void) dealloc
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self restoreInteractiveGesture];
+}
+
+- (void)popAction {
+    [self restoreInteractiveGesture];
+    
+    [super popAction];
 }
 
 - (void)addNearestAirportsSection
@@ -247,7 +258,15 @@ static NSString * const kJRAirportPickerCellWithAirport = @"JRAirportPickerCellW
         }
         
         [self detachAccessoryViewControllerAnimated:YES];
-		[self popAction];
+        
+        if (iPhone() && self.searchDisplayController.isActive) {
+            [self.searchDisplayController setActive:NO animated:YES];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self popAction];
+            });
+        } else {
+            [self popAction];
+        }
 	}
 }
 
@@ -277,7 +296,7 @@ static NSString * const kJRAirportPickerCellWithAirport = @"JRAirportPickerCellW
 - (UIView *)mainViewForFooterInSection:(NSInteger)section
 {
 	UIView *footer = [UIView new];
-	[footer setBackgroundColor:[ColorScheme separatorLineColor]];
+	[footer setBackgroundColor:[JRColorScheme separatorLineColor]];
 	return footer;
 }
 
@@ -301,9 +320,27 @@ static NSString * const kJRAirportPickerCellWithAirport = @"JRAirportPickerCellW
 	}
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return kJRAirportPicketHeightForRow;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
 	return self.tableView == tableView ? kJRAirportPickerHeightForFooter : 0;
+}
+
+#pragma mark - UISearchDisplayDelegate
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller {
+    [self restoreInteractiveGesture];
+}
+
+- (void)restoreInteractiveGesture {
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 #pragma mark - Search Table

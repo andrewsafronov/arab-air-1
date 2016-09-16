@@ -18,4 +18,5 @@
     [animation setDuration:duration];
     [view.layer addAnimation:animation forKey:@"kCATransitionFade"];
 }
+
 @end

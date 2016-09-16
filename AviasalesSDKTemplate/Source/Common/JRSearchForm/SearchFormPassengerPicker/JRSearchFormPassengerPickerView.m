@@ -8,7 +8,7 @@
 #import "JRSearchFormPassengerPickerView.h"
 #import "JRSearchFormPassengersView.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 @interface JRSearchFormPassengerPickerView ()
 
@@ -24,7 +24,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [self setBackgroundColor:[ColorScheme itemsBackgroundColor]];
+    [self setBackgroundColor:[JRColorScheme itemsBackgroundColor]];
     
     [_adultsContainer setBackgroundColor:[UIColor clearColor]];
     JRSearchFormPassengersView *adulstView = LOAD_VIEW_FROM_NIB_NAMED(@"JRSearchFormPassengersView");

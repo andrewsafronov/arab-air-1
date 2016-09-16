@@ -9,17 +9,12 @@
 #import "JRDatePickerMonthItem.h"
 #import "DateUtil.h"
 
-@interface JRDatePickerStateObject ()
-
-@end
 
 @implementation JRDatePickerStateObject
 
-- (id)initWithDelegate:(id<JRDatePickerStateObjectActionDelegate>)delegate
-{
+- (id)initWithDelegate:(id<JRDatePickerStateObjectActionDelegate>)delegate {
 	self = [super init];
 	if (self) {
-        
 		_delegate = delegate;
         
 		_weeksStrings = [NSMutableDictionary new];
@@ -32,8 +27,7 @@
 	return self;
 }
 
-- (void)updateSelectedDatesRange
-{
+- (void)updateSelectedDatesRange {
 	if (_mode != JRDatePickerModeDefault) {
 		_selectedDates = [NSMutableArray new];
 		if (_firstSelectedDate && _secondSelectedDate) {
@@ -73,8 +67,7 @@
     
 }
 
-- (void)setFirstSelectedDate:(NSDate *)firstSelectedDate
-{
+- (void)setFirstSelectedDate:(NSDate *)firstSelectedDate {
 	_firstSelectedDate = firstSelectedDate;
 	if (_firstSelectedDate && _secondSelectedDate) {
 		NSComparisonResult result = [_firstSelectedDate compare:_secondSelectedDate];

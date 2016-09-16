@@ -1,9 +1,16 @@
+//
+//  JRInspectableAttributes.m
+//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
+//
+
 #import "JRInspectableAttributes.h"
 #import "UIImage+JRUIImage.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 static inline UIColor *colorFromConstant(NSString *constant) {
-    return [ColorScheme colorFromConstant:constant];
+    return [JRColorScheme colorFromConstant:constant];
 }
 
 @implementation UILabel (JRInspectableAttributes)

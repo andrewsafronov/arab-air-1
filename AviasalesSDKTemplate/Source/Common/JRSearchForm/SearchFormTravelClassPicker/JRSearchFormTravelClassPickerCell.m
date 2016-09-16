@@ -10,9 +10,6 @@
 #import "UIImage+JRUIImage.h"
 #import "JRSearchInfoUtils.h"
 
-@interface JRSearchFormTravelClassPickerCell ()
-
-@end
 
 @implementation JRSearchFormTravelClassPickerCell
 

@@ -1,9 +1,8 @@
 //
 //  JRFlightsSegmentHeaderView.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 08/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFlightsSegmentHeaderView.h"
@@ -49,7 +48,7 @@
     }
     
     self.directionLabel.text = [airports componentsJoinedByString:@" • "];
-    self.durationLabel.text = [DateUtil formatDurationInMinutes:self.flightSegment.totalDurationInMinutes toHourAndMinutesStringWithFormat:AVIASALES_(@"AVIASALES_DURATION_FORMAT")];
+    self.durationLabel.text = [DateUtil duration:self.flightSegment.totalDurationInMinutes durationStyle:JRDateUtilDurationShortStyle];
 }
 
 @end

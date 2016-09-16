@@ -1,16 +1,15 @@
 //
 //  ASFilterCellWithTwoThumbsSlider.m
-//  aviasales
 //
-//  Created by Ruslan on 24/12/12.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterCellWithTwoThumbsSlider.h"
 
 #import "JRFilterTwoThumbSliderItem.h"
 #import "NMRangeSlider.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 #import "DateUtil.h"
 
 #import "NSLayoutConstraint+JRConstraintMake.h"
@@ -33,17 +32,17 @@
     
     [self sliderSetup];
     
-    self.cellLabel.textColor = [ColorScheme darkTextColor];
-    self.cellAttLabel.textColor = [ColorScheme darkTextColor];
+    self.cellLabel.textColor = [JRColorScheme darkTextColor];
+    self.cellAttLabel.textColor = [JRColorScheme darkTextColor];
     
     [self setDayTimeButtonWidthMultiplier:1.0f/4.0f];
     
     for (UIButton *dayTimeButton in self.dayTimeButtons) {
-        [dayTimeButton setTitleColor:[ColorScheme darkTextColor] forState:UIControlStateNormal];
-        [dayTimeButton setTitleColor:[ColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
+        [dayTimeButton setTitleColor:[JRColorScheme darkTextColor] forState:UIControlStateNormal];
+        [dayTimeButton setTitleColor:[JRColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
         dayTimeButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         dayTimeButton.titleLabel.minimumScaleFactor = 0.5;
-        dayTimeButton.layer.borderColor = [ColorScheme separatorLineColor].CGColor;
+        dayTimeButton.layer.borderColor = [JRColorScheme separatorLineColor].CGColor;
         dayTimeButton.layer.borderWidth = JRPixel();
     }
 }
@@ -118,7 +117,7 @@
 }
 
 - (void)sliderSetup {
-    UIColor *sliderColor = [ColorScheme darkBackgroundColor];
+    UIColor *sliderColor = [JRColorScheme darkBackgroundColor];
     UIImage *image = [[UIImage imageNamed:@"JRSliderMinImg"] resizableImageWithCapInsets:UIEdgeInsetsMake(0.f, 5.f, 0.f, 5.f)];
     self.cellSlider.trackBackgroundImage = image;
     

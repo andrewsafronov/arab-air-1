@@ -1,9 +1,8 @@
 //
 //  JRFilterTravelSegmentBounds.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 30/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterTravelSegmentBounds.h"
@@ -47,6 +46,8 @@
         _stopoverAirports = [NSOrderedSet orderedSet];
         _destinationAirports = [NSOrderedSet orderedSet];
         
+        _transfersCountsWitnMinPrice = [NSDictionary dictionary];
+        
         [self resetBounds];
     }
     return self;
@@ -80,7 +81,8 @@
 }
 
 - (BOOL)isReseted {
-    BOOL isReseted = !self.filterOvernightStopover && !self.filterOvernightStopover &&
+    BOOL isReseted = self.filterOvernightStopover == self.overnightStopover &&
+    self.filterTransferToAnotherAirport == self.transferToAnotherAirport &&
     
     self.filterTotalDuration == self.maxTotalDuration &&
     
@@ -93,12 +95,14 @@
     self.minFilterArrivalTime == self.minArrivalTime &&
     self.maxFilterArrivalTime == self.maxArrivalTime &&
     
-    self.filterAlliances.count == 0 &&
-    self.filterAirlines.count == 0 &&
+    [self.filterTransfersCounts.set isEqualToSet:self.transfersCounts.set] &&
     
-    self.filterOriginAirports.count == 0 &&
-    self.filterStopoverAirports.count == 0 &&
-    self.filterDestinationAirports.count == 0;
+    [self.filterAlliances.set isEqualToSet:self.alliances.set] &&
+    [self.filterAirlines.set isEqualToSet:self.airlines.set] &&
+    
+    [self.filterOriginAirports.set isEqualToSet: self.originAirports.set] &&
+    [self.filterStopoverAirports.set isEqualToSet: self.stopoverAirports.set] &&
+    [self.filterDestinationAirports.set isEqualToSet: self.destinationAirports.set];
     
     return isReseted;
 }

@@ -10,8 +10,6 @@
 #define JRSlideTransitionAnimationDuration 0.65
 #define JRSlideTransitionAnimationDamping  0.82
 
-@interface JRSlideTransitionAnimation ()
-@end
 
 @implementation JRSlideTransitionAnimation
 

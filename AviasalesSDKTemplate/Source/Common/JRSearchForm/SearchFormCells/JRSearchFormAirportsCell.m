@@ -9,20 +9,23 @@
 #import "JRSearchFormSimpleSearchTableView.h"
 #import "UIImage+JRUIImage.h"
 #import "UIView+JRFadeAnimation.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
-#define JRSearchFormAirportsCellAnimationDuration 0.3
+static const CGFloat JRSearchFormAirportsCellAnimationDuration = 0.3;
+
 
 @interface JRSearchFormAirportsCell ()
+
 @property (weak, nonatomic) IBOutlet JRSearchFormSimpleSearchTableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *changeButton;
+
 @end
+
 
 @implementation JRSearchFormAirportsCell
 
-- (void)setupChangeButton
-{
-	UIImage *changeButtonImage = [[_changeButton imageForState:UIControlStateNormal] imageTintedWithColor:[ColorScheme buttonBackgroundColor] fraction:0.1];
+- (void)setupChangeButton {
+	UIImage *changeButtonImage = [[_changeButton imageForState:UIControlStateNormal] imageTintedWithColor:[JRColorScheme buttonBackgroundColor] fraction:0.1];
 	[_changeButton setImage:changeButtonImage forState:UIControlStateHighlighted];
 	[UIView animateWithDuration:JRSearchFormAirportsCellAnimationDuration
                           delay:kNilOptions
@@ -33,34 +36,31 @@
                      } completion:NULL];
 }
 
-- (void)initialSetup
-{
+- (void)initialSetup {
 	JRSearchFormItem *originItem = [[JRSearchFormItem alloc] initWithType:JRSearchFormTableViewOriginAirportItem itemDelegate:self.item.itemDelegate];
 	JRSearchFormItem *destinationItem = [[JRSearchFormItem alloc] initWithType:JRSearchFormTableViewDestinationAirportItem itemDelegate:self.item.itemDelegate];
 	[_tableView setItems:@[originItem, destinationItem]];
 	[_tableView reloadData];
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 	[super awakeFromNib];
+    
 	[self setupChangeButton];
 }
 
-- (void)updateCell
-{
+- (void)updateCell {
 	[self setupChangeButton];
 	[_tableView reloadData];
 }
 
-- (void)setItem:(JRSearchFormItem *)item
-{
+- (void)setItem:(JRSearchFormItem *)item {
 	[super setItem:item];
+    
 	[self initialSetup];
 }
 
-- (IBAction)chageAction:(UIButton *)sender
-{
+- (IBAction)chageAction:(UIButton *)sender{
 	JRTravelSegment *travelSegment = self.searchInfo.travelSegments.firstObject;
 	id<JRSDKAirport> originAirport = travelSegment.originAirport;
 	travelSegment.originAirport = travelSegment.destinationAirport;
@@ -69,8 +69,7 @@
 	[UIView addTransitionFadeToView:self duration:JRSearchFormAirportsCellAnimationDuration];
 }
 
-- (BOOL)changeButtonIsAvalible
-{
+- (BOOL)changeButtonIsAvalible{
 	JRTravelSegment *travelSegment = self.searchInfo.travelSegments.firstObject;
 	if ((travelSegment.originAirport || travelSegment.destinationAirport) &&
         ![JRSDKModelUtils airport:travelSegment.originAirport isEqualToAirport:travelSegment.destinationAirport]) {

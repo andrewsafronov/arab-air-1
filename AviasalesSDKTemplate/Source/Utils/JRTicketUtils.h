@@ -1,9 +1,8 @@
 //
 //  JRTicketUtils.h
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 12/07/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import <Foundation/Foundation.h>
@@ -11,6 +10,6 @@
 
 @interface JRTicketUtils : NSObject
 
-+ (NSString *)formattedTicketMinPriceInUserCurrency:(id<JRSDKPrice>)price;
++ (NSString *)formattedTicketMinPriceInUserCurrency:(id<JRSDKTicket>)ticket;
 
 @end

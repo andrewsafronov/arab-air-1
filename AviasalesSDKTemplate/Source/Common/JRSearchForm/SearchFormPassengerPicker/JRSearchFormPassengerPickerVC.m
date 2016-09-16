@@ -8,13 +8,10 @@
 #import "JRSearchFormPassengerPickerVC.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
 
-@interface JRSearchFormPassengerPickerVC ()
-@end
 
 @implementation JRSearchFormPassengerPickerVC
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         _pickerView = LOAD_VIEW_FROM_NIB_NAMED(@"JRSearchFormPassengerPickerView");
@@ -22,9 +19,9 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
     [_pickerView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:_pickerView];
     [self.view addConstraints:JRConstraintsMakeScaleToFill(_pickerView, self.view)];

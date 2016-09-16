@@ -10,21 +10,22 @@
 #import "UIView+JRFadeAnimation.h"
 #import "UIImage+JRUIImage.h"
 #import "DateUtil.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 @interface JRDatePickerDayView ()
+
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (strong, nonatomic) UIImageView *dot;
 @property (strong, nonatomic) UILabel *todayLabel;
+
 @end
 
 @implementation JRDatePickerDayView
 
-- (void)setDotHidden:(BOOL)dotHidden
-{
+- (void)setDotHidden:(BOOL)dotHidden {
 	_dotHidden = dotHidden;
 	if (!_dotHidden && !_dot) {
-		_dot = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"JRDatePickerDot"] imageTintedWithColor:[ColorScheme mainBackgroundColor]]];
+		_dot = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"JRDatePickerDot"] imageTintedWithColor:[JRColorScheme mainBackgroundColor]]];
 		[_dot setTranslatesAutoresizingMaskIntoConstraints:NO];
         
 		UIView *dotSuperView = self.superview;
@@ -37,14 +38,13 @@
 	[_dot setHidden:dotHidden];
 }
 
-- (void)setTodayLabelHidden:(BOOL)todayLabelHidden
-{
+- (void)setTodayLabelHidden:(BOOL)todayLabelHidden {
 	_todayLabelHidden = todayLabelHidden;
 	if (!_todayLabelHidden && !_todayLabel) {
 		_todayLabel = [UILabel new];
 		[_todayLabel setText:[NSLS(@"JR_DATE_PICKER_TODAY_DATE_TITLE") lowercaseString]];
-		[_todayLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:9]];
-		[_todayLabel setTextColor:[ColorScheme darkTextColor]];
+		[_todayLabel setFont:[UIFont systemFontOfSize:9]];
+		[_todayLabel setTextColor:[JRColorScheme darkTextColor]];
 		[_todayLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
 		[_todayLabel setTextAlignment:NSTextAlignmentCenter];
 		[_todayLabel setAdjustsFontSizeToFitWidth:YES];
@@ -60,15 +60,15 @@
 	[self updateTodayLabel];
 }
 
-- (void)setHighlighted:(BOOL)highlighted
-{
+- (void)setHighlighted:(BOOL)highlighted {
 	[super setHighlighted:highlighted];
+    
 	[self updateHighlight];
 }
 
-- (void)setSelected:(BOOL)selected
-{
+- (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
+    
     [self updateHighlight];
 }
 
@@ -79,7 +79,7 @@
 
 - (void)setBackgroundImageViewHidden:(BOOL)hidden {
     if (hidden == NO && _backgroundImageView == nil) {
-        UIImage *image = [[UIImage imageNamed:@"JRDatePickerSelectedButton"] imageTintedWithColor:[ColorScheme mainBackgroundColor]];
+        UIImage *image = [[UIImage imageNamed:@"JRDatePickerSelectedButton"] imageTintedWithColor:[JRColorScheme mainBackgroundColor]];
         _backgroundImageView = [[UIImageView alloc] initWithImage:image];
         _backgroundImageView.layer.borderWidth = 1;
         _backgroundImageView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -98,15 +98,13 @@
     [_backgroundImageView setHidden:hidden];
 }
 
-- (void)updateTodayLabel
-{
+- (void)updateTodayLabel {
 	BOOL selectedOrHighlighted = self.selected || self.highlighted;
 	BOOL shouldHideTodayLabel = selectedOrHighlighted || _todayLabelHidden;
 	[_todayLabel setHidden:shouldHideTodayLabel];
 }
 
-- (void)setDateLabelColor:(UIColor *)dateLabelColor
-{
+- (void)setDateLabelColor:(UIColor *)dateLabelColor {
     if (_dateLabelColor != dateLabelColor) {
         _dateLabelColor = dateLabelColor;
         [self setTitleColor:_dateLabelColor forState:UIControlStateNormal];
@@ -117,8 +115,7 @@
     }
 }
 
-- (void)setDate:(NSDate *)date monthItem:(JRDatePickerMonthItem *)monthItem
-{
+- (void)setDate:(NSDate *)date monthItem:(JRDatePickerMonthItem *)monthItem {
 	_date = date;
     
 	NSString *title = (monthItem.stateObject.weeksStrings)[date];
@@ -132,8 +129,7 @@
 	[_dot setHidden:!selectedDate];
 }
 
-- (NSString *)accessibilityLabel
-{
+- (NSString *)accessibilityLabel {
     return [DateUtil dayMonthYearStringFromDate:_date];
 }
 

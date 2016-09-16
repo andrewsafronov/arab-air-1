@@ -14,12 +14,17 @@ typedef NS_ENUM (NSUInteger, JRSegmentedControlStyle) {
 	JRSegmentedControlStyleRoundContent
 };
 
+
 @class JRSegmentedControl;
 
+
 @protocol JRSegmentedControlDelegate<NSObject>
+
 @required
 - (void)segmentedControl:(JRSegmentedControl *)segmentedControl clickedButtonAtIndex:(NSUInteger)buttonIndex;
+
 @end
+
 
 @interface JRSegmentedControl : UIView
 

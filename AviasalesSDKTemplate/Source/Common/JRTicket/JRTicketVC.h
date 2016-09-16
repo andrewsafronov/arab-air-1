@@ -1,9 +1,8 @@
 //
 //  JRTicketVC.h
-//  AviasalesSDKTemplate
 //
-//  Created by Seva Billevich on 21.10.13.
-//  Copyright (c) 2013 Go Travel Un Limited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import <UIKit/UIKit.h>
@@ -14,8 +13,6 @@
 @property (nonatomic, strong) id<JRSDKTicket> ticket;
 @property (nonatomic, strong) id<JRSDKSearchInfo> searchInfo;
 
-@property (nonatomic, weak) IBOutlet UIView *waitingView;
-@property (nonatomic, weak) IBOutlet UILabel *waitingLabel;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 - (void)updateContent;

@@ -27,6 +27,7 @@ typedef NS_ENUM (NSUInteger, JRSearchFormItemType) {
 @class JRSearchFormCell;
 
 @protocol JRSearchFormItemDelegate<NSObject>
+
 @optional
 - (JRSearchInfo *)searchInfo;
 - (CGFloat)tableView:(id)tableView heightForItemWithType:(JRSearchFormItemType)type;
@@ -38,7 +39,9 @@ typedef NS_ENUM (NSUInteger, JRSearchFormItemType) {
 - (void)restoreReturnFlightTravelSegment;
 - (void)showPassengerPicker;
 - (void)showTravelClassPickerFromView:(UIView *)view;
+
 @end
+
 
 @interface JRSearchFormItem : NSObject
 

@@ -1,16 +1,15 @@
 //
 //  JRFilterVC_ipad.m
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 22/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
-
 #import "JRFilterVC_ipad.h"
 
 #import "JRFilter.h"
 #import "JRSearchInfoUtils.h"
 #import "JRScreenSceneController.h"
+#import "JRColorScheme.h"
 
 #import "UIViewController+JRScreenSceneController.h"
 
@@ -21,12 +20,17 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView      *toolbarView;
 
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
+
 @property (strong, nonatomic, readonly) JRFilter *filter;
 @property (assign, nonatomic, readonly) JRFilterMode filterMode;
+
 
 - (void)setupNavigationBar;
 - (void)updateToolbar;
 - (void)showFiltersForTravelSegment:(id<JRSDKTravelSegment>)travelSegment;
+- (void)setupResetButton;
+- (IBAction)resetButtonAction:(UIButton *)sender;
 
 @end
 
@@ -48,9 +52,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.directionInfoLabel.text =
     self.datesIntervalString.text = [JRSearchInfoUtils formattedDatesForSearchInfo:self.filter.searchInfo];
     self.passengersInfoLabel.text = [JRSearchInfoUtils passengersCountAndTravelClassStringWithSearchInfo:self.filter.searchInfo];
+    self.directionInfoLabel.text = [JRSearchInfoUtils formattedIatasForSearchInfo:self.filter.searchInfo];
     
     self.topBarDividerLineHeightConstraint.constant = JRPixel();
     self.toolBarTopDividerHeightConstraint.constant = JRPixel();
@@ -58,15 +62,16 @@
 
 #pragma mark - Override
 
+- (void)setupResetButton {
+    [self.resetButton setTitle:NSLS(@"JR_FILTER_RESET") forState:UIControlStateNormal];
+    [self.resetButton setTitleColor:[JRColorScheme inactiveLightTextColor] forState:UIControlStateDisabled];
+}
+
 - (void)setupNavigationBar {
     [super setupNavigationBar];
     
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.rightBarButtonItems = nil;
-}
-
-- (void)updateToolbar {
-    [super updateToolbar];
 }
 
 - (void)showFiltersForTravelSegment:(id<JRSDKTravelSegment>)travelSegment {

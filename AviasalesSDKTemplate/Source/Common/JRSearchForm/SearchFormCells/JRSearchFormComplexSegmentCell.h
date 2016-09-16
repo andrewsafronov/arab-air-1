@@ -12,9 +12,12 @@
 
 @required
 - (void)deleteTravelSegment:(JRTravelSegment *)travelSegmentToDelete;
+
 @end
 
+
 @interface JRSearchFormComplexSegmentCell : JRSearchFormCell
+
 @property (strong, nonatomic) JRTravelSegment *travelSegment;
 @property (weak, nonatomic) id <JRSearchFormComplexSegmentCellDelegate> segmentCellDelegate;
 

@@ -1,6 +1,8 @@
 //
-// Created by Ilya Amelchenkov on 06.11.15.
-// Copyright (c) 2015 aviasales. All rights reserved.
+//  JRPurchaseInCreditAlert.h
+//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRPurchaseInCreditAlert.h"
@@ -245,11 +247,11 @@
 }
 
 - (void)gotError:(NSError *)error {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"AVIASALES_ALERT_ERROR_TITLE")
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLS(@"JR_ERROR_TITLE")
                                                         message:error.localizedDescription
                                                        delegate:self
-                                              cancelButtonTitle:NSLS(@"AVIASALES_CANCEL")
-                                              otherButtonTitles:NSLS(@"AVIASALES_RETRY"), nil];
+                                              cancelButtonTitle:NSLS(@"JR_CANCEL_TITLE")
+                                              otherButtonTitles:NSLS(@"JR_TRY_AGAIN_TITLE"), nil];
     
     [alertView show];
 }

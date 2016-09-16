@@ -10,5 +10,7 @@
 #import "JRSearchFormPassengerPickerView.h"
 
 @interface JRSearchFormPassengerPickerVC : JRViewController
+
 @property (strong, nonatomic) JRSearchFormPassengerPickerView *pickerView;
+
 @end

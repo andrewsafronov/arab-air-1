@@ -1,9 +1,8 @@
 //
 //  JRDatePickerVC.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 04/02/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRDatePickerVC.h"
@@ -13,17 +12,24 @@
 #import "DateUtil.h"
 #import "UIView+JRFadeAnimation.h"
 #import "JRViewController+JRScreenScene.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
-#define kJRDatePickerCollectionHeaderHeight 65
-#define kJRDatePickerToolbarHeight 87
+static const NSInteger kDatePickerCollectionHeaderHeight = 65;
+static const NSInteger kDatePickerToolbarHeight = 87;
+
+static NSString * const kDayCellIdentifier = @"JRDatePickerDayCell";
+static NSString * const kMonthReusableHeaderViewIdentifier = @"JRDatePickerMonthHeaderReusableView";
+
 
 @interface JRDatePickerVC ()<UITableViewDataSource, UITableViewDelegate, JRDatePickerStateObjectActionDelegate>
+
 @property (assign, nonatomic) BOOL shouldShowSearchToolbar;
 @property (strong, nonatomic) JRDatePickerStateObject *stateObject;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *searchButtonToolbar;
+
 @end
+
 
 @implementation JRDatePickerVC
 
@@ -40,8 +46,7 @@
 
 - (instancetype)initWithSearchInfo:(JRSearchInfo *)searchInfo
                      travelSegment:(JRTravelSegment *)travelSegment
-                              mode:(JRDatePickerMode)mode
-{
+                              mode:(JRDatePickerMode)mode {
 	self = [super init];
 	if (self) {
 		_stateObject = [[JRDatePickerStateObject alloc] initWithDelegate:self];
@@ -53,20 +58,14 @@
 	return self;
 }
 
-static NSString *DayCellIdentifier = @"JRDatePickerDayCell";
-static NSString *MonthReusableHeaderViewIdentifier = @"JRDatePickerMonthHeaderReusableView";
-
-- (void)registerNibs
-{
+- (void)registerNibs {
+	[_tableView registerClass:[JRDatePickerDayCell class] forCellReuseIdentifier:kDayCellIdentifier];
     
-	[_tableView registerClass:[JRDatePickerDayCell class] forCellReuseIdentifier:DayCellIdentifier];
-    
-	UINib *headerNib = [UINib nibWithNibName:MonthReusableHeaderViewIdentifier bundle:nil];
-	[_tableView registerNib:headerNib forHeaderFooterViewReuseIdentifier:MonthReusableHeaderViewIdentifier];
+	UINib *headerNib = [UINib nibWithNibName:kMonthReusableHeaderViewIdentifier bundle:nil];
+	[_tableView registerNib:headerNib forHeaderFooterViewReuseIdentifier:kMonthReusableHeaderViewIdentifier];
 }
 
-- (void)setupTitle
-{
+- (void)setupTitle {
 	if (_stateObject.mode == JRDatePickerModeReturn) {
 		if (_shouldShowSearchToolbar) {
             [self setTitle:NSLS(@"JR_DATE_PICKER_TRAVEL_DATES_TITLE")];
@@ -78,27 +77,26 @@ static NSString *MonthReusableHeaderViewIdentifier = @"JRDatePickerMonthHeaderRe
 	}
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
 	[super viewDidLoad];
+    
 	[self registerNibs];
 	[self setupTitle];
     
-	[_tableView setBackgroundColor:[ColorScheme mainBackgroundColor]];
+	[_tableView setBackgroundColor:[JRColorScheme mainBackgroundColor]];
     [self setSearchButtonToolbarHidden:_shouldShowSearchToolbar ? NO : YES];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+    
 	[_tableView reloadData];
 	[_tableView scrollToRowAtIndexPath:_stateObject.indexPathToScroll atScrollPosition:UITableViewScrollPositionTop animated:NO];}
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	[_tableView flashScrollIndicators];
     
+	[_tableView flashScrollIndicators];
 }
 
 - (void)setSearchButtonToolbarHidden:(BOOL)searchButtonToolbarHidden {
@@ -107,13 +105,12 @@ static NSString *MonthReusableHeaderViewIdentifier = @"JRDatePickerMonthHeaderRe
         [_tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         [_tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
     } else {
-        [_tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, kJRDatePickerToolbarHeight, 0)];
-        [_tableView setContentInset:UIEdgeInsetsMake(0, 0, kJRDatePickerToolbarHeight, 0)];
+        [_tableView setScrollIndicatorInsets:UIEdgeInsetsMake(0, 0, kDatePickerToolbarHeight, 0)];
+        [_tableView setContentInset:UIEdgeInsetsMake(0, 0, kDatePickerToolbarHeight, 0)];
     }
 }
 
-- (void)buildTable
-{
+- (void)buildTable {
 	NSMutableArray *datesToRepresent = [NSMutableArray new];
     
 	NSUInteger prevIndex = [_stateObject.searchInfo.travelSegments indexOfObject:_stateObject.travelSegment] - 1;
@@ -139,8 +136,7 @@ static NSString *MonthReusableHeaderViewIdentifier = @"JRDatePickerMonthHeaderRe
 	[_stateObject updateSelectedDatesRange];
 }
 
-- (void)dateWasSelected:(NSDate *)date
-{
+- (void)dateWasSelected:(NSDate *)date {
 	if (_stateObject.mode == JRDatePickerModeDefault) {
 		_stateObject.firstSelectedDate = date;
 	} else {
@@ -163,49 +159,43 @@ static NSString *MonthReusableHeaderViewIdentifier = @"JRDatePickerMonthHeaderRe
     }
 }
 
-- (void)popAction
-{
+- (void)popAction {
 	[super popAction];
+    
     [self detachAccessoryViewControllerAnimated:YES];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return _stateObject.monthItems.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	JRDatePickerMonthItem *monthItem = (_stateObject.monthItems)[section];
 	return monthItem.weeks.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	JRDatePickerDayCell *cell = [tableView dequeueReusableCellWithIdentifier:DayCellIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	JRDatePickerDayCell *cell = [tableView dequeueReusableCellWithIdentifier:kDayCellIdentifier];
 	JRDatePickerMonthItem *monthItem = (_stateObject.monthItems)[indexPath.section];
 	NSArray *dates = (monthItem.weeks)[indexPath.row];
 	[cell setDatePickerItem:monthItem dates:dates];
 	return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	JRDatePickerMonthHeaderReusableView *sectionHeaderView = [tableView
-	                                                          dequeueReusableHeaderFooterViewWithIdentifier:MonthReusableHeaderViewIdentifier];
+	                                                          dequeueReusableHeaderFooterViewWithIdentifier:kMonthReusableHeaderViewIdentifier];
 	[sectionHeaderView setMonthItem:(_stateObject.monthItems)[section]];
 	return sectionHeaderView;
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return self.view.frame.size.width / 7;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-	return kJRDatePickerCollectionHeaderHeight;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return kDatePickerCollectionHeaderHeight;
 }
 
 - (IBAction)searchButtonAction:(id)sender {

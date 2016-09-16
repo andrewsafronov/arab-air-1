@@ -1,18 +1,17 @@
 //
 //  main.m
-//  AviasalesSDKTemplate
 //
-//  Created by Seva Billevich on 17.09.13.
-//  Copyright (c) 2013 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import <UIKit/UIKit.h>
 
-#import "ASTAppDelegate.h"
+#import "JRAppDelegate.h"
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([ASTAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([JRAppDelegate class]));
     }
 }

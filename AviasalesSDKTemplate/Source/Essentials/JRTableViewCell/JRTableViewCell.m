@@ -8,15 +8,19 @@
 #import "JRTableViewCell.h"
 #import "UIImage+JRUIImage.h"
 #import "NSLayoutConstraint+JRConstraintMake.h"
-#import "Defines.h"
-#import "ColorScheme.h"
+#import "JRDefines.h"
+#import "JRColorScheme.h"
+
 
 @interface JRTableViewCell ()
+
 @property (strong, nonatomic) UIImageView *bottomLine;
 @property (strong, nonatomic) NSLayoutConstraint *leadingConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *trailingConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *bottomConstraint;
+
 @end
+
 
 @implementation JRTableViewCell
 
@@ -29,13 +33,13 @@
     
     _customBackgroundView = [UIView new];
     [_customBackgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[_customBackgroundView setBackgroundColor:[ColorScheme itemsBackgroundColor]];
+	[_customBackgroundView setBackgroundColor:[JRColorScheme itemsBackgroundColor]];
     [self addSubview:_customBackgroundView];
     [self addConstraints:JRConstraintsMakeScaleToFill(_customBackgroundView, scaleToFillView)];
     
 	_customSelectedBackgroundView = [UIView new];
     [_customSelectedBackgroundView setTranslatesAutoresizingMaskIntoConstraints:NO];
-	[_customSelectedBackgroundView setBackgroundColor:[ColorScheme itemsSelectedBackgroundColor]];
+	[_customSelectedBackgroundView setBackgroundColor:[JRColorScheme itemsSelectedBackgroundColor]];
     [_customSelectedBackgroundView setContentHuggingPriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
     
 	_bottomLine = [UIImageView new];
@@ -57,7 +61,7 @@
 	[self setLeftOffset:_leftOffset];
     [self setBottomLineInsets:_bottomLineInsets];
     
-	[self setBottomLineColor:[ColorScheme separatorLineColor]];
+	[self setBottomLineColor:[JRColorScheme separatorLineColor]];
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

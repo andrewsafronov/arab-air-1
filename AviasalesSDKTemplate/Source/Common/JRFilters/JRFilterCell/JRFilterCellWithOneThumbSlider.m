@@ -1,15 +1,14 @@
 //
 //  ASFilterCellWithOneThumbSlider.m
-//  aviasales
 //
-//  Created by Ruslan on 24/12/12.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterCellWithOneThumbSlider.h"
 
 #import "JRFilterOneThumbSliderItem.h"
-#import "ColorScheme.h"
+#import "JRColorScheme.h"
 
 #import "UIImage+JRUIImage.h"
 
@@ -28,8 +27,8 @@
     
     [self setupSlider];
     
-    self.cellLabel.textColor = [ColorScheme darkTextColor];
-    self.cellAttLabel.textColor = [ColorScheme darkTextColor];
+    self.cellLabel.textColor = [JRColorScheme darkTextColor];
+    self.cellAttLabel.textColor = [JRColorScheme darkTextColor];
 }
 
 #pragma mark - Public methds
@@ -48,7 +47,7 @@
 #pragma mark - Private methds
 
 - (void)setupSlider {
-    UIImage *minTarckImage = [[UIImage imageNamed:@"JRSliderMaxImg"] imageTintedWithColor:[ColorScheme darkBackgroundColor]];
+    UIImage *minTarckImage = [[UIImage imageNamed:@"JRSliderMaxImg"] imageTintedWithColor:[JRColorScheme darkBackgroundColor]];
     minTarckImage = [minTarckImage resizableImageWithCapInsets:UIEdgeInsetsMake(0.f, 5.f, 0.f, 5.f)];
     UIImage *maxTarckImage = [UIImage imageNamed:@"JRSliderMinImg"];
     maxTarckImage = [maxTarckImage resizableImageWithCapInsets:UIEdgeInsetsMake(0.f, 5.f, 0.f, 5.f)];

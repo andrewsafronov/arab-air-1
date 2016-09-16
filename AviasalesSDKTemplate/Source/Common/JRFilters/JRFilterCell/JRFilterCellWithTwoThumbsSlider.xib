@@ -16,9 +16,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="750" text="Вылет" lineBreakMode="tailTruncation" numberOfLines="2" minimumScaleFactor="0.5" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="4">
-                        <rect key="frame" x="20" y="14" width="44.5" height="17.5"/>
+                        <rect key="frame" x="20" y="14" width="42" height="17"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.81960791349411011" green="0.81960791349411011" blue="0.81960791349411011" alpha="1" colorSpace="deviceRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
@@ -30,20 +30,20 @@
                         </constraints>
                     </view>
                     <label clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" tag="3" contentMode="left" text="с 9:00 10 окт до 14:30 11 окт" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" minimumScaleFactor="0.5" preferredMaxLayoutWidth="320" translatesAutoresizingMaskIntoConstraints="NO" id="6">
-                        <rect key="frame" x="74" y="6" width="231.5" height="32.5"/>
+                        <rect key="frame" x="72" y="6" width="234" height="33"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32.5" id="mv4-5M-stc"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.40000003576278687" green="0.40000003576278687" blue="0.40000003576278687" alpha="1" colorSpace="deviceRGB"/>
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <size key="shadowOffset" width="0.0" height="0.0"/>
                     </label>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="USZ-c8-Dlr">
-                        <rect key="frame" x="130" y="47" width="59" height="31"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                        <rect key="frame" x="129" y="46" width="61" height="31"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         <state key="normal" title="day" backgroundImage="JRFilterTimeButton">
                             <color key="titleColor" red="0.59999999999999998" green="0.8666666666666667" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,11 +71,11 @@
                         </connections>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ks1-0B-26L">
-                        <rect key="frame" x="20" y="47" width="59" height="31"/>
+                        <rect key="frame" x="20" y="46" width="61" height="31"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="31" id="i7P-mX-dBi"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         <state key="normal" title="morning" backgroundImage="JRFilterTimeButton">
                             <color key="titleColor" red="0.59999999999999998" green="0.86666666670000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -110,8 +110,8 @@
                         </connections>
                     </button>
                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXC-6z-tVe">
-                        <rect key="frame" x="246" y="47" width="59" height="31"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="10"/>
+                        <rect key="frame" x="245" y="46" width="61" height="31"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="10"/>
                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         <state key="normal" title="evening" backgroundImage="JRFilterTimeButton">
                             <color key="titleColor" red="0.59999999999999998" green="0.86666666670000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>

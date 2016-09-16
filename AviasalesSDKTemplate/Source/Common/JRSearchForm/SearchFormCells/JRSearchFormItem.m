@@ -19,9 +19,7 @@
 
 @implementation JRSearchFormItem
 
-- (id)initWithType:(JRSearchFormItemType)type
-      itemDelegate:(id<JRSearchFormItemDelegate>)itemDelegate
-{
+- (id)initWithType:(JRSearchFormItemType)type itemDelegate:(id<JRSearchFormItemDelegate>)itemDelegate {
 	self = [super init];
 	if (self) {
 		_type = type;
@@ -30,8 +28,7 @@
 	return self;
 }
 
-- (NSString *)cellIdentifier
-{
+- (NSString *)cellIdentifier {
 	Class class = NULL;
 	if (_type == JRSearchFormTableViewItemAirportsType) {
 		class = [JRSearchFormAirportsCell class];

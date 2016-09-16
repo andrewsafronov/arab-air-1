@@ -1,14 +1,15 @@
 //
 //  JRFilterListSeparatorItem.h
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 31/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterItemProtocol.h"
 
 
 @interface JRFilterListSeparatorItem : NSObject <JRFilterItemProtocol>
+
+- (instancetype)initWithTitle:(NSString *)title;
 
 @end

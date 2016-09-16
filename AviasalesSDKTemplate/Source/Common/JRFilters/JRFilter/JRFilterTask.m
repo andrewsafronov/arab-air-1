@@ -1,25 +1,15 @@
 //
 //  JRFilterTask.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 31/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterTask.h"
 #import "JRFilterTicketBounds.h"
-#import "JRTicket.h"
-#import "JRGate.h"
-#import "JRPaymentMethod.h"
 #import "JRFilterTravelSegmentBounds.h"
-#import "JRSearchInfo.h"
-#import "JRFlightSegment.h"
 #import "DateUtil.h"
-#import "JRAirline.h"
-#import "JRAirport.h"
-#import "JRAlliance.h"
-#import "JRFlight.h"
-#import "JRFilter.h"
+#import "JRTicket.h"
 
 
 @interface JRFilterTask ()
@@ -59,35 +49,33 @@
 }
 
 - (void)performFiltering {
-    NSMutableOrderedSet<id<JRSDKTicket>> *ticketsToRemove = [NSMutableOrderedSet orderedSet];
+    NSMutableOrderedSet<id<JRSDKTicket>> *filteredTickets = [NSMutableOrderedSet orderedSet];
     
     for (id<JRSDKTicket> ticket in self.ticketsToFilter) {
-        NSMutableOrderedSet<id<JRSDKPrice>> *pricesToRemove = [NSMutableOrderedSet orderedSet];
+        NSMutableOrderedSet<id<JRSDKPrice>> *filteredPrices = [ticket.prices mutableCopy];
+        JRTicket *filteredTicket = [JRTicket ticketByCopyingFieldsFromTicket:ticket];
+        
         for (id<JRSDKPrice> price in ticket.prices) {
-            NSUInteger priceValue = [JRSDKModelUtils priceInUSD:ticket.prices.firstObject].integerValue;
+            CGFloat priceValue = [JRSDKModelUtils priceInUSD:price].floatValue;
             
             if (priceValue > self.ticketBounds.filterPrice) {
-                [pricesToRemove addObject:price];
-            } else if (![self.ticketBounds.filterGates containsObject: price.gate]) {
-                [pricesToRemove addObject:price];
+                [filteredPrices removeObject:price];
+            } else if (![self.ticketBounds.filterGates containsObject:price.gate]) {
+                [filteredPrices removeObject:price];
             } else if (self.ticketBounds.filterPaymentMethods.count > 0 &&  price.gate.paymentMethods > 0) {
                 if (![ price.gate.paymentMethods isSubsetOfSet:self.ticketBounds.filterPaymentMethods.set]) {
-                    [pricesToRemove addObject:price];
+                    [filteredPrices removeObject:price];
                 }
             }
         }
         
-        if (pricesToRemove.count == ticket.prices.count) {
-            [ticketsToRemove addObject:ticket];
-        } else {
-            if ([self needRemoveTicketAfterTravelSegmentBoundsWereApplied:ticket]) {
-                [ticketsToRemove addObject:ticket];
+        if (filteredPrices.count > 0) {
+            if (![self needRemoveTicketAfterTravelSegmentBoundsWereApplied:ticket]) {
+                filteredTicket.prices = filteredPrices;
+                [filteredTickets addObject:filteredTicket];
             }
         }
     }
-    
-    NSMutableOrderedSet<id<JRSDKTicket>> *filteredTickets = [self.ticketsToFilter mutableCopy];
-    [filteredTickets minusOrderedSet:ticketsToRemove];
     
     [self.delegate filterTaskDidFinishWithTickets:filteredTickets];
 }
@@ -105,6 +93,16 @@
         }
         
         if (travelSegmentBounds.minFilterDelaysDuration > flightSegment.delayDurationInMinutes || travelSegmentBounds.maxFilterDelaysDuration < flightSegment.delayDurationInMinutes) {
+            needRemove = YES;
+            break;
+        }
+        
+        if (travelSegmentBounds.minFilterDepartureTime > flightSegment.departureDateTimestamp.doubleValue || travelSegmentBounds.maxFilterDepartureTime < flightSegment.departureDateTimestamp.doubleValue) {
+            needRemove = YES;
+            break;
+        }
+        
+        if (travelSegmentBounds.minFilterArrivalTime > flightSegment.arrivalDateTimestamp.doubleValue || travelSegmentBounds.maxFilterArrivalTime < flightSegment.arrivalDateTimestamp.doubleValue) {
             needRemove = YES;
             break;
         }
@@ -150,7 +148,7 @@
                 }
             }
             
-            if (![stopoverAirports isSubsetOfSet:travelSegmentBounds.stopoverAirports.set]) {
+            if (![stopoverAirports isSubsetOfSet:travelSegmentBounds.filterStopoverAirports.set]) {
                 needRemove = YES;
                 break;
             }

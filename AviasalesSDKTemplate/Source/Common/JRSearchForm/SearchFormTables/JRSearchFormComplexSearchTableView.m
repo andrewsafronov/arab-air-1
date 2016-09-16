@@ -12,19 +12,24 @@
 #import "JRSearchFormTravelClassAndPassengersCell.h"
 #import "JRSearchInfo.h"
 
-#define kJRSearchFormSimpleSearchTableViewBottomInset 8
-#define kJRSearchFormSimpleSearchTableViewHeightForHeader 28
+static const NSInteger kJRSearchFormSimpleSearchTableViewBottomInset = 8;
+static const NSInteger kJRSearchFormSimpleSearchTableViewHeightForHeader = 28;
 
 
 @interface JRSearchFormSimpleSearchTableView ()
+
 - (JRSearchFormCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @interface JRSearchFormComplexSearchTableView ()<JRSearchFormComplexTableClearCellDelegate, JRSearchFormComplexSegmentCellDelegate>
+
 @property (strong, nonatomic) JRSearchFormComplexSearchTableHeader *header;
 @property (weak, nonatomic) JRSearchFormComplexTableClearCell *addSegmentCell;
 @property (weak, nonatomic) JRSearchFormTravelClassAndPassengersCell *travelClassAndPassengersCell;
+
 @end
+
 
 @implementation JRSearchFormComplexSearchTableView
 

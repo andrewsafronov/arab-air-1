@@ -5,7 +5,12 @@ Aviasales/JetRadar iOS SDK
 [![Travis](https://img.shields.io/travis/KosyanMedia/Aviasales-iOS-SDK/master.svg)](https://travis-ci.org/KosyanMedia/Aviasales-iOS-SDK)
 
 ## Installation
-To install SDK use latest release version from page: [https://github.com/KosyanMedia/Aviasales-iOS-SDK/releases](https://github.com/KosyanMedia/Aviasales-iOS-SDK/releases).
+The easiest way is to use [CocoaPods](http://cocoapods.org). It takes care of all required frameworks and third party dependencies:
+
+```ruby
+pod 'AviasalesSDK', '~> 1.3.3-beta2'
+```
+
 
 ##Description
 

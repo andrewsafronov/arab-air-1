@@ -1,9 +1,8 @@
 //
 //  JRFilterTicketBounds.m
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 30/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRFilterTicketBounds.h"
@@ -24,7 +23,7 @@
         _gates = [NSOrderedSet orderedSet];
         _paymentMethods = [NSOrderedSet orderedSet];
         _maxPrice = 0.0;
-        _minPrice = NSIntegerMax;
+        _minPrice = CGFLOAT_MAX;
         
         [self resetBounds];
     }
@@ -41,8 +40,8 @@
 }
 
 - (BOOL)isReseted {
-    BOOL isReseted = (self.filterPrice == self.maxPrice) &&  (self.filterGates.count == 0) &&
-    (self.filterPaymentMethods.count == 0) && !self.filterMobileWebOnly;
+    BOOL isReseted = (self.filterPrice == self.maxPrice) &&  (self.filterGates.count == self.gates.count) &&
+    (self.filterPaymentMethods.count == self.paymentMethods.count) && !self.filterMobileWebOnly;
     
     return isReseted;
 }
@@ -63,7 +62,7 @@
     }
 }
 
-- (void)setFilterPrice:(NSInteger)filterPrice {
+- (void)setFilterPrice:(CGFloat)filterPrice {
     if (self.filterPrice != filterPrice) {
         _filterPrice = filterPrice;
         

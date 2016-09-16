@@ -3,6 +3,9 @@
 //
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
+//
 
 #import <Availability.h>
 

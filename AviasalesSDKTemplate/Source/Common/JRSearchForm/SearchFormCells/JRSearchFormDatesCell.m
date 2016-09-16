@@ -18,21 +18,18 @@
 
 @implementation JRSearchFormDatesCell
 
-- (void)updateCell
-{
+- (void)updateCell {
 	[_tableView reloadData];
 }
 
-- (void)initialSetup
-{
+- (void)initialSetup {
 	JRSearchFormItem *directDateItem = [[JRSearchFormItem alloc] initWithType:JRSearchFormTableViewDirectDateItem itemDelegate:self.item.itemDelegate];
 	JRSearchFormItem *returnDateItem = [[JRSearchFormItem alloc] initWithType:JRSearchFormTableViewReturnDateItem itemDelegate:self.item.itemDelegate];
 	[_tableView setItems:@[directDateItem, returnDateItem]];
 	[_tableView reloadData];
 }
 
-- (void)setItem:(JRSearchFormItem *)item
-{
+- (void)setItem:(JRSearchFormItem *)item {
 	[super setItem:item];
 	[self initialSetup];
 }

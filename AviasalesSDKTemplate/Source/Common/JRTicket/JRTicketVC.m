@@ -1,30 +1,26 @@
 //
 //  JRTicketVC.m
-//  AviasalesSDKTemplate
 //
-//  Created by Seva Billevich on 21.10.13.
-//  Copyright (c) 2013 Go Travel Un Limited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import "JRTicketVC.h"
-
-#import "ASTCommonFunctions.h"
-#import "ASTSearchParams.h"
 
 #import "JRFlightCell.h"
 #import "JRTransferCell.h"
 #import "JRFlightsSegmentHeaderView.h"
 
-#import "ASTWebBrowserViewController.h"
 #import "JRSearchInfoUtils.h"
 
 #import "JRInfoPanelView.h"
 #import "JRGateBrowserVC.h"
 #import "JRPurchaseInCreditAlert.h"
+#import "JRPriceUtils.h"
 
 #import "NSLayoutConstraint+JRConstraintMake.h"
 
-static const CGFloat kFlightCellHeight = 204.0;
+static const CGFloat kFlightCellHeight = 180.0;
 static const CGFloat kTransforCellHeight = 56.0;
 static const CGFloat kFlightsSegmentHeaderHeight = 55.0;
 
@@ -32,7 +28,7 @@ static const CGFloat kOffsetLimit = 40.0;
 static const CGFloat kInfoPanelViewMaxHeightConstraint = 120.0;
 
 
-@interface JRTicketVC () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface JRTicketVC () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, JRPurchaseInCreditAlertDelegate>
 
 @property (nonatomic, strong) JRInfoPanelView *infoPanelView;
 
@@ -50,10 +46,6 @@ static const CGFloat kInfoPanelViewMaxHeightConstraint = 120.0;
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    self.waitingView.hidden = YES;
-    self.waitingLabel.text = AVIASALES_(@"AVIASALES_PLEASE_WAIT");
-    [self.view addSubview:self.waitingView];
     
     UINib *flightCellNib = [UINib nibWithNibName:@"JRFlightCell" bundle:AVIASALES_BUNDLE];
     UINib *transferCellNib = [UINib nibWithNibName:@"JRTransferCell" bundle:AVIASALES_BUNDLE];
@@ -83,13 +75,6 @@ static const CGFloat kInfoPanelViewMaxHeightConstraint = 120.0;
     [self.infoPanelContainerView addConstraints:JRConstraintsMakeScaleToFill(self.infoPanelView, self.infoPanelContainerView)];
 
     [self updateContent];
-}
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    
-    self.waitingView.frame = self.view.bounds;
-    [self.waitingView setNeedsLayout];
 }
 
 - (void)dealloc {
@@ -166,9 +151,9 @@ static const CGFloat kInfoPanelViewMaxHeightConstraint = 120.0;
 #pragma mark - Private
 
 - (void)updateTitle {
-    id<JRSDKTravelSegment> const firstTravelSegment = _searchInfo.travelSegments.firstObject;
-    NSString *const formattedDates = [JRSearchInfoUtils formattedDatesForSearchInfo:self.searchInfo];
-    self.title = [NSString stringWithFormat:@"%@ – %@, %@", firstTravelSegment.originAirport.iata, firstTravelSegment.destinationAirport.iata, formattedDates];
+    NSString *const formattedIATAs = [JRSearchInfoUtils formattedIatasForSearchInfo:_searchInfo];
+    NSString *const formattedDates = [JRSearchInfoUtils formattedDatesForSearchInfo:_searchInfo];
+    self.title = [NSString stringWithFormat:@"%@, %@", formattedIATAs, formattedDates];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -186,19 +171,19 @@ static const CGFloat kInfoPanelViewMaxHeightConstraint = 120.0;
 }
 
 - (void)showOtherAgencies {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:AVIASALES_(@"AVIASALES_FILTER_AGENCIES") delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:AVIASALES_(@"JR_TICKET_BUY_IN_THE_AGENCY_BUTTON") delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
 
     for (id<JRSDKPrice> price in self.ticket.prices) {
         if ([JRSDKModelUtils priceSupportsPaymentInCredit:price]) {
             continue;
         }
         
-        NSString *buttonTitle = [NSString stringWithFormat:@"%@ — %@ %@", price.gate.label, [JRSDKModelUtils priceInUserCurrency:price], [JRSDKModelUtils symbolForCurrency:[AviasalesSDK sharedInstance].currencyCode]];
+        NSString *buttonTitle = [NSString stringWithFormat:@"%@ — %@", price.gate.label, [JRPriceUtils formattedPriceInUserCurrency:price]];
         [sheet addButtonWithTitle:buttonTitle];
     }
 
-    [sheet addButtonWithTitle:AVIASALES_(@"AVIASALES_CANCEL")];
     sheet.cancelButtonIndex = self.ticket.prices.count;
+    [sheet addButtonWithTitle:AVIASALES_(@"JR_CANCEL_TITLE")];
     [sheet showInView:self.view];
 }
 
@@ -225,6 +210,7 @@ static const CGFloat kInfoPanelViewMaxHeightConstraint = 120.0;
 - (void)buyTicketWithPrice:(id<JRSDKPrice>)price {
     if ([JRSDKModelUtils priceSupportsPaymentInCredit:price]) {
         JRPurchaseInCreditAlert *alert = [[JRPurchaseInCreditAlert alloc] initWithPrice:price searchId:self.searchId];
+        alert.delegate = self;
         [alert show];
         return;
     }
@@ -241,6 +227,13 @@ static const CGFloat kInfoPanelViewMaxHeightConstraint = 120.0;
 
     id<JRSDKPrice> price = (id<JRSDKPrice>)[self.ticket.prices objectAtIndex:buttonIndex];
     [self buyTicketWithPrice:price];
+}
+
+#pragma mark - JRPurchaseInCreditAlertDelegate
+
+- (void)purchaseInCreditAlert:(JRPurchaseInCreditAlert *)alert didTapPurchaseTicketWithPrice:(id <JRSDKPrice>)price purchaseURL:(NSURL *)purchaseURL {
+    [[UIApplication sharedApplication] openURL:purchaseURL];
+    [alert dismissAnimated:YES completion:nil];
 }
 
 @end

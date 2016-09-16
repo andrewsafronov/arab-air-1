@@ -1,9 +1,8 @@
 //
 //  JRFilterTravelSegmentBounds.h
-//  Aviasales iOS Apps
 //
-//  Created by Ruslan Shevchuk on 30/03/14.
-//
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import <Foundation/Foundation.h>
@@ -55,10 +54,9 @@
 @property (strong, nonatomic) NSOrderedSet<id<JRSDKAirport>> *destinationAirports;
 @property (strong, nonatomic) NSOrderedSet<id<JRSDKAirport>> *filterDestinationAirports;
 
-@property (strong, nonatomic, readonly) NSOrderedSet<NSNumber *> *minPriceForTransfersCounts;
+@property (strong, nonatomic) NSDictionary<NSNumber *, NSNumber *> *transfersCountsWitnMinPrice;
 
 @property (assign, nonatomic, readonly) BOOL isReseted;
-
 
 - (instancetype)initWithTravelSegment:(id<JRSDKTravelSegment>)travelSegment;
 

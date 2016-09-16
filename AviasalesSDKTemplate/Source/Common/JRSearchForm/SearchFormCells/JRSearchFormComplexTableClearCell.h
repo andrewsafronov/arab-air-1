@@ -11,12 +11,14 @@
 @protocol JRSearchFormComplexTableClearCellDelegate <NSObject>
 
 @required
-
 - (void)addTravelSegment;
 - (void)removeLastSegment;
 
 @end
 
+
 @interface JRSearchFormComplexTableClearCell : JRSearchFormCell
+
 @property (weak, nonatomic) id <JRSearchFormComplexTableClearCellDelegate> addCellDelegate;
+
 @end

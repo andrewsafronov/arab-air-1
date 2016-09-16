@@ -6,18 +6,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "JRTravelSegment.h"
-#import "JRSearchResult.h"
 
 @interface JRSearchInfo : NSObject <JRSDKSearchInfo>
 
-@property (nonatomic, retain) NSOrderedSet <JRTravelSegment *> *travelSegments;
-@property (nonatomic, strong) JRSearchResult *searchResult;
-
-@property (nonatomic, assign) BOOL adjustSearchInfo;
-
+@property (nonatomic, strong) NSOrderedSet <JRTravelSegment *> *travelSegments;
 @property (nonatomic, strong) NSDate *returnDateForSimpleSearch;
 
+@property (nonatomic, assign) BOOL adjustSearchInfo;
 @property (nonatomic, assign) JRSDKTravelClass travelClass;
 @property (nonatomic, assign) NSInteger adults;
 @property (nonatomic, assign) NSInteger children;

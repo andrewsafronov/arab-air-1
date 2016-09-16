@@ -1,9 +1,8 @@
 //
 //  JRFilterCellsFactory.h
-//  AviasalesSDKTemplate
 //
-//  Created by Oleg on 23/06/16.
-//  Copyright © 2016 Go Travel Un LImited. All rights reserved.
+//  Copyright 2016 Go Travel Un Limited
+//  This code is distributed under the terms and conditions of the MIT license.
 //
 
 #import <Foundation/Foundation.h>
@@ -19,6 +18,5 @@
 
 - (nonnull UITableViewCell *)cellByItem:(nonnull JRFilterItem *)item;
 - (CGFloat)heightForCellByItem:(nonnull JRFilterItem *)item;
-- (CGFloat)heightForHederByItem:(nonnull JRFilterItem *)item;
 
 @end

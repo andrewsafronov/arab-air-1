@@ -70,6 +70,4 @@
     return newImage;
 }
 
-
-
 @end

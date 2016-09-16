@@ -1,0 +1,203 @@
+"LANGUAGE" = "pl";
+
+"SHORT_TIME_FORMAT" = "%@h %@m";
+"LONG_TIME_FORMAT" = "%@ godz. %@ min.";
+
+"JR_ERROR_TITLE" = "BŁĄD";
+
+"JR_BACK_TITLE" = "Wróć";
+
+"JR_TRY_AGAIN_TITLE" = "Jeszcze raz";
+
+"JR_CANCEL_TITLE" = "Przerwij";
+
+"CURRENCY" = "Waluta";
+
+"JR_ANY_AIRPORT" = "Jakiekolwiek lotnisko";
+
+"JR_OK_BUTTON" = "OK";
+
+"JR_DATE_PICKER_DEPARTURE_DATE_TITLE" = "Wylot";
+"JR_DATE_PICKER_RETURN_DATE_TITLE" = "Data powrotu";
+"JR_DATE_PICKER_TRAVEL_DATES_TITLE" = "Daty lotów";
+"JR_DATE_PICKER_TODAY_DATE_TITLE" = "Dzisiaj";
+"JR_DATE_PICKER_SEARCH_TICKETS_BUTTON" = "Szukaj biletów";
+"JR_SEARCHINFO_BUSINESS" = "Biznes";
+"JR_SEARCHINFO_ECONOMY" = "EKON.";
+"JR_SEARCHINFO_PREMIUM_ECONOMY" = "EKON. Premium";
+"JR_SEARCHINFO_FIRST" = "Pierwsza Klasa";
+"JR_SEARCHINFO_PASSENGERS##{one}" = "%d pasażer";
+"JR_SEARCHINFO_PASSENGERS##{few}" = "%d pasażerów";
+"JR_SEARCHINFO_PASSENGERS##{many}" = "%d pasażerowie";
+"JR_SEARCHINFO_PASSENGERS##{other}" = "%d pasażerowie";
+"JR_SEARCH_FORM_AIRPORT_CELL_EMPTY_DESTINATION" = "Miasto przylotu";
+"JR_SEARCH_FORM_AIRPORT_CELL_EMPTY_ORIGIN" = "Miasto wylotu";
+"JR_SEARCH_FORM_COMPLEX_DATE" = "DATA";
+"JR_SEARCH_FORM_COMPLEX_DESTINATION" = "do";
+"JR_SEARCH_FORM_COMPLEX_ORIGIN" = "z";
+"JR_SEARCH_FORM_COMPLEX_SEARCH_SEGMENT_TITLE" = "Wieloodcinkowy";
+"JR_SEARCH_FORM_DATE_CELL_EMPTY_DIRECT" = "Wylot";
+"JR_SEARCH_FORM_DATE_CELL_EMPTY_RETURN" = "Powrót";
+"JR_SEARCH_FORM_DATE_CELL_RETURN_BUTTON_TITLE" = "powrót";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_SEGMENT_TITLE" = "Podstawowe";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_ONE_WAY_SEGMENT_TITLE" = "W jedną stronę";
+"JR_SEARCH_FORM_SIMPLE_SEARCH_ROUND_TRIP_SEGMENT_TITLE" = "W obie strony";
+"JR_SEARCH_FORM_TITLE" = "Szukaj biletów";
+"JR_SEARCH_FORM_SEARCH_BUTTON" = "SZUKAJ BILETÓW";
+"JR_SEARCH_FORM_EXCEEDED_THE_ALLOWABLE_NUMBER_OF_INFANTS" = "Liczba niemowląt podróżujących bez miejsca siedzącego nie może przekraczać liczby towarzyszących osób dorosłych.";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_ORIGIN_ERROR" = "Proszę podać lotnisko wylotu";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_DESTINATION_ERROR" = "Proszę podać lotnisko przylotu";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_SAME_CITY_ERROR" = "Lotniska wylotu i przylotu muszą być różne.";
+"JR_SEARCH_FORM_AIRPORT_EMPTY_DEPARTURE_DATE" = "Proszę podać datę wylotu";
+"JR_SEARCH_FORM_COMPLEX_PLACEHOLDER_AIRPORT_CELL_ACC" = "Wybierz";
+
+"JR_SEARCH_FORM_ADD_TRAVEL_SEGMENT" = "DODAJ";
+"JR_SEARCH_FORM_DELETE_TRAVEL_SEGMENT" = "USUŃ";
+
+"JR_SEARCH_FORM_PASSENGERS_DECREASE_BTN_TITLE_ACC" = "Zmniejsz liczbę pasażerów %@";
+"JR_SEARCH_FORM_PASSENGERS_INCREASE_BTN_TITLE_ACC" = "Zwiększ liczbę pasażerów %@";
+"JR_SEARCH_FORM_PASSENGERS_COUNT_ACC" = "%@ pasażerowie %@";
+"JR_SEARCH_FORM_PASSENGERS_OLDER_THEN_12" = "12+";
+"JR_SEARCH_FORM_PASSENGERS_FROM_2_TO_12_YEARS" = "PONIŻEJ 12";
+"JR_SEARCH_FORM_PASSENGERS_UP_TO_2_YEARS" = "PONIŻEJ 2";
+
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{one}" = "dorosły";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{few}" = "dorosłych";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{many}" = "dorosłych";
+"JR_SEARCH_FORM_PASSENGERS_ADULTS##{other}" = "dorosłych";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{one}" = "dziecko";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{few}" = "dzieci";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{many}" = "dzieci";
+"JR_SEARCH_FORM_PASSENGERS_CHILDREN##{other}" = "dzieci";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{one}" = "niemowlę";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{few}" = "niemowląt";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{other}" = "niemowląt";
+"JR_SEARCH_FORM_PASSENGERS_INFANTS##{many}" = "niemowląt";
+
+"JR_AIRPORT_PICKER_DESTINATION_MODE_TITLE" = "Cel";
+"JR_AIRPORT_PICKER_NEAREST_AIRPORTS" = "Najbliższe lotnisko";
+"JR_AIRPORT_PICKER_NEAREST_AIRPORTS_READING_ERROR" = "Serwis geolokalizacyjny jest tymczasowo niedostępny";
+
+"JR_AIRPORT_PICKER_ORIGIN_MODE_TITLE" = "Lotnisko wylotu";
+"JR_AIRPORT_PICKER_NO_NEAREST_AIRPORTS" = "Brak w pobliżu lotnisk";
+"JR_AIRPORT_PICKER_PLACEHOLDER_TEXT" = "poszukiwanie";
+"JR_AIRPORT_PICKER_PLACEHOLDER_TEXT_SHORT" = "Szukaj";
+"JR_AIRPORT_PICKER_POPULAR_CATEGORY_MODE_TITLE" = "Zainteresowania";
+"JR_AIRPORT_PICKER_POPULAR_DESTINATIONS" = "Trasa według zainteresowań";
+"JR_AIRPORT_PICKER_BACK_BUTTON" = "Wróć";
+"JR_AIRPORT_PICKER_SEARCHED_AIRPORTS" = "Już szukałeś/aś:";
+"JR_AIRPORT_PICKER_NOTHING_IS_FOUND" = "Brak wyników";
+"JR_AIRPORT_PICKER_SEARCHING_ON_SERVER_TEXT" = "Szuka...";
+"JR_AIRPORT_PICKER_UPDATING_NEAREST_AIRPORTS" = "Poszukiwanie lotnisk w pobliżu...";
+
+"JR_FILTER_BUTTON" = "Filtry";
+
+"JR_FILTER_RESET_ALL" = "Usuń wszystko";
+"JR_FILTER_RESET" = "Usuń";
+"JR_FILTER_TICKETS_NOT_FOUND" = "Brak wyników wyszukiwania";
+
+"JR_FILTER_STOPOVER_OVERNIGHT" = "Możliwe nocne międzylądowania";
+"JR_FILTER_PRICE_FILTER" = "Ceny";
+"JR_FILTER_TOTAL_DURATION" = "Czas podróży";
+"JR_FILTER_DELAY_DURATION" = "Długość międzylądowania";
+"JR_FILTER_TOTAL_TIME_FROM" = "z";
+"JR_FILTER_TOTAL_DURATION_FROM" = "od";
+"JR_FILTER_TOTAL_DURATION_PRIOR_TO" = "do";
+"JR_FILTER_TOTAL_DURATION_PRIOR_UP_TO" = "do";
+
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{one}" = "%d lot w cenie od %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{few}" = "%d loty w cenie od %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{many}" = "%d lotów w cenie od %@";
+"JR_FILTER_FLIGHTS_FOUND_MIN_PRICE##{other}" = "%d lotów w cenie od %@";
+
+"JR_FILTER_RETURN_DEPARTURE_TIME" = "Czas startu przylotu";
+"JR_FILTER_DEPARTURE_TIME" = "Czas startu wylotu";
+"JR_FILTER_ARRIVAL_TIME" = "Czas lądowania wylotu";
+"JR_FILTER_RETURN_ARRIVAL_TIME" = "Czas lądowania przylotu";
+
+"JR_FILTER_AIRPORTS_ORIGIN" = "Z";
+"JR_FILTER_AIRPORTS_STOPOVER" = "Transfery";
+"JR_FILTER_AIRPORTS_DESTINATION" = "Do";
+
+"JR_FILTER_DAY_TIME_MORNING" = "rano";
+"JR_FILTER_DAY_TIME_DAY" = "popołudniu";
+"JR_FILTER_DAY_TIME_EVENING" = "wieczorem";
+
+"JR_FILTER_GATES" = "Agencje";
+"JR_FILTER_GATES_ALL" = "Wszystkie agencje";
+
+"JR_FILTER_PAYMENT_METHODS" = "Metody płatnicze";
+"JR_FILTER_PAYMENT_METHODS_ALL" = "Wszystkie metody płatnicze";
+
+"JR_FILTER_AIRLINES" = "Linie lotnicze";
+"JR_FILTER_AIRLINES_ALL" = "Wszystkie linie lotnicze";
+
+"JR_FILTER_ALLIANCES" = "Sojusze";
+"JR_FILTER_OTHER_ALLIANCES" = "Linie lotnicze bez sojuszu";
+"JR_FILTER_ALLIANCES_ALL" = "Wszystkie sojusze";
+
+"JR_FILTER_AIRPORTS" = "Lotniska";
+"JR_FILTER_AIRPORTS_ALL" = "Wszystkie lotniska";
+
+"JR_SEARCH_RESULTS_TRANSFERS##{zero}" = "Bezpośredni";
+"JR_SEARCH_RESULTS_TRANSFERS##{one}" = "%d międzylądowanie";
+"JR_SEARCH_RESULTS_TRANSFERS##{few}" = "%d międzylądowań";
+"JR_SEARCH_RESULTS_TRANSFERS##{many}" = "%d międzylądowań";
+"JR_SEARCH_RESULTS_TRANSFERS##{other}" = "%d międzylądowań";
+
+"JR_SEARCH_RESULTS_TICKET_PLACEHOLDER_TEXT" = "Po Twoim filtrowaniu nic nie pozostało";
+
+"JR_BROWSER_BACK_BTN_TITLE" = "Wróć";
+"JR_BROWSER_FORWARD_BTN_TITLE" = "Naprzód";
+"JR_BROWSER_ERROR_ALERT_TITLE" = "Błąd";
+
+"BROWSER_CHECK_CONNECTION" = "Proszę sprawdzić swoje połączenie internetowe";
+"BROWSER_OVERLAY_DEFAULT_TEXT" = "Ładowanie!";
+"JR_CLOSE_BUTTON_TITLE" = "Zamknij";
+
+"JR_SEARCH_RESULTS_NON_STRICT_MATCHED_ALERT_MESSAGE" = "Szukałeś/łaś lotu na trasie %@. Niestety nie udało się znależć lotów operujących pomiędzy tymi lotniskami.";
+
+"JR_SEARCH_RESULTS_TICKET_IN_THE" = "na";
+
+"JR_TICKET_CREDIT_ALERT_BUY_BUTTON" = "Kup";
+"JR_TICKET_CREDIT_ALERT_CONDITIONS" = "Regulamin";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{few}" = "płatności";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{one}" = "płatność";
+"JR_TICKET_CREDIT_ALERT_CANCEL_BUTTON" = "Przerwij";
+"JR_TICKET_CREDIT_ALERT_DAYS##{one}" = "dzień";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{other}" = "płatności";
+"JR_TICKET_CREDIT_ALERT_PAYMENTS##{many}" = "płatności";
+"JR_TICKET_CREDIT_ALERT_DAYS##{few}" = "dni";
+"JR_TICKET_CREDIT_ALERT_MONTH" = "miesiąc";
+"JR_TICKET_CREDIT_ALERT_DAYS##{other}" = "dni";
+"JR_TICKET_CREDIT_ALERT_TILL" = "do";
+"JR_TICKET_CREDIT_ALERT_DAYS##{many}" = "dni";
+"JR_TICKET_CREDIT_ALERT_OVERPAYMENT" = "Nadpłata";
+"JR_TICKET_CREDIT_ALERT_DURATION" = "Warunki kredytu";
+"JR_TICKET_CREDIT_ALERT_OVERPAYMENT_SUFFIX" = "ceny";
+"JR_TICKET_CREDIT_ALERT_GRACE_PERIOD" = "Karencja";
+"JR_TICKET_CREDIT_MONTH_2" = "luty";
+"JR_TICKET_CREDIT_MONTH_1" = "styczeń";
+"JR_TICKET_CREDIT_MONTH_3" = "marzec";
+"JR_TICKET_CREDIT_MONTH_6" = "czerwiec";
+"JR_TICKET_CREDIT_MONTH_4" = "kwiecień";
+"JR_TICKET_CREDIT_MONTH_7" = "lipiec";
+"JR_TICKET_CREDIT_MONTH_5" = "maj";
+"JR_TICKET_CREDIT_MONTH_8" = "sierpień";
+"JR_TICKET_CREDIT_MONTH_9" = "wrzesień";
+"JR_TICKET_CREDIT_MONTH_10" = "październik";
+"JR_TICKET_CREDIT_MONTH_11" = "listopad";
+"JR_TICKET_CREDIT_MONTH_12" = "grudzień";
+
+"JR_TICKET_BUY_IN_THE_AGENCY_BUTTON" = "Kup od";
+"JR_TICKET_BUY_BUTTON" = "Kup bilet";
+"JR_TICKET_BUY_IN_CREDIT_BUTTON" = "Weź kredyt";
+"JR_TICKET_FLIGHT" = "Lot";
+"JR_TICKET_TRANSFER" = "Międzylądowanie";
+"JR_TICKET_OTHER_BUTTON"                            = "Inne";
+"JR_TICKET_DURATION" = "Czas podróży";
+
+"JR_WAITING_TITLE" = "Szuka...";
+"JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "Brak wyników. Spróbuj dostosować parametry wyszukiwania.";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "Błąd połączenia (%@)";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Przepraszamy, JetRadar jest chwilowo niedostępny (%@)";
