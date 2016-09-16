@@ -8,7 +8,7 @@ Aviasales/JetRadar iOS SDK
 The easiest way is to use [CocoaPods](http://cocoapods.org). It takes care of all required frameworks and third party dependencies:
 
 ```ruby
-pod 'AviasalesSDK', '~> 1.3.3-beta2'
+pod 'AviasalesSDK', '~> 1.3.3-beta4'
 ```
 Read more about integration here: ([English version](TemplateIntegration.md) | [Russian version](TemplateIntegration_RU.md)).
 
@@ -25,5 +25,3 @@ You may choose to use our ready template project or build your own flight search
 
 Learn more and complete integration with [Aviasales iOS SDK Documentation](https://github.com/KosyanMedia/Aviasales-iOS-SDK/wiki/Aviasales-SDK-Documentation).
 <br>Learn more about earnings in [Travelpayouts FAQ](http://support.travelpayouts.com/entries/23225382-Commission-and-payments).
-
-More languages: [RUS] [Документация Aviasaels iOS SDK](https://github.com/KosyanMedia/Aviasales-iOS-SDK/wiki/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F-Aviasales-SDK).
