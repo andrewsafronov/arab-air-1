@@ -11,14 +11,14 @@ Aviasales/Jetradar iOS SDK
 pod 'AviasalesSDK', '~> 2.0.0'
 ```
 
-Об интеграции шаблонного проекта в уже существующий проект можно узнать тут: ([Русская версия](TemplateIntegration_RU.md) | [Английская версия](TemplateIntegration.md)).
+Об интеграции шаблонного проекта в уже существующий проект можно узнать тут: ([Русская версия](TemplateIntegration_RU.md) | [English version](TemplateIntegration.md)).
 
 Вы так же можете воспользоваться шаблонным проектом с нуля и кастомизировать его под ваши нужды. В разделе [использование шаблонного проекта](#usage) приведены инструкции.
 
 ##Описание
 
 
-[Aviasales](https://www.aviasales.ru)/[Jetradar](https://www.jetradar.com) iOS SDK -  framework, позволяющий добавить поиск полетов в ваше приложение. Когда пользорватель покупает билет, вы получаете выплаты. Framework использует поисковые системы Aviasales и Jetradar. Он используется при разработки официальных приложений.
+[Aviasales](https://www.aviasales.ru)/[Jetradar](https://www.jetradar.com) iOS SDK — framework, позволяющий добавить поиск полетов в ваше приложение. Когда пользорватель покупает билет, вы получаете выплаты. Framework использует поисковые системы Aviasales и Jetradar. Он используется при разработки официальных приложений.
 
 Framework включает в себя:
 
@@ -43,18 +43,18 @@ Framework включает в себя:
 |Название|Описание|
 |--------|--------|
 mainBackgroundColor| Основной цвет фона
-lightBackgroundColor| Светлый цвет фона - на экране ожидания поиска iPad
-darkBackgroundColor | Тёмный цвет фона - в форме поиска и фильтрах.
-itemsBackgroundColor | Фоновый цвет ячеек - в результатах поиска.
-itemsSelectedBackgroundColor | Фоновый цвет выбранной ячейки - в результатах поиска.
+lightBackgroundColor| Светлый цвет фона — на экране ожидания поиска iPad
+darkBackgroundColor | Тёмный цвет фона — в форме поиска и фильтрах.
+itemsBackgroundColor | Фоновый цвет ячеек — в результатах поиска.
+itemsSelectedBackgroundColor | Фоновый цвет выбранной ячейки — в результатах поиска.
 iPadSceneShadowColor | Цвет тени в iPad.
 
 #### Tab Bar
 |Название|Описание|
 |--------|--------|
-tabBarBackgroundColor | Фоновый цвет TabBar - переключатель между сложным и простым поиском.
-tabBarSelectedBackgroundColor | Фоновый цвет выбранного элемента в TabBar -  переключатель между простым и сложным поиском.
-tabBarHighlightedBackgroundColor | Фоновый цвет нажатого элемента в TabBar - переключатель между простым и сложным поиском.
+tabBarBackgroundColor | Фоновый цвет TabBar — переключатель между сложным и простым поиском.
+tabBarSelectedBackgroundColor | Фоновый цвет выбранного элемента в TabBar — переключатель между простым и сложным поиском.
+tabBarHighlightedBackgroundColor | Фоновый цвет нажатого элемента в TabBar — переключатель между простым и сложным поиском.
 
 #### Текст
 |Название|Описание|
@@ -62,7 +62,7 @@ tabBarHighlightedBackgroundColor | Фоновый цвет нажатого эл
 darkTextColor | Тёмный цвет текста
 lightTextColor | Светлый цвет текста
 inactiveLightTextColor | Цвет светлого текста, с коротым не возможно взаимодействовать.
-labelWithRoundedCornersBackgroundColor | Цвет фона текста со скругленными уголками - используется для количества пересадок.
+labelWithRoundedCornersBackgroundColor | Цвет фона текста со скругленными уголками — используется для количества пересадок.
 separatorLineColor | Цвет разделителя
 
 #### Кнопки
@@ -76,7 +76,7 @@ buttonShadowColor | Цвет тени кнопки
 #### Popover
 |Название|Описание|
 |--------|--------|
-popoverTintColor | Фон всплывающего окна со списком - при выборе класса перелета
+popoverTintColor | Фон всплывающего окна со списком — при выборе класса перелета
 
 #### ⭐️⭐️⭐️⭐️⭐️
 |Название|Описание|
