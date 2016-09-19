@@ -12,12 +12,7 @@ To do this, in the root directory of your project run:
 
 	```bash
 	cd Aviasales-iOS-SDK/
-	```
-
-	**!!! SPECIFY NECESSARY BRANCH**
-
-	```bash
-	git checkout sdk-template-v2
+	git checkout master
 	```
 
 2. Add this folder to your project in Xcode:

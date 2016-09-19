@@ -12,12 +12,7 @@
 
 	```bash
 	cd Aviasales-iOS-SDK/
-	```
-
-	**!!! ПРОПИСАТЬ НУЖНУЮ ВЕТКУ**
-
-	```bash
-	git checkout sdk-template-v2
+	git checkout master
 	```
 
 2. В Xcode добавьте в ваш проект папку 
