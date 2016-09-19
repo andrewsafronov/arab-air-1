@@ -43,7 +43,7 @@ static const NSTimeInterval kAviasalesAdsAnimationDuration = 0.3;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = iPhone() ? [JRColorScheme mainBackgroundColor] : [JRColorScheme lightBackgroundColor];
+    self.waitingView.backgroundColor = iPhone() ? [JRColorScheme mainBackgroundColor] : [JRColorScheme lightBackgroundColor];
     [[JRAdvertisementManager sharedInstance] presentVideoAdInViewIfNeeded:self.appodealAdContainerView rootViewController:self];
 
     [self.progressLabel setText:AVIASALES_(@"JR_WAITING_TITLE")];
