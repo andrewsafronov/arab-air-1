@@ -1,4 +1,4 @@
-Aviasales/JetRadar iOS SDK
+Aviasales/Jetradar iOS SDK
 =================
 [![CocoaPods](https://img.shields.io/cocoapods/v/AviasalesSDK.svg)](https://cocoapods.org/pods/AviasalesSDK)
 [![CocoaPods](https://img.shields.io/cocoapods/p/AviasalesSDK.svg)](https://cocoapods.org/pods/AviasalesSDK)
@@ -8,7 +8,7 @@ Aviasales/JetRadar iOS SDK
 The easiest way is to use [CocoaPods](http://cocoapods.org). It takes care of all required frameworks and third party dependencies:
 
 ```ruby
-pod 'AviasalesSDK', '~> 1.3.3-beta4'
+pod 'AviasalesSDK', '~> 2.0.0'
 ```
 Read more about integration here: ([English version](TemplateIntegration.md) | [Russian version](TemplateIntegration_RU.md)).
 
