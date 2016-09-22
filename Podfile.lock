@@ -1,18 +1,18 @@
 PODS:
   - AutoCoding (2.2.2)
-  - AviasalesSDK (2.0.0)
+  - AviasalesSDK (2.0.1-beta1)
   - AXRatingView (1.0.3)
   - FXBlurView (1.6.4)
   - NMRangeSlider (1.2.1)
   - NSTimer+WeakTarget (1.0)
-  - SDWebImage (3.8.1):
-    - SDWebImage/Core (= 3.8.1)
-  - SDWebImage/Core (3.8.1)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - Smartling.i18n (1.0.13)
 
 DEPENDENCIES:
   - AutoCoding (~> 2.2)
-  - AviasalesSDK (~> 2.0.0)
+  - AviasalesSDK (~> 2.0.1-beta1)
   - AXRatingView
   - FXBlurView (~> 1.6)
   - NMRangeSlider (~> 1.2)
@@ -22,14 +22,14 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AutoCoding: 56fa46dbfa89d44189a26ce64e6a470ed8ff4661
-  AviasalesSDK: 0ba8bb5bf7ac680ed4ee8768f14b58fc54e94208
+  AviasalesSDK: 38fabf85cc48a2a07076898ea62510eca20c2989
   AXRatingView: ccaadc1bbda99a4b7e1d556059482d2b933a9f4e
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
   NSTimer+WeakTarget: e2ad90bca1833a2766f98f9288bb687d3baa06ca
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Smartling.i18n: 03ef7a5643965212c6ca9ed7d65385950ca4a989
 
-PODFILE CHECKSUM: ddbbe2dccd282179897828e675e08499c8fd4180
+PODFILE CHECKSUM: de9576650dabae0bed3931284a3ef1be316a0a2d
 
 COCOAPODS: 1.0.1

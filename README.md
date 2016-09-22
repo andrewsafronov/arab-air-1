@@ -7,7 +7,7 @@ Aviasales/Jetradar iOS SDK
 ##Описание
 
 
-[Aviasales](https://www.aviasales.ru)/[Jetradar](https://www.jetradar.com) iOS SDK — framework, позволяющий добавить поиск полетов в ваше приложение. Когда пользорватель покупает билет, вы получаете выплаты. Framework использует поисковые системы Aviasales и Jetradar. Он используется при разработки официальных приложений.
+[Aviasales](https://www.aviasales.ru)/[Jetradar](https://www.jetradar.com) iOS SDK — framework, позволяющий добавить поиск полетов в ваше приложение. Когда пользователь покупает билет, вы получаете выплаты. Framework использует поисковые системы Aviasales и Jetradar. Он используется при разработки официальных приложений.
 
 Framework включает в себя:
 

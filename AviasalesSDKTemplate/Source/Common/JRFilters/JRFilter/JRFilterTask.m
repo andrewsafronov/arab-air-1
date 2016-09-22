@@ -21,6 +21,12 @@
 
 @end
 
+@interface NSOrderedSet (JRSDKGate)
+
+- (BOOL)hasMainGate:(id<JRSDKGate>)gate;
+
+@end
+
 
 @implementation JRFilterTask
 
@@ -60,12 +66,10 @@
             
             if (priceValue > self.ticketBounds.filterPrice) {
                 [filteredPrices removeObject:price];
-            } else if (![self.ticketBounds.filterGates containsObject:price.gate]) {
+            } else if (![self.ticketBounds.filterGates hasMainGate:price.gate]) {
                 [filteredPrices removeObject:price];
-            } else if (self.ticketBounds.filterPaymentMethods.count > 0 &&  price.gate.paymentMethods > 0) {
-                if (![ price.gate.paymentMethods isSubsetOfSet:self.ticketBounds.filterPaymentMethods.set]) {
-                    [filteredPrices removeObject:price];
-                }
+            } else if (![price.gate.paymentMethods intersectsSet:self.ticketBounds.filterPaymentMethods.set]) {
+                [filteredPrices removeObject:price];
             }
         }
         
@@ -156,6 +160,16 @@
     }
     
     return needRemove;
+}
+
+@end
+
+@implementation NSOrderedSet (JRSDKGate)
+
+- (BOOL)hasMainGate:(id<JRSDKGate>)gate {
+    return [self indexOfObjectPassingTest:^BOOL(id<JRSDKGate> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        return [obj.mainGateID isEqualToString:gate.mainGateID];
+    }] != NSNotFound;
 }
 
 @end
