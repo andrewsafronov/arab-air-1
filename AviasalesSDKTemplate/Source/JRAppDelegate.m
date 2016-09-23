@@ -14,7 +14,7 @@
 // Set your api token, marker and appodeal api key here
 static NSString *const kJRAPIToken = @"<your api token here>";
 static NSString *const kJRPartnerMarker = @"<your partner marker here>";
-static NSString *const kAppodealApiKey = @"<your appodeal api key here>";
+static NSString *const kAppodealApiKey = @"<your appodeal api key here>"; //More about appodeal here: http://appodeal.com
 
 @implementation JRAppDelegate
 
