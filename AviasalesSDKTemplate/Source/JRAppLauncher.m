@@ -18,12 +18,14 @@
     
     // Aviasale SDK
     [AviasalesSDK setupWithConfiguration:[AviasalesSDKInitialConfiguration configurationWithAPIToken:APIToken APILocale:[NSLocale currentLocale].localeIdentifier partnerMarker:partnerMarker]];
-    
-    // Advertisement initializing
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        JRAdvertisementManager *const adManager = [JRAdvertisementManager sharedInstance];
-        [adManager initializeAppodealWithAPIKey:appodealAPIKey testingEnabled:NO];
-    });
+
+    if (appodealAPIKey) {
+        // Advertisement initializing
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            JRAdvertisementManager *const adManager = [JRAdvertisementManager sharedInstance];
+            [adManager initializeAppodealWithAPIKey:appodealAPIKey testingEnabled:NO];
+        });
+    }
 }
 
 + (UIViewController *)rootViewController {
