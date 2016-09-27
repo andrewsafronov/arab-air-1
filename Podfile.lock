@@ -1,6 +1,6 @@
 PODS:
   - AutoCoding (2.2.2)
-  - AviasalesSDK (2.0.1-beta1)
+  - AviasalesSDK (2.0.1-beta2)
   - AXRatingView (1.0.3)
   - FXBlurView (1.6.4)
   - NMRangeSlider (1.2.1)
@@ -22,7 +22,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AutoCoding: 56fa46dbfa89d44189a26ce64e6a470ed8ff4661
-  AviasalesSDK: 38fabf85cc48a2a07076898ea62510eca20c2989
+  AviasalesSDK: 745d61f1483bd2e95b5032d190db07728083aa77
   AXRatingView: ccaadc1bbda99a4b7e1d556059482d2b933a9f4e
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
