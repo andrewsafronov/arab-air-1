@@ -200,6 +200,6 @@
 
 "JR_WAITING_TITLE" = "Searching...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE"                = "No results found. Try adjusting search parameters.";
-"JR_WAITING_ERROR_CONNECTION_ERROR"                 = "Connection error (%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE"             = "Sorry, the Jetradar service is temporarily unavailable (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR"                 = "Connection error";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE"             = "Sorry, the Jetradar service is temporarily unavailable";
 

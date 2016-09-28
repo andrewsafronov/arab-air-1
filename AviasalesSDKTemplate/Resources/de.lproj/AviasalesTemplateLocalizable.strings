@@ -199,5 +199,5 @@
 
 "JR_WAITING_TITLE" = "Wird gesucht...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "Keine Ergebnisse gefunden. Versuchen Sie die Suchparameter anzupassen.";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "Verbindungsfehler (%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Es tut uns leid, JetRarar ist vorübergehend nicht verfügbar (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "Verbindungsfehler";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Es tut uns leid, JetRarar ist vorübergehend nicht verfügbar";

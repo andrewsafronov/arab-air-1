@@ -199,5 +199,5 @@
 
 "JR_WAITING_TITLE" = "Buscando...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "No ha habido ningún resultado. Inténtelo de nuevo modificando los parámetros.";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "Error de conexión (%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Lo sentimos, Jetradar no funciona en este momento (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "Error de conexión";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Lo sentimos, Jetradar no funciona en este momento";

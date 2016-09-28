@@ -199,5 +199,5 @@
 
 "JR_WAITING_TITLE" = "กำลังค้นหา...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "ไม่พบผลลัพธ์ ลองปรับเปลี่ยนตัวแปรการค้นหา";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "การเชื่อมต่อผิดพลาด (%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "ขออภัย JetRadar ไม่สามารถให้บริการได้ชั่วคราว (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "การเชื่อมต่อผิดพลาด";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "ขออภัย JetRadar ไม่สามารถให้บริการได้ชั่วคราว";

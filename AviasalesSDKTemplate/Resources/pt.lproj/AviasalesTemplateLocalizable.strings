@@ -199,5 +199,5 @@
 
 "JR_WAITING_TITLE" = "Buscando...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "Não foram encontrados resultados. Tente ajustar os parâmetros de pesquisa.";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "Erro de ligação (%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Desculpe, o serviço da Jetradar está temporariamente indisponível (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "Erro de ligação";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Desculpe, o serviço da Jetradar está temporariamente indisponível";

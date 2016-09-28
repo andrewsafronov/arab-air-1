@@ -199,5 +199,5 @@
 
 "JR_WAITING_TITLE" = "Szuka...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "Brak wyników. Spróbuj dostosować parametry wyszukiwania.";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "Błąd połączenia (%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Przepraszamy, JetRadar jest chwilowo niedostępny (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "Błąd połączenia";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Przepraszamy, JetRadar jest chwilowo niedostępny";

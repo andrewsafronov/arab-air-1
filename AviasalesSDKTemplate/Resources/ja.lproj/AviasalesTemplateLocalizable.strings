@@ -203,5 +203,5 @@
 
 "JR_WAITING_TITLE" = "検索中…";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "結果が見つかりません。検索パラメータを調整してみてください。";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "接続エラー(%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "申し訳ありませんが、Jetradarサービスが一時的に利用できません (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "接続エラー";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "申し訳ありませんが、Jetradarサービスが一時的に利用できません";

@@ -199,5 +199,5 @@
 
 "JR_WAITING_TITLE" = "Ricerca in corso...";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "Nessun risultato trovato. Prova a perfezionare i parametri di ricerca.";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "Errore di connessione (%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Spiacenti, il servizio JetRadar non è al momento disponibile (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "Errore di connessione";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "Spiacenti, il servizio JetRadar non è al momento disponibile";
