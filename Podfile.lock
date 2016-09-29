@@ -1,6 +1,6 @@
 PODS:
   - AutoCoding (2.2.2)
-  - AviasalesSDK (2.0.1-beta2)
+  - AviasalesSDK (2.0.1)
   - AXRatingView (1.0.3)
   - FXBlurView (1.6.4)
   - NMRangeSlider (1.2.1)
@@ -12,7 +12,7 @@ PODS:
 
 DEPENDENCIES:
   - AutoCoding (~> 2.2)
-  - AviasalesSDK (~> 2.0.1-beta1)
+  - AviasalesSDK (~> 2.0.1)
   - AXRatingView
   - FXBlurView (~> 1.6)
   - NMRangeSlider (~> 1.2)
@@ -22,7 +22,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AutoCoding: 56fa46dbfa89d44189a26ce64e6a470ed8ff4661
-  AviasalesSDK: 745d61f1483bd2e95b5032d190db07728083aa77
+  AviasalesSDK: 66078d22dcd456260fa539d413123096dc3215cf
   AXRatingView: ccaadc1bbda99a4b7e1d556059482d2b933a9f4e
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
@@ -30,6 +30,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Smartling.i18n: 03ef7a5643965212c6ca9ed7d65385950ca4a989
 
-PODFILE CHECKSUM: de9576650dabae0bed3931284a3ef1be316a0a2d
+PODFILE CHECKSUM: 0657ed1de7f181a234cd7ee97bf3230190713ba4
 
 COCOAPODS: 1.0.1

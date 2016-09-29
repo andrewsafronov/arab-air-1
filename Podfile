@@ -13,7 +13,7 @@ target 'AviasalesSDKTemplate' do
     pod 'NSTimer+WeakTarget', '~>1.0'
     pod 'AutoCoding', '~> 2.2'
     pod 'AXRatingView'
-    pod 'AviasalesSDK', '~> 2.0.1-beta1'
+    pod 'AviasalesSDK', '~> 2.0.1'
 
 end
 
