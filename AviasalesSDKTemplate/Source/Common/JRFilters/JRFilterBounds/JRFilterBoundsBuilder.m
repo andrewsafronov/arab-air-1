@@ -55,7 +55,7 @@
 
 - (void)process {
     NSMutableOrderedSet<id<JRSDKPaymentMethod>> *allPaymentMethods = [NSMutableOrderedSet orderedSet];
-    NSMutableOrderedSet<id<JRSDKGate>> *allGates = [NSMutableOrderedSet orderedSet];
+    NSMutableDictionary<NSString *, id<JRSDKGate>> *gatesByMainID = [NSMutableDictionary dictionary];
     
     for (id<JRSDKTicket> ticket in self.tickets) {
         CGFloat curMinPrice = [JRSDKModelUtils priceInUSD:ticket.prices.firstObject].floatValue;
@@ -71,13 +71,14 @@
         }
         
         for (id<JRSDKPrice> price in ticket.prices) {
-            [allPaymentMethods unionSet:price.gate.paymentMethods];
-            [allGates addObject:price.gate];
+            id <JRSDKGate> gate = price.gate;
+            [allPaymentMethods unionSet:gate.paymentMethods];
+            gatesByMainID[gate.mainGateID] = gate;
         }
     }
     
     self.ticketBounds.paymentMethods = [allPaymentMethods copy];
-    self.ticketBounds.gates = [allGates copy];
+    self.ticketBounds.gates = [NSOrderedSet orderedSetWithArray:gatesByMainID.allValues];
 }
 
 - (void)processFlightSegment:(id<JRSDKFlightSegment>)flightSegment withTravelSegmentBounds:(JRFilterTravelSegmentBounds *)travelSegmentBounds minPrice:(CGFloat)minPrice {

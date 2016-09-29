@@ -53,6 +53,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Some ad content may access bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Some ad content may access calendar</string>
 	<key>UILaunchStoryboardName</key>
 	<string>AVSLaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -199,5 +199,5 @@
 
 "JR_WAITING_TITLE" = "搜索中。。。";
 "JR_WAITING_ERROR_NOT_FOUND_MESSAGE" = "无搜索结果。请修改搜索条件后再试";
-"JR_WAITING_ERROR_CONNECTION_ERROR" = "连接错误(%@)";
-"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "很抱歉，Jetradar 目前暂时无法使用 (%@)";
+"JR_WAITING_ERROR_CONNECTION_ERROR" = "连接错误";
+"JR_WAITING_ERROR_NOT_AVALIBLE_MESSAGE" = "很抱歉，Jetradar 目前暂时无法使用";
