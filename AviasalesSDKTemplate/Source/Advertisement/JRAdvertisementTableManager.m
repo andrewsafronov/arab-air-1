@@ -8,8 +8,9 @@
 #import "JRAdvertisementTableManager.h"
 
 static NSString *const kCellReusableId = @"JRAdvertisementTableManagerAdCell";
-static NSInteger const kAdViewTag = 567134;
-static CGFloat kAppodealAdHeight = 100;
+static const NSInteger kAdViewTag = 567134;
+static const CGFloat kAppodealAdHeight = 100;
+static const CGFloat kAviasalesAdHeight = 130;
 
 @implementation JRAdvertisementTableManager
 
@@ -20,7 +21,14 @@ static CGFloat kAppodealAdHeight = 100;
 #pragma mark - <UITableViewDataSource>
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.ads.count;
+    NSInteger count = 0;
+    if (self.appodealAd != nil) {
+        ++count;
+    }
+    if (self.aviasalesAd != nil) {
+        ++count;
+    }
+    return count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -28,6 +36,13 @@ static CGFloat kAppodealAdHeight = 100;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIView *adView;
+    if (indexPath.section == 0 && self.aviasalesAd != nil) {
+        adView = self.aviasalesAd;
+    } else {
+        adView = self.appodealAd;
+    }
+
     UITableViewCell *res = [tableView dequeueReusableCellWithIdentifier:kCellReusableId];
 
     if (res == nil) {
@@ -36,7 +51,6 @@ static CGFloat kAppodealAdHeight = 100;
         [[res.contentView viewWithTag:kAdViewTag] removeFromSuperview];
     }
 
-    UIView *const adView = self.ads[indexPath.section];
     [adView removeFromSuperview];
     adView.frame = res.contentView.bounds;
     adView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -47,7 +61,11 @@ static CGFloat kAppodealAdHeight = 100;
 #pragma mark - <UITableViewDelegate>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kAppodealAdHeight;
+    if (indexPath.section == 0 && self.aviasalesAd != nil) {
+        return kAviasalesAdHeight;
+    } else {
+        return kAppodealAdHeight;
+    }
 }
 
 @end

@@ -1,6 +1,51 @@
 PODS:
+  - Appodeal/AmazonAdsAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/APDAvocarrotAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/AppLovinAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/ChartboostAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/Core (1.3.2)
+  - Appodeal/FacebookAudienceAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/GoogleAdMobAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/InMobyAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/Interstitial (1.3.2):
+    - Appodeal/AmazonAdsAdapter
+    - Appodeal/AppLovinAdapter
+    - Appodeal/ChartboostAdapter
+    - Appodeal/FacebookAudienceAdapter
+    - Appodeal/GoogleAdMobAdapter
+    - Appodeal/InMobyAdapter
+    - Appodeal/MyTargetAdapter
+    - Appodeal/StartAppAdapter
+    - Appodeal/TwitterMoPubAdapter
+    - Appodeal/YandexAdapter
+  - Appodeal/MyTargetAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/Native (1.3.2):
+    - Appodeal/APDAvocarrotAdapter
+    - Appodeal/AppLovinAdapter
+    - Appodeal/FacebookAudienceAdapter
+    - Appodeal/InMobyAdapter
+    - Appodeal/MyTargetAdapter
+    - Appodeal/PubnativeAdapter
+    - Appodeal/StartAppAdapter
+    - Appodeal/TwitterMoPubAdapter
+  - Appodeal/PubnativeAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/StartAppAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/TwitterMoPubAdapter (1.3.2):
+    - Appodeal/Core
+  - Appodeal/YandexAdapter (1.3.2):
+    - Appodeal/Core
   - AutoCoding (2.2.2)
-  - AviasalesSDK (2.0.1)
+  - AviasalesSDK (2.0.2)
   - AXRatingView (1.0.3)
   - FXBlurView (1.6.4)
   - NMRangeSlider (1.2.1)
@@ -11,8 +56,10 @@ PODS:
   - Smartling.i18n (1.0.13)
 
 DEPENDENCIES:
+  - Appodeal/Interstitial (= 1.3.2)
+  - Appodeal/Native (= 1.3.2)
   - AutoCoding (~> 2.2)
-  - AviasalesSDK (~> 2.0.1)
+  - AviasalesSDK (~> 2.0.2)
   - AXRatingView
   - FXBlurView (~> 1.6)
   - NMRangeSlider (~> 1.2)
@@ -21,8 +68,9 @@ DEPENDENCIES:
   - Smartling.i18n (~> 1.0)
 
 SPEC CHECKSUMS:
+  Appodeal: a1a4e551786e406fb48148e69b35ecce70272d67
   AutoCoding: 56fa46dbfa89d44189a26ce64e6a470ed8ff4661
-  AviasalesSDK: 66078d22dcd456260fa539d413123096dc3215cf
+  AviasalesSDK: c487107fd1404d814e216f90e91dc9b5a4f660a5
   AXRatingView: ccaadc1bbda99a4b7e1d556059482d2b933a9f4e
   FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
   NMRangeSlider: 317ded652431eb90501c8421d9cddc3930d891e6
@@ -30,6 +78,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Smartling.i18n: 03ef7a5643965212c6ca9ed7d65385950ca4a989
 
-PODFILE CHECKSUM: 0657ed1de7f181a234cd7ee97bf3230190713ba4
+PODFILE CHECKSUM: 685e5ef547674f24761bb366a04979623b505512
 
 COCOAPODS: 1.0.1

@@ -273,37 +273,33 @@ static NSString *fullDirectionIATAStringForSearchInfo(id<JRSDKSearchInfo> search
         return;
     }
 
-    NSArray<UIView *> *ads = self.ads.ads ?: @[];
-    ads = [ads arrayByAddingObject:adView];
-
-    NSMutableIndexSet *const indexSet = [[NSMutableIndexSet alloc] initWithIndex:kJRAppodealAdIndex];
-    if (ads.count > 1) {
-        [indexSet addIndex:kJRAviasalesAdIndex];
-    }
-
-    [self updateAdsTableWithAds:ads atIndexes:[indexSet copy]];
+    self.ads.appodealAd = adView;
+    [self updateAdsPositions];
+    [self.tableView reloadData];
 }
 
 - (void)didLoadAviasalesAd:(UIView *)adView {
     if (adView == nil) {
         return;
     }
-    NSMutableArray<UIView *> *const ads = [self.ads.ads ?: @[] mutableCopy];
-    [ads insertObject:adView atIndex:0];
 
-    NSMutableIndexSet *const indexSet = [[NSMutableIndexSet alloc] initWithIndex:kJRAviasalesAdIndex];
-    if (ads.count > 1) {
-        [indexSet addIndex:kJRAppodealAdIndex];
-    }
-
-    [self updateAdsTableWithAds:ads atIndexes:[indexSet copy]];
+    self.ads.aviasalesAd = adView;
+    [self updateAdsPositions];
+    [self.tableView reloadData];
 }
 
-- (void)updateAdsTableWithAds:(NSArray<UIView *> *)ads atIndexes:(NSIndexSet *)indexes {
-    self.ads.ads = ads;
-    self.tableManager.secondManagerPositions = indexes;
+- (void)updateAdsPositions {
+    NSMutableIndexSet *const positions = [NSMutableIndexSet indexSet];
 
-    [self.tableView reloadData];
+    if (self.ads.aviasalesAd != nil) {
+        [positions addIndex:kJRAviasalesAdIndex];
+    }
+
+    if (self.ads.appodealAd != nil) {
+        [positions addIndex:kJRAppodealAdIndex];
+    }
+    
+    self.tableManager.secondManagerPositions = positions;
 }
 
 - (void)alertUserAboutFullResultsDisplay {

@@ -10,10 +10,40 @@
 #import "JRSDKSearchInfoUrlCoder.h"
 #import "JRSearchInfo.h"
 #import "JRTravelSegment.h"
-#import "ASTAirport.h"
+#import "JRAirport.h"
+
+@interface JRAirport ()
+
+@property (nonatomic, strong) JRSDKIATA iata;
+@property (nonatomic, assign) BOOL isCity;
+
+@end
+
+
+@interface JRAirport (Test)
+
++ (JRAirport *)airportWithIATA:(JRSDKIATA)iata isCity:(BOOL)isCity;
+
+@end
+
+
+@implementation JRAirport (Test)
+
++ (JRAirport *)airportWithIATA:(JRSDKIATA)iata isCity:(BOOL)isCity {
+    JRAirport *airport = [JRAirport new];
+    airport.iata = iata;
+    airport.isCity = isCity;
+    
+    return airport;
+}
+
+@end
+
 
 @interface AviasalesSearchParamsUrlCoderTests : XCTestCase
+
 @property (strong, nonatomic) id<JRSDKSearchInfoCoder> coder;
+
 @end
 
 @implementation AviasalesSearchParamsUrlCoderTests
@@ -38,8 +68,8 @@
     JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
     JRTravelSegment *const travelSegment = [[JRTravelSegment alloc] init];
-    travelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
-    travelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    travelSegment.originAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
+    travelSegment.destinationAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
     travelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
 
     searchParams.travelSegments = [NSOrderedSet orderedSetWithObject:travelSegment];
@@ -55,8 +85,8 @@
     JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
     JRTravelSegment *const travelSegment = [[JRTravelSegment alloc] init];
-    travelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
-    travelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    travelSegment.originAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
+    travelSegment.destinationAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
     travelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
 
     searchParams.travelSegments = [NSOrderedSet orderedSetWithObject:travelSegment];
@@ -72,8 +102,8 @@
     JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
     JRTravelSegment *const travelSegment = [[JRTravelSegment alloc] init];
-    travelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
-    travelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    travelSegment.originAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
+    travelSegment.destinationAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
     travelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
 
     searchParams.travelSegments = [NSOrderedSet orderedSetWithObject:travelSegment];
@@ -93,13 +123,13 @@
     JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
     JRTravelSegment *const firstTravelSegment = [[JRTravelSegment alloc] init];
-    firstTravelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
-    firstTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    firstTravelSegment.originAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
+    firstTravelSegment.destinationAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
     firstTravelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
 
     JRTravelSegment *const secondTravelSegment = [[JRTravelSegment alloc] init];
-    secondTravelSegment.originAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
-    secondTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    secondTravelSegment.originAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
+    secondTravelSegment.destinationAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
     secondTravelSegment.departureDate = [self gmtDateFromString: @"15.06.2016"];
 
     searchParams.travelSegments = [NSOrderedSet orderedSetWithObjects:firstTravelSegment, secondTravelSegment, nil];
@@ -115,13 +145,13 @@
     JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
     JRTravelSegment *const firstTravelSegment = [[JRTravelSegment alloc] init];
-    firstTravelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
-    firstTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    firstTravelSegment.originAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
+    firstTravelSegment.destinationAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
     firstTravelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
 
     JRTravelSegment *const secondTravelSegment = [[JRTravelSegment alloc] init];
-    secondTravelSegment.originAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
-    secondTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    secondTravelSegment.originAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
+    secondTravelSegment.destinationAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
     secondTravelSegment.departureDate = [self gmtDateFromString: @"15.06.2016"];
 
     searchParams.travelSegments = [NSOrderedSet orderedSetWithObjects:firstTravelSegment, secondTravelSegment, nil];
@@ -137,13 +167,13 @@
     JRSearchInfo *const searchParams = [[JRSearchInfo alloc] init];
 
     JRTravelSegment *const firstTravelSegment = [[JRTravelSegment alloc] init];
-    firstTravelSegment.originAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
-    firstTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
+    firstTravelSegment.originAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
+    firstTravelSegment.destinationAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
     firstTravelSegment.departureDate = [self gmtDateFromString: @"12.05.2016"];
 
     JRTravelSegment *const secondTravelSegment = [[JRTravelSegment alloc] init];
-    secondTravelSegment.originAirport = [ASTAirport airportWithIATA:@"MOW" isCity:NO];
-    secondTravelSegment.destinationAirport = [ASTAirport airportWithIATA:@"LED" isCity:NO];
+    secondTravelSegment.originAirport = [JRAirport airportWithIATA:@"MOW" isCity:NO];
+    secondTravelSegment.destinationAirport = [JRAirport airportWithIATA:@"LED" isCity:NO];
     secondTravelSegment.departureDate = [self gmtDateFromString: @"15.06.2016"];
 
     searchParams.travelSegments = [NSOrderedSet orderedSetWithObjects:firstTravelSegment, secondTravelSegment, nil];
@@ -277,6 +307,7 @@
 }
 
 #pragma mark - Utils
+
 - (NSDate *)gmtDateFromString:(NSString *)string {
     return [self.gmtDateFormatter dateFromString:string];
 }
@@ -294,4 +325,5 @@
 
     return dateFormatter;
 }
+
 @end

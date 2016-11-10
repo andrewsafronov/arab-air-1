@@ -12,7 +12,7 @@
  */
 @interface JRTableManagerUnion : NSObject <JRTableManager>
 
-@property (strong, nonatomic) NSIndexSet *secondManagerPositions;
+@property (copy, nonatomic) NSIndexSet *secondManagerPositions;
 
 - (instancetype)initWithFirstManager:(id<JRTableManager>)firstManager
                        secondManager:(id<JRTableManager>)secondManager

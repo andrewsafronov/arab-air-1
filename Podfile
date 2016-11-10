@@ -13,7 +13,9 @@ target 'AviasalesSDKTemplate' do
     pod 'NSTimer+WeakTarget', '~>1.0'
     pod 'AutoCoding', '~> 2.2'
     pod 'AXRatingView'
-    pod 'AviasalesSDK', '~> 2.0.1'
+    pod 'AviasalesSDK', '~> 2.0.2'
+    pod 'Appodeal/Interstitial', '1.3.2'
+    pod 'Appodeal/Native', '1.3.2'
 
 end
 

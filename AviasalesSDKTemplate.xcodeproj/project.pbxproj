@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07227C7C1D942B4E00A50FD7 /* ASTAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 07227C7B1D942B4E00A50FD7 /* ASTAirport.m */; };
 		072714D41D79801E00545E63 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714D31D79801E00545E63 /* CoreTelephony.framework */; };
 		072714D61D79804C00545E63 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714D51D79804C00545E63 /* EventKit.framework */; };
 		072714D81D79808A00545E63 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 072714D71D79808A00545E63 /* MediaPlayer.framework */; };
@@ -20,32 +19,12 @@
 		072CCA8F1CAABE73003A8834 /* AviasalesTemplateLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 072CCA801CAABE73003A8834 /* AviasalesTemplateLocalizable.strings */; };
 		0733565A1D6DC2550023B597 /* JRNewsFeedNativeAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 073356591D6DC2550023B597 /* JRNewsFeedNativeAdView.m */; };
 		073E936B1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 073E936A1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m */; };
-		0759897B1D86C19000326FE2 /* AmazonAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989621D86C19000326FE2 /* AmazonAd.framework */; };
-		0759897C1D86C19000326FE2 /* libAPDAmazonAdsAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989631D86C19000326FE2 /* libAPDAmazonAdsAdapter.a */; };
-		0759897D1D86C19000326FE2 /* libAPDPubnativeAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989651D86C19000326FE2 /* libAPDPubnativeAdapter.a */; };
-		075989811D86C19000326FE2 /* libAPDUnityAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0759896B1D86C19000326FE2 /* libAPDUnityAdapter.a */; };
-		075989821D86C19000326FE2 /* UnityAds.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0759896C1D86C19000326FE2 /* UnityAds.bundle */; };
-		075989831D86C19000326FE2 /* UnityAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0759896D1D86C19000326FE2 /* UnityAds.framework */; };
-		075989841D86C19000326FE2 /* libAPDVungleAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0759896F1D86C19000326FE2 /* libAPDVungleAdapter.a */; };
-		075989851D86C19000326FE2 /* __vungle.db in Resources */ = {isa = PBXBuildFile; fileRef = 075989711D86C19000326FE2 /* __vungle.db */; };
-		075989861D86C19000326FE2 /* vg_close.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989721D86C19000326FE2 /* vg_close.png */; };
-		075989871D86C19000326FE2 /* vg_cta.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989731D86C19000326FE2 /* vg_cta.png */; };
-		075989881D86C19000326FE2 /* vg_mute_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989741D86C19000326FE2 /* vg_mute_off.png */; };
-		075989891D86C19000326FE2 /* vg_mute_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989751D86C19000326FE2 /* vg_mute_on.png */; };
-		0759898A1D86C19000326FE2 /* vg_privacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 075989761D86C19000326FE2 /* vg_privacy.png */; };
-		0759898B1D86C19000326FE2 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989771D86C19000326FE2 /* VungleSDK.framework */; };
-		0759898C1D86C19000326FE2 /* Appodeal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 075989781D86C19000326FE2 /* Appodeal.bundle */; };
-		0759898D1D86C19000326FE2 /* Appodeal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 075989791D86C19000326FE2 /* Appodeal.framework */; };
 		07599E531CFDCB5900A40113 /* JRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 07599E521CFDCB5900A40113 /* JRConstants.m */; };
 		07599E5B1CFDD5A600A40113 /* UINavigationController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 07599E5A1CFDD5A600A40113 /* UINavigationController+Additions.m */; };
 		075EDA2A1D007CC100418B8C /* JRColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 075EDA291D007CC100418B8C /* JRColorScheme.m */; };
 		077B71DA1D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B71D91D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m */; };
 		077B71DD1D4A3A5500BB89BC /* JRStringsWidthComputer.m in Sources */ = {isa = PBXBuildFile; fileRef = 077B71DC1D4A3A5500BB89BC /* JRStringsWidthComputer.m */; };
-		07AB5F171D8823B1001E1DCD /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB5F151D8823B1001E1DCD /* GoogleMobileAds.framework */; };
-		07AB5F181D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07AB5F161D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a */; };
 		07ADF23C1D70747200517D96 /* JRNewsFeedNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07ADF23B1D70747200517D96 /* JRNewsFeedNativeAdView.xib */; };
-		07D1A5701D9428410010DA19 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D1A56F1D9428410010DA19 /* libc++.tbd */; };
-		07D1A5721D9428510010DA19 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D1A5711D9428510010DA19 /* libz.tbd */; };
 		3A115BA51D01CDE000D94FAE /* JRAirportPickerCellWithAirport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A115B941D01CDE000D94FAE /* JRAirportPickerCellWithAirport.m */; };
 		3A115BA61D01CDE000D94FAE /* JRAirportPickerCellWithAirport.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A115B951D01CDE000D94FAE /* JRAirportPickerCellWithAirport.xib */; };
 		3A115BA71D01CDE000D94FAE /* JRAirportPickerCellWithInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A115B971D01CDE000D94FAE /* JRAirportPickerCellWithInfo.m */; };
@@ -218,7 +197,7 @@
 		C60EC83D17E848DA00C5D52E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60EC83C17E848DA00C5D52E /* CoreGraphics.framework */; };
 		C60EC83F17E848DA00C5D52E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C60EC83E17E848DA00C5D52E /* UIKit.framework */; };
 		C67CC6FB17F31A55006C659C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C67CC6FA17F31A55006C659C /* CoreLocation.framework */; };
-		CFA1072F530A2EBCC2C123A6 /* libPods-AviasalesSDKTemplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6512EB8E2138DCDDAF0D230 /* libPods-AviasalesSDKTemplateTests.a */; };
+		D62050E49B0CD543461B4AF0 /* libPods-AviasalesSDKTemplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6512EB8E2138DCDDAF0D230 /* libPods-AviasalesSDKTemplateTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,8 +211,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07227C7A1D942B4E00A50FD7 /* ASTAirport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTAirport.h; sourceTree = "<group>"; };
-		07227C7B1D942B4E00A50FD7 /* ASTAirport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTAirport.m; sourceTree = "<group>"; };
 		072714D31D79801E00545E63 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		072714D51D79804C00545E63 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		072714D71D79808A00545E63 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -249,22 +226,6 @@
 		073E93511CABD93200C880D7 /* AviasalesSDKTemplateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AviasalesSDKTemplateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		073E93551CABD93200C880D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		073E936A1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AviasalesSearchParamsUrlCoderTests.m; sourceTree = "<group>"; };
-		075989621D86C19000326FE2 /* AmazonAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AmazonAd.framework; sourceTree = "<group>"; };
-		075989631D86C19000326FE2 /* libAPDAmazonAdsAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDAmazonAdsAdapter.a; sourceTree = "<group>"; };
-		075989651D86C19000326FE2 /* libAPDPubnativeAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDPubnativeAdapter.a; sourceTree = "<group>"; };
-		0759896B1D86C19000326FE2 /* libAPDUnityAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDUnityAdapter.a; sourceTree = "<group>"; };
-		0759896C1D86C19000326FE2 /* UnityAds.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UnityAds.bundle; sourceTree = "<group>"; };
-		0759896D1D86C19000326FE2 /* UnityAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UnityAds.framework; sourceTree = "<group>"; };
-		0759896F1D86C19000326FE2 /* libAPDVungleAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDVungleAdapter.a; sourceTree = "<group>"; };
-		075989711D86C19000326FE2 /* __vungle.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = __vungle.db; sourceTree = "<group>"; };
-		075989721D86C19000326FE2 /* vg_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_close.png; sourceTree = "<group>"; };
-		075989731D86C19000326FE2 /* vg_cta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_cta.png; sourceTree = "<group>"; };
-		075989741D86C19000326FE2 /* vg_mute_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_off.png; sourceTree = "<group>"; };
-		075989751D86C19000326FE2 /* vg_mute_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_mute_on.png; sourceTree = "<group>"; };
-		075989761D86C19000326FE2 /* vg_privacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vg_privacy.png; sourceTree = "<group>"; };
-		075989771D86C19000326FE2 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
-		075989781D86C19000326FE2 /* Appodeal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Appodeal.bundle; sourceTree = "<group>"; };
-		075989791D86C19000326FE2 /* Appodeal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Appodeal.framework; sourceTree = "<group>"; };
 		07599E511CFDCB5900A40113 /* JRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRConstants.h; sourceTree = "<group>"; };
 		07599E521CFDCB5900A40113 /* JRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRConstants.m; sourceTree = "<group>"; };
 		07599E591CFDD5A600A40113 /* UINavigationController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Additions.h"; sourceTree = "<group>"; };
@@ -275,13 +236,10 @@
 		077B71D91D4A384200BB89BC /* JRSearchResultsFlightSegmentCellLayoutParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSearchResultsFlightSegmentCellLayoutParameters.m; sourceTree = "<group>"; };
 		077B71DB1D4A3A5500BB89BC /* JRStringsWidthComputer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRStringsWidthComputer.h; sourceTree = "<group>"; };
 		077B71DC1D4A3A5500BB89BC /* JRStringsWidthComputer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRStringsWidthComputer.m; sourceTree = "<group>"; };
-		07AB5F151D8823B1001E1DCD /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
-		07AB5F161D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAPDGoogleAdMobAdapter.a; sourceTree = "<group>"; };
 		07ADF23B1D70747200517D96 /* JRNewsFeedNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRNewsFeedNativeAdView.xib; sourceTree = "<group>"; };
 		07BB679B1D462B7800D31F24 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		07D1A56F1D9428410010DA19 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		07D1A5711D9428510010DA19 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21072BDEB6D7707508B56444 /* libPods-AviasalesSDKTemplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AviasalesSDKTemplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A60620FCD09A259F63C9583 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3A115B931D01CDE000D94FAE /* JRAirportPickerCellWithAirport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRAirportPickerCellWithAirport.h; sourceTree = "<group>"; };
 		3A115B941D01CDE000D94FAE /* JRAirportPickerCellWithAirport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRAirportPickerCellWithAirport.m; sourceTree = "<group>"; };
 		3A115B951D01CDE000D94FAE /* JRAirportPickerCellWithAirport.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRAirportPickerCellWithAirport.xib; sourceTree = "<group>"; };
@@ -314,8 +272,6 @@
 		3A7516DC1D2E8D6300BC97BE /* JRAirport+LocalizedName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JRAirport+LocalizedName.h"; sourceTree = "<group>"; };
 		3A7516DD1D2E8D6300BC97BE /* JRAirport+LocalizedName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JRAirport+LocalizedName.m"; sourceTree = "<group>"; };
 		3A8DA1271D2A9640008575CF /* AviasalesSDKTemplate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AviasalesSDKTemplate-Info.plist"; path = "../AviasalesSDKTemplate-Info.plist"; sourceTree = "<group>"; };
-		438E22D09DABA7994B55380E /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4FB8514A9D2E23F275A0CBC1 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C1371001D2E94BA0015C271 /* JRFilterTwoThumbSliderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFilterTwoThumbSliderItem.h; sourceTree = "<group>"; };
 		7C1371011D2E94BA0015C271 /* JRFilterTwoThumbSliderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRFilterTwoThumbSliderItem.m; sourceTree = "<group>"; };
 		7C35F1211D1A972C00B9CB09 /* JRFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRFilter.h; sourceTree = "<group>"; };
@@ -440,6 +396,7 @@
 		7CE545F91D12D6060040065D /* JRPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPriceCell.m; sourceTree = "<group>"; };
 		7CE545FA1D12D6060040065D /* JRPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRPriceCell.xib; sourceTree = "<group>"; };
 		7CE545FD1D12EA0A0040065D /* JRInfoPanelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRInfoPanelView.xib; sourceTree = "<group>"; };
+		AF994B23ACBB2A02B3AD7AEB /* Pods-AviasalesSDKTemplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AviasalesSDKTemplateTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		C53C8D951CDA0EC900B7F54C /* JRSearchFormVC~ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "JRSearchFormVC~ipad.xib"; sourceTree = "<group>"; };
 		C547DBB31CD895EC00CD0925 /* JRInspectableAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRInspectableAttributes.h; sourceTree = "<group>"; };
 		C547DBB41CD895EC00CD0925 /* JRInspectableAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRInspectableAttributes.m; sourceTree = "<group>"; };
@@ -607,7 +564,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFA1072F530A2EBCC2C123A6 /* libPods-AviasalesSDKTemplateTests.a in Frameworks */,
+				D62050E49B0CD543461B4AF0 /* libPods-AviasalesSDKTemplateTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,46 +572,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07D1A5721D9428510010DA19 /* libz.tbd in Frameworks */,
-				07D1A5701D9428410010DA19 /* libc++.tbd in Frameworks */,
-				0759897C1D86C19000326FE2 /* libAPDAmazonAdsAdapter.a in Frameworks */,
 				072714E01D7980F400545E63 /* SystemConfiguration.framework in Frameworks */,
-				0759898B1D86C19000326FE2 /* VungleSDK.framework in Frameworks */,
-				0759897D1D86C19000326FE2 /* libAPDPubnativeAdapter.a in Frameworks */,
-				0759897B1D86C19000326FE2 /* AmazonAd.framework in Frameworks */,
 				072714DE1D7980EC00545E63 /* MobileCoreServices.framework in Frameworks */,
 				072714DC1D7980C800545E63 /* MessageUI.framework in Frameworks */,
-				075989811D86C19000326FE2 /* libAPDUnityAdapter.a in Frameworks */,
 				072714DA1D7980A000545E63 /* EventKitUI.framework in Frameworks */,
 				072714D81D79808A00545E63 /* MediaPlayer.framework in Frameworks */,
-				075989841D86C19000326FE2 /* libAPDVungleAdapter.a in Frameworks */,
 				072714D61D79804C00545E63 /* EventKit.framework in Frameworks */,
 				072714D41D79801E00545E63 /* CoreTelephony.framework in Frameworks */,
 				C5B711871D00542000987E06 /* AviasalesSDK.framework in Frameworks */,
-				07AB5F171D8823B1001E1DCD /* GoogleMobileAds.framework in Frameworks */,
 				C67CC6FB17F31A55006C659C /* CoreLocation.framework in Frameworks */,
-				075989831D86C19000326FE2 /* UnityAds.framework in Frameworks */,
 				C60EC83D17E848DA00C5D52E /* CoreGraphics.framework in Frameworks */,
 				C60EC83F17E848DA00C5D52E /* UIKit.framework in Frameworks */,
 				C60EC83B17E848DA00C5D52E /* Foundation.framework in Frameworks */,
-				07AB5F181D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a in Frameworks */,
 				5E81EAF3B54F2F3E94B24FE7 /* libPods-AviasalesSDKTemplate.a in Frameworks */,
-				0759898D1D86C19000326FE2 /* Appodeal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07227C791D942B4E00A50FD7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				07227C7A1D942B4E00A50FD7 /* ASTAirport.h */,
-				07227C7B1D942B4E00A50FD7 /* ASTAirport.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		072CCA791CAABE73003A8834 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -678,83 +614,10 @@
 		073E93521CABD93200C880D7 /* AviasalesSDKTemplateTests */ = {
 			isa = PBXGroup;
 			children = (
-				07227C791D942B4E00A50FD7 /* Model */,
 				073E93551CABD93200C880D7 /* Info.plist */,
 				073E936A1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m */,
 			);
 			path = AviasalesSDKTemplateTests;
-			sourceTree = "<group>";
-		};
-		0759895F1D86C19000326FE2 /* Appodeal */ = {
-			isa = PBXGroup;
-			children = (
-				075989601D86C19000326FE2 /* Adapters */,
-				075989781D86C19000326FE2 /* Appodeal.bundle */,
-				075989791D86C19000326FE2 /* Appodeal.framework */,
-			);
-			path = Appodeal;
-			sourceTree = "<group>";
-		};
-		075989601D86C19000326FE2 /* Adapters */ = {
-			isa = PBXGroup;
-			children = (
-				07AB5F141D8823B1001E1DCD /* APDGoogleAdMobAdapter.embeddedframework */,
-				075989611D86C19000326FE2 /* APDAmazonAdsAdapter.embeddedframework */,
-				075989641D86C19000326FE2 /* APDPubnativeAdapter.embeddedframework */,
-				0759896A1D86C19000326FE2 /* APDUnityAdapter.embeddedframework */,
-				0759896E1D86C19000326FE2 /* APDVungleAdapter.embeddedframework */,
-			);
-			path = Adapters;
-			sourceTree = "<group>";
-		};
-		075989611D86C19000326FE2 /* APDAmazonAdsAdapter.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				075989621D86C19000326FE2 /* AmazonAd.framework */,
-				075989631D86C19000326FE2 /* libAPDAmazonAdsAdapter.a */,
-			);
-			path = APDAmazonAdsAdapter.embeddedframework;
-			sourceTree = "<group>";
-		};
-		075989641D86C19000326FE2 /* APDPubnativeAdapter.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				075989651D86C19000326FE2 /* libAPDPubnativeAdapter.a */,
-			);
-			path = APDPubnativeAdapter.embeddedframework;
-			sourceTree = "<group>";
-		};
-		0759896A1D86C19000326FE2 /* APDUnityAdapter.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				0759896B1D86C19000326FE2 /* libAPDUnityAdapter.a */,
-				0759896C1D86C19000326FE2 /* UnityAds.bundle */,
-				0759896D1D86C19000326FE2 /* UnityAds.framework */,
-			);
-			path = APDUnityAdapter.embeddedframework;
-			sourceTree = "<group>";
-		};
-		0759896E1D86C19000326FE2 /* APDVungleAdapter.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				0759896F1D86C19000326FE2 /* libAPDVungleAdapter.a */,
-				075989701D86C19000326FE2 /* Resources */,
-				075989771D86C19000326FE2 /* VungleSDK.framework */,
-			);
-			path = APDVungleAdapter.embeddedframework;
-			sourceTree = "<group>";
-		};
-		075989701D86C19000326FE2 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				075989711D86C19000326FE2 /* __vungle.db */,
-				075989721D86C19000326FE2 /* vg_close.png */,
-				075989731D86C19000326FE2 /* vg_cta.png */,
-				075989741D86C19000326FE2 /* vg_mute_off.png */,
-				075989751D86C19000326FE2 /* vg_mute_on.png */,
-				075989761D86C19000326FE2 /* vg_privacy.png */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		07599E581CFDD5A600A40113 /* UINavigationController+Additions */ = {
@@ -764,15 +627,6 @@
 				07599E5A1CFDD5A600A40113 /* UINavigationController+Additions.m */,
 			);
 			path = "UINavigationController+Additions";
-			sourceTree = "<group>";
-		};
-		07AB5F141D8823B1001E1DCD /* APDGoogleAdMobAdapter.embeddedframework */ = {
-			isa = PBXGroup;
-			children = (
-				07AB5F151D8823B1001E1DCD /* GoogleMobileAds.framework */,
-				07AB5F161D8823B1001E1DCD /* libAPDGoogleAdMobAdapter.a */,
-			);
-			path = APDGoogleAdMobAdapter.embeddedframework;
 			sourceTree = "<group>";
 		};
 		3A115B901D01CDC700D94FAE /* JRAirportPicker */ = {
@@ -1028,8 +882,8 @@
 			children = (
 				D9E35EAEF225DD040D60E1D2 /* Pods-AviasalesSDKTemplate.debug.xcconfig */,
 				D857DB3BB9A6C7C0254EDC3C /* Pods-AviasalesSDKTemplate.release.xcconfig */,
-				438E22D09DABA7994B55380E /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */,
-				4FB8514A9D2E23F275A0CBC1 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */,
+				2A60620FCD09A259F63C9583 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */,
+				AF994B23ACBB2A02B3AD7AEB /* Pods-AviasalesSDKTemplateTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1046,7 +900,6 @@
 		C56172FF1CC52EB70049E2EE /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				0759895F1D86C19000326FE2 /* Appodeal */,
 				C56173001CC52EE90049E2EE /* FPPopover */,
 			);
 			path = Libs;
@@ -1549,8 +1402,6 @@
 		C60EC83917E848DA00C5D52E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07D1A5711D9428510010DA19 /* libz.tbd */,
-				07D1A56F1D9428410010DA19 /* libc++.tbd */,
 				072714DF1D7980F400545E63 /* SystemConfiguration.framework */,
 				072714DD1D7980EC00545E63 /* MobileCoreServices.framework */,
 				072714DB1D7980C800545E63 /* MessageUI.framework */,
@@ -1602,8 +1453,8 @@
 				073E934D1CABD93200C880D7 /* Sources */,
 				073E934E1CABD93200C880D7 /* Frameworks */,
 				073E934F1CABD93200C880D7 /* Resources */,
-				98044C2675E9D47BBFB1DF6E /* [CP] Embed Pods Frameworks */,
-				EB0ACEE59A65FCD375F1D34B /* [CP] Copy Pods Resources */,
+				55F67DC2BE88B6AEDEFA3E15 /* [CP] Embed Pods Frameworks */,
+				3F08AE13F193A3FD1B02550F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1650,7 +1501,6 @@
 						TestTargetID = C60EC83617E848DA00C5D52E;
 					};
 					C60EC83617E848DA00C5D52E = {
-						DevelopmentTeam = C92M3ZV55X;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1699,12 +1549,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				075989821D86C19000326FE2 /* UnityAds.bundle in Resources */,
 				C580DB7A1CC52D6E009CA04B /* JRSearchFormTravelClassCell.xib in Resources */,
 				7CE545F01D11BC340040065D /* JRFlightsSegmentHeaderView.xib in Resources */,
 				7CE545FC1D12D6060040065D /* JRPriceCell.xib in Resources */,
 				7C35F1631D1A972C00B9CB09 /* JRFilterListHeaderCell.xib in Resources */,
-				075989891D86C19000326FE2 /* vg_mute_on.png in Resources */,
 				7C35F1691D1A972C00B9CB09 /* JRFilterTravelSegmentCell.xib in Resources */,
 				3A115BA81D01CDE000D94FAE /* JRAirportPickerCellWithInfo.xib in Resources */,
 				C561735F1CC634F50049E2EE /* JRDatePickerDayView.xib in Resources */,
@@ -1714,15 +1562,12 @@
 				7C35F15E1D1A972C00B9CB09 /* JRFilterCellWithTwoThumbsSlider.xib in Resources */,
 				7CE545F21D11BC340040065D /* JRTransferCell.xib in Resources */,
 				C580DB6B1CC52D6E009CA04B /* JRSearchFormComplexTableClearCell.xib in Resources */,
-				075989851D86C19000326FE2 /* __vungle.db in Resources */,
 				7CCC2DC41D3D06280082FEFE /* JRResultsTicketCell.xib in Resources */,
 				7CD78D1C1D1D3B930012A82F /* JRActivityIndicatorView.xib in Resources */,
 				C5B1DBCF1D22AE8700BD3F54 /* JRPurchaseInCreditAlert.xib in Resources */,
 				C580DB681CC52D6E009CA04B /* JRSearchFormComplexSegmentCell.xib in Resources */,
 				7CE545FE1D12EA0A0040065D /* JRInfoPanelView.xib in Resources */,
 				7CE545FE1D12EA0A0040065D /* JRInfoPanelView.xib in Resources */,
-				075989881D86C19000326FE2 /* vg_mute_off.png in Resources */,
-				0759898A1D86C19000326FE2 /* vg_privacy.png in Resources */,
 				C580DB2C1CC52BE1009CA04B /* JRSearchFormVC.xib in Resources */,
 				7CE545EC1D11BC340040065D /* JRTicketVC.xib in Resources */,
 				7CE545EC1D11BC340040065D /* JRTicketVC.xib in Resources */,
@@ -1745,14 +1590,11 @@
 				C580DB8B1CC52D89009CA04B /* JRSearchFormPassengersView.xib in Resources */,
 				3A115BAC1D01CDE000D94FAE /* JRAirportPickerSectionTitle.xib in Resources */,
 				C580DB781CC52D6E009CA04B /* JRSearchFormTravelClassAndPassengersCell.xib in Resources */,
-				0759898C1D86C19000326FE2 /* Appodeal.bundle in Resources */,
 				7CCC2DC61D3D06280082FEFE /* JRResultsTicketPriceCell.xib in Resources */,
-				075989871D86C19000326FE2 /* vg_cta.png in Resources */,
 				7CCC2DC21D3D06280082FEFE /* JRResultsFlightSegmentCell.xib in Resources */,
 				C580DB711CC52D6E009CA04B /* JRSearchFormDatesCell.xib in Resources */,
 				7CDA75B41D143FE90069FDD8 /* JRBrowserVC.xib in Resources */,
 				7C35F15C1D1A972C00B9CB09 /* JRFilterCellWithOneThumbSlider.xib in Resources */,
-				075989861D86C19000326FE2 /* vg_close.png in Resources */,
 				C580DB5D1CC52D6E009CA04B /* JRSearchFormAirportCell.xib in Resources */,
 				C5A681DD1D1D4AA800C83CFE /* JRWaitingViewController.xib in Resources */,
 				C56173611CC634F50049E2EE /* JRDatePickerMonthHeaderReusableView.xib in Resources */,
@@ -1765,6 +1607,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F08AE13F193A3FD1B02550F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		41C28FC82222B18D766A6463 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1778,6 +1635,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		55F67DC2BE88B6AEDEFA3E15 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6FE12E2A3031362B62AD9DCE /* [CP] Copy Pods Resources */ = {
@@ -1810,21 +1682,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		98044C2675E9D47BBFB1DF6E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E4ABF22AB848A6C1FCF88809 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1840,21 +1697,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplate/Pods-AviasalesSDKTemplate-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EB0ACEE59A65FCD375F1D34B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AviasalesSDKTemplateTests/Pods-AviasalesSDKTemplateTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1862,7 +1704,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07227C7C1D942B4E00A50FD7 /* ASTAirport.m in Sources */,
 				073E936B1CAC11B400C880D7 /* AviasalesSearchParamsUrlCoderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2037,7 +1878,7 @@
 /* Begin XCBuildConfiguration section */
 		073E93581CABD93200C880D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 438E22D09DABA7994B55380E /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */;
+			baseConfigurationReference = 2A60620FCD09A259F63C9583 /* Pods-AviasalesSDKTemplateTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2059,7 +1900,7 @@
 		};
 		073E93591CABD93200C880D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4FB8514A9D2E23F275A0CBC1 /* Pods-AviasalesSDKTemplateTests.release.xcconfig */;
+			baseConfigurationReference = AF994B23ACBB2A02B3AD7AEB /* Pods-AviasalesSDKTemplateTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2160,48 +2001,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = C92M3ZV55X;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "AviasalesSDKTemplate-Prefix.pch";
 				INFOPLIST_FILE = "AviasalesSDKTemplate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAppLovinAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/Flurry",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/FlurryAds",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDPubnativeAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDTwitterMoPubAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.aviasales.sdkexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2223,48 +2031,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = C92M3ZV55X;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "AviasalesSDKTemplate-Prefix.pch";
 				INFOPLIST_FILE = "AviasalesSDKTemplate-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAdColonyAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAmazonAdsAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAppLovinAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDAvocarrotAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDChartboostAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFacebookAudienceAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/Flurry",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework/FlurryAds",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDFlurryAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDGoogleAdMobAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDMyTargetAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDPubnativeAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDStartAppAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDTwitterMoPubAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDUnityAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDVungleAdapter.embeddedframework",
-					"$(PROJECT_DIR)/AviasalesSDKTemplate/Source/Libs/Appodeal/Adapters/APDYandexAdapter.embeddedframework",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.aviasales.sdkexample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

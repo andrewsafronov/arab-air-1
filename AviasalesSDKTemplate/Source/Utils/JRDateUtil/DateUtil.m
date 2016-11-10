@@ -7,7 +7,7 @@
 
 #import "DateUtil.h"
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_0 || __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_1 || WATCH
+#if __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_0 || WATCH
 #define kDateUtilGregorianIdentifier NSCalendarIdentifierGregorian
 #define kDateUtilUnitYear NSCalendarUnitYear
 #define kDateUtilUnitMonth NSCalendarUnitMonth
@@ -66,6 +66,7 @@
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:kDateUtilGregorianIdentifier];
+            [gregorianCalendar setLocale:[NSLocale currentLocale]];
             [gregorianCalendar setTimeZone:[self GMTTimeZone]];
         });
     }
@@ -639,7 +640,13 @@ static BOOL user24HourTimeCyclePreference = NO;
 
 + (BOOL)date:(NSDate *)date isEqualToDateIgnoringTime:(NSDate *)aDate
 {
-    NSCalendarUnit dateComponents = (kDateUtilUnitYear| kDateUtilUnitMonth | kDateUtilUnitDay | NSCalendarUnitWeekOfYear |  kDateUtilUnitHour | kDateUtilUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal);
+    NSCalendarUnit dateComponents;
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED ==  __IPHONE_8_0 || WATCH
+    dateComponents = (kDateUtilUnitYear| kDateUtilUnitMonth | kDateUtilUnitDay | NSCalendarUnitWeekOfYear |  kDateUtilUnitHour | kDateUtilUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal);
+#else
+    dateComponents = (kDateUtilUnitYear| kDateUtilUnitMonth | kDateUtilUnitDay | NSWeekCalendarUnit |  kDateUtilUnitHour | kDateUtilUnitMinute | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit);
+#endif
     
     NSDateComponents *components1 = [[DateUtil gregorianCalendar] components:dateComponents fromDate:date];
 	NSDateComponents *components2 = [[DateUtil gregorianCalendar] components:dateComponents fromDate:aDate];
