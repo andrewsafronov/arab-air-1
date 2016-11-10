@@ -47,6 +47,11 @@
     [self clean];
 }
 
+- (void)nativeAdLoader:(APDNativeAdLoader *)loader didLoadNativeAd:(APDNativeAd *)nativeAd {
+    self.callback(nativeAd);
+    [self clean];
+}
+
 - (void)nativeAdLoader:(APDNativeAdLoader *)loader didFailToLoadWithError:(NSError *)error {
     MLOG(@"error during native ad loading %@", error);
     self.callback(nil);

@@ -9,7 +9,8 @@
 
 @interface JRAdvertisementTableManager : NSObject <JRTableManager>
 
-@property (strong, nonatomic) NSArray<UIView *> *ads;
+@property (strong, nonatomic) UIView *appodealAd;
+@property (strong, nonatomic) UIView *aviasalesAd;
 
 + (CGFloat)appodealAdHeight;
 

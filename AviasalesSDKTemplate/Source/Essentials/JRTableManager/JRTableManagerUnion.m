@@ -34,7 +34,7 @@
 #pragma mark - Setters
 
 - (void)setSecondManagerPositions:(NSIndexSet *)secondManagerPositions {
-    _secondManagerPositions = secondManagerPositions;
+    _secondManagerPositions = [secondManagerPositions copy];
     _realSecondManagerPositions = nil;
 }
 

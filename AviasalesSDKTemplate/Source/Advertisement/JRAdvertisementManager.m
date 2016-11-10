@@ -39,7 +39,7 @@
     [Appodeal setTestingEnabled:testingEnabled];
 #endif
     [Appodeal initializeWithApiKey:appodealAPIKey
-                             types:AppodealAdTypeInterstitial | AppodealAdTypeNativeAd | AppodealAdTypeNonSkippableVideo | AppodealAdTypeNativeAd | AppodealAdTypeSkippableVideo];
+                             types:AppodealAdTypeInterstitial | AppodealAdTypeNativeAd];
 }
 
 - (void)presentFullScreenAdFromViewControllerIfNeeded:(UIViewController *)viewController {

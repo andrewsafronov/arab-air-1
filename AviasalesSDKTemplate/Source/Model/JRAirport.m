@@ -8,6 +8,14 @@
 #import "JRAirport.h"
 
 
+@interface JRAirport ()
+
+@property (nonatomic, strong) JRSDKIATA iata;
+@property (nonatomic, assign) BOOL isCity;
+
+@end
+
+
 @implementation JRAirport
 
 @synthesize averageRate;
@@ -48,5 +56,5 @@
     }
     return result;
 }
-@end
 
+@end
