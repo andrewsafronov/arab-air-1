@@ -43,7 +43,7 @@
 }
 
 - (void)presentFullScreenAdFromViewControllerIfNeeded:(UIViewController *)viewController {
-    [Appodeal showAd:AppodealShowStyleVideoOrInterstitial rootViewController:viewController];
+    [Appodeal showAd:AppodealShowStyleInterstitial rootViewController:viewController];
 }
 
 - (void)presentVideoAdInViewIfNeeded:(UIView *)view

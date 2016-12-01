@@ -33,7 +33,7 @@
             return;
         }
         
-        if (ad == nil) {
+        if (ad == nil || ![ad.title isKindOfClass:[NSString class]] || ad.title.length == 0) {
             callback(nil);
             return;
         }

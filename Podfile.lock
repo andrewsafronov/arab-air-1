@@ -1,20 +1,20 @@
 PODS:
-  - Appodeal/AmazonAdsAdapter (1.3.2):
+  - Appodeal/AmazonAdsAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/APDAvocarrotAdapter (1.3.2):
+  - Appodeal/APDAvocarrotAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/AppLovinAdapter (1.3.2):
+  - Appodeal/AppLovinAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/ChartboostAdapter (1.3.2):
+  - Appodeal/ChartboostAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/Core (1.3.2)
-  - Appodeal/FacebookAudienceAdapter (1.3.2):
+  - Appodeal/Core (1.3.3)
+  - Appodeal/FacebookAudienceAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/GoogleAdMobAdapter (1.3.2):
+  - Appodeal/GoogleAdMobAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/InMobyAdapter (1.3.2):
+  - Appodeal/InMobyAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/Interstitial (1.3.2):
+  - Appodeal/Interstitial (1.3.3):
     - Appodeal/AmazonAdsAdapter
     - Appodeal/AppLovinAdapter
     - Appodeal/ChartboostAdapter
@@ -25,9 +25,9 @@ PODS:
     - Appodeal/StartAppAdapter
     - Appodeal/TwitterMoPubAdapter
     - Appodeal/YandexAdapter
-  - Appodeal/MyTargetAdapter (1.3.2):
+  - Appodeal/MyTargetAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/Native (1.3.2):
+  - Appodeal/Native (1.3.3):
     - Appodeal/APDAvocarrotAdapter
     - Appodeal/AppLovinAdapter
     - Appodeal/FacebookAudienceAdapter
@@ -36,13 +36,13 @@ PODS:
     - Appodeal/PubnativeAdapter
     - Appodeal/StartAppAdapter
     - Appodeal/TwitterMoPubAdapter
-  - Appodeal/PubnativeAdapter (1.3.2):
+  - Appodeal/PubnativeAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/StartAppAdapter (1.3.2):
+  - Appodeal/StartAppAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/TwitterMoPubAdapter (1.3.2):
+  - Appodeal/TwitterMoPubAdapter (1.3.3):
     - Appodeal/Core
-  - Appodeal/YandexAdapter (1.3.2):
+  - Appodeal/YandexAdapter (1.3.3):
     - Appodeal/Core
   - AutoCoding (2.2.2)
   - AviasalesSDK (2.0.2)
@@ -56,8 +56,8 @@ PODS:
   - Smartling.i18n (1.0.13)
 
 DEPENDENCIES:
-  - Appodeal/Interstitial (= 1.3.2)
-  - Appodeal/Native (= 1.3.2)
+  - Appodeal/Interstitial (= 1.3.3)
+  - Appodeal/Native (= 1.3.3)
   - AutoCoding (~> 2.2)
   - AviasalesSDK (~> 2.0.2)
   - AXRatingView
@@ -68,7 +68,7 @@ DEPENDENCIES:
   - Smartling.i18n (~> 1.0)
 
 SPEC CHECKSUMS:
-  Appodeal: a1a4e551786e406fb48148e69b35ecce70272d67
+  Appodeal: ddd2de0a78d1bb0cd7d8994d901b00e55c6f5529
   AutoCoding: 56fa46dbfa89d44189a26ce64e6a470ed8ff4661
   AviasalesSDK: c487107fd1404d814e216f90e91dc9b5a4f660a5
   AXRatingView: ccaadc1bbda99a4b7e1d556059482d2b933a9f4e
@@ -78,6 +78,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   Smartling.i18n: 03ef7a5643965212c6ca9ed7d65385950ca4a989
 
-PODFILE CHECKSUM: 685e5ef547674f24761bb366a04979623b505512
+PODFILE CHECKSUM: fed7740963adde896385d998ce7d19e0a5ac2519
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

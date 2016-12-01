@@ -62,23 +62,39 @@ static const CGFloat kCallToActionCornerRadius = 3;
 - (void)setAd:(APDNativeAd *)ad {
     _ad = ad;
 
-    self.titleLabel.text = ad.title;
-    self.subtitleLabel.text = ad.subtitle.length > 0 ? ad.subtitle : ad.descriptionText;
+    if ([ad.title isKindOfClass:[NSString class]]) {
+        self.titleLabel.text = ad.title;
+    } else {
+        self.titleLabel.text = @"";
+    }
+    if ([ad.subtitle isKindOfClass:[NSString class]] && ad.subtitle.length > 0) {
+        self.subtitleLabel.text = ad.subtitle;
+    } else if ([ad.descriptionText isKindOfClass:[NSString class]] && ad.descriptionText.length > 0) {
+        self.subtitleLabel.text = ad.descriptionText;
+    } else {
+        self.subtitleLabel.text = @"";
+    }
     self.ageRatingLabel.text = @""; //Theare is no such parameter in native ad yet
-    [self.iconImage sd_setImageWithURL: ad.iconImage.url];
+    if ([ad.iconImage isKindOfClass:[APDImage class]] && [ad.iconImage.url isKindOfClass:[NSURL class]]) {
+        [self.iconImage sd_setImageWithURL: ad.iconImage.url];
+    }
 
-    if (self.ad.starRating) {
+    if ([self.ad.starRating isKindOfClass:[NSNumber class]]) {
         self.ratingView.value = [self.ad.starRating floatValue];
     } else {
         self.ratingView.hidden = YES;
     }
 
-    self.callToActionLabel.text = ad.callToActionText;
+    if ([ad.callToActionText isKindOfClass:[NSString class]]) {
+        self.callToActionLabel.text = ad.callToActionText;
+    } else {
+        self.callToActionLabel.text = @"GET";
+    }
     for (UIView *adChoicesContainerSubview in self.adChoicesContainerView.subviews) {
         [adChoicesContainerSubview removeFromSuperview];
     }
 
-    if (self.ad.adChoicesView) {
+    if ([self.ad.adChoicesView isKindOfClass:[UIView class]]) {
         self.ad.adChoicesView.frame = self.adChoicesContainerView.bounds;
         self.ad.adChoicesView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.adChoicesContainerView addSubview:ad.adChoicesView];

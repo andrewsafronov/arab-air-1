@@ -1,7 +1,6 @@
 # Uncomment this line to define a global platform for your project
 platform :ios, '8.0'
 
-source 'https://github.com/appodeal/CocoaPods.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'AviasalesSDKTemplate' do
@@ -14,8 +13,8 @@ target 'AviasalesSDKTemplate' do
     pod 'AutoCoding', '~> 2.2'
     pod 'AXRatingView'
     pod 'AviasalesSDK', '~> 2.0.2'
-    pod 'Appodeal/Interstitial', '1.3.2'
-    pod 'Appodeal/Native', '1.3.2'
+    pod 'Appodeal/Interstitial', '1.3.3'
+    pod 'Appodeal/Native', '1.3.3'
 
 end
 
