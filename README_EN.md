@@ -15,7 +15,7 @@ The framework includes:
 * UI template project.
  
 You may create your own flight search apps based on our template. To track statistics and payments please visit our partner network — [Travelpayouts.com](https://www.travelpayouts.com/).
-To learn more about the Travelpayouts referral system please visit [Travelpayouts FAQ](https://support.travelpayouts.com/entries/23225382-Commission-and-payments).
+To learn more about the Travelpayouts referral system please visit [Travelpayouts FAQ](https://support.travelpayouts.com/hc/en-us/articles/203955613-Commission-and-payments).
 
 
 ##<a name="usage"></a>How to build an app using the template project
