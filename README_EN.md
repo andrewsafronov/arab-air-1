@@ -21,7 +21,8 @@ To learn more about the Travelpayouts referral system please visit [Travelpayout
 ##<a name="usage"></a>How to build an app using the template project
 ### 📲 Installation
 1. Download the latest template project release (not beta) here: [https://github.com/KosyanMedia/Aviasales-iOS-SDK/releases](https://github.com/KosyanMedia/Aviasales-iOS-SDK/releases).
-2. Download dependencies via ```pod install``` command in Terminal. Don't forget to ```cd``` to the template project folder.
+2. Download dependencies via ```pod install``` command in Terminal. Don't forget to ```cd``` to the template project folder.  
+**Use ```AviasalesSDKTemplate.xcworkspace``` to work with your project afterwards**.
 3. Find ```JRAppDelegate.m``` and assign your API token and partner marker to ```kJRAPIToken``` & ```kJRPartnerMarker```.
 4. If you don't have partner marker and API token, please visit [Travelpayouts](https://travelpayouts.com/) and register.
 
